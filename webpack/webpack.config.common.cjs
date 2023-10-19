@@ -26,7 +26,7 @@ module.exports = {
       },
 
       {
-        test: /\.(png|svg|jpg|jpeg|gif|env)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|env|otf)$/i,
         type: "asset/resource",
       },
 
@@ -35,10 +35,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.otf'],
     modules: [
       path.resolve('./node_modules'),
-      path.resolve('./src')
+      path.resolve('./src'),
+      path.resolve('./fonts')
     ]
   },
 

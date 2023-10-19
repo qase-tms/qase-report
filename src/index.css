@@ -1,17 +1,39 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'SF Pro', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #32425F;;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+   font-family: 'SF Pro';
+   font-weight: 400;
+   src: url('sf-pro/normal.otf');
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  font-weight: 500;
+  src: url('sf-pro/medium.otf');
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  font-weight: 600;
+  src: url('sf-pro/semibold.otf');
+}
+
+@font-face {
+  font-family: 'SF Pro';
+  font-weight: 700;
+  src: url('sf-pro/bold.otf');
 }
 
 a {
