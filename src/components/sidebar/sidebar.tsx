@@ -1,20 +1,21 @@
+import { FC } from 'react';
 import { observer } from 'mobx-react-lite'
 import { Drawer, Toolbar } from '@mui/material'
 import { PropsWithChildren } from 'react'
 
-export interface SidebarProps {
-  isOpen: boolean
-  onClose: () => void
+type SidebarProps = PropsWithChildren<{
+  isOpen: boolean,
+  onClose: () => void,
   width?: string
-}
+}>
 
-export const Sidebar = observer(
+export const Sidebar: FC<SidebarProps> = observer(
   ({
     children,
     isOpen,
     onClose,
     width = '40vw',
-  }: PropsWithChildren<SidebarProps>) => {
+  }) => {
     return (
       <Drawer
         anchor={'right'}

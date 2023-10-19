@@ -1,9 +1,10 @@
+import { FC } from 'react';
 import { observer } from 'mobx-react-lite'
 import { Button, Grid } from '@mui/material'
-import { useRootStore } from '../../store'
-import { Sidebar } from '../../components/Sidebar'
+import { useRootStore } from 'store/store'
+import { Sidebar } from 'components/sidebar/sidebar'
 
-export const MainLayout = observer(() => {
+export const MainLayout: FC = observer(() => {
   const { isDockOpen, closeDock, openDock } = useRootStore()
   return (
     <Grid

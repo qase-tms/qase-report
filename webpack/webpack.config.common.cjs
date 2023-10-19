@@ -1,5 +1,7 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: './src/main.tsx',
@@ -22,11 +24,11 @@ module.exports = {
 
         use: ['style-loader', 'css-loader']
       },
-      
-        {
-          test: /\.(png|svg|jpg|jpeg|gif|env)$/i,
-          type: "asset/resource",
-        },
+
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|env)$/i,
+        type: "asset/resource",
+      },
 
     ],
 
@@ -34,6 +36,10 @@ module.exports = {
 
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    modules: [
+      path.resolve('./node_modules'),
+      path.resolve('./src')
+    ]
   },
 
   plugins: [
@@ -41,6 +47,15 @@ module.exports = {
       filename: "index.html",
       template: "index.html",
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "public",
+          to: ""
+        }
+      ],
+    }),
+    new CleanWebpackPlugin()
   ],
 
 };
