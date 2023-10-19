@@ -1,0 +1,32 @@
+.text {
+    color: #32425F;
+    font-family: 'SF Pro', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.text-size-m1 {
+    font-size: 14px;
+}
+
+.text-size-m2 {
+    font-size: 16px;
+}
+
+.text-size-l1 {
+    font-size: 24px;
+}
+
+.text-weight-bold {
+    font-weight: 700;
+}
+
+.text-weight-semibold {
+    font-weight: 600;
+}
+
+.text-weight-medium {
+    font-weight: 500;
+}
+
+.text-weight-normal {
+    font-weight: 400;
+}

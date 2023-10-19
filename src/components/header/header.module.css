@@ -1,0 +1,9 @@
+.panel {
+    width: 100%;
+    padding: 16px;
+    box-shadow: 0px 0px 1px 0px rgba(9, 30, 66, 0.31), 0px 0px 4px 0px rgba(9, 30, 66, 0.25);
+    display: flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    gap: 12px;
+}

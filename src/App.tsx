@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Logo } from './components/logo/logo';
+import { Header } from 'components/header/header';
 
 
 export const App: FC = () => {
   return (
-    <Logo />
+    <Header />
   );
 };
