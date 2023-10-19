@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "start": "npx webpack serve --open --config=./webpack/webpack.config.dev.cjs",
+    "build": "npx webpack --config=./webpack/webpack.config.prod.cjs"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -21,8 +20,14 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
+    "css-loader": "^6.8.1",
+    "html-webpack-plugin": "^5.5.3",
     "prettier": "2.8.7",
+    "style-loader": "^3.3.3",
+    "ts-loader": "^9.5.0",
     "typescript": "^4.9.3",
-    "vite": "^4.2.0"
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }
