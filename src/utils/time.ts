@@ -5,7 +5,7 @@ export const formatSeconds = (durationS: number):string => {
     const roundedS = Math.floor(durationS);
 
     if(durationS < 0) {
-        return '_'
+        return '_';
     }
 
     const seconds = roundedS % 60;
