@@ -1,5 +1,5 @@
 declare module '*.svg' {
-    const value: any;
+    const value: string;
     export = value;
 }
 

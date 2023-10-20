@@ -1,6 +1,17 @@
 .text {
-    color: #32425F;
     font-family: 'SF Pro', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.text-color-primary {
+    color: #32425F;
+}
+
+.text-color-secondary {
+    color: rgba(50, 66, 95, 0.87);
+}
+
+.text-size-s1 {
+    font-size: 12px;
 }
 
 .text-size-m1 {
