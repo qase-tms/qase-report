@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import { Spacer, SpacerJustify, SpacerPreset } from 'components/spacer/spacer';
 import { Text, TextColor, TextSizes, TextWeight } from 'components/text/text';
-import { TestPreview, TestStatus } from 'domain/test';
+import { TestPreview, TestStatus } from 'domain/model/test';
 import { Icon, IconNames, IconSizes } from 'components/icon/icon';
 import { formatSeconds } from 'utils/time';
 import offsetStyles from 'common-styles/offsets.module.css';
