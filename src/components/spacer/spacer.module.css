@@ -7,11 +7,23 @@
     width: 100%;
 }
 
+.spacer-fullheight {
+    height: 100%;
+}
+
 .spacer-gaps-m {
     gap: 12px;
 }
 
-.spacer-align-bottom {
+.spacer-gaps-s {
+    gap: 6px;
+}
+
+.spacer-gaps-xs {
+    gap: 2px;
+}
+
+.spacer-align-end {
     align-items: flex-end;
 }
 
@@ -19,12 +31,16 @@
     align-items: center;
 }
 
-.spacer-align-top {
+.spacer-align-start {
     align-items: flex-start;
 }
 
-.spacer-preset-bordered {
+.spacer-preset-bordered-bottom {
     border-bottom: 1px solid rgba(50, 66, 95, 0.17);
+}
+
+.spacer-preset-bordered-left {
+    border-left: 1px solid #E0E1E4;
 }
 
 .spacer-preset-shaded {

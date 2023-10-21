@@ -10,20 +10,28 @@
     color: rgba(50, 66, 95, 0.87);
 }
 
+.text-color-error {
+    color: rgba(208, 0, 27, 1)
+}
+
 .text-size-s1 {
     font-size: 12px;
+    line-height: 12px;
 }
 
 .text-size-m1 {
     font-size: 14px;
+    line-height: 14px;
 }
 
 .text-size-m2 {
     font-size: 16px;
+    line-height: 16px;
 }
 
 .text-size-l1 {
     font-size: 24px;
+    line-height: 24px;
 }
 
 .text-weight-bold {

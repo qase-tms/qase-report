@@ -12,7 +12,7 @@ type TestPreviewItemProps = {
 
 export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test: {title, status, duration}}) => {
     return (
-    <Spacer className={offsetStyles['padding-16-16']} preset={SpacerPreset.Bordered} justifyContent={SpacerJustify.SpaceBetween} fullWidth>
+    <Spacer className={offsetStyles['padding-16-16']} preset={SpacerPreset.BorderedBottom} justifyContent={SpacerJustify.SpaceBetween} fullWidth>
         <Text weight={TextWeight.Bold}>{title}</Text>
         <Spacer>
             <Icon  className={offsetStyles['margin-right-2']} iconName={IconNames.Clock} />

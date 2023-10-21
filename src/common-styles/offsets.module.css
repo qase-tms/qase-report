@@ -6,6 +6,18 @@
     margin-right: 2px;
 }
 
+.margin-bottom-8 {
+    margin-bottom: 8px;
+}
+
+.margin-bottom-4 {
+    margin-bottom: 4px;
+}
+
+.margin-bottom-18 {
+    margin-bottom: 18px;
+}
+
 .padding-16-18 {
     padding: 16px 18px;
 }
@@ -14,6 +26,18 @@
     padding: 16px 16px;
 }
 
+.padding-0-16 {
+    padding: 0 16px;
+}
+
 .padding-6-0 {
     padding: 6px 0;
+}
+
+.max-width-900 {
+    max-width: 900px;
+}
+
+.max-width-500 {
+    max-width: 500px;
 }

@@ -4,17 +4,20 @@ import cn from 'classnames';
 
 export enum SpacerPreset {
     Shaded='shaded',
-    Bordered='bordered'
+    BorderedBottom='bordered-bottom',
+    BorderedLeft='bordered-left'
 };
 
 export enum SpacerAlign {
-    Top='top',
+    Start='start',
     Center='center',
-    Bottom='bottom'
+    End='end'
 };
 
 export enum SpacerGaps {
-    M='m'
+    M='m',
+    S='s',
+    XS='xs'
 };
 
 export enum SpacerDirections {
@@ -33,17 +36,19 @@ type SpacerProps = PropsWithChildren<{
     direction?: SpacerDirections,
     justifyContent?: SpacerJustify
     fullWidth?: boolean,
+    fullHeight?: boolean,
     className?: string
 }>;
 
-export const Spacer: FC<SpacerProps> = ({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className}) => {
+export const Spacer: FC<SpacerProps> = ({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className, fullHeight}) => {
     return (
         <div
           className={cn(className, styles.spacer, styles[`spacer-align-${align}`], styles[`spacer-direction-${direction}`], {
             [styles[`spacer-preset-${preset}`]]: Boolean(preset),
             [styles[`spacer-gaps-${gap}`]]: Boolean(gap),
             [styles[`spacer-justify-${justifyContent}`]]: Boolean(justifyContent),
-            [styles['spacer-fullwidth']]: Boolean(fullWidth)
+            [styles['spacer-fullwidth']]: Boolean(fullWidth),
+            [styles['spacer-fullheight']]: Boolean(fullHeight)
           })}>
             {children}
         </div>

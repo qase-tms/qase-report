@@ -7,7 +7,7 @@ import offsetStyles from 'common-styles/offsets.module.css';
 
 export const Header: FC = () => {
     return (
-        <Spacer gap={SpacerGaps.M} preset={SpacerPreset.Shaded} className={offsetStyles['padding-16-18']} align={SpacerAlign.Bottom} fullWidth>
+        <Spacer gap={SpacerGaps.M} preset={SpacerPreset.Shaded} className={offsetStyles['padding-16-18']} align={SpacerAlign.End} fullWidth>
             <Icon iconName={IconNames.Logo} />
             <Divider />
             <Text size={TextSizes.M1} tagName='p' color={TextColor.Secondary}>Report</Text>

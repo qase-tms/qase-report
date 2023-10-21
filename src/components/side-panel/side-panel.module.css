@@ -1,0 +1,15 @@
+.panel {
+    position: fixed;
+    min-width: 300px;
+    top: 60px;
+    right: 0;
+    height: calc(100vh - 60px);
+    animation-name: from-right;
+    animation-duration: 0.5s;
+    background-color: white;
+}
+
+@keyframes from-right {
+    from {transform: translateX(100%);}
+    to {transform: translateX(0);}
+}

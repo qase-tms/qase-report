@@ -18,7 +18,8 @@ export enum TextWeight {
 
 export enum TextColor {
     Primary='primary',
-    Secondary='secondary'
+    Secondary='secondary',
+    Error='error'
 }
 
 type TextProps = PropsWithChildren<{
