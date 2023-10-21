@@ -1,5 +1,5 @@
-import { jsonpFetch } from 'utils/jsonp-fetch';
-import { TestPreview } from 'domain/model/test';
+import { jsonpFetch } from 'utils/jsonp/jsonp-fetch';
+import { TestPreview } from 'domain/model/test-model';
 
 export type TestResults = {
     results: TestPreview[]

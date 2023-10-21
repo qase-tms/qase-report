@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { App } from './app'
-import { qaseJsonp, jsonpFetch } from 'utils/jsonp-fetch';
+import { qaseJsonp } from 'utils/jsonp/qase-jsonp';
 import './index.css'
 
 declare global {

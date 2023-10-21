@@ -3,7 +3,7 @@ import offsetStyles from 'common-styles/offsets.module.css';
 import { Spacer, SpacerDirections } from 'components/spacer/spacer';
 import { TestPreviewItem } from 'widgets/test-preview-item/test-preview-item';
 import { getTestPreviews } from 'domain/api/get-test-preview';
-import { TestPreview } from 'src/domain/model/test';
+import { TestPreview } from 'src/domain/model/test-model';
 
 
 export const TestsPreviewList: FC = () => {
