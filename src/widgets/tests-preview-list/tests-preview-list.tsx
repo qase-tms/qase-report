@@ -6,6 +6,7 @@ import { useTestPreviewList } from 'domain/hooks/use-test-preview-list';
 import { TestDetails } from 'widgets/test-details/test-details';
 import cn from 'classnames';
 import { TestPreview } from 'src/domain/model/test-model';
+import styles from './test-preview-list.module.css';
 
 export const TestsPreviewList: FC = () => {
   const tests = useTestPreviewList();
@@ -16,9 +17,9 @@ export const TestsPreviewList: FC = () => {
   return (
     <>
     {activeTestId && <TestDetails testId={activeTestId} />}
-    <Spacer className={cn(offsetStyles['padding-16-16'], offsetStyles['max-width-900'])} direction={SpacerDirections.Column}>
+    <Spacer className={cn(offsetStyles['padding-16-16'], offsetStyles['max-width-900'], styles.item)} direction={SpacerDirections.Column}>
       {tests.map((test) => (
-        <TestPreviewItem key={test.id} test={test} onSelect ={handleTestSelection} />
+        <TestPreviewItem key={test.id} test={test} onSelect={handleTestSelection} />
       ))}
     </Spacer>
     </>

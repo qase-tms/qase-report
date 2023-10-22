@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { SidePanel } from "components/side-panel/side-panel";
 import { Spacer, SpacerAlign, SpacerDirections } from 'components/spacer/spacer';
 import commonStyles from 'common-styles/offsets.module.css';
@@ -15,19 +15,8 @@ type TestDetailsProps = {
 
 export const TestDetails: FC<TestDetailsProps> = ({ testId }) => {
     const { test, testRequestStatus} = useTestDetails(testId);
-    const [panelOpened, setPanelOpened] = useState<boolean>(false);
 
-    useEffect(() => {
-        if(panelOpened) {
-            if([RequestStatus.Idle, RequestStatus.Loading].includes(testRequestStatus)) {
-                setPanelOpened(false);
-            }
-        } else {
-            if([RequestStatus.Success, RequestStatus.Failed].includes(testRequestStatus)) {
-                setPanelOpened(true);
-            }
-        }
-    }, [testRequestStatus]);
+    const panelOpened = [RequestStatus.Failed, RequestStatus.Success].includes(testRequestStatus);
     
     return (
         <SidePanel opened={panelOpened}>
