@@ -1,4 +1,4 @@
-import {FC, PropsWithChildren} from 'react';
+import {FC, PropsWithChildren, forwardRef} from 'react';
 import styles from './spacer.module.css';
 import cn from 'classnames';
 
@@ -37,12 +37,15 @@ type SpacerProps = PropsWithChildren<{
     justifyContent?: SpacerJustify
     fullWidth?: boolean,
     fullHeight?: boolean,
-    className?: string
+    className?: string,
+    onClick?: (d: any) => void
 }>;
 
-export const Spacer: FC<SpacerProps> = ({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className, fullHeight}) => {
+export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className, fullHeight, onClick}, ref) => {
     return (
         <div
+          ref={ref}
+          onClick={onClick}
           className={cn(className, styles.spacer, styles[`spacer-align-${align}`], styles[`spacer-direction-${direction}`], {
             [styles[`spacer-preset-${preset}`]]: Boolean(preset),
             [styles[`spacer-gaps-${gap}`]]: Boolean(gap),
@@ -53,4 +56,4 @@ export const Spacer: FC<SpacerProps> = ({children, gap, align=SpacerAlign.Center
             {children}
         </div>
     );
-};
+});

@@ -4,12 +4,11 @@
     top: 60px;
     right: 0;
     height: calc(100vh - 60px);
-    animation-name: from-right;
-    animation-duration: 0.5s;
+    transition: transform 0.2s;
     background-color: white;
+    transform: translateX(100%);
 }
 
-@keyframes from-right {
-    from {transform: translateX(100%);}
-    to {transform: translateX(0);}
+.opened {
+    transform: translateX(0);
 }

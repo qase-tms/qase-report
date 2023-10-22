@@ -19,8 +19,13 @@ export type TestExecution = {
     thread: string,
 };
 
-export type TestDetails = {
+export type TestFields = {
+    description?: string
+};
+
+export type Test = {
     id: string,
     title: string,
-    execution: TestExecution
+    execution: TestExecution,
+    fields: TestFields
 };

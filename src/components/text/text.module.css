@@ -14,6 +14,10 @@
     color: rgba(208, 0, 27, 1)
 }
 
+.text-color-success {
+    color: #29B95F;
+}
+
 .text-size-s1 {
     font-size: 12px;
     line-height: 12px;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, DependencyList } from 'react';
 
 export enum RequestStatus {
     Idle='idle',
@@ -13,13 +13,14 @@ export type RequestResult<DataType> = {
     error?: Error
 };
 
-export function useRequest<DataType>(request:()=>Promise<DataType>):RequestResult<DataType> {
+export function useRequest<DataType>(request:(signal?: AbortSignal)=>Promise<DataType>, dependencies: DependencyList):RequestResult<DataType> {
     const [data, setData] = useState<DataType|null>(null);
     const [status, setStatus] = useState<RequestStatus>(RequestStatus.Idle);
     const [error, setError] = useState<Error|undefined>();
     useEffect(() => {
+        const abortContoller = new AbortController();
         setStatus(RequestStatus.Loading);
-        request()
+        request(abortContoller.signal)
         .then((result) => {
             setStatus(RequestStatus.Success);
             setData(result);
@@ -28,7 +29,11 @@ export function useRequest<DataType>(request:()=>Promise<DataType>):RequestResul
             setStatus(RequestStatus.Failed);
             setError(error);
         });
-    }, []);
+        return () => {
+            abortContoller.abort();
+            setStatus(RequestStatus.Idle);
+        };
+    }, [...dependencies, request]);
     return {
         data,
         status,

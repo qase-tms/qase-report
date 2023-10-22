@@ -7,6 +7,6 @@ export type TestResults = {
 
 const testResultsPath = 'qase-report-jsonp/report.jsonp';
 
-export const getTestPreviews = ():Promise<TestResults> => {
-    return jsonpFetch<TestResults>(testResultsPath);
+export const getTestPreviews = (signal?: AbortSignal):Promise<TestResults> => {
+    return jsonpFetch<TestResults>(testResultsPath, signal);
 }

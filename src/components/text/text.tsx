@@ -19,6 +19,7 @@ export enum TextWeight {
 export enum TextColor {
     Primary='primary',
     Secondary='secondary',
+    Success='success',
     Error='error'
 }
 
