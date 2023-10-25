@@ -1,6 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 import cn from 'classnames';
 import styles from './text.module.css';
+import { useTestIdAttribute } from 'utils/use-test-id-attribute';
 
 export enum TextSizes {
     S1='s1',
@@ -28,10 +29,18 @@ type TextProps = PropsWithChildren<{
     weight?: TextWeight,
     tagName?: 'span'|'p'|'h1'|'h2'|'h3'|'h4'|'h5',
     className?: string,
-    color?: TextColor
+    color?: TextColor,
+    testId?: string
 }>;
 
-export const Text:FC<TextProps> = ({ size=TextSizes.M2, weight=TextWeight.Medium, children, tagName='span', className, color=TextColor.Primary}) => {
+export const Text:FC<TextProps> = ({ size=TextSizes.M2, weight=TextWeight.Medium, children, tagName='span', className, color=TextColor.Primary, testId}) => {
     const Tag = tagName;
-    return <Tag className={cn(styles.text, styles[`text-weight-${weight}`], styles[`text-size-${size}`], styles[`text-color-${color}`], className)}>{children}</Tag>
+    const testIdAttribute = useTestIdAttribute(testId);
+    return (
+        <Tag 
+        className={cn(styles.text, styles[`text-weight-${weight}`], styles[`text-size-${size}`], styles[`text-color-${color}`], className)}
+         {...testIdAttribute}>
+            {children}
+        </Tag>
+     );
 }

@@ -8,10 +8,17 @@ import { TestDetailsSummary } from './test-details-summary/test-details-summary'
 import { useTestDetails } from 'domain/hooks/use-test-details';
 import { RequestStatus } from 'domain/api/use-request';
 import { Text, TextColor, TextSizes } from 'components/text/text';
+import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestDetailsProps = {
     testId: string;
 }
+
+const testIdNamespace = 'WIDGET_TEST_DETAILS';
+
+export const testIds = {
+    errorField: createTestId(testIdNamespace, 'error-field')
+};
 
 export const TestDetails: FC<TestDetailsProps> = ({ testId }) => {
     const { test, testRequestStatus} = useTestDetails(testId);
@@ -21,10 +28,10 @@ export const TestDetails: FC<TestDetailsProps> = ({ testId }) => {
     return (
         <SidePanel opened={panelOpened}>
             {testRequestStatus === RequestStatus.Failed && (
-                <Text size={TextSizes.L1} color={TextColor.Error}>Something gone wrong...</Text>
+                <Text size={TextSizes.L1} color={TextColor.Error} testId={testIds.errorField}>Something gone wrong...</Text>
             )}
             {test && testRequestStatus !== RequestStatus.Failed  && (
-                            <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start}>
+                        <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start}>
                             <TestDetailsHeader status={test.execution.status} className={commonStyles['margin-bottom-8']} />
                             <Spacer fullHeight direction={SpacerDirections.Row}>
                                 <TestDetailsCard title={test.title} description={test.fields.description} />

@@ -1,6 +1,7 @@
 import {FC, PropsWithChildren, forwardRef} from 'react';
 import styles from './spacer.module.css';
 import cn from 'classnames';
+import { useTestIdAttribute } from 'utils/use-test-id-attribute';
 
 export enum SpacerPreset {
     Shaded='shaded',
@@ -38,13 +39,16 @@ type SpacerProps = PropsWithChildren<{
     fullWidth?: boolean,
     fullHeight?: boolean,
     className?: string,
-    onClick?: (d: any) => void
+    onClick?: (d: any) => void,
+    testId?: string
 }>;
 
-export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className, fullHeight, onClick}, ref) => {
+export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(({children, gap, align=SpacerAlign.Center, preset, direction=SpacerDirections.Row, justifyContent, fullWidth, className, fullHeight, onClick, testId}, ref) => {
+    const testIdAttribute = useTestIdAttribute(testId);
     return (
         <div
           ref={ref}
+          {...testIdAttribute}
           onClick={onClick}
           className={cn(className, styles.spacer, styles[`spacer-align-${align}`], styles[`spacer-direction-${direction}`], {
             [styles[`spacer-preset-${preset}`]]: Boolean(preset),
