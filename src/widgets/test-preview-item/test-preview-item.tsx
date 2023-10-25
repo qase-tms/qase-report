@@ -53,7 +53,6 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
                 {status === TestStatus.Passed ?
                     <Icon iconName={IconNames.CheckMark} size={IconSizes.M} testId={testIds.itemIconSuccess} /> :
                     <Icon iconName={IconNames.Fail} size={IconSizes.M} testId={testIds.itemIconFail} />}
-                <Icon iconName={status === TestStatus.Passed ? IconNames.CheckMark : IconNames.Fail} size={IconSizes.M} />
             </Spacer>
         </Spacer>
     );
