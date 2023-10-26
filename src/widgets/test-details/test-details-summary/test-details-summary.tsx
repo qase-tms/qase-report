@@ -3,7 +3,7 @@ import { Spacer, SpacerDirections, SpacerAlign, SpacerPreset, SpacerGaps } from 
 import {Text, TextSizes, TextWeight, TextColor} from 'components/text/text';
 import {Icon, IconNames, IconSizes} from 'components/icon/icon';
 import commonStyles from 'common-styles/offsets.module.css';
-import { formatSeconds } from 'utils/time';
+import { formatMs } from 'utils/time';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestDetailsSummaryProps = {
@@ -26,7 +26,7 @@ export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({duration, endTi
             <Text color={TextColor.Secondary} size={TextSizes.M1} weight={TextWeight.Semibold} className={commonStyles['margin-bottom-4']} tagName='p'>Duration</Text>
             <Spacer gap={SpacerGaps.XS} className={commonStyles['margin-bottom-18']} align={SpacerAlign.End}>
                 <Icon iconName={IconNames.Clock} size={IconSizes.S} />
-                <Text size={TextSizes.S1} weight={TextWeight.Normal} testId={testIds.durationField}>{formatSeconds(duration)}</Text>
+                <Text size={TextSizes.S1} weight={TextWeight.Normal} testId={testIds.durationField}>{formatMs(duration)}</Text>
             </Spacer>
             <Text color={TextColor.Secondary} size={TextSizes.M1} weight={TextWeight.Semibold} className={commonStyles['margin-bottom-4']} tagName='p'>Finished at</Text>
             <Spacer gap={SpacerGaps.XS} className={commonStyles['margin-bottom-18']} align={SpacerAlign.End}>

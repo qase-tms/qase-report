@@ -3,7 +3,7 @@ import { Spacer, SpacerJustify, SpacerPreset } from 'components/spacer/spacer';
 import { Text, TextColor, TextSizes, TextWeight } from 'components/text/text';
 import { TestPreview, TestStatus } from 'domain/model/test-model';
 import { Icon, IconNames, IconSizes } from 'components/icon/icon';
-import { formatSeconds } from 'utils/time';
+import { formatMs } from 'utils/time';
 import offsetStyles from 'common-styles/offsets.module.css';
 import { createTestId } from 'utils/use-test-id-attribute';
 
@@ -48,7 +48,7 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
                     weight={TextWeight.Normal}
                     color={TextColor.Secondary}
                     testId={testIds.itemFieldDuration}>
-                    {formatSeconds(duration)}
+                    {formatMs(duration)}
                 </Text>
                 {status === TestStatus.Passed ?
                     <Icon iconName={IconNames.CheckMark} size={IconSizes.M} testId={testIds.itemIconSuccess} /> :

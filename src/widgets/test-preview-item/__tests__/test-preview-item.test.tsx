@@ -15,7 +15,7 @@ describe('<TestPreviewItem />', () => {
         const test = mockTest;
         render(<TestPreviewItem test={test} />);
         expect(screen.getByTestId(testIds.itemTitle).textContent).toBe(test.title);
-        expect(screen.getByTestId(testIds.itemFieldDuration).textContent).toBe('0h 1m 0s');
+        expect(screen.getByTestId(testIds.itemFieldDuration).textContent).toBe('60ms');
         expect(screen.getByTestId(testIds.itemIconSuccess)).toBeTruthy();
     });
 
@@ -26,7 +26,7 @@ describe('<TestPreviewItem />', () => {
         };
         render(<TestPreviewItem test={test} />);
         expect(screen.getByTestId(testIds.itemTitle).textContent).toBe(test.title);
-        expect(screen.getByTestId(testIds.itemFieldDuration).textContent).toBe('0h 1m 0s');
+        expect(screen.getByTestId(testIds.itemFieldDuration).textContent).toBe('60ms');
         expect(screen.getByTestId(testIds.itemIconFail)).toBeTruthy();
     });
 
