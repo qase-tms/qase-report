@@ -5,13 +5,13 @@ import commonStyles from 'common-styles/offsets.module.css';
 import { TestDetailsHeader } from './test-details-header/test-details-header';
 import { TestDetailsCard } from './test-details-card/test-details-card';
 import { TestDetailsSummary } from './test-details-summary/test-details-summary';
-import { useTestDetails } from 'domain/hooks/use-test-details';
+import { useTestDetails } from 'domain/hooks/test-details-hooks/use-test-details';
 import { RequestStatus } from 'domain/api/use-request';
 import { Text, TextColor, TextSizes } from 'components/text/text';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestDetailsProps = {
-    testId: string;
+    qaseTestId: string;
 }
 
 const testIdNamespace = 'WIDGET_TEST_DETAILS';
@@ -20,8 +20,8 @@ export const testIds = {
     errorField: createTestId(testIdNamespace, 'error-field')
 };
 
-export const TestDetails: FC<TestDetailsProps> = ({ testId }) => {
-    const { test, testRequestStatus} = useTestDetails(testId);
+export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
+    const { test, testRequestStatus} = useTestDetails(qaseTestId);
 
     const panelOpened = [RequestStatus.Failed, RequestStatus.Success].includes(testRequestStatus);
     

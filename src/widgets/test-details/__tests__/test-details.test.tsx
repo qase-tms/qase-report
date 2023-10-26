@@ -1,13 +1,13 @@
 import { TestDetails, testIds } from 'widgets/test-details/test-details';
 import { render, screen } from '@testing-library/react';
-import { useTestDetails } from 'domain/hooks/use-test-details';
+import { useTestDetails } from 'domain/hooks/test-details-hooks/use-test-details';
 import { RequestStatus } from 'domain/api/use-request';
 import { TestDetailsCard } from 'widgets/test-details/test-details-card/test-details-card';
 import { TestDetailsSummary } from 'widgets/test-details/test-details-summary/test-details-summary';
 import { TestDetailsHeader } from 'widgets/test-details/test-details-header/test-details-header';
 import { expectPropsPassed } from 'utils/test-utils';
 
-jest.mock('domain/hooks/use-test-details', () => ({
+jest.mock('domain/hooks/test-details-hooks/use-test-details', () => ({
     useTestDetails: jest.fn()
 }));
 
@@ -31,7 +31,7 @@ describe('<TestDetails />', () => {
 
     it('TestDetails renders error', () => {
         (useTestDetails as jest.Mock).mockReturnValue({ test: null, testRequestStatus: RequestStatus.Failed});
-        render(<TestDetails testId='test' />);
+        render(<TestDetails qaseTestId='test' />);
         expect(screen.getByTestId(testIds.errorField)).toBeTruthy();
     });
 
@@ -51,7 +51,7 @@ describe('<TestDetails />', () => {
             },
         };
         (useTestDetails as jest.Mock).mockReturnValue({testRequestStatus: RequestStatus.Success, test});
-        render(<TestDetails testId={test.id} />);
+        render(<TestDetails qaseTestId={test.id} />);
         expect(screen.queryByTestId(testIds.errorField)).toBeFalsy();
         
         expectPropsPassed(TestDetailsHeader as jest.Mock, { status: test.execution.status });
