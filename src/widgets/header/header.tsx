@@ -5,8 +5,6 @@ import { Text, TextColor, TextSizes } from 'components/text/text';
 import { Spacer, SpacerAlign, SpacerPreset } from 'components/spacer/spacer';
 
 const headerCss = `
-    top: 0;
-    position: sticky;
     background-color: white;
     padding: 16px 18px;
 `;

@@ -19,7 +19,7 @@ export const testIds = {
 
 const cardCss = `
     padding: 0 16px;
-    min-width: 500px;
+    min-width: 400px;
 `;
 
 const headerCss = `

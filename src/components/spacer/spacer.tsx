@@ -36,7 +36,16 @@ type SpacerProps = PropsWithChildren<{
     css?: string
 }>;
 
-type StyledDivProps = Omit<SpacerProps, 'onClick'|'testId'>
+type StyledDivProps = PropsWithChildren<{
+    $preset?: SpacerPreset,
+    $align?: SpacerAlign,
+    $gap?: number,
+    $direction?: SpacerDirections,
+    $justifyContent?: SpacerJustify
+    $fullWidth?: boolean,
+    $fullHeight?: boolean,
+    $css?: string
+}>
 
 const presetCss: Record<SpacerPreset, string> = {
     [SpacerPreset.Shaded]: `box-shadow: 0px 0px 1px 0px rgba(9, 30, 66, 0.31), 0px 0px 4px 0px rgba(9, 30, 66, 0.25);`,
@@ -64,21 +73,21 @@ const Div = styled.div<StyledDivProps>`
     display: flex;
     box-sizing: border-box;
     
-    ${props => props.preset ? presetCss[props.preset]: '' }
+    ${props => props.$preset ? presetCss[props.$preset]: '' }
 
-    ${props => alignCss[props.align ?? SpacerAlign.Center]}
+    ${props => alignCss[props.$align ?? SpacerAlign.Center]}
 
-    ${props => directionCss[props.direction ?? SpacerDirections.Row]}
+    ${props => directionCss[props.$direction ?? SpacerDirections.Row]}
 
-    ${props => props.justifyContent ? justifyCss[props.justifyContent] : ''}
+    ${props => props.$justifyContent ? justifyCss[props.$justifyContent] : ''}
 
-    ${props => props.gap ? `gap: ${props.gap}px;` : ''}
+    ${props => props.$gap ? `gap: ${props.$gap}px;` : ''}
 
-    ${props => props.fullWidth ? 'width: 100%;' : ''}
+    ${props => props.$fullWidth ? 'width: 100%;' : ''}
 
-    ${props => props.fullHeight ? 'height: 100%;' : ''}
+    ${props => props.$fullHeight ? 'height: 100%;' : ''}
 
-    ${props => props.css ?? ''}
+    ${props => props.$css ?? ''}
 `;
 
 export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(({children, gap, align, preset, direction, justifyContent, fullWidth, css, fullHeight, onClick, testId}, ref) => {
@@ -88,14 +97,14 @@ export const Spacer = forwardRef<HTMLDivElement, SpacerProps>(({children, gap, a
           ref={ref}
           {...testIdAttribute}
           onClick={onClick}
-          preset={preset}
-          align={align}
-          direction={direction}
-          gap={gap}
-          css={css}
-          justifyContent={justifyContent}
-          fullWidth={fullWidth}
-          fullHeight={fullHeight}>
+          $preset={preset}
+          $align={align}
+          $direction={direction}
+          $gap={gap}
+          $css={css}
+          $justifyContent={justifyContent}
+          $fullWidth={fullWidth}
+          $fullHeight={fullHeight}>
             {children}
         </Div>
     );

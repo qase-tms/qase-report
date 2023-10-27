@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { SidePanel } from "components/side-panel/side-panel";
 import { Spacer, SpacerAlign, SpacerDirections } from 'components/spacer/spacer';
 import { TestDetailsHeader } from './test-details-header/test-details-header';
 import { TestDetailsCard } from './test-details-card/test-details-card';
@@ -21,23 +20,21 @@ export const testIds = {
 
 export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
     const { test, testRequestStatus} = useTestDetails(qaseTestId);
-
-    const panelOpened = [RequestStatus.Failed, RequestStatus.Success].includes(testRequestStatus);
     
     return (
-        <SidePanel opened={panelOpened}>
+        <Spacer fullHeight>
             {testRequestStatus === RequestStatus.Failed && (
                 <Text size={TextSizes.L1} color={TextColor.Error} testId={testIds.errorField}>Something gone wrong...</Text>
             )}
             {test && testRequestStatus !== RequestStatus.Failed  && (
                         <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start}>
-                            <TestDetailsHeader status={test.execution.status} css={`margin-bottom: 8px;`} />
+                            <TestDetailsHeader status={test.execution.status} css={`margin: 16px 0 8px;`} />
                             <Spacer fullHeight direction={SpacerDirections.Row}>
                                 <TestDetailsCard title={test.title} description={test.fields.description} />
                                 <TestDetailsSummary duration={test.execution.duration} thread={test.execution.thread} endTime={test.execution.end_time} />
                             </Spacer>
                         </Spacer>
             )}
-        </SidePanel>
+        </Spacer>
     );
 };

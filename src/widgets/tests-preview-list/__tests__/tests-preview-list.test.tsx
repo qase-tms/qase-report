@@ -18,6 +18,15 @@ jest.mock('widgets/test-preview-item/test-preview-item', () => ({
     TestPreviewItem: jest.fn().mockImplementation(() => null)
 }));
 
+jest.mock('components/split-pane/split-pane', () => ({
+    SplitPane: jest.fn().mockImplementation(({renderLeft, renderRight}) => (
+        <div>
+            {renderLeft()}
+            {renderRight()}
+        </div>
+    ))
+}));
+
 const mockTests = [
     {
         "id": "1b70a53e-b66e-4b79-8308-ecf8bfe86373",
