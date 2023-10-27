@@ -1,15 +1,12 @@
 import { FC } from 'react';
 import {Text, TextSizes, TextWeight} from 'components/text/text';
 import {Spacer, SpacerDirections, SpacerAlign} from 'components/spacer/spacer';
-import commonStyles from 'common-styles/offsets.module.css';
-import cn from 'classnames';
-import styles from './test-details-card.module.css';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestDetailsProps = {
     title: string,
     description?: string,
-    className?: string
+    css?: string
 }
 
 const testIdNamespace = 'TEST_DETAILS_CARD';
@@ -20,14 +17,26 @@ export const testIds = {
     cardDescriptionText: createTestId(testIdNamespace, 'card-description-text'),
 };
 
-export const TestDetailsCard: FC<TestDetailsProps> = ({title, description,className}) => {
+const cardCss = `
+    padding: 0 16px;
+    min-width: 500px;
+`;
+
+const headerCss = `
+    max-width: 400px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 8px;
+`;
+
+export const TestDetailsCard: FC<TestDetailsProps> = ({title, description,css}) => {
     return (
-        <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start} className={cn(commonStyles['padding-0-16'], commonStyles['width-500'], className)}>
-            <Text size={TextSizes.L1} weight={TextWeight.Semibold} tagName='h2' className={cn(commonStyles['margin-bottom-8'], styles.header)} testId={testIds.cardTitle}>
+        <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start} css={cardCss + (css ?? '')}>
+            <Text size={TextSizes.L1} weight={TextWeight.Semibold} tagName='h2' css={headerCss} testId={testIds.cardTitle}>
                 {title}
             </Text>
             {(description && <>
-                <Text weight={TextWeight.Bold} className={commonStyles['margin-bottom-4']} tagName='h3' testId={testIds.cardDescriptionTitle}>
+                <Text weight={TextWeight.Bold} css={'margin-bottom: 4px;'} tagName='h3' testId={testIds.cardDescriptionTitle}>
                 Description
             </Text>
             <Text weight={TextWeight.Normal} size={TextSizes.M1} tagName='p' testId={testIds.cardDescriptionText}>

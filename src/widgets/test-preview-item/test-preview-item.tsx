@@ -4,7 +4,6 @@ import { Text, TextColor, TextSizes, TextWeight } from 'components/text/text';
 import { TestPreview, TestStatus } from 'domain/model/test-model';
 import { Icon, IconNames, IconSizes } from 'components/icon/icon';
 import { formatMs } from 'utils/time';
-import offsetStyles from 'common-styles/offsets.module.css';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestPreviewItemProps = {
@@ -34,7 +33,7 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
 
     return (
         <Spacer
-            className={offsetStyles['padding-16-16']}
+            css={'padding: 16px 16px; cursor: pointer;'}
             preset={SpacerPreset.BorderedBottom}
             justifyContent={SpacerJustify.SpaceBetween}
             fullWidth
@@ -42,8 +41,8 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
             testId={testIds.itemRoot}>
             <Text weight={TextWeight.Bold} testId={testIds.itemTitle}>{title}</Text>
             <Spacer>
-                <Icon className={offsetStyles['margin-right-2']} iconName={IconNames.Clock} />
-                <Text className={offsetStyles['margin-right-16']}
+                <Icon css='margin-right: 2px' iconName={IconNames.Clock} />
+                <Text css={`margin-right: 16px;`}
                     size={TextSizes.S1}
                     weight={TextWeight.Normal}
                     color={TextColor.Secondary}

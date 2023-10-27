@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { SidePanel } from "components/side-panel/side-panel";
 import { Spacer, SpacerAlign, SpacerDirections } from 'components/spacer/spacer';
-import commonStyles from 'common-styles/offsets.module.css';
 import { TestDetailsHeader } from './test-details-header/test-details-header';
 import { TestDetailsCard } from './test-details-card/test-details-card';
 import { TestDetailsSummary } from './test-details-summary/test-details-summary';
@@ -32,7 +31,7 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
             )}
             {test && testRequestStatus !== RequestStatus.Failed  && (
                         <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start}>
-                            <TestDetailsHeader status={test.execution.status} className={commonStyles['margin-bottom-8']} />
+                            <TestDetailsHeader status={test.execution.status} css={`margin-bottom: 8px;`} />
                             <Spacer fullHeight direction={SpacerDirections.Row}>
                                 <TestDetailsCard title={test.title} description={test.fields.description} />
                                 <TestDetailsSummary duration={test.execution.duration} thread={test.execution.thread} endTime={test.execution.end_time} />

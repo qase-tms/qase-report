@@ -1,13 +1,22 @@
 import {FC, PropsWithChildren, useState, useRef, useEffect} from 'react';
 import { Spacer, SpacerDirections, SpacerPreset } from 'components/spacer/spacer';
-import cn from 'classnames';
-import styles from './side-panel.module.css';
 import { useTestIdAttribute } from 'utils/use-test-id-attribute';
 
 type PanelProps = PropsWithChildren<{
     opened: boolean,
     testId?: string
 }>
+
+const panelCss = (opened: boolean) => `
+    position: fixed;
+    min-width: 300px;
+    top: 60px;
+    right: 0;
+    height: calc(100vh - 60px);
+    transition: transform 0.2s;
+    background-color: white;
+    transform: translateX(${opened ? 0 : '100%'});
+`;
 
 export const SidePanel:FC<PanelProps> = (props) => {
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
@@ -35,9 +44,7 @@ export const SidePanel:FC<PanelProps> = (props) => {
     }, [props.opened, isAnimating]);
 
     return (
-        <Spacer ref={panelRef} fullHeight direction={SpacerDirections.Column} preset={SpacerPreset.BorderedLeft} className={cn(styles.panel, {
-            [styles.opened]: isOpened
-        })}
+        <Spacer ref={panelRef} fullHeight direction={SpacerDirections.Column} preset={SpacerPreset.BorderedLeft} css={panelCss(isOpened)}
         {...testIdAttribute}
         >
             {props.children}
