@@ -1,4 +1,4 @@
-import { TestPreviewItem, testIds } from 'widgets/test-preview-item/test-preview-item';
+import { TestPreviewItem, testIds } from 'widgets/test-preview-item';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { TestStatus } from 'domain/model/test-model';
 

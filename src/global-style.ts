@@ -1,12 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
-import sfProNormal from 'fonts/sf-pro/normal.otf';
-import sfProMedium from 'fonts/sf-pro/medium.otf';
-import sfProSemiBold from 'fonts/sf-pro/semibold.otf';
-import sfProBold from 'fonts/sf-pro/bold.otf';
 
 export const GlobalStyle = createGlobalStyle`
 :root {
-    font-family: 'SF Pro', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     font-weight: 500;
   
     color: #32425F;;
@@ -17,30 +13,6 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-  }
-  
-  @font-face {
-     font-family: 'SF Pro';
-     font-weight: 400;
-     src: url(${sfProNormal});
-  }
-  
-  @font-face {
-    font-family: 'SF Pro';
-    font-weight: 500;
-    src: url(${sfProMedium});
-  }
-  
-  @font-face {
-    font-family: 'SF Pro';
-    font-weight: 600;
-    src: url(${sfProSemiBold});
-  }
-  
-  @font-face {
-    font-family: 'SF Pro';
-    font-weight: 700;
-    src: url(${sfProBold});
   }
   
   body {

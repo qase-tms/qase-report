@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTestPreviewList } from './use-test-preview-list';
-import { TestPreview } from 'src/domain/model/test-model';
+import { TestPreview } from 'domain/model/test-model';
 
 type TestsLayoutShape = {
     tests: TestPreview[],

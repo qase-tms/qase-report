@@ -1,4 +1,4 @@
-import { TestDetailsHeader, testIds } from 'widgets/test-details/test-details-header/test-details-header';
+import { TestDetailsHeader, testIds } from 'widgets/test-details/test-details-header';
 import { render, screen } from '@testing-library/react';
 import { TestStatus } from 'domain/model/test-model';
 

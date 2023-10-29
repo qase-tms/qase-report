@@ -1,10 +1,10 @@
 import { FC, useCallback } from 'react';
-import { Spacer, SpacerDirections } from 'components/spacer/spacer';
-import { TestPreviewItem } from 'widgets/test-preview-item/test-preview-item';
-import { TestDetails } from 'widgets/test-details/test-details';
+import { Spacer } from 'components/spacer';
+import { TestPreviewItem } from 'widgets/test-preview-item';
+import { TestDetails } from 'widgets/test-details';
 import { TestPreview } from 'domain/model/test-model';
-import { useTestsLayout } from 'domain/hooks/test-preivew-list-hooks/use-tests-layout';
-import { SplitPane } from 'components/split-pane/split-pane';
+import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
+import { SplitPane } from 'components/split-pane';
 import styled from 'styled-components';
 
 const listCss = `
@@ -21,7 +21,7 @@ const ScrolledDiv = styled.div`
     max-height: calc(100vh - 50px);
 `;
 
-export const TestsPreviewList: FC = () => {
+export const TestsLayout: FC = () => {
   const { tests, activeTestId, setActiveTestId } = useTestsLayout();
 
   const handleTestSelection = useCallback((test: TestPreview) => {
@@ -34,7 +34,7 @@ export const TestsPreviewList: FC = () => {
         minSizes={['600px', '650px']}
         renderLeft={() => (
           <ScrolledDiv>
-            <Spacer css={listCss} direction={SpacerDirections.Column}>
+            <Spacer css={listCss} direction={Spacer.Direction.Column}>
               {tests.map((test) => (
                 <TestPreviewItem key={test.id} test={test} onSelect={handleTestSelection} />
               ))}

@@ -1,16 +1,16 @@
 import { FC } from 'react';
-import { Spacer, SpacerAlign, SpacerDirections } from 'components/spacer/spacer';
-import { TestDetailsHeader } from './test-details-header/test-details-header';
-import { TestDetailsCard } from './test-details-card/test-details-card';
-import { TestDetailsSummary } from './test-details-summary/test-details-summary';
-import { useTestDetails } from 'domain/hooks/test-details-hooks/use-test-details';
-import { RequestStatus } from 'domain/api/use-request';
-import { Text, TextColor, TextSizes } from 'components/text/text';
+import { Spacer } from 'components/spacer';
+import { TestDetailsHeader } from './test-details-header';
+import { TestDetailsCard } from './test-details-card';
+import { TestDetailsSummary } from './test-details-summary';
+import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
+import { RequestStatus } from 'utils/use-request';
+import { Text } from 'components/text';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestDetailsProps = {
     qaseTestId: string;
-}
+};
 
 const testIdNamespace = 'WIDGET_TEST_DETAILS';
 
@@ -24,12 +24,12 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
     return (
         <Spacer fullHeight>
             {testRequestStatus === RequestStatus.Failed && (
-                <Text size={TextSizes.L1} color={TextColor.Error} testId={testIds.errorField}>Something gone wrong...</Text>
+                <Text size={Text.Size.L1} color={Text.Color.Error} testId={testIds.errorField}>Something gone wrong...</Text>
             )}
             {test && testRequestStatus !== RequestStatus.Failed  && (
-                        <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start}>
+                        <Spacer fullHeight direction={Spacer.Direction.Column} align={Spacer.Align.Start}>
                             <TestDetailsHeader status={test.execution.status} css={`margin: 16px 0 8px;`} />
-                            <Spacer fullHeight direction={SpacerDirections.Row}>
+                            <Spacer fullHeight direction={Spacer.Direction.Row}>
                                 <TestDetailsCard title={test.title} description={test.fields.description} />
                                 <TestDetailsSummary duration={test.execution.duration} thread={test.execution.thread} endTime={test.execution.end_time} />
                             </Spacer>

@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { Header } from 'widgets/header/header';
-import { TestsPreviewList } from 'widgets/tests-preview-list/tests-preview-list';
+import { Header } from 'widgets/header';
+import { TestsLayout } from 'pages/tests-layout';
 
 export const App: FC = () => {
   return (
     <>
       <Header />
-      <TestsPreviewList />
+      <TestsLayout />
     </>
   );
 };

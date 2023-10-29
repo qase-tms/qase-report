@@ -1,12 +1,11 @@
 import { FC, ReactNode, useState } from 'react';
 import ReactSplitPane, { Pane } from 'split-pane-react';
+import { Divider } from 'components/divider';
 import 'split-pane-react/esm/themes/default.css';
-import { Divider } from 'components/divider/divider';
 
 type SizesType = Array<string | number>;
 
 const dividerCss = `
-    height: calc(100vh - 66px);
     margin-top: 16px;
 `;
 
@@ -20,9 +19,8 @@ type SplitPaneProps = {
 export const SplitPane: FC<SplitPaneProps>= ({initialSizes, minSizes, renderLeft, renderRight}) => {
   const [sizes, setSizes] = useState<SizesType>(initialSizes);
 
-
   return (
-    <ReactSplitPane split='vertical' sizes={sizes} onChange={setSizes} sashRender={() => <Divider css={dividerCss}/>} allowResize>
+    <ReactSplitPane split='vertical' sizes={sizes} onChange={setSizes} sashRender={() => <Divider css={dividerCss} height='calc(100vh - 66px)'/>} allowResize>
       <Pane minSize={minSizes[0]}>
           {renderLeft()}
       </Pane>

@@ -1,4 +1,4 @@
-import { TestDetailsSummary, testIds } from 'widgets/test-details/test-details-summary/test-details-summary';
+import { TestDetailsSummary, testIds } from 'widgets/test-details/test-details-summary';
 import { render, screen } from '@testing-library/react';
 
 describe('<TestDetailsSummary />', () => {

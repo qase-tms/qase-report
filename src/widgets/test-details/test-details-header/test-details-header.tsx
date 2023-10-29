@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Spacer, SpacerDirections } from 'components/spacer/spacer';
-import { Icon, IconNames, IconSizes } from 'components/icon/icon';
-import { Text, TextColor, TextSizes } from 'components/text/text';
+import { Spacer } from 'components/spacer';
+import { Icon } from 'components/icon';
+import { Text } from 'components/text';
 import { TestStatus } from 'domain/model/test-model';
 import { createTestId } from 'utils/use-test-id-attribute';
 
@@ -26,12 +26,11 @@ const detailsCss = `
 export const TestDetailsHeader:FC<TestDetailsHeaderProps> = ({status, css}) => {
     const isPassed = status === TestStatus.Passed;
     return (
-        <Spacer direction={SpacerDirections.Row} gap={6} css={detailsCss + (css ?? '')}>
+        <Spacer direction={Spacer.Direction.Row} gap={6} css={detailsCss + (css ?? '')}>
             {
-                isPassed ? <Icon iconName={IconNames.CheckMark} size={IconSizes.S} testId={testIds.headerPassedIcon}/> : <Icon iconName={IconNames.Fail} size={IconSizes.S} testId={testIds.headerFailedIcon}/>
+                isPassed ? <Icon iconName={Icon.Name.CheckMark} size={Icon.Size.S} testId={testIds.headerPassedIcon}/> : <Icon iconName={Icon.Name.Fail} size={Icon.Size.S} testId={testIds.headerFailedIcon} />
             }
-            
-            <Text color={isPassed ? TextColor.Success : TextColor.Error} size={TextSizes.M2} tagName='h1' testId={testIds.headerTitle}>{isPassed ? 'Passed' : 'Failed'}</Text>
+            <Text color={isPassed ? Text.Color.Success : Text.Color.Error} size={Text.Size.M2} tagName='h1' testId={testIds.headerTitle}>{isPassed ? 'Passed' : 'Failed'}</Text>
         </Spacer>
     );
 }

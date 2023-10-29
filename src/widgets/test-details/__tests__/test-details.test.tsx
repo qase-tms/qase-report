@@ -1,25 +1,25 @@
-import { TestDetails, testIds } from 'widgets/test-details/test-details';
+import { TestDetails, testIds } from 'widgets/test-details';
 import { render, screen } from '@testing-library/react';
-import { useTestDetails } from 'domain/hooks/test-details-hooks/use-test-details';
-import { RequestStatus } from 'domain/api/use-request';
-import { TestDetailsCard } from 'widgets/test-details/test-details-card/test-details-card';
-import { TestDetailsSummary } from 'widgets/test-details/test-details-summary/test-details-summary';
-import { TestDetailsHeader } from 'widgets/test-details/test-details-header/test-details-header';
+import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
+import { RequestStatus } from 'utils/use-request';
+import { TestDetailsCard } from 'widgets/test-details/test-details-card';
+import { TestDetailsSummary } from 'widgets/test-details/test-details-summary';
+import { TestDetailsHeader } from 'widgets/test-details/test-details-header';
 import { expectPropsPassed } from 'utils/test-utils';
 
-jest.mock('domain/hooks/test-details-hooks/use-test-details', () => ({
+jest.mock('domain/hooks/tests-hooks/use-test-details', () => ({
     useTestDetails: jest.fn()
 }));
 
-jest.mock('widgets/test-details/test-details-header/test-details-header', () => ({
+jest.mock('widgets/test-details/test-details-header', () => ({
     TestDetailsHeader: jest.fn().mockImplementation(() => null)
 }));
 
-jest.mock('widgets/test-details/test-details-summary/test-details-summary', () => ({
+jest.mock('widgets/test-details/test-details-summary', () => ({
     TestDetailsSummary: jest.fn().mockImplementation(() => null)
 }));
 
-jest.mock('widgets/test-details/test-details-card/test-details-card', () => ({
+jest.mock('widgets/test-details/test-details-card', () => ({
     TestDetailsCard: jest.fn().mockImplementation(() => null)
 }));
 

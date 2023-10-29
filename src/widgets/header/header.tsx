@@ -1,8 +1,8 @@
 import {FC} from 'react';
-import { Icon, IconNames } from 'components/icon/icon';
-import { Divider } from 'components/divider/divider';
-import { Text, TextColor, TextSizes } from 'components/text/text';
-import { Spacer, SpacerAlign, SpacerPreset } from 'components/spacer/spacer';
+import { Icon } from 'components/icon';
+import { Divider } from 'components/divider';
+import { Text } from 'components/text';
+import { Spacer } from 'components/spacer';
 
 const headerCss = `
     background-color: white;
@@ -11,10 +11,10 @@ const headerCss = `
 
 export const Header: FC = () => {
     return (
-        <Spacer gap={6} preset={SpacerPreset.Shaded} css={headerCss} align={SpacerAlign.End} fullWidth>
-            <Icon iconName={IconNames.Logo} />
+        <Spacer gap={6} preset={Spacer.Preset.Shaded} css={headerCss} align={Spacer.Align.End} fullWidth>
+            <Icon iconName={Icon.Name.Logo} />
             <Divider />
-            <Text size={TextSizes.M1} tagName='p' color={TextColor.Secondary}>Report</Text>
+            <Text size={Text.Size.M1} tagName='p' color={Text.Color.Secondary}>Report</Text>
         </Spacer>
     )
-}
+};

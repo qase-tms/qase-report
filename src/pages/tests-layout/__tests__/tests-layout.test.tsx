@@ -1,24 +1,24 @@
-import { TestsPreviewList } from 'widgets/tests-preview-list/tests-preview-list';
-import { render, screen } from '@testing-library/react';
-import { useTestsLayout } from 'domain/hooks/test-preivew-list-hooks/use-tests-layout';
-import { TestDetails } from 'widgets/test-details/test-details';
-import { TestPreviewItem } from 'widgets/test-preview-item/test-preview-item';
+import { TestsLayout } from 'pages/tests-layout';
+import { render } from '@testing-library/react';
+import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
+import { TestDetails } from 'widgets/test-details';
+import { TestPreviewItem } from 'widgets/test-preview-item';
 import { expectPropsPassed, expectPropsWasPassed } from 'utils/test-utils';
 
-jest.mock('domain/hooks/test-preivew-list-hooks/use-tests-layout', () => ({
+jest.mock('domain/hooks/tests-hooks/use-tests-layout', () => ({
     useTestsLayout: jest.fn()
 }));
 
 
-jest.mock('widgets/test-details/test-details', () => ({
+jest.mock('widgets/test-details', () => ({
     TestDetails: jest.fn().mockImplementation(() => null)
 }));
 
-jest.mock('widgets/test-preview-item/test-preview-item', () => ({
+jest.mock('widgets/test-preview-item', () => ({
     TestPreviewItem: jest.fn().mockImplementation(() => null)
 }));
 
-jest.mock('components/split-pane/split-pane', () => ({
+jest.mock('components/split-pane', () => ({
     SplitPane: jest.fn().mockImplementation(({renderLeft, renderRight}) => (
         <div>
             {renderLeft()}
@@ -44,13 +44,13 @@ const mockTests = [
     }
 ];
 
-describe('<TestPreviewList />', () => {
+describe('<TestsLayout />', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
     });
 
-    it('TestDetails renders single test and activeTest sets on select', () => {
+    it('TestsLayout renders single test and activeTest sets on select', () => {
         const tests = [mockTests[0]];
         const activeTestId = null;
         const setActiveTestId = jest.fn();
@@ -59,7 +59,7 @@ describe('<TestPreviewList />', () => {
             onSelect(test);
             return null;
         });
-        render(<TestsPreviewList />);
+        render(<TestsLayout />);
         expect(TestDetails).not.toBeCalled();
         expectPropsPassed(TestPreviewItem as jest.Mock, {
             test: tests[0]
@@ -67,7 +67,7 @@ describe('<TestPreviewList />', () => {
         expect(setActiveTestId).toBeCalledWith(tests[0].id);
     });
 
-    it('TestDetails renders multiple tests and activeTest sets on select', () => {
+    it('TestsLayout renders multiple tests and activeTest sets on select', () => {
         const tests = mockTests;
         const activeTestId = null;
         const setActiveTestId = jest.fn();
@@ -77,7 +77,7 @@ describe('<TestPreviewList />', () => {
             onSelects.push(() => onSelect(test));
             return null;
         });
-        render(<TestsPreviewList />);
+        render(<TestsLayout />);
         expect(TestDetails).not.toBeCalled();
         expectPropsWasPassed(TestPreviewItem as jest.Mock, {
             test: tests[0]
@@ -91,12 +91,12 @@ describe('<TestPreviewList />', () => {
         expect(setActiveTestId).toBeCalledWith(tests[1].id);
     });
 
-    it('TestDetails renders TestDetails with activeTestId', () => {
+    it('TestsLayout renders TestDetails with activeTestId', () => {
         const tests = mockTests;
         const activeTestId = mockTests[0].id;
         const setActiveTestId = jest.fn();
         (useTestsLayout as jest.Mock).mockReturnValue({tests, activeTestId, setActiveTestId});
-        render(<TestsPreviewList />);
+        render(<TestsLayout />);
         expectPropsPassed(TestDetails as jest.Mock, {
             qaseTestId: activeTestId
         });

@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Spacer, SpacerDirections, SpacerAlign, SpacerPreset } from 'components/spacer/spacer';
-import {Text, TextSizes, TextWeight, TextColor} from 'components/text/text';
-import {Icon, IconNames, IconSizes} from 'components/icon/icon';
+import { Spacer } from 'components/spacer';
+import { Text } from 'components/text';
+import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
 import { createTestId } from 'utils/use-test-id-attribute';
 
@@ -21,21 +21,21 @@ export const testIds = {
 
 export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({duration, endTime, thread}) => {
     return (
-        <Spacer fullHeight direction={SpacerDirections.Column} align={SpacerAlign.Start} css={`padding: 0 16px;`} preset={SpacerPreset.BorderedLeft}>
-            <Text color={TextColor.Secondary} size={TextSizes.M1} weight={TextWeight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Duration</Text>
-            <Spacer gap={2}  css={`margin-bottom: 18px;`} align={SpacerAlign.End}>
-                <Icon iconName={IconNames.Clock} size={IconSizes.S} />
-                <Text size={TextSizes.S1} weight={TextWeight.Normal} testId={testIds.durationField}>{formatMs(duration)}</Text>
+        <Spacer fullHeight direction={Spacer.Direction.Column} align={Spacer.Align.Start} css={`padding: 0 16px;`} preset={Spacer.Preset.BorderedLeft}>
+            <Text color={Text.Color.Secondary} size={Text.Size.M1} weight={Text.Weight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Duration</Text>
+            <Spacer gap={2}  css={`margin-bottom: 18px;`} align={Spacer.Align.End}>
+                <Icon iconName={Icon.Name.Clock} size={Icon.Size.S} />
+                <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.durationField}>{formatMs(duration)}</Text>
             </Spacer>
-            <Text color={TextColor.Secondary} size={TextSizes.M1} weight={TextWeight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Finished at</Text>
-            <Spacer gap={2} css={`margin-bottom: 18px;`} align={SpacerAlign.End}>
-                <Icon iconName={IconNames.Calendar} size={IconSizes.S} />
-                <Text size={TextSizes.S1} weight={TextWeight.Normal}  testId={testIds.endTimeField}>{new Date(endTime).toLocaleString()}</Text>
+            <Text color={Text.Color.Secondary} size={Text.Size.M1} weight={Text.Weight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Finished at</Text>
+            <Spacer gap={2} css={`margin-bottom: 18px;`} align={Spacer.Align.End}>
+                <Icon iconName={Icon.Name.Calendar} size={Icon.Size.S} />
+                <Text size={Text.Size.S1} weight={Text.Weight.Normal}  testId={testIds.endTimeField}>{new Date(endTime).toLocaleString()}</Text>
             </Spacer>
-            <Text color={TextColor.Secondary} size={TextSizes.M1} weight={TextWeight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Thread</Text>
-            <Spacer gap={2} css={`margin-bottom: 18px;`} align={SpacerAlign.End}>
-                <Icon iconName={IconNames.Settings} size={IconSizes.S} />
-                <Text size={TextSizes.S1} weight={TextWeight.Normal} testId={testIds.threadField}>{thread}</Text>
+            <Text color={Text.Color.Secondary} size={Text.Size.M1} weight={Text.Weight.Semibold} css={'margin-bottom: 4px;'} tagName='p'>Thread</Text>
+            <Spacer gap={2} css={`margin-bottom: 18px;`} align={Spacer.Align.End}>
+                <Icon iconName={Icon.Name.Settings} size={Icon.Size.S} />
+                <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.threadField}>{thread}</Text>
             </Spacer>
         </Spacer>
     );

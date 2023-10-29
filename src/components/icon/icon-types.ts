@@ -1,4 +1,4 @@
-export enum IconNames {
+export enum IconName {
     Logo='logo',
     Clock='clock',
     CheckMark='check-mark',
@@ -7,7 +7,7 @@ export enum IconNames {
     Settings='settings'
 };
 
-export enum IconSizes {
+export enum IconSize {
     M='m',
     S='s'
 };

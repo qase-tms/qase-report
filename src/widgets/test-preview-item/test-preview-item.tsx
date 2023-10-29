@@ -1,8 +1,8 @@
 import { FC, useCallback } from 'react';
-import { Spacer, SpacerJustify, SpacerPreset } from 'components/spacer/spacer';
-import { Text, TextColor, TextSizes, TextWeight } from 'components/text/text';
+import { Spacer } from 'components/spacer';
+import { Text } from 'components/text';
 import { TestPreview, TestStatus } from 'domain/model/test-model';
-import { Icon, IconNames, IconSizes } from 'components/icon/icon';
+import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
 import { createTestId } from 'utils/use-test-id-attribute';
 
@@ -34,24 +34,24 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
     return (
         <Spacer
             css={'padding: 16px 16px; cursor: pointer;'}
-            preset={SpacerPreset.BorderedBottom}
-            justifyContent={SpacerJustify.SpaceBetween}
+            preset={Spacer.Preset.BorderedBottom}
+            justifyContent={Spacer.Justify.SpaceBetween}
             fullWidth
             onClick={handleClick}
             testId={testIds.itemRoot}>
-            <Text weight={TextWeight.Bold} testId={testIds.itemTitle}>{title}</Text>
+            <Text weight={Text.Weight.Bold} testId={testIds.itemTitle}>{title}</Text>
             <Spacer>
-                <Icon css='margin-right: 2px' iconName={IconNames.Clock} />
+                <Icon css='margin-right: 2px' iconName={Icon.Name.Clock} />
                 <Text css={`margin-right: 16px;`}
-                    size={TextSizes.S1}
-                    weight={TextWeight.Normal}
-                    color={TextColor.Secondary}
+                    size={Text.Size.S1}
+                    weight={Text.Weight.Normal}
+                    color={Text.Color.Secondary}
                     testId={testIds.itemFieldDuration}>
                     {formatMs(duration)}
                 </Text>
                 {status === TestStatus.Passed ?
-                    <Icon iconName={IconNames.CheckMark} size={IconSizes.M} testId={testIds.itemIconSuccess} /> :
-                    <Icon iconName={IconNames.Fail} size={IconSizes.M} testId={testIds.itemIconFail} />}
+                    <Icon iconName={Icon.Name.CheckMark} size={Icon.Size.M} testId={testIds.itemIconSuccess} /> :
+                    <Icon iconName={Icon.Name.Fail} size={Icon.Size.M} testId={testIds.itemIconFail} />}
             </Spacer>
         </Spacer>
     );

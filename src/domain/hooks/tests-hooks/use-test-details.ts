@@ -1,6 +1,5 @@
-import { TestResults } from 'domain/api/get-test-preview';
 import { getTest } from 'domain/api/get-test';
-import { RequestStatus, useRequest } from 'domain/api/use-request';
+import { RequestStatus, useRequest } from 'utils/use-request';
 import { Test } from 'domain/model/test-model';
 import { useCallback } from 'react';
 

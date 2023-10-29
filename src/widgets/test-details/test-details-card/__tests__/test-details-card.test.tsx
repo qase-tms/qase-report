@@ -1,4 +1,4 @@
-import { TestDetailsCard, testIds } from 'widgets/test-details/test-details-card/test-details-card';
+import { TestDetailsCard, testIds } from 'widgets/test-details/test-details-card';
 import { render, screen } from '@testing-library/react';
 
 describe('<TestDetailsCard />', () => {
