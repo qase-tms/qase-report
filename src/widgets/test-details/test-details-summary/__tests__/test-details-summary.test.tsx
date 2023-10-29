@@ -1,5 +1,6 @@
 import { TestDetailsSummary, testIds } from 'widgets/test-details/test-details-summary';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { themedRender as render } from 'utils/test-utils';
 
 describe('<TestDetailsSummary />', () => {
     it('TestDetailsSummary render', () => {

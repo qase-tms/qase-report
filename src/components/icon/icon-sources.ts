@@ -5,6 +5,8 @@ import checkmarkSrc from './resources/checkmark.svg';
 import clockSrc from './resources/clock.svg';
 import failSrc from './resources/fail.svg';
 import settingsSrc from './resources/settings.svg';
+import minusSrc from './resources/minus.svg';
+import exclamationSrc from './resources/exclamation.svg';
 
 export const IconSources: Record<IconName,string> = {
     [IconName.Logo]: logoSrc,
@@ -12,5 +14,7 @@ export const IconSources: Record<IconName,string> = {
     [IconName.CheckMark]: checkmarkSrc,
     [IconName.Clock]: clockSrc,
     [IconName.Fail]: failSrc,
-    [IconName.Settings]: settingsSrc
+    [IconName.Settings]: settingsSrc,
+    [IconName.Minus]: minusSrc,
+    [IconName.Exclamation]: exclamationSrc
 };

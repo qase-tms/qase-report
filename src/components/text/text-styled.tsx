@@ -33,31 +33,24 @@ const sizeCss: Record<TextSize, string> = {
     `,
     [TextSize.L1]: `
         font-size: 24px;
-        line-height: 24px;
-    `
+        line-height: 26px;
+    `,
 };
 
-const weightCss: Record<TextWeight, string> = {
-    [TextWeight.Normal]: 'text-weight: 400;',
-    [TextWeight.Medium]: 'text-weight: 500;',
-    [TextWeight.Semibold]: 'text-weight: 600;',
-    [TextWeight.Bold]: 'text-weight: 700;',
-};
-
-const colorCss: Record<TextColor, string> = {
-    [TextColor.Error]: 'color: rgba(208, 0, 27, 1);',
-    [TextColor.Primary]: 'color: #32425F;',
-    [TextColor.Secondary]: 'color: rgba(50, 66, 95, 0.87);',
-    [TextColor.Success]: 'color: #29B95F;'
+const weightCss: Record<TextWeight, number> = {
+    [TextWeight.Normal]: 400,
+    [TextWeight.Medium]: 500,
+    [TextWeight.Semibold]: 600,
+    [TextWeight.Bold]: 700,
 };
 
 export const StyledTextTag = styled(TextTag)`
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     ${props => sizeCss[props.$size ?? TextSize.M2]}
 
-    ${props => weightCss[props.$weight ?? TextWeight.Medium]}
+    font-weight: ${props => weightCss[props.$weight ?? TextWeight.Medium]};
 
-    ${props => colorCss[props.$color ?? TextColor.Primary]}
+    color: ${props => props.theme.colors[props.$color ?? TextColor.Stroke]};
 
     ${props => props.$css ?? ''}
 `;

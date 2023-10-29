@@ -14,7 +14,7 @@ export const Header: FC = () => {
         <Spacer gap={6} preset={Spacer.Preset.Shaded} css={headerCss} align={Spacer.Align.End} fullWidth>
             <Icon iconName={Icon.Name.Logo} />
             <Divider />
-            <Text size={Text.Size.M1} tagName='p' color={Text.Color.Secondary}>Report</Text>
+            <Text size={Text.Size.M1} tagName='p'>Report</Text>
         </Spacer>
     )
 };

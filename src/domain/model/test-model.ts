@@ -1,6 +1,8 @@
 export enum TestStatus {
     Passed='passed',
-    Failed='failed'
+    Failed='failed',
+    Skipped='skipped',
+    Invalid='invalid'
 };
 
 export type TestPreview = {

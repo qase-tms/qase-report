@@ -1,9 +1,10 @@
 import { FC, useCallback } from 'react';
 import { Spacer } from 'components/spacer';
 import { Text } from 'components/text';
-import { TestPreview, TestStatus } from 'domain/model/test-model';
+import { TestPreview } from 'domain/model/test-model';
 import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
+import { TestStatusField } from 'widgets/test-status-field';
 import { createTestId } from 'utils/use-test-id-attribute';
 
 type TestPreviewItemProps = {
@@ -16,10 +17,13 @@ const testIdNamespace = 'WIDGET_TEST_PREVIEW_ITEM';
 export const testIds = {
     itemRoot: createTestId(testIdNamespace, 'item-root'),
     itemTitle: createTestId(testIdNamespace, 'item-title'),
-    itemIconSuccess: createTestId(testIdNamespace, 'item-icon-success'),
-    itemIconFail: createTestId(testIdNamespace, 'item-icon-fail'),
     itemFieldDuration: createTestId(testIdNamespace, 'item-field-duration'),
-}
+};
+
+const titleCss = `
+    max-width:400px;
+    word-wrap: break-word;
+`;
 
 export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) => {
 
@@ -39,19 +43,16 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
             fullWidth
             onClick={handleClick}
             testId={testIds.itemRoot}>
-            <Text weight={Text.Weight.Bold} testId={testIds.itemTitle}>{title}</Text>
+            <Text weight={Text.Weight.Bold} testId={testIds.itemTitle} css={titleCss}>{title}</Text>
             <Spacer>
                 <Icon css='margin-right: 2px' iconName={Icon.Name.Clock} />
                 <Text css={`margin-right: 16px;`}
                     size={Text.Size.S1}
                     weight={Text.Weight.Normal}
-                    color={Text.Color.Secondary}
                     testId={testIds.itemFieldDuration}>
                     {formatMs(duration)}
                 </Text>
-                {status === TestStatus.Passed ?
-                    <Icon iconName={Icon.Name.CheckMark} size={Icon.Size.M} testId={testIds.itemIconSuccess} /> :
-                    <Icon iconName={Icon.Name.Fail} size={Icon.Size.M} testId={testIds.itemIconFail} />}
+                <TestStatusField status={status} size={Icon.Size.M}/>
             </Spacer>
         </Spacer>
     );

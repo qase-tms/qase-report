@@ -1,5 +1,5 @@
 import { TestsLayout } from 'pages/tests-layout';
-import { render } from '@testing-library/react';
+import { themedRender as render } from 'utils/test-utils';
 import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
 import { TestDetails } from 'widgets/test-details';
 import { TestPreviewItem } from 'widgets/test-preview-item';

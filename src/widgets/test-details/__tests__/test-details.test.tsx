@@ -1,18 +1,19 @@
 import { TestDetails, testIds } from 'widgets/test-details';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { themedRender as render } from 'utils/test-utils';
 import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
 import { RequestStatus } from 'utils/use-request';
 import { TestDetailsCard } from 'widgets/test-details/test-details-card';
 import { TestDetailsSummary } from 'widgets/test-details/test-details-summary';
-import { TestDetailsHeader } from 'widgets/test-details/test-details-header';
+import { TestStatusField } from 'widgets/test-status-field';
 import { expectPropsPassed } from 'utils/test-utils';
 
 jest.mock('domain/hooks/tests-hooks/use-test-details', () => ({
     useTestDetails: jest.fn()
 }));
 
-jest.mock('widgets/test-details/test-details-header', () => ({
-    TestDetailsHeader: jest.fn().mockImplementation(() => null)
+jest.mock('widgets/test-status-field', () => ({
+    TestStatusField: jest.fn().mockImplementation(() => null)
 }));
 
 jest.mock('widgets/test-details/test-details-summary', () => ({
@@ -54,7 +55,7 @@ describe('<TestDetails />', () => {
         render(<TestDetails qaseTestId={test.id} />);
         expect(screen.queryByTestId(testIds.errorField)).toBeFalsy();
         
-        expectPropsPassed(TestDetailsHeader as jest.Mock, { status: test.execution.status });
+        expectPropsPassed(TestStatusField as jest.Mock, { status: test.execution.status });
         expectPropsPassed(TestDetailsSummary as jest.Mock, {
             duration: test.execution.duration,
             thread: test.execution.thread,

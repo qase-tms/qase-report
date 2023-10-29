@@ -4,7 +4,9 @@ export enum IconName {
     CheckMark='check-mark',
     Fail='fail',
     Calendar='calendar',
-    Settings='settings'
+    Settings='settings',
+    Exclamation='exclamation',
+    Minus='minus'
 };
 
 export enum IconSize {

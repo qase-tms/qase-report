@@ -1,3 +1,5 @@
+export {Color as TextColor} from 'constants/colors';
+
 export enum TextSize {
     S1 = 's1',
     M1 = 'm1',
@@ -11,10 +13,3 @@ export enum TextWeight {
     Medium = 'medium',
     Normal = 'normal'
 };
-
-export enum TextColor {
-    Primary = 'primary',
-    Secondary = 'secondary',
-    Success = 'success',
-    Error = 'error'
-}

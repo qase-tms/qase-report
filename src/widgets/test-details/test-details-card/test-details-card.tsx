@@ -24,7 +24,7 @@ const cardCss = `
 
 const headerCss = `
     max-width: 400px;
-    text-overflow: ellipsis;
+    word-wrap: break-word;
     overflow: hidden;
     margin-bottom: 8px;
 `;
