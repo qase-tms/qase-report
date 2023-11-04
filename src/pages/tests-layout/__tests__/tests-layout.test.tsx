@@ -4,6 +4,7 @@ import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
 import { TestDetails } from 'widgets/test-details';
 import { TestPreviewItem } from 'widgets/test-preview-item';
 import { expectPropsPassed, expectPropsWasPassed } from 'utils/test-utils';
+import { mockTestsData } from 'constants/mock-tests-data';
 
 jest.mock('domain/hooks/tests-hooks/use-tests-layout', () => ({
     useTestsLayout: jest.fn()
@@ -27,23 +28,6 @@ jest.mock('components/split-pane', () => ({
     ))
 }));
 
-const mockTests = [
-    {
-        "id": "1b70a53e-b66e-4b79-8308-ecf8bfe86373",
-        "title": "Test with multinested steps",
-        "status": "failed",
-        "duration": 7,
-        "thread": "1398-MainThread"
-    },
-    {
-        "id": "d6d3f266-3e21-4f70-a14d-27bbd01fa0ae",
-        "title": "test_sum_odd_even_returns_odd",
-        "status": "passed",
-        "duration": 0,
-        "thread": "1398-MainThread"
-    }
-];
-
 describe('<TestsLayout />', () => {
 
     afterEach(() => {
@@ -51,7 +35,7 @@ describe('<TestsLayout />', () => {
     });
 
     it('TestsLayout renders single test and activeTest sets on select', () => {
-        const tests = [mockTests[0]];
+        const tests = [mockTestsData[0]];
         const activeTestId = null;
         const setActiveTestId = jest.fn();
         (useTestsLayout as jest.Mock).mockReturnValue({tests, activeTestId, setActiveTestId});
@@ -68,7 +52,7 @@ describe('<TestsLayout />', () => {
     });
 
     it('TestsLayout renders multiple tests and activeTest sets on select', () => {
-        const tests = mockTests;
+        const tests = mockTestsData;
         const activeTestId = null;
         const setActiveTestId = jest.fn();
         const onSelects:Function[] = [];
@@ -92,8 +76,8 @@ describe('<TestsLayout />', () => {
     });
 
     it('TestsLayout renders TestDetails with activeTestId', () => {
-        const tests = mockTests;
-        const activeTestId = mockTests[0].id;
+        const tests = mockTestsData;
+        const activeTestId = mockTestsData[0].id;
         const setActiveTestId = jest.fn();
         (useTestsLayout as jest.Mock).mockReturnValue({tests, activeTestId, setActiveTestId});
         render(<TestsLayout />);
