@@ -43,7 +43,7 @@ export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({ duration, endT
         css={`
           margin-bottom: 18px;
         `}
-        align={Spacer.Align.End}
+        align={Spacer.Align.Center}
       >
         <Icon iconName={Icon.Name.Clock} size={Icon.Size.S} />
         <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.durationField}>
@@ -63,7 +63,7 @@ export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({ duration, endT
         css={`
           margin-bottom: 18px;
         `}
-        align={Spacer.Align.End}
+        align={Spacer.Align.Center}
       >
         <Icon iconName={Icon.Name.Calendar} size={Icon.Size.S} />
         <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.endTimeField}>
@@ -83,7 +83,7 @@ export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({ duration, endT
         css={`
           margin-bottom: 18px;
         `}
-        align={Spacer.Align.End}
+        align={Spacer.Align.Center}
       >
         <Icon iconName={Icon.Name.Settings} size={Icon.Size.S} />
         <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.threadField}>

@@ -47,7 +47,7 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
         {title}
       </Text>
       <Spacer>
-        <Icon css="margin-right: 2px" iconName={Icon.Name.Clock} />
+        <Icon css="margin-right: 4px" iconName={Icon.Name.Clock} size={Icon.Size.S} />
         <Text
           css={`
             margin-right: 16px;

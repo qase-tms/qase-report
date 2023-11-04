@@ -12,7 +12,7 @@ export enum Color {
 const LightThemeColors: Record<Color, string> = {
   [Color.Red]: '#D0001B',
   [Color.Green]: '#29B95F',
-  [Color.Cyan]: '#32425F',
+  [Color.Cyan]: '#1B98B4',
   [Color.Orange]: '#FC9033',
   [Color.Violet]: '#5F01B9',
   [Color.Blue]: '#1E54C5',
@@ -23,7 +23,7 @@ const LightThemeColors: Record<Color, string> = {
 const NightThemeColors: Record<Color, string> = {
   [Color.Red]: '#ED5859',
   [Color.Green]: '#29B95F',
-  [Color.Cyan]: '#32425F',
+  [Color.Cyan]: '#1B98B4',
   [Color.Violet]: '#5F01B9',
   [Color.Orange]: '#FC9033',
   [Color.Blue]: '#5E9DDC',
