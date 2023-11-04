@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
   
     color: #32425F;;
     background-color: white;
+    box-sizing: border-box;
   
     font-synthesis: none;
     text-rendering: optimizeLegibility;

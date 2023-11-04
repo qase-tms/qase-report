@@ -4,7 +4,6 @@ import { themedRender as render } from 'utils/test-utils';
 import { TestStatus } from 'domain/model/test-model';
 import { TestStatusField } from 'widgets/test-status-field';
 import { expectPropsPassed } from 'utils/test-utils';
-import { IconName } from 'components/icon/icon-types';
 
 const mockTest = {
   id: '1',

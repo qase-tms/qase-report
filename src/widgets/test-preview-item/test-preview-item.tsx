@@ -1,11 +1,12 @@
 import { FC, useCallback } from 'react';
-import { Spacer } from 'components/spacer';
 import { Text } from 'components/text';
 import { TestPreview } from 'domain/model/test-model';
 import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
 import { TestStatusField } from 'widgets/test-status-field';
 import { createTestId } from 'utils/use-test-id-attribute';
+import { FlexRow } from 'components/flex-row';
+import { Item, ItemIconSlot, ItemTitle, ItemTimeSlot } from './test-preview-item-styled';
 
 type TestPreviewItemProps = {
   test: TestPreview;
@@ -20,11 +21,6 @@ export const testIds = {
   itemFieldDuration: createTestId(testIdNamespace, 'item-field-duration'),
 };
 
-const titleCss = `
-    max-width:400px;
-    word-wrap: break-word;
-`;
-
 export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) => {
   const { title, status, duration } = test;
 
@@ -35,31 +31,23 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
   }, [test, onSelect]);
 
   return (
-    <Spacer
-      css={'padding: 16px 16px; cursor: pointer;'}
-      preset={Spacer.Preset.BorderedBottom}
-      justifyContent={Spacer.Justify.SpaceBetween}
-      fullWidth
-      onClick={handleClick}
-      testId={testIds.itemRoot}
-    >
-      <Text weight={Text.Weight.Bold} testId={testIds.itemTitle} css={titleCss}>
-        {title}
-      </Text>
-      <Spacer>
-        <Icon css="margin-right: 4px" iconName={Icon.Name.Clock} size={Icon.Size.S} />
-        <Text
-          css={`
-            margin-right: 16px;
-          `}
-          size={Text.Size.S1}
-          weight={Text.Weight.Normal}
-          testId={testIds.itemFieldDuration}
-        >
-          {formatMs(duration)}
+    <Item onClick={handleClick} testId={testIds.itemRoot}>
+      <ItemTitle>
+        <Text weight={Text.Weight.Bold} testId={testIds.itemTitle}>
+          {title}
         </Text>
+      </ItemTitle>
+      <FlexRow>
+        <ItemIconSlot>
+          <Icon iconName={Icon.Name.Clock} size={Icon.Size.S} />
+        </ItemIconSlot>
+        <ItemTimeSlot>
+          <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.itemFieldDuration}>
+            {formatMs(duration)}
+          </Text>
+        </ItemTimeSlot>
         <TestStatusField status={status} size={Icon.Size.M} />
-      </Spacer>
-    </Spacer>
+      </FlexRow>
+    </Item>
   );
 };

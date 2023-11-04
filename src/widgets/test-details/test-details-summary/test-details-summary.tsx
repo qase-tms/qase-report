@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import { Spacer } from 'components/spacer';
 import { Text } from 'components/text';
 import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
 import { createTestId } from 'utils/use-test-id-attribute';
+import { Section, SectionTitleSlot, SectionValue } from './test-details-summary-styled';
+import { IconName } from 'src/components/icon/icon-types';
 
 type TestDetailsSummaryProps = {
   duration: number;
@@ -19,77 +20,50 @@ export const testIds = {
   threadField: createTestId(TestIdNamespace, 'thread-field'),
 };
 
+const FieldInfo: FC<{ title: string; value: string; iconName: IconName; testId: string }> = ({
+  title,
+  value,
+  iconName,
+  testId,
+}) => {
+  return (
+    <>
+      <SectionTitleSlot>
+        <Text size={Text.Size.M1} weight={Text.Weight.Semibold} tagName="p">
+          {title}
+        </Text>
+      </SectionTitleSlot>
+      <SectionValue>
+        <Icon iconName={iconName} size={Icon.Size.S} />
+        <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testId}>
+          {value}
+        </Text>
+      </SectionValue>
+    </>
+  );
+};
+
 export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({ duration, endTime, thread }) => {
   return (
-    <Spacer
-      fullHeight
-      direction={Spacer.Direction.Column}
-      align={Spacer.Align.Start}
-      css={`
-        padding: 0 16px;
-      `}
-      preset={Spacer.Preset.BorderedLeft}
-    >
-      <Text
-        size={Text.Size.M1}
-        weight={Text.Weight.Semibold}
-        css={'margin-bottom: 4px;'}
-        tagName="p"
-      >
-        Duration
-      </Text>
-      <Spacer
-        gap={2}
-        css={`
-          margin-bottom: 18px;
-        `}
-        align={Spacer.Align.Center}
-      >
-        <Icon iconName={Icon.Name.Clock} size={Icon.Size.S} />
-        <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.durationField}>
-          {formatMs(duration)}
-        </Text>
-      </Spacer>
-      <Text
-        size={Text.Size.M1}
-        weight={Text.Weight.Semibold}
-        css={'margin-bottom: 4px;'}
-        tagName="p"
-      >
-        Finished at
-      </Text>
-      <Spacer
-        gap={2}
-        css={`
-          margin-bottom: 18px;
-        `}
-        align={Spacer.Align.Center}
-      >
-        <Icon iconName={Icon.Name.Calendar} size={Icon.Size.S} />
-        <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.endTimeField}>
-          {new Date(endTime).toLocaleString()}
-        </Text>
-      </Spacer>
-      <Text
-        size={Text.Size.M1}
-        weight={Text.Weight.Semibold}
-        css={'margin-bottom: 4px;'}
-        tagName="p"
-      >
-        Thread
-      </Text>
-      <Spacer
-        gap={2}
-        css={`
-          margin-bottom: 18px;
-        `}
-        align={Spacer.Align.Center}
-      >
-        <Icon iconName={Icon.Name.Settings} size={Icon.Size.S} />
-        <Text size={Text.Size.S1} weight={Text.Weight.Normal} testId={testIds.threadField}>
-          {thread}
-        </Text>
-      </Spacer>
-    </Spacer>
+    <Section>
+      <FieldInfo
+        iconName={Icon.Name.Clock}
+        title="Duration"
+        value={formatMs(duration)}
+        testId={testIds.durationField}
+      />
+      <FieldInfo
+        iconName={Icon.Name.Calendar}
+        title="Finished at"
+        value={new Date(endTime).toLocaleString()}
+        testId={testIds.endTimeField}
+      />
+      <FieldInfo
+        iconName={Icon.Name.Settings}
+        title="Thread"
+        value={thread}
+        testId={testIds.threadField}
+      />
+    </Section>
   );
 };

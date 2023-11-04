@@ -7,7 +7,6 @@ type TextProps = PropsWithChildren<{
   size?: TextSize;
   weight?: TextWeight;
   tagName?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-  css?: string;
   color?: TextColor;
   testId?: string;
 }>;
@@ -23,7 +22,6 @@ export const Text: TextComponent = ({
   weight,
   children,
   tagName = 'span',
-  css,
   color,
   testId,
 }) => {
@@ -33,7 +31,6 @@ export const Text: TextComponent = ({
       $size={size}
       $weight={weight}
       tagName={tagName}
-      $css={css}
       $color={color}
       {...testIdAttribute}
     >

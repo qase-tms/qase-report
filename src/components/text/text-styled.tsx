@@ -6,13 +6,12 @@ type TextTagProps = PropsWithChildren<{
   $size?: TextSize;
   $weight?: TextWeight;
   tagName?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-  $css?: string;
   $color?: TextColor;
 }>;
 
 const TextTag: FC<TextTagProps> = ({ tagName = 'span', ...rest }) => {
   const Tag = tagName;
-  const { $size, $weight, $css, $color, ...other } = rest;
+  const { $size, $weight, $color, ...other } = rest;
   return <Tag {...other} />;
 };
 
@@ -49,6 +48,4 @@ export const StyledTextTag = styled(TextTag)`
   font-weight: ${props => weightCss[props.$weight ?? TextWeight.Medium]};
 
   color: ${props => props.theme.colors[props.$color ?? TextColor.Stroke]};
-
-  ${props => props.$css ?? ''}
 `;

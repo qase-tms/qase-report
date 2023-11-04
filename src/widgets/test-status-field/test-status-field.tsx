@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { TestStatus } from 'domain/model/test-model';
-import { Spacer } from 'components/spacer';
 import { Icon } from 'components/icon';
 import { Text } from 'components/text';
 import { IconName, IconSize } from 'components/icon/icon-types';
 import { Color } from 'constants/colors';
 import { createTestId } from 'utils/use-test-id-attribute';
+import { FlexRow } from 'components/flex-row';
+import styled from 'styled-components';
 
 type TestStatusFieldProps = {
   status: TestStatus;
@@ -34,6 +35,11 @@ export const testIds = {
   statusText: createTestId(TestIdNamespace, 'status-text'),
 };
 
+const TextSlot = styled.div`
+  margin-left: 6px;
+  text-transform: capitalize;
+`;
+
 export const TestStatusField: FC<TestStatusFieldProps> = ({
   status,
   css,
@@ -43,19 +49,16 @@ export const TestStatusField: FC<TestStatusFieldProps> = ({
   const iconName = statusToIconName[status];
   const color = statusToColor[status];
   if (!withText) {
-    return <Icon iconName={iconName} size={size} css={css} />;
+    return <Icon iconName={iconName} size={size} />;
   }
   return (
-    <Spacer direction={Spacer.Direction.Row} gap={6} css={css}>
+    <FlexRow>
       <Icon iconName={iconName} size={size} />
-      <Text
-        color={color}
-        size={Text.Size.M2}
-        css="text-transform: capitalize;"
-        testId={testIds.statusText}
-      >
-        {status}
-      </Text>
-    </Spacer>
+      <TextSlot>
+        <Text color={color} size={Text.Size.M2} testId={testIds.statusText}>
+          {status}
+        </Text>
+      </TextSlot>
+    </FlexRow>
   );
 };
