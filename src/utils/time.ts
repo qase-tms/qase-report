@@ -1,35 +1,32 @@
+export const formatMs = (durationMs: number): string => {
+  const roundedMs = Math.floor(durationMs);
 
-export const formatMs = (durationMs: number):string => {
+  if (durationMs < 0) {
+    return '_';
+  }
 
-    const roundedMs = Math.floor(durationMs);
+  const ms = roundedMs % 1000;
 
-    if(durationMs < 0) {
-        return '_';
-    }
+  const totalSeconds = Math.floor(roundedMs / 1000);
 
-    const ms = roundedMs%1000;
+  const seconds = totalSeconds % 60;
 
-    const totalSeconds = Math.floor(roundedMs/1000);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
 
-    const seconds = totalSeconds % 60;
+  const hours = Math.floor(totalSeconds / 3600);
 
-    const minutes = Math.floor((totalSeconds % 3600)/60);
+  const timeParts: [number, string][] = [
+    [hours, 'h'],
+    [minutes, 'm'],
+    [seconds, 's'],
+    [ms, 'ms'],
+  ];
 
-    const hours = Math.floor(totalSeconds/3600);
+  const firstNonZeroIndex = timeParts.findIndex(([value]) => value > 0);
+  if (firstNonZeroIndex === -1) {
+    return '0ms';
+  }
+  timeParts.splice(0, firstNonZeroIndex);
 
-    const timeParts: [number, string][] = [
-        [hours, 'h'],
-        [minutes, 'm'],
-        [seconds, 's'],
-        [ms, 'ms']
-    ];
-
-    const firstNonZeroIndex = timeParts.findIndex(([value]) => value > 0);
-    if(firstNonZeroIndex === -1) {
-        return '0ms';
-    }
-    timeParts.splice(0, firstNonZeroIndex);
-
-    return timeParts.map(p => p.join('')).join(' ');
-
-}
+  return timeParts.map(p => p.join('')).join(' ');
+};

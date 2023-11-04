@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from 'react';
 import { Icon } from 'components/icon';
 import { Divider } from 'components/divider';
 import { Text } from 'components/text';
@@ -10,11 +10,19 @@ const headerCss = `
 `;
 
 export const Header: FC = () => {
-    return (
-        <Spacer gap={6} preset={Spacer.Preset.Shaded} css={headerCss} align={Spacer.Align.End} fullWidth>
-            <Icon iconName={Icon.Name.Logo} />
-            <Divider />
-            <Text size={Text.Size.M1} tagName='p'>Report</Text>
-        </Spacer>
-    )
+  return (
+    <Spacer
+      gap={6}
+      preset={Spacer.Preset.Shaded}
+      css={headerCss}
+      align={Spacer.Align.End}
+      fullWidth
+    >
+      <Icon iconName={Icon.Name.Logo} />
+      <Divider />
+      <Text size={Text.Size.M1} tagName="p">
+        Report
+      </Text>
+    </Spacer>
+  );
 };

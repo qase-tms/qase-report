@@ -3,18 +3,18 @@ import { useTestPreviewList } from './use-test-preview-list';
 import { TestPreview } from 'domain/model/test-model';
 
 type TestsLayoutShape = {
-    tests: TestPreview[],
-    activeTestId: string|null,
-    setActiveTestId: (id: string) => void
+  tests: TestPreview[];
+  activeTestId: string | null;
+  setActiveTestId: (id: string) => void;
 };
 
-export const useTestsLayout = ():TestsLayoutShape => {
+export const useTestsLayout = (): TestsLayoutShape => {
   const tests = useTestPreviewList();
-  const [activeTestId, setActiveTestId] = useState<string|null>(null);
+  const [activeTestId, setActiveTestId] = useState<string | null>(null);
   useEffect(() => {
-    if(tests.length && !activeTestId) {
+    if (tests.length && !activeTestId) {
       setActiveTestId(tests[0].id);
     }
   }, [tests, activeTestId]);
-  return { tests, activeTestId, setActiveTestId};
+  return { tests, activeTestId, setActiveTestId };
 };

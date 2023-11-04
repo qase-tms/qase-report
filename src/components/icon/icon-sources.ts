@@ -8,13 +8,13 @@ import settingsSrc from './resources/settings.svg';
 import minusSrc from './resources/minus.svg';
 import exclamationSrc from './resources/exclamation.svg';
 
-export const IconSources: Record<IconName,string> = {
-    [IconName.Logo]: logoSrc,
-    [IconName.Calendar]: calendarSrc,
-    [IconName.CheckMark]: checkmarkSrc,
-    [IconName.Clock]: clockSrc,
-    [IconName.Fail]: failSrc,
-    [IconName.Settings]: settingsSrc,
-    [IconName.Minus]: minusSrc,
-    [IconName.Exclamation]: exclamationSrc
+export const IconSources: Record<IconName, string> = {
+  [IconName.Logo]: logoSrc,
+  [IconName.Calendar]: calendarSrc,
+  [IconName.CheckMark]: checkmarkSrc,
+  [IconName.Clock]: clockSrc,
+  [IconName.Fail]: failSrc,
+  [IconName.Settings]: settingsSrc,
+  [IconName.Minus]: minusSrc,
+  [IconName.Exclamation]: exclamationSrc,
 };

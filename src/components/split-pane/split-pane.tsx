@@ -10,23 +10,30 @@ const dividerCss = `
 `;
 
 type SplitPaneProps = {
-    initialSizes: SizesType,
-    minSizes: SizesType,
-    renderLeft: () => ReactNode,
-    renderRight: () => ReactNode
+  initialSizes: SizesType;
+  minSizes: SizesType;
+  renderLeft: () => ReactNode;
+  renderRight: () => ReactNode;
 };
 
-export const SplitPane: FC<SplitPaneProps>= ({initialSizes, minSizes, renderLeft, renderRight}) => {
+export const SplitPane: FC<SplitPaneProps> = ({
+  initialSizes,
+  minSizes,
+  renderLeft,
+  renderRight,
+}) => {
   const [sizes, setSizes] = useState<SizesType>(initialSizes);
 
   return (
-    <ReactSplitPane split='vertical' sizes={sizes} onChange={setSizes} sashRender={() => <Divider css={dividerCss} height='calc(100vh - 66px)'/>} allowResize>
-      <Pane minSize={minSizes[0]}>
-          {renderLeft()}
-      </Pane>
-      <Pane minSize={minSizes[1]}>
-        {renderRight()}
-      </Pane>
+    <ReactSplitPane
+      split="vertical"
+      sizes={sizes}
+      onChange={setSizes}
+      sashRender={() => <Divider css={dividerCss} height="calc(100vh - 66px)" />}
+      allowResize
+    >
+      <Pane minSize={minSizes[0]}>{renderLeft()}</Pane>
+      <Pane minSize={minSizes[1]}>{renderRight()}</Pane>
     </ReactSplitPane>
   );
-} 
+};

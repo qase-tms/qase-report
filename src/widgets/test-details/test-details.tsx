@@ -9,13 +9,13 @@ import { createTestId } from 'utils/use-test-id-attribute';
 import { TestStatusField } from 'widgets/test-status-field';
 
 type TestDetailsProps = {
-    qaseTestId: string;
+  qaseTestId: string;
 };
 
 const testIdNamespace = 'WIDGET_TEST_DETAILS';
 
 export const testIds = {
-    errorField: createTestId(testIdNamespace, 'error-field')
+  errorField: createTestId(testIdNamespace, 'error-field'),
 };
 
 const headerCss = `
@@ -25,22 +25,28 @@ const headerCss = `
 `;
 
 export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
-    const { test, testRequestStatus} = useTestDetails(qaseTestId);
-    
-    return (
-        <Spacer fullHeight>
-            {testRequestStatus === RequestStatus.Failed && (
-                <Text size={Text.Size.L1} color={Text.Color.Red} testId={testIds.errorField}>Something gone wrong...</Text>
-            )}
-            {test && testRequestStatus !== RequestStatus.Failed  && (
-                        <Spacer fullHeight direction={Spacer.Direction.Column} align={Spacer.Align.Start}>
-                            <TestStatusField status={test.execution.status} css={headerCss} withText />
-                            <Spacer fullHeight direction={Spacer.Direction.Row}>
-                                <TestDetailsCard title={test.title} description={test.fields.description} />
-                                <TestDetailsSummary duration={test.execution.duration} thread={test.execution.thread} endTime={test.execution.end_time} />
-                            </Spacer>
-                        </Spacer>
-            )}
+  const { test, testRequestStatus } = useTestDetails(qaseTestId);
+
+  return (
+    <Spacer fullHeight>
+      {testRequestStatus === RequestStatus.Failed && (
+        <Text size={Text.Size.L1} color={Text.Color.Red} testId={testIds.errorField}>
+          Something gone wrong...
+        </Text>
+      )}
+      {test && testRequestStatus !== RequestStatus.Failed && (
+        <Spacer fullHeight direction={Spacer.Direction.Column} align={Spacer.Align.Start}>
+          <TestStatusField status={test.execution.status} css={headerCss} withText />
+          <Spacer fullHeight direction={Spacer.Direction.Row}>
+            <TestDetailsCard title={test.title} description={test.fields.description} />
+            <TestDetailsSummary
+              duration={test.execution.duration}
+              thread={test.execution.thread}
+              endTime={test.execution.end_time}
+            />
+          </Spacer>
         </Spacer>
-    );
+      )}
+    </Spacer>
+  );
 };

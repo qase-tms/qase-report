@@ -13,12 +13,12 @@ const listCss = `
 `;
 
 const Div = styled.div`
-    height: calc(100vh - 50px);
+  height: calc(100vh - 50px);
 `;
 
 const ScrolledDiv = styled.div`
-    overflow-y: scroll;
-    max-height: calc(100vh - 50px);
+  overflow-y: scroll;
+  max-height: calc(100vh - 50px);
 `;
 
 export const TestsLayout: FC = () => {
@@ -35,15 +35,14 @@ export const TestsLayout: FC = () => {
         renderLeft={() => (
           <ScrolledDiv>
             <Spacer css={listCss} direction={Spacer.Direction.Column}>
-              {tests.map((test) => (
+              {tests.map(test => (
                 <TestPreviewItem key={test.id} test={test} onSelect={handleTestSelection} />
               ))}
             </Spacer>
           </ScrolledDiv>
         )}
-        renderRight={() => (
-          activeTestId && <TestDetails qaseTestId={activeTestId} />
-        )} />
+        renderRight={() => activeTestId && <TestDetails qaseTestId={activeTestId} />}
+      />
     </Div>
   );
-} 
+};

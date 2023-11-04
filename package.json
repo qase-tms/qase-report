@@ -6,6 +6,7 @@
   "scripts": {
     "start": "npx webpack serve --open --config=./webpack/webpack.config.dev.cjs",
     "build": "npx webpack --config=./webpack/webpack.config.prod.cjs",
+    "prettier": "npx prettier ./src/**/*.{ts,tsx} --write",
     "test": "jest --env=jsdom"
   },
   "dependencies": {
