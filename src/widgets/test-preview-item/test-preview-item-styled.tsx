@@ -11,6 +11,9 @@ export const Item = withTestId<
   padding: 16px 16px;
   width: 100%;
   border-bottom: 1px solid rgba(50, 66, 95, 0.17);
+  box-sizing: border-box;
+  height: 55px;
+  overflow-y: hidden;
 `);
 
 export const ItemTitle = styled.div`

@@ -27,6 +27,16 @@ jest.mock('components/split-pane', () => ({
   )),
 }));
 
+jest.mock('react-virtualized', () => ({
+  AutoSizer: jest.fn().mockImplementation(({ children }) => {
+    return <div>{children({ height: 100, width: 100 })}</div>;
+  }),
+  List: jest.fn().mockImplementation(({ rowRenderer, rowCount }) => {
+    const data = new Array(rowCount).fill(0);
+    return <div>{data.map((_, i) => rowRenderer({ key: i, index: i, style: {} }))}</div>;
+  }),
+}));
+
 describe('<TestsLayout />', () => {
   afterEach(() => {
     jest.clearAllMocks();

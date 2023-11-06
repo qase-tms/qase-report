@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-virtualized/styles.css';
 
 export const GlobalStyle = createGlobalStyle`
 :root {
