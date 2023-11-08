@@ -2,9 +2,10 @@ import { TestsLayout } from 'pages/tests-layout';
 import { themedRender as render } from 'utils/test-utils';
 import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
 import { TestDetails } from 'widgets/test-details';
-import { TestPreviewItem } from 'widgets/test-preview-item';
-import { expectPropsPassed, expectPropsWasPassed } from 'utils/test-utils';
+import { TestPreviewList } from 'widgets/test-preview-list';
+import { expectPropsPassed } from 'utils/test-utils';
 import { mockTestsData } from 'constants/mock-tests-data';
+import { TestPreview } from 'domain/model/test-model';
 
 jest.mock('domain/hooks/tests-hooks/use-tests-layout', () => ({
   useTestsLayout: jest.fn(),
@@ -14,15 +15,15 @@ jest.mock('widgets/test-details', () => ({
   TestDetails: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('widgets/test-preview-item', () => ({
-  TestPreviewItem: jest.fn().mockImplementation(() => null),
+jest.mock('widgets/test-preview-list', () => ({
+  TestPreviewList: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('components/split-pane', () => ({
-  SplitPane: jest.fn().mockImplementation(({ renderLeft, renderRight }) => (
+jest.mock('components/page-layout', () => ({
+  PageLayout: jest.fn().mockImplementation(({ renderContent, renderPanel }) => (
     <div>
-      {renderLeft()}
-      {renderRight()}
+      {renderContent()}
+      {renderPanel()}
     </div>
   )),
 }));
@@ -47,14 +48,14 @@ describe('<TestsLayout />', () => {
     const activeTestId = null;
     const setActiveTestId = jest.fn();
     (useTestsLayout as jest.Mock).mockReturnValue({ tests, activeTestId, setActiveTestId });
-    (TestPreviewItem as jest.Mock).mockImplementation(({ test, onSelect }) => {
-      onSelect(test);
+    (TestPreviewList as jest.Mock).mockImplementation(({ tests, onTestSelect }) => {
+      onTestSelect(tests[0]);
       return null;
     });
     render(<TestsLayout />);
     expect(TestDetails).not.toBeCalled();
-    expectPropsPassed(TestPreviewItem as jest.Mock, {
-      test: tests[0],
+    expectPropsPassed(TestPreviewList as jest.Mock, {
+      tests,
     });
     expect(setActiveTestId).toBeCalledWith(tests[0].id);
   });
@@ -65,26 +66,18 @@ describe('<TestsLayout />', () => {
     const setActiveTestId = jest.fn();
     const onSelects: Function[] = [];
     (useTestsLayout as jest.Mock).mockReturnValue({ tests, activeTestId, setActiveTestId });
-    (TestPreviewItem as jest.Mock).mockImplementation(({ test, onSelect }) => {
-      onSelects.push(() => onSelect(test));
+    (TestPreviewList as jest.Mock).mockImplementation(({ tests, onTestSelect }) => {
+      tests.forEach((test: TestPreview) => {
+        onSelects.push(() => onTestSelect(test));
+      });
+
       return null;
     });
     render(<TestsLayout />);
     expect(TestDetails).not.toBeCalled();
-    expectPropsWasPassed(
-      TestPreviewItem as jest.Mock,
-      {
-        test: tests[0],
-      },
-      0,
-    );
-    expectPropsWasPassed(
-      TestPreviewItem as jest.Mock,
-      {
-        test: tests[1],
-      },
-      1,
-    );
+    expectPropsPassed(TestPreviewList as jest.Mock, {
+      tests,
+    });
     onSelects[0]();
     expect(setActiveTestId).toBeCalledWith(tests[0].id);
     onSelects[1]();

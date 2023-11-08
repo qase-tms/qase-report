@@ -47,5 +47,5 @@ export const StyledTextTag = styled(TextTag)`
 
   font-weight: ${props => weightCss[props.$weight ?? TextWeight.Medium]};
 
-  color: ${props => props.theme.colors[props.$color ?? TextColor.Stroke]};
+  ${props => (props.$color ? `color: ${props.theme.colors[props.$color]};` : '')}
 `;
