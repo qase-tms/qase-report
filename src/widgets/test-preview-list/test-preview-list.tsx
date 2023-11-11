@@ -14,7 +14,7 @@ type RowProps = {
   index: number;
 };
 
-const ROW_HEIGHT = 53;
+const ROW_HEIGHT = 32;
 
 export const TestPreviewList: FC<ListProps> = ({ tests, onTestSelect }) => {
   const itemRenderer = useCallback(

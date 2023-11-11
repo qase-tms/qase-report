@@ -5,8 +5,10 @@ const HEADER_HEIGHT = 50;
 const TAB_MARGIN = 20;
 const TABS_HEIGHT = 26;
 
+export const PANE_CALC_HEIGHT = `100vh - ${HEADER_HEIGHT + TAB_MARGIN + TABS_HEIGHT}px`;
+
 export const Layout = styled.div`
-  height: calc(100vh - ${HEADER_HEIGHT}px);
+  height: calc(100vh - ${HEADER_HEIGHT}px - ${TAB_MARGIN}px);
 `;
 
 export const TabWrapper = styled.div`
@@ -30,14 +32,23 @@ export const Tab = styled.div<{ $active: boolean }>`
   cursor: pointer;
   box-sizing: border-box;
   padding-bottom: 5px;
+  margin-bottom: -3px;
+  border-bottom: 3px solid transparent;
+  transition: border 0.3s ease, color 0.3s ease;
   ${props => (props.$active ? `color: ${props.theme.colors[Color.Blue]};` : '')}
   ${props => (props.$active ? `border-bottom: 3px solid ${props.theme.colors[Color.Blue]};` : '')}
-    ${props => (props.$active ? `margin-bottom: -3px;` : '')}
 `;
 
 export const Panel = styled.div`
   box-sizing: border-box;
   overflow-y: hidden;
-  height: calc(100vh - ${HEADER_HEIGHT + TAB_MARGIN + TABS_HEIGHT}px);
+  height: calc(${PANE_CALC_HEIGHT});
   padding-left: 16px;
+  padding-top: 16px;
+`;
+
+export const PaneWrapper = styled.div`
+  box-sizing: border-box;
+  overflow-y: hidden;
+  height: calc(${PANE_CALC_HEIGHT});
 `;

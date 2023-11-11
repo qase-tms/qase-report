@@ -33,4 +33,5 @@ export type IconOptions = LocalIconOptions | AwesomeIconOptions;
 export enum IconSize {
   M = 'm',
   S = 's',
+  XS = 'xs',
 }

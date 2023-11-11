@@ -1,4 +1,12 @@
-import { Layout, Panel, TabRow, TabWrapper, Tab } from './page-layout-styled';
+import {
+  Layout,
+  Panel,
+  TabRow,
+  TabWrapper,
+  Tab,
+  PANE_CALC_HEIGHT,
+  PaneWrapper,
+} from './page-layout-styled';
 import { SplitPane } from 'components/split-pane';
 import { ReactNode, FC, useState, useCallback } from 'react';
 import { Text } from 'components/text';
@@ -27,31 +35,26 @@ export const PageLayout: FC<LayoutProps> = ({ tabs, renderContent, renderPanel }
   );
   return (
     <Layout>
-      <SplitPane
-        initialSizes={initialSizes}
-        minSizes={minSizes}
-        renderLeft={() => (
-          <>
-            <TabWrapper>
-              <TabRow>
-                {tabs.map((tab, idx) => (
-                  <Tab
-                    key={tab.id}
-                    $active={idx === activeTabIdx}
-                    onClick={() => setActiveTabIdx(idx)}
-                  >
-                    <Text size={Text.Size.M1} weight={Text.Weight.Semibold}>
-                      {tab.text}
-                    </Text>
-                  </Tab>
-                ))}
-              </TabRow>
-            </TabWrapper>
-            <Panel>{renderContent(tabs[activeTabIdx], setTab)}</Panel>
-          </>
-        )}
-        renderRight={renderPanel}
-      />
+      <TabWrapper>
+        <TabRow>
+          {tabs.map((tab, idx) => (
+            <Tab key={tab.id} $active={idx === activeTabIdx} onClick={() => setActiveTabIdx(idx)}>
+              <Text size={Text.Size.M1} weight={Text.Weight.Semibold}>
+                {tab.text}
+              </Text>
+            </Tab>
+          ))}
+        </TabRow>
+      </TabWrapper>
+      <PaneWrapper>
+        <SplitPane
+          initialSizes={initialSizes}
+          minSizes={minSizes}
+          calcHeight={PANE_CALC_HEIGHT}
+          renderLeft={() => <Panel>{renderContent(tabs[activeTabIdx], setTab)}</Panel>}
+          renderRight={renderPanel}
+        />
+      </PaneWrapper>
     </Layout>
   );
 };

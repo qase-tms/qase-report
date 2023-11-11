@@ -11,10 +11,13 @@ type SplitPaneProps = {
   minSizes: SizesType;
   renderLeft: () => ReactNode;
   renderRight: () => ReactNode;
+  calcHeight: string;
 };
 
+const SASH_MARGIN = 16;
+
 const Sash = styled.div`
-  margin-top: 16px;
+  margin-top: ${SASH_MARGIN}px;
 `;
 
 export const SplitPane: FC<SplitPaneProps> = ({
@@ -22,6 +25,7 @@ export const SplitPane: FC<SplitPaneProps> = ({
   minSizes,
   renderLeft,
   renderRight,
+  calcHeight,
 }) => {
   const [sizes, setSizes] = useState<SizesType>(initialSizes);
 
@@ -32,7 +36,7 @@ export const SplitPane: FC<SplitPaneProps> = ({
       onChange={setSizes}
       sashRender={() => (
         <Sash>
-          <Divider height="calc(100vh - 66px)" />
+          <Divider height={`calc(${calcHeight} - ${SASH_MARGIN}px)`} />
         </Sash>
       )}
       allowResize
