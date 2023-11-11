@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { themedRender as render } from 'utils/test-utils';
 import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
 import { RequestStatus } from 'utils/use-request';
-import { TestDetailsCard } from 'widgets/test-details/test-details-card';
+import { TestDetailsDescription } from 'widgets/test-details/test-details-description';
 import { TestDetailsSummary } from 'widgets/test-details/test-details-summary';
 import { TestStatusField } from 'widgets/test-status-field';
 import { expectPropsPassed } from 'utils/test-utils';
@@ -20,8 +20,8 @@ jest.mock('widgets/test-details/test-details-summary', () => ({
   TestDetailsSummary: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('widgets/test-details/test-details-card', () => ({
-  TestDetailsCard: jest.fn().mockImplementation(() => null),
+jest.mock('widgets/test-details/test-details-description', () => ({
+  TestDetailsDescription: jest.fn().mockImplementation(() => null),
 }));
 
 describe('<TestDetails />', () => {
@@ -66,8 +66,7 @@ describe('<TestDetails />', () => {
       thread: test.execution.thread,
       endTime: test.execution.end_time,
     });
-    expectPropsPassed(TestDetailsCard as jest.Mock, {
-      title: test.title,
+    expectPropsPassed(TestDetailsDescription as jest.Mock, {
       description: test.fields.description,
     });
   });

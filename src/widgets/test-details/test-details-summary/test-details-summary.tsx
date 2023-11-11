@@ -3,7 +3,12 @@ import { Text } from 'components/text';
 import { Icon } from 'components/icon';
 import { formatMs } from 'utils/time';
 import { createTestId } from 'utils/use-test-id-attribute';
-import { Section, SectionTitleSlot, SectionValue } from './test-details-summary-styled';
+import {
+  Section,
+  SectionTitleSlot,
+  SectionValue,
+  SectionItem,
+} from './test-details-summary-styled';
 import { IconName } from 'src/components/icon/icon-types';
 
 type TestDetailsSummaryProps = {
@@ -27,7 +32,7 @@ const FieldInfo: FC<{ title: string; value: string; iconName: IconName; testId: 
   testId,
 }) => {
   return (
-    <>
+    <SectionItem>
       <SectionTitleSlot>
         <Text size={Text.Size.M1} weight={Text.Weight.Semibold} tagName="p">
           {title}
@@ -39,7 +44,7 @@ const FieldInfo: FC<{ title: string; value: string; iconName: IconName; testId: 
           {value}
         </Text>
       </SectionValue>
-    </>
+    </SectionItem>
   );
 };
 
