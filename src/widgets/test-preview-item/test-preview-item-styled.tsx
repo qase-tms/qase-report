@@ -1,3 +1,4 @@
+import { PropsWithChildren, FC } from 'react';
 import styled from 'styled-components';
 import { withTestId } from 'utils/use-test-id-attribute';
 
@@ -6,8 +7,8 @@ export const ItemWrapper = styled.div`
 `;
 
 export const Item = withTestId<
-  React.HTMLAttributes<HTMLDivElement> & { testId?: string }
->(styled.div`
+  React.HTMLAttributes<HTMLDivElement> & { testId?: string; $active?: boolean }
+>(styled.div<{ $active?: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -22,6 +23,7 @@ export const Item = withTestId<
   &:hover {
     background: #f5f6f7;
   }
+  ${props => (props.$active ? 'background: #f5f6f7;' : '')}
 `);
 
 export const ItemTitle = styled.div`

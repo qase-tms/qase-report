@@ -17,6 +17,7 @@ import {
 type TestPreviewItemProps = {
   test: TestPreview;
   onSelect?: (test: TestPreview) => void;
+  isActive?: boolean;
 };
 
 const testIdNamespace = 'WIDGET_TEST_PREVIEW_ITEM';
@@ -27,7 +28,7 @@ export const testIds = {
   itemFieldDuration: createTestId(testIdNamespace, 'item-field-duration'),
 };
 
-export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) => {
+export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect, isActive }) => {
   const { title, status, duration } = test;
 
   const handleClick = useCallback(() => {
@@ -38,7 +39,7 @@ export const TestPreviewItem: FC<TestPreviewItemProps> = ({ test, onSelect }) =>
 
   return (
     <ItemWrapper>
-      <Item onClick={handleClick} testId={testIds.itemRoot}>
+      <Item onClick={handleClick} testId={testIds.itemRoot} $active={isActive}>
         <ItemTitle>
           <Text weight={Text.Weight.Bold} testId={testIds.itemTitle} size={Text.Size.M1}>
             {title}

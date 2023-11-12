@@ -27,7 +27,7 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
   const { test, testRequestStatus } = useTestDetails(qaseTestId);
 
   useEffect(() => {
-    if(testRequestStatus === RequestStatus.Success && test){
+    if (testRequestStatus === RequestStatus.Success && test) {
       devLogger.log(`Inspect test details #${test.id}`, test);
     }
   }, [test, testRequestStatus]);

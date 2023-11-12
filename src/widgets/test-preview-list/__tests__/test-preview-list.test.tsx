@@ -30,7 +30,13 @@ describe('<TestsPreviewList />', () => {
       onSelect(test);
       return null;
     });
-    render(<TestPreviewList tests={tests} onTestSelect={({ id }) => setActiveTestId(id)} />);
+    render(
+      <TestPreviewList
+        tests={tests}
+        onTestSelect={({ id }) => setActiveTestId(id)}
+        activeTestId={null}
+      />,
+    );
     expectPropsPassed(TestPreviewItem as jest.Mock, {
       test: tests[0],
     });
@@ -44,7 +50,13 @@ describe('<TestsPreviewList />', () => {
       onSelects.push(() => onSelect(test));
       return null;
     });
-    render(<TestPreviewList tests={tests} onTestSelect={({ id }) => setActiveTestId(id)} />);
+    render(
+      <TestPreviewList
+        tests={tests}
+        onTestSelect={({ id }) => setActiveTestId(id)}
+        activeTestId={null}
+      />,
+    );
     expectPropsWasPassed(
       TestPreviewItem as jest.Mock,
       {

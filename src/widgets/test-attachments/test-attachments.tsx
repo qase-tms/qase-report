@@ -1,6 +1,7 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import { TestAttachment } from 'domain/model/test-model';
 import { Text } from 'components/text';
+import { Heading } from 'components/heading';
 import styled from 'styled-components';
 import { Icon } from 'components/icon';
 
@@ -14,16 +15,13 @@ const Container = styled.div`
   align-items: flex-start;
 `;
 
-const SubHeading = styled.div`
-  margin-bottom: 6px;
-`;
-
 const Link = styled.a`
   text-decoration: none;
   display: flex;
   flex-direction: row;
   gap: 12px;
   align-items: center;
+  color: inherit;
 
   &:hover {
     text-decoration: none;
@@ -51,9 +49,9 @@ const AttachmentLink: FC<{ attachment: TestAttachment }> = ({ attachment }) => {
 export const TestAttachments: FC<Props> = ({ attachments }) => {
   return (
     <Container>
-      <SubHeading>
+      <Heading>
         <Text weight={Text.Weight.Semibold}>Attachments</Text>
-      </SubHeading>
+      </Heading>
       {attachments.map(attachment => (
         <AttachmentLink key={attachment.id} attachment={attachment} />
       ))}

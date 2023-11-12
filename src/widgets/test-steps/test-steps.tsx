@@ -21,8 +21,7 @@ const Item = styled.div`
 `;
 
 const ItemContent = styled.div`
-  margin-left: 24px;
-  margin-bottom: 16px;
+  margin-left: 36px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

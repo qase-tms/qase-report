@@ -5,6 +5,7 @@ import { TestPreviewItem } from 'widgets/test-preview-item';
 
 type ListProps = {
   tests: TestPreview[];
+  activeTestId: string | null;
   onTestSelect: (test: TestPreview) => void;
 };
 
@@ -16,16 +17,20 @@ type RowProps = {
 
 const ROW_HEIGHT = 32;
 
-export const TestPreviewList: FC<ListProps> = ({ tests, onTestSelect }) => {
+export const TestPreviewList: FC<ListProps> = ({ tests, onTestSelect, activeTestId }) => {
   const itemRenderer = useCallback(
     ({ key, style, index }: RowProps) => {
       return (
         <div key={key} style={style}>
-          <TestPreviewItem test={tests[index]} onSelect={onTestSelect} />
+          <TestPreviewItem
+            test={tests[index]}
+            onSelect={onTestSelect}
+            isActive={tests[index].id === activeTestId}
+          />
         </div>
       );
     },
-    [tests],
+    [tests, activeTestId],
   );
 
   return (
