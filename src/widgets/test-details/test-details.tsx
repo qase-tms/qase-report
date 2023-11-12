@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { TestDetailsDescription } from './test-details-description';
 import { TestDetailsSummary } from './test-details-summary';
 import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
@@ -10,6 +10,7 @@ import { FlexColumn } from 'components/flex-column';
 import { CardSubHeader, PanelHeader, Container } from './text-details-styled';
 import { TestSteps } from 'widgets/test-steps';
 import { TestAttachments } from 'widgets/test-attachments';
+import { devLogger } from 'utils/dev-logger';
 
 type TestDetailsProps = {
   qaseTestId: string;
@@ -24,6 +25,12 @@ export const testIds = {
 
 export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
   const { test, testRequestStatus } = useTestDetails(qaseTestId);
+
+  useEffect(() => {
+    if(testRequestStatus === RequestStatus.Success && test){
+      devLogger.log(`Inspect test details #${test.id}`, test);
+    }
+  }, [test, testRequestStatus]);
 
   return (
     <Container>
