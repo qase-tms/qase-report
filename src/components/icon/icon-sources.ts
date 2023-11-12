@@ -2,8 +2,14 @@ import { IconName, IconOptions, IconType } from './icon-types';
 import logoSrc from './resources/logo.svg';
 import settingsSrc from './resources/settings.svg';
 import exclamationSrc from './resources/exclamation.svg';
-import { faClock, faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { faSquareCheck, faSquareXmark, faSquareMinus } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faCalendar, faFile } from '@fortawesome/free-regular-svg-icons';
+import {
+  faSquareCheck,
+  faSquareXmark,
+  faSquareMinus,
+  faAngleDown,
+  faAngleRight,
+} from '@fortawesome/free-solid-svg-icons';
 import { Color } from 'constants/colors';
 
 export const iconOptions: Record<IconName, IconOptions> = {
@@ -36,6 +42,21 @@ export const iconOptions: Record<IconName, IconOptions> = {
     type: IconType.FontAwesome,
     icon: faSquareMinus,
     color: Color.Cyan,
+  },
+  [IconName.AngleDown]: {
+    type: IconType.FontAwesome,
+    icon: faAngleDown,
+    color: Color.Stroke,
+  },
+  [IconName.AngleRight]: {
+    type: IconType.FontAwesome,
+    icon: faAngleRight,
+    color: Color.Stroke,
+  },
+  [IconName.File]: {
+    type: IconType.FontAwesome,
+    icon: faFile,
+    color: Color.Stroke,
   },
   // Pro Icon
   [IconName.Settings]: {

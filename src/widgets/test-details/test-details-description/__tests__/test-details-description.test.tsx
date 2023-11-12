@@ -6,7 +6,6 @@ describe('<TestDetailsDescription />', () => {
   it('TestDetailsDescription render', () => {
     const description = 'Lorem  ipsum dorem...';
     render(<TestDetailsDescription description={description} />);
-    expect(screen.getByTestId(testIds.cardDescriptionTitle)).toBeTruthy();
     expect(screen.getByTestId(testIds.cardDescriptionText).textContent).toBe(description);
   });
 });

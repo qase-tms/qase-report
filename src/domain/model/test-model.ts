@@ -18,11 +18,30 @@ export type TestExecution = {
   status: TestStatus;
   end_time: number;
   duration: number;
-  thread: string;
+  thread?: string;
 };
 
 export type TestFields = {
   description?: string;
+};
+
+export type TestAttachment = {
+  file_name: string;
+  mime_type: string;
+  file_path: string;
+  id: string;
+};
+
+export type TestStep = {
+  id: string;
+  step_type: string;
+  execution: TestExecution;
+  data: {
+    action: string;
+    expectedResult: string | null;
+  };
+  attachments: TestAttachment[];
+  steps: TestStep[];
 };
 
 export type Test = {
@@ -30,4 +49,6 @@ export type Test = {
   title: string;
   execution: TestExecution;
   fields: TestFields;
+  steps: TestStep[];
+  attachments: TestAttachment[];
 };

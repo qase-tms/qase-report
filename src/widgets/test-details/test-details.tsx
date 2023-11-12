@@ -8,6 +8,8 @@ import { createTestId } from 'utils/use-test-id-attribute';
 import { TestStatusField } from 'widgets/test-status-field';
 import { FlexColumn } from 'components/flex-column';
 import { CardSubHeader, PanelHeader, Container } from './text-details-styled';
+import { TestSteps } from 'widgets/test-steps';
+import { TestAttachments } from 'widgets/test-attachments';
 
 type TestDetailsProps = {
   qaseTestId: string;
@@ -53,6 +55,8 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
           {test.fields.description && (
             <TestDetailsDescription description={test.fields.description} />
           )}
+          {Boolean(test.attachments.length) && <TestAttachments attachments={test.attachments} />}
+          {Boolean(test.steps.length) && <TestSteps steps={test.steps} />}
         </FlexColumn>
       )}
     </Container>

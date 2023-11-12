@@ -2,6 +2,9 @@ import { Color } from 'src/constants/colors';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export enum IconName {
+  AngleDown = 'angle-down',
+  AngleRight = 'angle-right',
+  File = 'file',
   Logo = 'logo',
   Clock = 'clock',
   CheckMark = 'check-mark',

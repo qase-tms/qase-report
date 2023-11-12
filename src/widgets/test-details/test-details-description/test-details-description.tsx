@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Text } from 'components/text';
 import { createTestId } from 'utils/use-test-id-attribute';
-import { CardSubTitle, Container } from './test-details-description-styled';
+import { Heading } from 'components/heading';
 
 type TestDetailsProps = {
   description?: string;
@@ -10,18 +10,13 @@ type TestDetailsProps = {
 const testIdNamespace = 'TEST_DETAILS_CARD';
 
 export const testIds = {
-  cardDescriptionTitle: createTestId(testIdNamespace, 'card-description-title'),
   cardDescriptionText: createTestId(testIdNamespace, 'card-description-text'),
 };
 
 export const TestDetailsDescription: FC<TestDetailsProps> = ({ description }) => {
   return (
-    <Container>
-      <CardSubTitle>
-        <Text weight={Text.Weight.Bold} tagName="h3" testId={testIds.cardDescriptionTitle}>
-          Description
-        </Text>
-      </CardSubTitle>
+    <>
+      <Heading>Description</Heading>
       <Text
         weight={Text.Weight.Normal}
         size={Text.Size.M1}
@@ -30,6 +25,6 @@ export const TestDetailsDescription: FC<TestDetailsProps> = ({ description }) =>
       >
         {description}
       </Text>
-    </Container>
+    </>
   );
 };

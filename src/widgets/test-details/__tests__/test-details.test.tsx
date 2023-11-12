@@ -52,6 +52,8 @@ describe('<TestDetails />', () => {
       fields: {
         description: 'Some cool test with steps',
       },
+      attachments: [],
+      steps: [],
     };
     (useTestDetails as jest.Mock).mockReturnValue({
       testRequestStatus: RequestStatus.Success,
