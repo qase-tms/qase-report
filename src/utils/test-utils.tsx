@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { themes, Themes } from 'constants/colors';
-import { ParamsProvider } from 'domain/hooks/use-params';
+import { ParamsProvider } from 'domain/hooks/params-hooks/params-context';
 import { ThemeProvider } from 'styled-components';
 
 export const expectPropsPassed = (Component: jest.Mock, props: object) => {

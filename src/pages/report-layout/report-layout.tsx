@@ -1,8 +1,52 @@
-import { FC, ReactNode, useCallback, useEffect } from 'react';
-import { TestDetails } from 'widgets/test-details';
+import { FC, ReactNode, useEffect } from 'react';
 import { PageLayout } from 'components/page-layout';
-import { TabId, useTabs } from 'domain/hooks/use-params';
+import { useTabs } from 'domain/hooks/params-hooks/use-tabs';
 import { ReportTestTabContent, ReportTestTabPanel } from './report-tabs/report-tests-tab';
+import { TabId } from 'domain/model/tabs';
+
+type LayoutTab = {
+  renderContent: () => ReactNode;
+  renderPanel: () => ReactNode;
+};
+
+enum ReportTabs {
+  Tests = TabId.Tests,
+  Timeline = TabId.Timeline,
+  Issues = TabId.Issues,
+}
+
+const layoutComponents: Record<ReportTabs, LayoutTab> = {
+  [ReportTabs.Tests]: {
+    renderContent: () => <ReportTestTabContent />,
+    renderPanel: () => <ReportTestTabPanel />,
+  },
+  [ReportTabs.Timeline]: {
+    renderContent: () => null,
+    renderPanel: () => null,
+  },
+  [ReportTabs.Issues]: {
+    renderContent: () => null,
+    renderPanel: () => null,
+  },
+};
+
+const renderContent = (tabId?: TabId): ReactNode => {
+  // @ts-ignore
+  if (layoutComponents[tabId]) {
+    // @ts-ignore
+    return layoutComponents[tabId].renderContent();
+  }
+  return null;
+};
+
+const renderPanel = (tabId?: TabId): ReactNode => {
+  // @ts-ignore
+  if (layoutComponents[tabId]) {
+    // @ts-ignore
+    return layoutComponents[tabId].renderPanel();
+  }
+  return null;
+};
 
 const layoutTabs: { id: TabId; text: string }[] = [
   {
@@ -27,20 +71,6 @@ export const ReportLayout: FC = () => {
       setTabId(TabId.Tests);
     }
   }, [tabId]);
-
-  const renderContent = (tabId?: TabId): ReactNode => {
-    if (tabId === TabId.Tests) {
-      return <ReportTestTabContent />;
-    }
-    return null;
-  };
-
-  const renderPanel = (tabId?: TabId): ReactNode => {
-    if (tabId === TabId.Tests) {
-      return <ReportTestTabPanel />;
-    }
-    return null;
-  };
 
   return <PageLayout tabs={layoutTabs} renderContent={renderContent} renderPanel={renderPanel} />;
 };

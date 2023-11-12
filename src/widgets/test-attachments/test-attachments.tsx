@@ -37,7 +37,7 @@ const AttachmentLink: FC<{ attachment: TestAttachment }> = ({ attachment }) => {
   return (
     <Link
       target="_blank"
-      href={`/qase-report-jsonp/attachments/${attachment.id}-${attachment.file_name}`}
+      href={`qase-report-jsonp/attachments/${attachment.id}-${attachment.file_name}`}
       key={attachment.id}
     >
       <Icon size={Icon.Size.M} iconName={Icon.Name.File} />

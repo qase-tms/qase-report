@@ -4,7 +4,7 @@ import { qaseJsonp } from 'utils/jsonp/qase-jsonp';
 import { GlobalStyle } from './global-style';
 import { ThemeProvider } from 'styled-components';
 import { Themes, themes } from 'constants/colors';
-import { ParamsProvider } from 'domain/hooks/use-params';
+import { ParamsProvider } from 'domain/hooks/params-hooks/params-context';
 
 declare global {
   interface Window {

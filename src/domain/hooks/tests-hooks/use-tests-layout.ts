@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTestPreviewList } from './use-test-preview-list';
 import { TestPreview } from 'domain/model/test-model';
-import { useQaseTestId } from '../use-params';
+import { useQaseTestId } from 'domain/hooks/params-hooks/use-qase-test-id';
 
 type TestsLayoutShape = {
   tests: TestPreview[];

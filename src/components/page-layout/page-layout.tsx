@@ -10,7 +10,8 @@ import {
 import { SplitPane } from 'components/split-pane';
 import { ReactNode, FC, useMemo } from 'react';
 import { Text } from 'components/text';
-import { TabId, useTabs } from 'domain/hooks/use-params';
+import { useTabs } from 'domain/hooks/params-hooks/use-tabs';
+import { TabId } from 'domain/model/tabs';
 
 const initialSizes = ['auto', '40%'];
 const minSizes = ['600px', '650px'];

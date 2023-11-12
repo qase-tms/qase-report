@@ -1,31 +1,17 @@
-import {
-  useContext,
-  createContext,
-  PropsWithChildren,
-  FC,
-  useState,
-  useMemo,
-  useEffect,
-  useCallback,
-} from 'react';
+import { createContext, PropsWithChildren, FC, useState, useMemo, useEffect } from 'react';
+import { TabId } from 'domain/model/tabs';
 
-export enum TabId {
-  Tests = 'tests',
-  Timeline = 'timeline',
-  Issues = 'issues',
-}
-
-type Params = {
+export type Params = {
   tabId?: TabId;
   testId?: string;
 };
 
-type ParamsContextProps = {
+export type ParamsContextProps = {
   params: Params;
   setParams: (params: Params) => void;
 };
 
-const ParamsContext = createContext<ParamsContextProps>({
+export const ParamsContext = createContext<ParamsContextProps>({
   params: {},
   setParams: () => {},
 });
@@ -57,28 +43,4 @@ export const ParamsProvider: FC<PropsWithChildren> = ({ children }) => {
     return { params, setParams };
   }, [params]);
   return <ParamsContext.Provider value={value}>{children}</ParamsContext.Provider>;
-};
-
-export const useTabs = (): [TabId | undefined, (tabId: TabId) => void] => {
-  const { params, setParams } = useContext<ParamsContextProps>(ParamsContext);
-  const setTab = useCallback((tabId: TabId) => {
-    setParams({
-      tabId: tabId,
-    });
-  }, []);
-  return [params.tabId, setTab];
-};
-
-export const useQaseTestId = (): [string | undefined, (testId: string) => void] => {
-  const { params, setParams } = useContext<ParamsContextProps>(ParamsContext);
-  const setTestId = useCallback(
-    (testId: string) => {
-      setParams({
-        tabId: params.tabId,
-        testId,
-      });
-    },
-    [params],
-  );
-  return [params.testId, setTestId];
 };

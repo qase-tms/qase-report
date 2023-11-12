@@ -2,14 +2,14 @@ import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
 import { useTestPreviewList } from 'domain/hooks/tests-hooks/use-test-preview-list';
 import { mockTestsData } from 'constants/mock-tests-data';
 import { renderHook, waitFor } from '@testing-library/react';
-import { useQaseTestId } from 'domain/hooks/use-params';
+import { useQaseTestId } from 'domain/hooks/params-hooks/use-qase-test-id';
 import { useState } from 'react';
 
 jest.mock('domain/hooks/tests-hooks/use-test-preview-list', () => {
   return { useTestPreviewList: jest.fn() };
 });
 
-jest.mock('domain/hooks/use-params', () => {
+jest.mock('domain/hooks/params-hooks/use-qase-test-id', () => {
   return { useQaseTestId: jest.fn() };
 });
 

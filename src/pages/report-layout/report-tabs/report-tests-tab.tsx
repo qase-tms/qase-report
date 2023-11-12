@@ -2,7 +2,7 @@ import { useTestsLayout } from 'domain/hooks/tests-hooks/use-tests-layout';
 import { TestPreviewList } from 'widgets/test-preview-list';
 import { useCallback, FC } from 'react';
 import { TestPreview } from 'domain/model/test-model';
-import { useQaseTestId } from 'domain/hooks/use-params';
+import { useQaseTestId } from 'domain/hooks/params-hooks/use-qase-test-id';
 import { TestDetails } from 'widgets/test-details';
 
 export const ReportTestTabContent: FC = () => {
