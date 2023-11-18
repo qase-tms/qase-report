@@ -36,9 +36,10 @@ export type TestStep = {
   id: string;
   step_type: string;
   execution: TestExecution;
+  parent_id: string | null;
   data: {
     action: string;
-    expectedResult: string | null;
+    expected_result: string | null;
   };
   attachments: TestAttachment[];
   steps: TestStep[];

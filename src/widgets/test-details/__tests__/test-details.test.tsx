@@ -5,8 +5,11 @@ import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
 import { RequestStatus } from 'utils/use-request';
 import { TestDetailsDescription } from 'widgets/test-details/test-details-description';
 import { TestDetailsSummary } from 'widgets/test-details/test-details-summary';
+import { TestAttachments } from 'widgets/test-attachments';
 import { TestStatusField } from 'widgets/test-status-field';
+import { TestSteps } from 'widgets/test-steps';
 import { expectPropsPassed } from 'utils/test-utils';
+import { mockTest } from 'constants/mock-tests-data';
 
 jest.mock('domain/hooks/tests-hooks/use-test-details', () => ({
   useTestDetails: jest.fn(),
@@ -24,6 +27,14 @@ jest.mock('widgets/test-details/test-details-description', () => ({
   TestDetailsDescription: jest.fn().mockImplementation(() => null),
 }));
 
+jest.mock('widgets/test-attachments', () => ({
+  TestAttachments: jest.fn().mockImplementation(() => null),
+}));
+
+jest.mock('widgets/test-steps', () => ({
+  TestSteps: jest.fn().mockImplementation(() => null),
+}));
+
 describe('<TestDetails />', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -39,22 +50,7 @@ describe('<TestDetails />', () => {
   });
 
   it('TestDetails renders test data', () => {
-    const test = {
-      id: '15e9c820-5242-4b80-8f6c-47ad85d4fbfc',
-      title: '#1 Test with successful steps',
-      execution: {
-        start_time: 1691652628.650742,
-        status: 'passed',
-        end_time: 1691652628.651354,
-        duration: 0,
-        thread: '50366-MainThread',
-      },
-      fields: {
-        description: 'Some cool test with steps',
-      },
-      attachments: [],
-      steps: [],
-    };
+    const test = mockTest;
     (useTestDetails as jest.Mock).mockReturnValue({
       testRequestStatus: RequestStatus.Success,
       test,
@@ -70,6 +66,12 @@ describe('<TestDetails />', () => {
     });
     expectPropsPassed(TestDetailsDescription as jest.Mock, {
       description: test.fields.description,
+    });
+    expectPropsPassed(TestAttachments as jest.Mock, {
+      attachments: test.attachments,
+    });
+    expectPropsPassed(TestSteps as jest.Mock, {
+      steps: test.steps,
     });
   });
 });

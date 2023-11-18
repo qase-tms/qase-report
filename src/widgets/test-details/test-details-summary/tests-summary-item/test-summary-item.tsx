@@ -14,8 +14,8 @@ const SectionItem = styled.div`
 const SectionValue = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 2px;
-  align-items: center;
+  gap: 6px;
+  align-items: flex-end;
 `;
 
 const SectionTitleSlot = styled.div`

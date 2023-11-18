@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { withTestId } from 'utils/use-test-id-attribute';
 
 export const Item = styled.div`
   display: flex;
@@ -10,12 +11,14 @@ export const Item = styled.div`
   margin-bottom: 12px;
 `;
 
-export const ItemContent = styled.div`
+export const ItemContent = withTestId<
+  React.HTMLAttributes<HTMLDivElement> & { testId?: string }
+>(styled.div`
   margin-left: 36px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-`;
+`);
 
 export const SubHeader = styled.div`
   margin-bottom: 6px;

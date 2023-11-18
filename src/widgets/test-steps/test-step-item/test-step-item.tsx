@@ -5,6 +5,8 @@ import { Item, Bar, ItemContent, SubHeader, Info } from './test-step-item-styled
 import { Chevron } from 'components/chevron';
 import { Text } from 'components/text';
 import { TestAttachments } from 'widgets/test-attachments';
+import { getBarsOffsets } from './get-bars-offset';
+import { testIds } from '../test-steps-testIds';
 
 type Props = {
   step: TestStep;
@@ -17,7 +19,7 @@ export const TestStepItem: FC<Props> = ({ step, depth }) => {
     setOpened(!opened);
   }, [opened]);
   const offsets = useMemo(() => {
-    return new Array(depth).fill(0).map((a, i) => -i * 36 - 24);
+    return getBarsOffsets(depth);
   }, [depth]);
   return (
     <>
@@ -26,15 +28,17 @@ export const TestStepItem: FC<Props> = ({ step, depth }) => {
           <Bar key={x} $x={x} />
         ))}
         <Chevron opened={opened} />
-        <Text>{step.data.action ?? `Step#${step.id}`}</Text>
+        <Text testId={testIds.getStepTitle(step.id)}>{step.data.action ?? `Step#${step.id}`}</Text>
       </Item>
       {opened && (
-        <ItemContent>
+        <ItemContent testId={testIds.getStepContent(step.id)}>
           <SubHeader>
             <Text weight={Text.Weight.Semibold}>Expected result</Text>
           </SubHeader>
           <Info>
-            <Text weight={Text.Weight.Normal}>{String(step.data.expectedResult)}</Text>
+            <Text weight={Text.Weight.Normal} testId={testIds.getStepExpectedResult(step.id)}>
+              {String(step.data.expected_result)}
+            </Text>
           </Info>
           {Boolean(step.attachments.length) && <TestAttachments attachments={step.attachments} />}
           {step.steps.map(step => (
