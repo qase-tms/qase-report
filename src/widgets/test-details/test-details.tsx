@@ -7,7 +7,7 @@ import { Text } from 'components/text';
 import { createTestId } from 'utils/use-test-id-attribute';
 import { TestStatusField } from 'widgets/test-status-field';
 import { FlexColumn } from 'components/flex-column';
-import { CardSubHeader, PanelHeader, Container } from './text-details-styled';
+import { CardSubHeader, PanelHeader, Container, DetailsPanel } from './text-details-styled';
 import { TestSteps } from 'widgets/test-steps';
 import { TestAttachments } from 'widgets/test-attachments';
 import { devLogger } from 'utils/dev-logger';
@@ -44,26 +44,28 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
           <PanelHeader>
             <TestStatusField status={test.execution.status} withText />
           </PanelHeader>
-          <CardSubHeader>
-            <Text
-              size={Text.Size.L1}
-              weight={Text.Weight.Semibold}
-              tagName="h2"
-              testId={testIds.subHeaderTitle}
-            >
-              {test.title}
-            </Text>
-          </CardSubHeader>
-          <TestDetailsSummary
-            duration={test.execution.duration}
-            thread={test.execution.thread}
-            endTime={test.execution.end_time}
-          />
-          {test.fields.description && (
-            <TestDetailsDescription description={test.fields.description} />
-          )}
-          {Boolean(test.attachments.length) && <TestAttachments attachments={test.attachments} />}
-          {Boolean(test.steps.length) && <TestSteps steps={test.steps} />}
+          <DetailsPanel>
+            <CardSubHeader>
+              <Text
+                size={Text.Size.L1}
+                weight={Text.Weight.Semibold}
+                tagName="h2"
+                testId={testIds.subHeaderTitle}
+              >
+                {test.title}
+              </Text>
+            </CardSubHeader>
+            <TestDetailsSummary
+              duration={test.execution.duration}
+              thread={test.execution.thread}
+              endTime={test.execution.end_time}
+            />
+            {test.fields.description && (
+              <TestDetailsDescription description={test.fields.description} />
+            )}
+            {Boolean(test.attachments.length) && <TestAttachments attachments={test.attachments} />}
+            {Boolean(test.steps.length) && <TestSteps steps={test.steps} />}
+          </DetailsPanel>
         </FlexColumn>
       )}
     </Container>

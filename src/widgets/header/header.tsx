@@ -21,9 +21,7 @@ export const Header: FC = () => {
     <StyledHeader>
       <Icon iconName={Icon.Name.Logo} />
       <Divider />
-      <Text size={Text.Size.M1} tagName="p">
-        Report
-      </Text>
+      <Text size={Text.Size.M1}>Report</Text>
     </StyledHeader>
   );
 };

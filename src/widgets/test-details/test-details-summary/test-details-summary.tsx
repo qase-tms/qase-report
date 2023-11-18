@@ -28,6 +28,7 @@ const Section = styled.div`
   justify-content: space-between;
   width: 100%;
   border-radius: 6px;
+  box-sizing: border-box;
 `;
 
 export const TestDetailsSummary: FC<TestDetailsSummaryProps> = ({ duration, endTime, thread }) => {

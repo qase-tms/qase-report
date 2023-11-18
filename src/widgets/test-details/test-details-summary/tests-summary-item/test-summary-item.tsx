@@ -31,7 +31,7 @@ export const TestSummaryItem: FC<{
   return (
     <SectionItem>
       <SectionTitleSlot>
-        <Text size={Text.Size.M1} weight={Text.Weight.Semibold} tagName="p">
+        <Text size={Text.Size.M1} weight={Text.Weight.Semibold}>
           {title}
         </Text>
       </SectionTitleSlot>

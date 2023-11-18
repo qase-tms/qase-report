@@ -14,7 +14,7 @@ import { useTabs } from 'domain/hooks/params-hooks/use-tabs';
 import { TabId } from 'domain/model/tabs';
 
 const initialSizes = ['auto', '40%'];
-const minSizes = ['600px', '650px'];
+const minSizes = ['600px', '550px'];
 
 export type Tab = {
   id: TabId;

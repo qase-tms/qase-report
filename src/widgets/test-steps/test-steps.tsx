@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState, useMemo } from 'react';
 import { TestStep } from 'domain/model/test-model';
 import { Heading } from 'components/heading';
 import { Text } from 'components/text';
@@ -35,14 +35,29 @@ const Info = styled.div`
   margin-bottom: 12px;
 `;
 
-const TestStepItem: FC<{ step: TestStep }> = ({ step }) => {
-  const [opened, setOpened] = useState<boolean>(false);
+const Bar = styled.div<{ $x: number }>`
+  height: 24px;
+  width: 1px;
+  box-sizing: border-box;
+  background: rgba(50, 66, 95, 0.17);
+  transform: translateX(${props => props.$x}px);
+  position: absolute;
+`;
+
+const TestStepItem: FC<{ step: TestStep; depth: number }> = ({ step, depth }) => {
+  const [opened, setOpened] = useState<boolean>(true);
   const toggleStep = useCallback(() => {
     setOpened(!opened);
   }, [opened]);
+  const offsets = useMemo(() => {
+    return new Array(depth).fill(0).map((a, i) => -i * 36 - 24);
+  }, [depth]);
   return (
     <>
       <Item onClick={toggleStep}>
+        {offsets.map(x => (
+          <Bar key={x} $x={x} />
+        ))}
         <Chevron opened={opened} />
         <Text>{step.data.action}</Text>
       </Item>
@@ -56,7 +71,7 @@ const TestStepItem: FC<{ step: TestStep }> = ({ step }) => {
           </Info>
           {Boolean(step.attachments.length) && <TestAttachments attachments={step.attachments} />}
           {step.steps.map(step => (
-            <TestStepItem key={step.id} step={step} />
+            <TestStepItem key={step.id} step={step} depth={depth + 1} />
           ))}
         </ItemContent>
       )}
@@ -69,7 +84,7 @@ export const TestSteps: FC<TestStepsProps> = ({ steps }) => {
     <>
       <Heading>Steps</Heading>
       {steps.map(step => (
-        <TestStepItem key={step.id} step={step} />
+        <TestStepItem key={step.id} step={step} depth={0} />
       ))}
     </>
   );

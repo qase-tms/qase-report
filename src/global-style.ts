@@ -23,15 +23,15 @@ export const GlobalStyle = createGlobalStyle`
   }
   
   p {
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin-block-start: 2px;
+    margin-block-end: 8px;
     margin-inline-start: 0;
     margin-inline-end: 0;
   }
   
   h1, h2, h3, h4, h5 {
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin-block-start: 4px;
+    margin-block-end: 4px;
   }
 
 

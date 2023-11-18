@@ -1,4 +1,4 @@
-import { useCallback, FC, CSSProperties } from 'react';
+import { useCallback, FC, CSSProperties, useRef, useEffect } from 'react';
 import { AutoSizer, List } from 'react-virtualized';
 import { TestPreview } from 'src/domain/model/test-model';
 import { TestPreviewItem } from 'widgets/test-preview-item';
@@ -18,6 +18,18 @@ type RowProps = {
 const ROW_HEIGHT = 32;
 
 export const TestPreviewList: FC<ListProps> = ({ tests, onTestSelect, activeTestId }) => {
+  const listRef = useRef<List>(null);
+
+  const wasScrolled = useRef<boolean>();
+
+  useEffect(() => {
+    if (!wasScrolled.current && activeTestId && tests.length) {
+      wasScrolled.current = true;
+      const itemIndex = tests.findIndex(test => test.id === activeTestId);
+      listRef.current?.scrollToRow(itemIndex);
+    }
+  }, [activeTestId, tests]);
+
   const itemRenderer = useCallback(
     ({ key, style, index }: RowProps) => {
       return (
@@ -37,6 +49,7 @@ export const TestPreviewList: FC<ListProps> = ({ tests, onTestSelect, activeTest
     <AutoSizer>
       {({ height, width }) => (
         <List
+          ref={listRef}
           height={height}
           width={width}
           rowCount={tests.length}
