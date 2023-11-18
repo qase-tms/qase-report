@@ -26,7 +26,7 @@ export const TestStepItem: FC<Props> = ({ step, depth }) => {
           <Bar key={x} $x={x} />
         ))}
         <Chevron opened={opened} />
-        <Text>{step.data.action}</Text>
+        <Text>{step.data.action ?? `Step#${step.id}`}</Text>
       </Item>
       {opened && (
         <ItemContent>

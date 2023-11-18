@@ -16,7 +16,7 @@ export const ParamsContext = createContext<ParamsContextProps>({
   setParams: () => {},
 });
 
-const decodeParams = (urlParams: URLSearchParams): Params => {
+export const decodeParams = (urlParams: URLSearchParams): Params => {
   const urlTabId = urlParams.get('tabId') as TabId;
   const urlTestId = urlParams.get('testId');
 
@@ -26,7 +26,7 @@ const decodeParams = (urlParams: URLSearchParams): Params => {
   };
 };
 
-const encodeParams = (params: Params): string => {
+export const encodeParams = (params: Params): string => {
   const searchString = Object.entries(params)
     .filter(([key, value]) => value)
     .map(([key, value]) => `${key}=${value}`)
