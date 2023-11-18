@@ -1,7 +1,8 @@
 import { FC, useMemo } from 'react';
 import { Text } from 'components/text';
 import { TabId } from 'domain/model/tabs';
-import { TabWrapper, Tab, TabRow } from './tabs-styled';
+import { createTestId } from 'utils/use-test-id-attribute';
+import { TabWrapper, TabStyled, TabRow } from './tabs-styled';
 
 export type Tab = {
   id: TabId;
@@ -14,6 +15,12 @@ type Props = {
   tabs: Tab[];
 };
 
+const testIdNamespace = 'COMPONENT_TABS';
+
+export const testIds = {
+  getTabTitle: (id: string) => createTestId(testIdNamespace, `tab-title-${id}`),
+};
+
 export const Tabs: FC<Props> = ({ value, onChange, tabs }) => {
   const activeTabIdx = useMemo(() => {
     const idx = tabs.findIndex(tab => tab.id === value);
@@ -23,11 +30,15 @@ export const Tabs: FC<Props> = ({ value, onChange, tabs }) => {
     <TabWrapper>
       <TabRow>
         {tabs.map((tab, idx) => (
-          <Tab key={tab.id} $active={idx === activeTabIdx} onClick={() => onChange(tab.id)}>
-            <Text size={Text.Size.M1} weight={Text.Weight.Semibold}>
+          <TabStyled key={tab.id} $active={idx === activeTabIdx} onClick={() => onChange(tab.id)}>
+            <Text
+              size={Text.Size.M1}
+              weight={Text.Weight.Semibold}
+              testId={testIds.getTabTitle(tab.id)}
+            >
               {tab.text}
             </Text>
-          </Tab>
+          </TabStyled>
         ))}
       </TabRow>
     </TabWrapper>

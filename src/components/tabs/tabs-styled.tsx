@@ -18,7 +18,7 @@ export const TabRow = styled.div`
   border-bottom: 3px solid rgba(19, 38, 71, 0.1);
 `;
 
-export const Tab = styled.div<{ $active: boolean }>`
+export const TabStyled = styled.div<{ $active: boolean }>`
   cursor: pointer;
   box-sizing: border-box;
   padding-bottom: 5px;

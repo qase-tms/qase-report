@@ -1,4 +1,4 @@
-import { TestPreview } from 'domain/model/test-model';
+import { TestAttachment, TestPreview } from 'domain/model/test-model';
 
 export const mockTestsData = [
   {
@@ -16,3 +16,12 @@ export const mockTestsData = [
     thread: '1398-MainThread',
   },
 ] as TestPreview[];
+
+export const mockAttachment = {
+  file_name: 'sample.txt',
+  mime_type: 'text/plain',
+  file_path: './attachments/sample.txt',
+  content: null,
+  size: 11,
+  id: 'abd58677-a7dc-4b5c-aee6-7fad047e7030',
+} as TestAttachment;
