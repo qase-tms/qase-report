@@ -1,12 +1,5 @@
-import {
-  Layout,
-  Panel,
-  TabRow,
-  TabWrapper,
-  Tab,
-  PANE_CALC_HEIGHT,
-  PaneWrapper,
-} from './page-layout-styled';
+import { Layout, Panel, PANE_CALC_HEIGHT, PaneWrapper } from './page-layout-styled';
+import { Tabs } from 'components/tabs';
 import { SplitPane } from 'components/split-pane';
 import { ReactNode, FC, useMemo } from 'react';
 import { Text } from 'components/text';
@@ -29,23 +22,9 @@ type LayoutProps = {
 
 export const PageLayout: FC<LayoutProps> = ({ tabs, renderContent, renderPanel }) => {
   const [activeTabId, setTab] = useTabs();
-  const activeTabIdx = useMemo(() => {
-    const idx = tabs.findIndex(tab => tab.id === activeTabId);
-    return idx === -1 ? 0 : idx;
-  }, [activeTabId, tabs]);
   return (
     <Layout>
-      <TabWrapper>
-        <TabRow>
-          {tabs.map((tab, idx) => (
-            <Tab key={tab.id} $active={idx === activeTabIdx} onClick={() => setTab(tab.id)}>
-              <Text size={Text.Size.M1} weight={Text.Weight.Semibold}>
-                {tab.text}
-              </Text>
-            </Tab>
-          ))}
-        </TabRow>
-      </TabWrapper>
+      <Tabs value={activeTabId} onChange={setTab} tabs={tabs} />
       <PaneWrapper>
         <SplitPane
           initialSizes={initialSizes}
