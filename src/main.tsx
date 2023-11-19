@@ -8,7 +8,7 @@ import { ParamsProvider } from 'domain/hooks/params-hooks/params-context';
 
 declare global {
   interface Window {
-    qaseJsonp: (d: any) => void;
+    qaseJsonp: (d: unknown) => void;
   }
 }
 

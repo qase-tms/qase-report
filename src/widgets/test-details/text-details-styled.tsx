@@ -26,8 +26,6 @@ export const PanelContent = styled.div`
     align-items: flex-start;
 `;
 
-const PANEL_PADDING = 60;
-
 export const DetailsPanel = styled.div`
   display: flex;
   flex-direction: column;

@@ -42,7 +42,6 @@ const TextSlot = styled.div`
 
 export const TestStatusField: FC<TestStatusFieldProps> = ({
   status,
-  css,
   withText,
   size = Icon.Size.S,
 }) => {

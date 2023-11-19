@@ -1,6 +1,6 @@
 import { getJsonpResolver } from './jsonp-resolvers';
 
-export function qaseJsonp(data: any): void {
+export function qaseJsonp(data: unknown): void {
   const callbackId: string | undefined = document.currentScript?.dataset?.callbackId;
   if (!callbackId) {
     throw new Error('No callbackId for jsonp data was found!');

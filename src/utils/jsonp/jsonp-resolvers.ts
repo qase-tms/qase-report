@@ -1,4 +1,4 @@
-type Listener = (data: any) => void;
+type Listener = (data: unknown) => void;
 export type JsonpListeners = Record<string, Listener>;
 
 const jsonpResolvers: JsonpListeners = {};

@@ -11,8 +11,7 @@ type TextTagProps = PropsWithChildren<{
 
 const TextTag: FC<TextTagProps> = ({ tagName = 'span', ...rest }) => {
   const Tag = tagName;
-  const { $size, $weight, $color, ...other } = rest;
-  return <Tag {...other} />;
+  return <Tag {...rest} />;
 };
 
 const sizeCss: Record<TextSize, string> = {

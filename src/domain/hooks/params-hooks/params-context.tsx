@@ -44,7 +44,7 @@ const encodeUrlParam = (param: string) => {
 
 export const encodeParams = (params: Params): string => {
   const searchString = Object.entries(params)
-    .filter(([key, value]) => value)
+    .filter(([, value]) => value)
     .map(([key, value]) => `${key}=${encodeUrlParam(value)}`)
     .join('&');
   return searchString ? `?${searchString}` : '';

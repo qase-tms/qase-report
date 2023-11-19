@@ -1,4 +1,3 @@
-import { PropsWithChildren, FC } from 'react';
 import styled from 'styled-components';
 import { withTestId } from 'utils/use-test-id-attribute';
 

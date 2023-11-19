@@ -1,4 +1,3 @@
-import { Color } from 'constants/colors';
 import styled from 'styled-components';
 
 const HEADER_HEIGHT = 50;

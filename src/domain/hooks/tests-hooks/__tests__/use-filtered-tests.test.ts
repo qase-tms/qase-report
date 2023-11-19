@@ -9,7 +9,7 @@ jest.mock('domain/hooks/params-hooks/use-search', () => ({
 }));
 
 jest.mock('use-debounce', () => ({
-  useDebouncedCallback: jest.fn().mockImplementation((fn, delay) => fn),
+  useDebouncedCallback: jest.fn().mockImplementation(fn => fn),
 }));
 
 describe('use-filtered-tests', () => {

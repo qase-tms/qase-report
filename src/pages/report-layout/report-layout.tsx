@@ -9,40 +9,32 @@ type LayoutTab = {
   renderPanel: () => ReactNode;
 };
 
-enum ReportTabs {
-  Tests = TabId.Tests,
-  Timeline = TabId.Timeline,
-  Issues = TabId.Issues,
-}
+type ReportTabs = Extract<TabId, TabId.Tests | TabId.Timeline | TabId.Issues>;
 
 const layoutComponents: Record<ReportTabs, LayoutTab> = {
-  [ReportTabs.Tests]: {
+  [TabId.Tests]: {
     renderContent: () => <ReportTestTabContent />,
     renderPanel: () => <ReportTestTabPanel />,
   },
-  [ReportTabs.Timeline]: {
+  [TabId.Timeline]: {
     renderContent: () => null,
     renderPanel: () => null,
   },
-  [ReportTabs.Issues]: {
+  [TabId.Issues]: {
     renderContent: () => null,
     renderPanel: () => null,
   },
 };
 
 const renderContent = (tabId?: TabId): ReactNode => {
-  // @ts-ignore
-  if (layoutComponents[tabId]) {
-    // @ts-ignore
+  if (tabId && layoutComponents[tabId]) {
     return layoutComponents[tabId].renderContent();
   }
   return null;
 };
 
 const renderPanel = (tabId?: TabId): ReactNode => {
-  // @ts-ignore
-  if (layoutComponents[tabId]) {
-    // @ts-ignore
+  if (tabId && layoutComponents[tabId]) {
     return layoutComponents[tabId].renderPanel();
   }
   return null;

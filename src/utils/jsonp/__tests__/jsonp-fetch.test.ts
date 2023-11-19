@@ -39,17 +39,17 @@ class FakeScript {
     this._async = value;
   }
 
-  private _onerror: (d: any) => any = () => {};
+  private _onerror: (d: unknown) => unknown = () => {};
 
   public get onerror() {
     return this._onerror;
   }
 
-  public set onerror(value: (d: any) => any) {
+  public set onerror(value: (d: unknown) => unknown) {
     this._onerror = value;
   }
-
-  public setAttribute(name: string, value: any) {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public setAttribute(name: string, value: unknown) {}
 }
 
 describe('jsonpFetch', () => {
@@ -73,16 +73,18 @@ describe('jsonpFetch', () => {
       test: 'test data',
     };
 
-    let fakeResolve: (d: any) => void = () => {};
-    const registerJsonpResolver = (key: string, resolve: (d: any) => void) => {
+    let fakeResolve: (d: unknown) => void = () => {};
+    const registerJsonpResolver = (key: string, resolve: (d: unknown) => void) => {
       fakeResolve = resolve;
     };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const unregisterJsonpResolver = (key: string) => {};
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const getJsonpResolver = (key: string) => fakeResolve;
 
     jest
       .spyOn(document, 'createElement')
-      //@ts-ignore
+      //@ts-expect-error Fake script element
       .mockReturnValueOnce(new FakeScript(() => fakeResolve(data)));
 
     jest.spyOn(document.body, 'appendChild').mockImplementationOnce((node: Node) => node);

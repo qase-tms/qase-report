@@ -18,7 +18,7 @@ export function jsonpFetch<DataType>(path: string, abortSignal?: AbortSignal): P
     };
     abortSignal?.addEventListener('abort', onAbort);
   }).then(
-    (data: any) => {
+    (data: unknown) => {
       document.body.removeChild(script);
       unregisterJsonpResolver(callbackId);
       if (onAbort) {

@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { Text } from 'components/text';
-import { Heading } from 'components/heading';
 import { IconName } from 'components/icon/icon-types';
 import { Icon } from 'components/icon';
 import styled from 'styled-components';

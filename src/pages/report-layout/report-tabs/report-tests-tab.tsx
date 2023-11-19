@@ -17,7 +17,7 @@ const FiltersSlot = styled.div`
   margin-bottom: 18px;
 `;
 
-const forbiddenChars = /[#\/&=]/g;
+const forbiddenChars = /[#/&=]/g;
 
 export const ReportTestTabContent: FC = () => {
   const { tests, activeTestId, setActiveTestId } = useTestsLayout();

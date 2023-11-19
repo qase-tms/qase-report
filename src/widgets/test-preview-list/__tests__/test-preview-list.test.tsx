@@ -18,6 +18,8 @@ jest.mock('react-virtualized', () => ({
   }),
 }));
 
+type Handler = () => void;
+
 describe('<TestsPreviewList />', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -45,7 +47,7 @@ describe('<TestsPreviewList />', () => {
   it('TestsPreviewList renders multiple tests and activeTest sets on select', () => {
     const tests = mockTestsData;
     const setActiveTestId = jest.fn();
-    const onSelects: Function[] = [];
+    const onSelects: Handler[] = [];
     (TestPreviewItem as jest.Mock).mockImplementation(({ test, onSelect }) => {
       onSelects.push(() => onSelect(test));
       return null;

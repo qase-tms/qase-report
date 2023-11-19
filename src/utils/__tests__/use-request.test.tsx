@@ -5,7 +5,7 @@ const mockData = { success: true };
 
 describe('use-request', () => {
   it('on init returns null data, Loading status, undefined error', async () => {
-    const request = (signal?: AbortSignal): Promise<typeof mockData> => {
+    const request = (): Promise<typeof mockData> => {
       return new Promise(resolve => {
         resolve(mockData);
       });
@@ -20,7 +20,7 @@ describe('use-request', () => {
   });
 
   it('on success returns mock data, Success status, undefined error', async () => {
-    const request = (signal?: AbortSignal): Promise<typeof mockData> => {
+    const request = (): Promise<typeof mockData> => {
       return new Promise(resolve => {
         resolve(mockData);
       });
