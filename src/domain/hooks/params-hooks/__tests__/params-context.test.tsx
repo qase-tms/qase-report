@@ -38,6 +38,18 @@ describe('decodeParams', () => {
       testId: '0001',
     });
   });
+  it('tabId + testId + search params decodes to object with same tabId, testId in params', () => {
+    const qe = new URLSearchParams();
+    qe.append('tabId', TabId.Tests);
+    qe.append('testId', '0001');
+    qe.append('search', 'test%20item');
+    const params = decodeParams(qe);
+    expect(params).toEqual({
+      tabId: TabId.Tests,
+      testId: '0001',
+      search: 'test item',
+    });
+  });
 });
 
 describe('encodeParams', () => {
@@ -56,9 +68,14 @@ describe('encodeParams', () => {
     const search = encodeParams(params);
     expect(search).toBe('?tabId=tests');
   });
-  it('params with tabId, testId encodes to search string with tabId', () => {
+  it('params with tabId, testId encodes to search string with tabId, testId', () => {
     const params = { tabId: TabId.Tests, testId: '0001' };
     const search = encodeParams(params);
     expect(search).toBe('?tabId=tests&testId=0001');
+  });
+  it('params with tabId, testId, search encodes to search string with tabId, testId, search', () => {
+    const params = { tabId: TabId.Tests, testId: '0001', search: '  test item' };
+    const search = encodeParams(params);
+    expect(search).toBe('?tabId=tests&testId=0001&search=test%20item');
   });
 });

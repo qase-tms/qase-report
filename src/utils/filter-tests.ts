@@ -4,9 +4,9 @@ export type Filters = {
   search?: string;
 };
 
-const normalizeString = (str: string) => str.trim().toLowerCase().replaceAll(/\s+/g, ' ');
+export const normalizeString = (str: string) => str.trim().toLowerCase().replaceAll(/\s+/g, ' ');
 
-function isStringMatchSearch(str: string, search: string) {
+export function isStringMatchSearch(str: string, search: string) {
   return normalizeString(str).includes(normalizeString(search));
 }
 

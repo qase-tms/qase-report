@@ -1,37 +1,20 @@
 import { ChangeEvent, FC, useCallback } from 'react';
 import { Icon } from 'components/icon';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  border: 1px solid #d1d7dd;
-  border-radius: 6px;
-  padding: 6px 24px 6px 10px;
-  display: inline-block;
-  box-sizing: border-box;
-  position: relative;
-`;
-
-const StyledInput = styled.input`
-  border: none;
-  outline: none;
-  font-size: 15px;
-  line-height: 18px;
-  box-sizing: border-box;
-  padding: 0;
-`;
-
-const CrossSlot = styled.div`
-  cursor: pointer;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-`;
+import { Container, StyledInput, CrossSlot } from './input-styled';
+import { createTestId } from 'utils/use-test-id-attribute';
 
 type Props = {
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
   forbidRegex?: RegExp;
+};
+
+const testIdNamespace = 'COMPONENT_INPUT';
+
+export const testIds = {
+  inputField: createTestId(testIdNamespace, 'input-field'),
+  crossSlot: createTestId(testIdNamespace, 'cross-slot'),
 };
 
 export const Input: FC<Props> = ({ value, onChange, placeholder, forbidRegex }) => {
@@ -59,9 +42,10 @@ export const Input: FC<Props> = ({ value, onChange, placeholder, forbidRegex }) 
         value={value ?? ''}
         onChange={handleChange}
         placeholder={placeholder}
+        testId={testIds.inputField}
       />
       {value && onChange && (
-        <CrossSlot onClick={handleClear}>
+        <CrossSlot onClick={handleClear} testId={testIds.crossSlot}>
           <Icon iconName={Icon.Name.Xmark} size={Icon.Size.M} />
         </CrossSlot>
       )}

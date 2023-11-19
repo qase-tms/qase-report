@@ -1,7 +1,7 @@
 import { TestPreview } from 'domain/model/test-model';
 import { useSearch } from 'domain/hooks/params-hooks/use-search';
 import { useState, useEffect } from 'react';
-import { Filters, filterTests } from 'utils/filter-tests';
+import { filterTests } from 'utils/filter-tests';
 import { useDebouncedCallback } from 'use-debounce';
 
 type ReturnShape = {
