@@ -1,13 +1,13 @@
 import { useContext, useCallback } from 'react';
 import { ParamsContextProps, ParamsContext } from './params-context';
 
-export const useQaseTestId = (): [string | undefined, (testId: string) => void] => {
+export const useSearch = (): [string | undefined, (search: string) => void] => {
   const { params, setParams } = useContext<ParamsContextProps>(ParamsContext);
-  const setTestId = useCallback((testId: string) => {
+  const setSearch = useCallback((search: string) => {
     setParams(params => ({
       ...params,
-      testId,
+      search,
     }));
   }, []);
-  return [params.testId, setTestId];
+  return [params.search, setSearch];
 };

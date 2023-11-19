@@ -1,8 +1,7 @@
 import { Layout, Panel, PANE_CALC_HEIGHT, PaneWrapper } from './page-layout-styled';
 import { Tabs } from 'components/tabs';
 import { SplitPane } from 'components/split-pane';
-import { ReactNode, FC, useMemo } from 'react';
-import { Text } from 'components/text';
+import { ReactNode, FC } from 'react';
 import { useTabs } from 'domain/hooks/params-hooks/use-tabs';
 import { TabId } from 'domain/model/tabs';
 
@@ -31,7 +30,7 @@ export const PageLayout: FC<LayoutProps> = ({ tabs, renderContent, renderPanel }
           minSizes={minSizes}
           calcHeight={PANE_CALC_HEIGHT}
           renderLeft={() => <Panel>{renderContent(activeTabId)}</Panel>}
-          renderRight={() => renderPanel(activeTabId)}
+          renderRight={() => <Panel>{renderPanel(activeTabId)}</Panel>}
         />
       </PaneWrapper>
     </Layout>

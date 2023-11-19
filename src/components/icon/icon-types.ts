@@ -13,6 +13,7 @@ export enum IconName {
   Settings = 'settings',
   Exclamation = 'exclamation',
   Minus = 'minus',
+  Xmark = 'xmark',
 }
 
 export enum IconType {

@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import { PANE_CALC_HEIGHT } from 'components/page-layout/page-layout-styled';
 
 export const Container = styled.div`
-  padding: 0 16px;
+  padding-bottom: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
 `;
 
 export const PanelHeader = styled.div`
@@ -31,6 +35,6 @@ export const DetailsPanel = styled.div`
   border-right: 1px solid rgba(50, 66, 95, 0.17);
   width: 500px;
   padding-right: 16px;
-  height: calc(${PANE_CALC_HEIGHT} - ${PANEL_PADDING}px);
+  height: 100%;
   overflow-y: scroll;
 `;

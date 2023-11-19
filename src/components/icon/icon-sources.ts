@@ -9,6 +9,7 @@ import {
   faSquareMinus,
   faAngleDown,
   faAngleRight,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { Color } from 'constants/colors';
 
@@ -56,6 +57,11 @@ export const iconOptions: Record<IconName, IconOptions> = {
   [IconName.File]: {
     type: IconType.FontAwesome,
     icon: faFile,
+    color: Color.Stroke,
+  },
+  [IconName.Xmark]: {
+    type: IconType.FontAwesome,
+    icon: faXmark,
     color: Color.Stroke,
   },
   // Pro Icon

@@ -17,6 +17,8 @@ export const Panel = styled.div`
   height: calc(${PANE_CALC_HEIGHT});
   padding-left: 16px;
   padding-top: 16px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PaneWrapper = styled.div`

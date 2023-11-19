@@ -6,7 +6,6 @@ import { RequestStatus } from 'utils/use-request';
 import { Text } from 'components/text';
 import { createTestId } from 'utils/use-test-id-attribute';
 import { TestStatusField } from 'widgets/test-status-field';
-import { FlexColumn } from 'components/flex-column';
 import { CardSubHeader, PanelHeader, Container, DetailsPanel } from './text-details-styled';
 import { TestSteps } from 'widgets/test-steps';
 import { TestAttachments } from 'widgets/test-attachments';
@@ -33,14 +32,14 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
   }, [test, testRequestStatus]);
 
   return (
-    <Container>
+    <>
       {testRequestStatus === RequestStatus.Failed && (
         <Text size={Text.Size.L1} color={Text.Color.Red} testId={testIds.errorField}>
           Something gone wrong...
         </Text>
       )}
       {test && testRequestStatus !== RequestStatus.Failed && (
-        <FlexColumn>
+        <Container>
           <PanelHeader>
             <TestStatusField status={test.execution.status} withText />
           </PanelHeader>
@@ -66,8 +65,8 @@ export const TestDetails: FC<TestDetailsProps> = ({ qaseTestId }) => {
             {Boolean(test.attachments.length) && <TestAttachments attachments={test.attachments} />}
             {Boolean(test.steps.length) && <TestSteps steps={test.steps} />}
           </DetailsPanel>
-        </FlexColumn>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };

@@ -4,11 +4,14 @@ import { TabId } from 'domain/model/tabs';
 export type Params = {
   tabId?: TabId;
   testId?: string;
+  search?: string;
 };
+
+type ParamsSetter = (params: Params) => Params;
 
 export type ParamsContextProps = {
   params: Params;
-  setParams: (params: Params) => void;
+  setParams: (params: Params | ParamsSetter) => void;
 };
 
 export const ParamsContext = createContext<ParamsContextProps>({
@@ -16,20 +19,33 @@ export const ParamsContext = createContext<ParamsContextProps>({
   setParams: () => {},
 });
 
+const decodeUrlParam = (param: string | null) => {
+  if (!param) {
+    return param;
+  }
+  return decodeURI(param);
+};
+
 export const decodeParams = (urlParams: URLSearchParams): Params => {
   const urlTabId = urlParams.get('tabId') as TabId;
   const urlTestId = urlParams.get('testId');
+  const urlSearch = decodeUrlParam(urlParams.get('search'));
 
   return {
     tabId: Object.values(TabId).includes(urlTabId) ? (urlParams.get('tabId') as TabId) : undefined,
     testId: urlTestId ?? undefined,
+    search: urlSearch ?? undefined,
   };
+};
+
+const encodeUrlParam = (param: string) => {
+  return encodeURI(param.trim());
 };
 
 export const encodeParams = (params: Params): string => {
   const searchString = Object.entries(params)
     .filter(([key, value]) => value)
-    .map(([key, value]) => `${key}=${value}`)
+    .map(([key, value]) => `${key}=${encodeUrlParam(value)}`)
     .join('&');
   return searchString ? `?${searchString}` : '';
 };
