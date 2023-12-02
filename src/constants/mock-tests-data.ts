@@ -53,6 +53,7 @@ export const mockTest = {
     end_time: 1691652628.651354,
     duration: 0,
     thread: '50366-MainThread',
+    stacktrace: 'Error',
   },
   fields: {
     description: 'Some cool test with steps',

@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Color } from 'constants/colors';
 
 export const TabWrapper = styled.div`
-  margin-top: 20px;
-  padding: 0 18px 0;
   width: 100%;
   box-sizing: border-box;
 `;

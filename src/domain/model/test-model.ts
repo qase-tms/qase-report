@@ -19,6 +19,7 @@ export type TestExecution = {
   end_time: number;
   duration: number;
   thread?: string;
+  stacktrace?: string | null;
 };
 
 export type TestFields = {

@@ -17,7 +17,12 @@ export const CardSubHeader = styled.div`
   word-wrap: break-word;
   overflow: hidden;
   margin-bottom: 8px;
-  width: 100%;
+  width: 500px;
+`;
+
+export const TabsSlot = styled.div`
+  width: 500px;
+  margin-bottom: 16px;
 `;
 
 export const PanelContent = styled.div`

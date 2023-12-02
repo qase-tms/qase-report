@@ -7,7 +7,12 @@ const TABS_HEIGHT = 26;
 export const PANE_CALC_HEIGHT = `100vh - ${HEADER_HEIGHT + TAB_MARGIN + TABS_HEIGHT}px`;
 
 export const Layout = styled.div`
+  box-sizing: border-box;
   height: calc(100vh - ${HEADER_HEIGHT}px - ${TAB_MARGIN}px);
+`;
+
+export const TabsWrapper = styled.div`
+  padding: 20px 18px 0;
 `;
 
 export const Panel = styled.div`

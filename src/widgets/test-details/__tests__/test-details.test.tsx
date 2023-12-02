@@ -1,15 +1,14 @@
 import { TestDetails, testIds } from 'widgets/test-details';
-import { screen } from '@testing-library/react';
+import { screen, act } from '@testing-library/react';
 import { themedRender as render } from 'utils/test-utils';
 import { useTestDetails } from 'domain/hooks/tests-hooks/use-test-details';
 import { RequestStatus } from 'utils/use-request';
-import { TestDetailsDescription } from 'widgets/test-details/test-details-description';
-import { TestDetailsSummary } from 'widgets/test-details/test-details-summary';
-import { TestAttachments } from 'widgets/test-attachments';
 import { TestStatusField } from 'widgets/test-status-field';
-import { TestSteps } from 'widgets/test-steps';
 import { expectPropsPassed } from 'utils/test-utils';
 import { mockTest } from 'constants/mock-tests-data';
+import { TestOverview } from 'widgets/test-details/test-overview';
+import { TestStackTrace } from 'widgets/test-details/test-stacktrace';
+import { Tabs } from 'components/tabs';
 
 jest.mock('domain/hooks/tests-hooks/use-test-details', () => ({
   useTestDetails: jest.fn(),
@@ -23,17 +22,19 @@ jest.mock('widgets/test-details/test-details-summary', () => ({
   TestDetailsSummary: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('widgets/test-details/test-details-description', () => ({
-  TestDetailsDescription: jest.fn().mockImplementation(() => null),
+jest.mock('widgets/test-details/test-overview', () => ({
+  TestOverview: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('widgets/test-attachments', () => ({
-  TestAttachments: jest.fn().mockImplementation(() => null),
+jest.mock('components/tabs', () => ({
+  Tabs: jest.fn().mockImplementation(() => null),
 }));
 
-jest.mock('widgets/test-steps', () => ({
-  TestSteps: jest.fn().mockImplementation(() => null),
+jest.mock('widgets/test-details/test-stacktrace', () => ({
+  TestStackTrace: jest.fn().mockImplementation(() => null),
 }));
+
+type stringSetter = (value: string) => void;
 
 describe('<TestDetails />', () => {
   afterEach(() => {
@@ -49,7 +50,7 @@ describe('<TestDetails />', () => {
     expect(screen.getByTestId(testIds.errorField)).toBeTruthy();
   });
 
-  it('TestDetails renders test data', () => {
+  it('TestDetails renders content tab', () => {
     const test = mockTest;
     (useTestDetails as jest.Mock).mockReturnValue({
       testRequestStatus: RequestStatus.Success,
@@ -59,19 +60,26 @@ describe('<TestDetails />', () => {
     expect(screen.queryByTestId(testIds.errorField)).toBeFalsy();
 
     expectPropsPassed(TestStatusField as jest.Mock, { status: test.execution.status });
-    expectPropsPassed(TestDetailsSummary as jest.Mock, {
-      duration: test.execution.duration,
-      thread: test.execution.thread,
-      endTime: test.execution.end_time,
+    expectPropsPassed(TestOverview as jest.Mock, { test: mockTest });
+  });
+
+  it('TestDetails renders stacktrace tab', () => {
+    const test = mockTest;
+    (useTestDetails as jest.Mock).mockReturnValue({
+      testRequestStatus: RequestStatus.Success,
+      test,
     });
-    expectPropsPassed(TestDetailsDescription as jest.Mock, {
-      description: test.fields.description,
+    let setTab: undefined | stringSetter;
+    (Tabs as jest.Mock).mockImplementation(({ onChange }) => {
+      setTab = onChange;
+      return null;
     });
-    expectPropsPassed(TestAttachments as jest.Mock, {
-      attachments: test.attachments,
+    render(<TestDetails qaseTestId={test.id} />);
+    act(() => {
+      if (setTab) {
+        setTab('stacktrace');
+      }
     });
-    expectPropsPassed(TestSteps as jest.Mock, {
-      steps: test.steps,
-    });
+    expectPropsPassed(TestStackTrace as jest.Mock, { stacktrace: test.execution.stacktrace });
   });
 });

@@ -4,7 +4,7 @@ import { Tabs, testIds } from '../tabs';
 import { TabId } from 'domain/model/tabs';
 import { screen, fireEvent } from '@testing-library/react';
 
-const tabs: Tab[] = [
+const tabs: Tab<TabId>[] = [
   {
     id: TabId.Tests,
     text: 'tests',

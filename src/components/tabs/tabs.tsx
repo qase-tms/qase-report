@@ -1,18 +1,17 @@
-import { FC, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Text } from 'components/text';
-import { TabId } from 'domain/model/tabs';
 import { createTestId } from 'utils/use-test-id-attribute';
 import { TabWrapper, TabStyled, TabRow } from './tabs-styled';
 
-export type Tab = {
-  id: TabId;
+export type Tab<T> = {
+  id: T;
   text: string;
 };
 
-type Props = {
-  value?: TabId;
-  onChange: (value: TabId) => void;
-  tabs: Tab[];
+type Props<T> = {
+  value?: T;
+  onChange: (value: T) => void;
+  tabs: Tab<T>[];
 };
 
 const testIdNamespace = 'COMPONENT_TABS';
@@ -21,7 +20,7 @@ export const testIds = {
   getTabTitle: (id: string) => createTestId(testIdNamespace, `tab-title-${id}`),
 };
 
-export const Tabs: FC<Props> = ({ value, onChange, tabs }) => {
+export function Tabs<T extends string>({ value, onChange, tabs }: Props<T>) {
   const activeTabIdx = useMemo(() => {
     const idx = tabs.findIndex(tab => tab.id === value);
     return idx === -1 ? 0 : idx;
@@ -43,4 +42,4 @@ export const Tabs: FC<Props> = ({ value, onChange, tabs }) => {
       </TabRow>
     </TabWrapper>
   );
-};
+}
