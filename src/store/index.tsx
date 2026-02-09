@@ -1,16 +1,51 @@
 import { makeAutoObservable } from 'mobx'
 import { createContext, FC, PropsWithChildren, useContext } from 'react'
+import { ReportStore } from './ReportStore'
+import { TestResultsStore } from './TestResultsStore'
+import { AttachmentsStore } from './AttachmentsStore'
+import { FileLoaderService } from '../services/FileLoaderService'
 
 export class RootStore {
+  reportStore: ReportStore
+  testResultsStore: TestResultsStore
+  attachmentsStore: AttachmentsStore
+
+  isDockOpen = false
+
   constructor() {
+    this.reportStore = new ReportStore(this)
+    this.testResultsStore = new TestResultsStore(this)
+    this.attachmentsStore = new AttachmentsStore(this)
     makeAutoObservable(this)
   }
 
-  isDockOpen = false
   openDock = () => (this.isDockOpen = true)
   closeDock = () => {
     console.log('Fire!')
     this.isDockOpen = false
+  }
+
+  /**
+   * Coordinates loading of a complete report directory.
+   * Loads run.json, test results, and registers attachments.
+   *
+   * @param files - FileList from input element with webkitdirectory
+   */
+  async loadReport(files: FileList): Promise<void> {
+    const fileLoader = new FileLoaderService()
+    const { runFile, resultFiles, attachmentFiles } =
+      await fileLoader.loadReportDirectory(files)
+
+    if (!runFile) {
+      throw new Error('run.json not found in selected directory')
+    }
+
+    await this.reportStore.loadRun(runFile)
+    await this.testResultsStore.loadResults(resultFiles)
+
+    for (const file of attachmentFiles) {
+      this.attachmentsStore.registerAttachment(file)
+    }
   }
 }
 
