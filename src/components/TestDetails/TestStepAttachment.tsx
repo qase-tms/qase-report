@@ -28,23 +28,42 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
 
   // Decode text content for preview
   useEffect(() => {
-    if (!isText || !attachment.content) {
+    if (!isText) {
       setTextContent(null)
       return
     }
 
-    try {
-      const decoded = atob(attachment.content)
-      // Limit to first N lines for preview
-      const lines = decoded.split('\n')
-      const preview =
-        lines.length > MAX_PREVIEW_LINES
-          ? lines.slice(0, MAX_PREVIEW_LINES).join('\n') + '\n...'
-          : decoded
-      setTextContent(preview)
-    } catch {
-      setTextContent(null)
+    const processText = (text: string) => {
+      const lines = text.split('\n')
+      return lines.length > MAX_PREVIEW_LINES
+        ? lines.slice(0, MAX_PREVIEW_LINES).join('\n') + '\n...'
+        : text
     }
+
+    // If base64 content exists, decode it
+    if (attachment.content) {
+      try {
+        const decoded = atob(attachment.content)
+        setTextContent(processText(decoded))
+      } catch {
+        setTextContent(null)
+      }
+      return
+    }
+
+    // If file_path exists, try to fetch it
+    if (attachment.file_path) {
+      fetch(attachment.file_path)
+        .then((response) => {
+          if (!response.ok) throw new Error()
+          return response.text()
+        })
+        .then((text) => setTextContent(processText(text)))
+        .catch(() => setTextContent(null))
+      return
+    }
+
+    setTextContent(null)
   }, [attachment, isText])
 
   return (
