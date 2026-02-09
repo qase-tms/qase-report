@@ -64,4 +64,58 @@ export class ReportStore {
     }
     return (this.runData.stats.passed / this.runData.stats.total) * 100
   }
+
+  /**
+   * Failed rate percentage (0-100).
+   * Returns 0 if no run data or no tests.
+   */
+  get failedRate(): number {
+    if (!this.runData || this.runData.stats.total === 0) {
+      return 0
+    }
+    return (this.runData.stats.failed / this.runData.stats.total) * 100
+  }
+
+  /**
+   * Skipped rate percentage (0-100).
+   * Returns 0 if no run data or no tests.
+   */
+  get skippedRate(): number {
+    if (!this.runData || this.runData.stats.total === 0) {
+      return 0
+    }
+    return (this.runData.stats.skipped / this.runData.stats.total) * 100
+  }
+
+  /**
+   * Broken rate percentage (0-100).
+   * Returns 0 if no run data or no tests.
+   */
+  get brokenRate(): number {
+    if (!this.runData || this.runData.stats.total === 0) {
+      return 0
+    }
+    return (this.runData.stats.broken / this.runData.stats.total) * 100
+  }
+
+  /**
+   * Formatted duration as human-readable string (e.g., "1h 23m 45s").
+   * Returns "0s" if no run data.
+   */
+  get formattedDuration(): string {
+    if (!this.runData) return '0s'
+
+    const ms = this.runData.execution.duration
+    const seconds = Math.floor(ms / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+
+    if (hours > 0) {
+      return `${hours}h ${minutes % 60}m ${seconds % 60}s`
+    }
+    if (minutes > 0) {
+      return `${minutes}m ${seconds % 60}s`
+    }
+    return `${seconds}s`
+  }
 }
