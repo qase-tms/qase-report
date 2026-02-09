@@ -16,6 +16,10 @@ export class TestResultsStore {
   loadingProgress = { current: 0, total: 0 }
   error: string | null = null
 
+  // Filtering and search state
+  searchQuery = ''
+  statusFilters = new Set<string>()
+
   constructor(public root: RootStore) {
     makeAutoObservable(this)
   }
@@ -82,5 +86,65 @@ export class TestResultsStore {
    */
   get resultsList(): QaseTestResult[] {
     return Array.from(this.testResults.values())
+  }
+
+  /**
+   * Returns filtered test results based on search query and status filters.
+   * Combines both status filtering and text search.
+   */
+  get filteredResults(): QaseTestResult[] {
+    let results = this.resultsList
+
+    // Filter by status if any filters are active
+    if (this.statusFilters.size > 0) {
+      results = results.filter((test) =>
+        this.statusFilters.has(test.execution.status)
+      )
+    }
+
+    // Filter by search query if provided
+    const query = this.searchQuery.trim()
+    if (query) {
+      const lowerQuery = query.toLowerCase()
+      results = results.filter((test) =>
+        test.title.toLowerCase().includes(lowerQuery)
+      )
+    }
+
+    return results
+  }
+
+  /**
+   * Returns count of active filters (status filters + search query).
+   */
+  get activeFilterCount(): number {
+    return this.statusFilters.size + (this.searchQuery.trim() ? 1 : 0)
+  }
+
+  /**
+   * Sets the search query for filtering tests by title.
+   */
+  setSearchQuery = (query: string) => {
+    this.searchQuery = query
+  }
+
+  /**
+   * Toggles a status filter on/off.
+   * If status is in the set, removes it; otherwise adds it.
+   */
+  toggleStatusFilter = (status: string) => {
+    if (this.statusFilters.has(status)) {
+      this.statusFilters.delete(status)
+    } else {
+      this.statusFilters.add(status)
+    }
+  }
+
+  /**
+   * Clears all filters (search query and status filters).
+   */
+  clearFilters = () => {
+    this.searchQuery = ''
+    this.statusFilters.clear()
   }
 }
