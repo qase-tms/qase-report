@@ -3,6 +3,7 @@ import { Button, Grid } from '@mui/material'
 import { useRootStore } from '../../store'
 import { Sidebar } from '../../components/Sidebar'
 import { LoadReportButton } from '../../components/LoadReportButton'
+import { Dashboard } from '../../components/Dashboard'
 
 export const MainLayout = observer(() => {
   const { isDockOpen, closeDock, openDock } = useRootStore()
@@ -18,10 +19,9 @@ export const MainLayout = observer(() => {
         <Button type={'button'} onClick={openDock}>
           Open sidebar
         </Button>
+        <Dashboard />
       </Grid>
-      <Grid item xs={2}>
-        Hello from smaller container
-      </Grid>
+      <Grid item xs={2}></Grid>
       <Sidebar isOpen={isDockOpen} onClose={closeDock}>
         Hello from sidebar
       </Sidebar>
