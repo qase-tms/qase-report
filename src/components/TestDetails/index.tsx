@@ -6,6 +6,7 @@ import { TestHeader } from './TestHeader'
 import { TestError } from './TestError'
 import { TestParams } from './TestParams'
 import { TestFields } from './TestFields'
+import { TestSteps } from './TestSteps'
 
 export const TestDetails = observer(() => {
   const { selectedTest, clearSelection } = useRootStore()
@@ -47,6 +48,9 @@ export const TestDetails = observer(() => {
         )}
         {Object.keys(selectedTest.fields).length > 0 && (
           <TestFields test={selectedTest} />
+        )}
+        {selectedTest.steps && selectedTest.steps.length > 0 && (
+          <TestSteps steps={selectedTest.steps} />
         )}
       </Stack>
     </Box>

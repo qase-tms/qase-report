@@ -5,6 +5,7 @@ import { ExpandMore, ChevronRight } from '@mui/icons-material'
 import { getStatusIcon } from '../TestList/statusIcon'
 import { formatDuration } from '../../utils/formatDuration'
 import type { Step } from '../../schemas/Step.schema'
+import type { Attachment } from '../../schemas/Attachment.schema'
 import { TestStepAttachment } from './TestStepAttachment'
 
 interface TestStepProps {
@@ -53,13 +54,13 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
       <Collapse in={isExpanded}>
         {/* Attachments */}
         {hasAttachments &&
-          step.execution.attachments.map(attachment => (
+          step.execution.attachments.map((attachment: Attachment) => (
             <TestStepAttachment key={attachment.id} attachment={attachment} />
           ))}
 
         {/* Nested steps */}
         {hasChildren &&
-          step.steps.map(childStep => (
+          step.steps.map((childStep: Step) => (
             <TestStep key={childStep.id} step={childStep} depth={depth + 1} />
           ))}
       </Collapse>
