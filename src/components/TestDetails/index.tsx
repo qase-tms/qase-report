@@ -6,6 +6,7 @@ import { TestHeader } from './TestHeader'
 import { TestError } from './TestError'
 import { TestParams } from './TestParams'
 import { TestFields } from './TestFields'
+import { TestAttachments } from './TestAttachments'
 import { TestSteps } from './TestSteps'
 
 export const TestDetails = observer(() => {
@@ -48,6 +49,9 @@ export const TestDetails = observer(() => {
         )}
         {Object.keys(selectedTest.fields).length > 0 && (
           <TestFields test={selectedTest} />
+        )}
+        {selectedTest.attachments && selectedTest.attachments.length > 0 && (
+          <TestAttachments attachments={selectedTest.attachments} />
         )}
         {selectedTest.steps && selectedTest.steps.length > 0 && (
           <TestSteps steps={selectedTest.steps} />
