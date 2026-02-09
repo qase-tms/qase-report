@@ -1,13 +1,14 @@
 import { observer } from 'mobx-react-lite'
-import { Button, Grid, Box } from '@mui/material'
+import { Grid, Box } from '@mui/material'
 import { useRootStore } from '../../store'
 import { Sidebar } from '../../components/Sidebar'
 import { LoadReportButton } from '../../components/LoadReportButton'
 import { Dashboard } from '../../components/Dashboard'
 import { TestList } from '../../components/TestList'
+import { TestDetails } from '../../components/TestDetails'
 
 export const MainLayout = observer(() => {
-  const { isDockOpen, closeDock, openDock, reportStore } = useRootStore()
+  const { isDockOpen, closeDock, reportStore } = useRootStore()
   return (
     <Grid
       container
@@ -18,9 +19,6 @@ export const MainLayout = observer(() => {
       <Grid item xs={10}>
         <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
           <LoadReportButton />
-          <Button type={'button'} onClick={openDock}>
-            Open sidebar
-          </Button>
         </Box>
         <Dashboard />
         {/* Show TestList only when report is loaded */}
@@ -32,7 +30,7 @@ export const MainLayout = observer(() => {
       </Grid>
       <Grid item xs={2}></Grid>
       <Sidebar isOpen={isDockOpen} onClose={closeDock}>
-        Hello from sidebar
+        <TestDetails />
       </Sidebar>
     </Grid>
   )

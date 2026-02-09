@@ -29,16 +29,19 @@ export class RootStore {
 
   /**
    * Selects a test by ID for viewing details.
+   * Also opens the dock to display the test details.
    */
   selectTest = (testId: string) => {
     this.selectedTestId = testId
+    this.openDock()
   }
 
   /**
-   * Clears the selected test.
+   * Clears the selected test and closes the dock.
    */
   clearSelection = () => {
     this.selectedTestId = null
+    this.closeDock()
   }
 
   /**
