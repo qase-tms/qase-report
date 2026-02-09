@@ -41,7 +41,8 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
 
         {/* Step action/title */}
         <Typography variant="body2" sx={{ flex: 1 }}>
-          {step.data?.action || step.id}
+          {step.data?.action ||
+            step.step_type.charAt(0).toUpperCase() + step.step_type.slice(1)}
         </Typography>
 
         {/* Duration */}
