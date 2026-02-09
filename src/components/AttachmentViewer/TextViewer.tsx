@@ -9,28 +9,7 @@ import {
 import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { DownloadButton } from './DownloadButton'
-
-/**
- * Map file extensions to Prism language identifiers.
- */
-const detectLanguage = (fileName: string): string => {
-  const ext = fileName.split('.').pop()?.toLowerCase()
-  const languageMap: Record<string, string> = {
-    log: 'markup',
-    txt: 'markup',
-    json: 'json',
-    xml: 'xml',
-    html: 'markup',
-    js: 'javascript',
-    ts: 'typescript',
-    py: 'python',
-    java: 'java',
-    sh: 'bash',
-    yml: 'yaml',
-    yaml: 'yaml',
-  }
-  return languageMap[ext || ''] || 'markup'
-}
+import { detectLanguage } from '../../utils/detectLanguage'
 
 interface TextViewerProps {
   attachment: Attachment

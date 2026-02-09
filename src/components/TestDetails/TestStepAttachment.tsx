@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Chip } from '@mui/material'
-import { Image as ImageIcon, InsertDriveFile as FileIcon } from '@mui/icons-material'
+import {
+  Image as ImageIcon,
+  InsertDriveFile as FileIcon,
+  Description as TextIcon,
+} from '@mui/icons-material'
+import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { useRootStore } from '../../store'
 import { DownloadButton } from '../AttachmentViewer/DownloadButton'
+import { detectLanguage } from '../../utils/detectLanguage'
+
+const MAX_PREVIEW_LINES = 8
 
 interface TestStepAttachmentProps {
   attachment: Attachment
@@ -14,14 +22,44 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
   const isImage = attachment.mime_type?.startsWith('image/')
   const isText = attachment.mime_type?.startsWith('text/')
   const [imageError, setImageError] = useState(false)
+  const [textContent, setTextContent] = useState<string | null>(null)
 
   const isViewable = isImage || isText
+
+  // Decode text content for preview
+  useEffect(() => {
+    if (!isText || !attachment.content) {
+      setTextContent(null)
+      return
+    }
+
+    try {
+      const decoded = atob(attachment.content)
+      // Limit to first N lines for preview
+      const lines = decoded.split('\n')
+      const preview =
+        lines.length > MAX_PREVIEW_LINES
+          ? lines.slice(0, MAX_PREVIEW_LINES).join('\n') + '\n...'
+          : decoded
+      setTextContent(preview)
+    } catch {
+      setTextContent(null)
+    }
+  }, [attachment, isText])
 
   return (
     <Box sx={{ ml: 4, mt: 0.5 }}>
       {/* Attachment file chip - clickable if viewable */}
       <Chip
-        icon={isImage ? <ImageIcon fontSize="small" /> : <FileIcon fontSize="small" />}
+        icon={
+          isImage ? (
+            <ImageIcon fontSize="small" />
+          ) : isText ? (
+            <TextIcon fontSize="small" />
+          ) : (
+            <FileIcon fontSize="small" />
+          )
+        }
         label={attachment.file_name}
         size="small"
         variant="outlined"
@@ -69,6 +107,43 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
             }}
             onError={() => setImageError(true)}
           />
+        </Box>
+      )}
+
+      {/* Inline text preview with syntax highlighting - clickable to open viewer */}
+      {isText && textContent && (
+        <Box
+          sx={{ mt: 1, maxWidth: 500, cursor: 'pointer' }}
+          onClick={() => attachmentViewerStore.openViewer(attachment)}
+        >
+          <Highlight
+            theme={themes.github}
+            code={textContent}
+            language={detectLanguage(attachment.file_name)}
+          >
+            {({ style, tokens, getLineProps, getTokenProps }) => (
+              <pre
+                style={{
+                  ...style,
+                  padding: 12,
+                  borderRadius: 4,
+                  overflow: 'auto',
+                  maxHeight: 200,
+                  margin: 0,
+                  fontSize: 12,
+                  border: '1px solid #eee',
+                }}
+              >
+                {tokens.map((line, i) => (
+                  <div key={i} {...getLineProps({ line })}>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </div>
+                ))}
+              </pre>
+            )}
+          </Highlight>
         </Box>
       )}
     </Box>
