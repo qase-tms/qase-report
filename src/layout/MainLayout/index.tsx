@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import { Button, Grid } from '@mui/material'
 import { useRootStore } from '../../store'
 import { Sidebar } from '../../components/Sidebar'
+import { LoadReportButton } from '../../components/LoadReportButton'
 
 export const MainLayout = observer(() => {
   const { isDockOpen, closeDock, openDock } = useRootStore()
@@ -13,7 +14,7 @@ export const MainLayout = observer(() => {
       sx={{ height: 'calc(100vh - 48px)', width: '100vw' }}
     >
       <Grid item xs={10}>
-        Hello from bigger container
+        <LoadReportButton />
         <Button type={'button'} onClick={openDock}>
           Open sidebar
         </Button>
