@@ -3,6 +3,7 @@ import { createContext, FC, PropsWithChildren, useContext } from 'react'
 import { ReportStore } from './ReportStore'
 import { TestResultsStore } from './TestResultsStore'
 import { AttachmentsStore } from './AttachmentsStore'
+import { AttachmentViewerStore } from './AttachmentViewerStore'
 import { FileLoaderService } from '../services/FileLoaderService'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 
@@ -10,6 +11,7 @@ export class RootStore {
   reportStore: ReportStore
   testResultsStore: TestResultsStore
   attachmentsStore: AttachmentsStore
+  attachmentViewerStore: AttachmentViewerStore
 
   isDockOpen = false
   selectedTestId: string | null = null
@@ -18,6 +20,7 @@ export class RootStore {
     this.reportStore = new ReportStore(this)
     this.testResultsStore = new TestResultsStore(this)
     this.attachmentsStore = new AttachmentsStore(this)
+    this.attachmentViewerStore = new AttachmentViewerStore(this)
     makeAutoObservable(this)
   }
 
