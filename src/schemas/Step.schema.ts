@@ -2,36 +2,36 @@ import { z } from 'zod'
 import { AttachmentSchema } from './Attachment.schema'
 
 /**
- * Enum for step types in test execution.
- * - text: Narrative step description
- * - request: API request/response step
- * - assertion: Validation/assertion step
+ * Step type - flexible to handle various step types from different reporters.
+ * Common values: text, request, assertion, gherkin, action
  */
-const StepTypeEnum = z.enum(['text', 'request', 'assertion'])
+const StepTypeSchema = z.string()
 
 /**
- * Enum for step execution status.
+ * Step execution status - flexible to handle various statuses.
+ * Common values: passed, failed, skipped, broken, pending
  */
-const StepStatusEnum = z.enum(['passed', 'failed', 'skipped'])
+const StepStatusSchema = z.string()
 
 /**
  * Data associated with a test step.
+ * All fields are optional to handle various reporter formats.
  */
 const StepDataSchema = z.object({
   /**
-   * Action performed in this step
+   * Action performed in this step (optional)
    */
-  action: z.string(),
+  action: z.string().optional(),
 
   /**
-   * Expected result for this step (nullable)
+   * Expected result for this step (optional, nullable)
    */
-  expected_result: z.string().nullable(),
+  expected_result: z.string().nullable().optional(),
 
   /**
-   * Input data used in this step (nullable)
+   * Input data used in this step (optional, nullable)
    */
-  input_data: z.string().nullable(),
+  input_data: z.string().nullable().optional(),
 })
 
 /**
@@ -39,9 +39,9 @@ const StepDataSchema = z.object({
  */
 const StepExecutionSchema = z.object({
   /**
-   * Execution status (passed, failed, skipped)
+   * Execution status (passed, failed, skipped, broken, etc.)
    */
-  status: StepStatusEnum,
+  status: StepStatusSchema,
 
   /**
    * Unix timestamp when step started (milliseconds)
@@ -78,9 +78,9 @@ export const StepSchema: z.ZodType<any> = z.lazy(() =>
     id: z.string(),
 
     /**
-     * Type of step (text, request, assertion)
+     * Type of step (text, request, assertion, gherkin, etc.)
      */
-    step_type: StepTypeEnum,
+    step_type: StepTypeSchema,
 
     /**
      * ID of parent step (nullable for top-level steps)

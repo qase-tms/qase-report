@@ -132,9 +132,9 @@ export const TestResultSchema = z.object({
   param_groups: z.array(z.array(z.string())),
 
   /**
-   * Custom fields (key-value pairs)
+   * Custom fields (key-value pairs, values can be null)
    */
-  fields: z.record(z.string(), z.string()),
+  fields: z.record(z.string(), z.string().nullable()),
 
   /**
    * Qase TMS test case IDs (optional, nullable)

@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Competitors analysis (cloned repos)
+competitors/
+docs/
+CLAUDE.md
+.planning/

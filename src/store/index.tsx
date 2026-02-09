@@ -31,7 +31,7 @@ export class RootStore {
    *
    * @param files - FileList from input element with webkitdirectory
    */
-  async loadReport(files: FileList): Promise<void> {
+  loadReport = async (files: FileList): Promise<void> => {
     const fileLoader = new FileLoaderService()
     const { runFile, resultFiles, attachmentFiles } =
       await fileLoader.loadReportDirectory(files)
