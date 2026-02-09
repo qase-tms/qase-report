@@ -4,6 +4,7 @@ import { ReportStore } from './ReportStore'
 import { TestResultsStore } from './TestResultsStore'
 import { AttachmentsStore } from './AttachmentsStore'
 import { FileLoaderService } from '../services/FileLoaderService'
+import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 
 export class RootStore {
   reportStore: ReportStore
@@ -11,6 +12,7 @@ export class RootStore {
   attachmentsStore: AttachmentsStore
 
   isDockOpen = false
+  selectedTestId: string | null = null
 
   constructor() {
     this.reportStore = new ReportStore(this)
@@ -23,6 +25,30 @@ export class RootStore {
   closeDock = () => {
     console.log('Fire!')
     this.isDockOpen = false
+  }
+
+  /**
+   * Selects a test by ID for viewing details.
+   */
+  selectTest = (testId: string) => {
+    this.selectedTestId = testId
+  }
+
+  /**
+   * Clears the selected test.
+   */
+  clearSelection = () => {
+    this.selectedTestId = null
+  }
+
+  /**
+   * Returns the currently selected test result, or null if none selected.
+   */
+  get selectedTest(): QaseTestResult | null {
+    if (this.selectedTestId === null) {
+      return null
+    }
+    return this.testResultsStore.testResults.get(this.selectedTestId) || null
   }
 
   /**
