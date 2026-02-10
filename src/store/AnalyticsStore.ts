@@ -8,6 +8,12 @@ import {
   MIN_RUNS,
 } from '../types/flakiness'
 import { AlertItem, MIN_RUNS_REGRESSION } from '../types/alerts'
+import {
+  type StabilityGrade,
+  type StabilityResult,
+  MIN_RUNS_STABILITY,
+  GRADE_THRESHOLDS,
+} from '../types/stability'
 
 /**
  * Data point for trend visualization.
@@ -180,6 +186,53 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns stability scores for all tests with sufficient data.
+   * Tests with <10 runs are excluded (grade N/A).
+   *
+   * Computed property automatically updates when history data changes.
+   */
+  get testStabilityMap(): Map<string, StabilityResult> {
+    const history = this.root.historyStore.history
+    if (!history) return new Map()
+
+    const stabilityMap = new Map<string, StabilityResult>()
+
+    for (const test of history.tests) {
+      const result = this.getStabilityScore(test.signature)
+      // Only include tests with sufficient data
+      if (result.grade !== 'N/A') {
+        stabilityMap.set(test.signature, result)
+      }
+    }
+
+    return stabilityMap
+  }
+
+  /**
+   * Returns distribution of tests across grade categories.
+   * Useful for dashboard widget showing grade breakdown.
+   *
+   * Computed property automatically updates when history data changes.
+   */
+  get gradeDistribution(): Record<StabilityGrade, number> {
+    const distribution: Record<StabilityGrade, number> = {
+      'A+': 0,
+      'A': 0,
+      'B': 0,
+      'C': 0,
+      'D': 0,
+      'F': 0,
+      'N/A': 0,
+    }
+
+    for (const result of this.testStabilityMap.values()) {
+      distribution[result.grade]++
+    }
+
+    return distribution
+  }
+
+  /**
    * Calculates mean and standard deviation for an array of numbers
    * @private
    */
@@ -193,6 +246,47 @@ export class AnalyticsStore {
     const stdDev = Math.sqrt(variance)
 
     return { mean, stdDev }
+  }
+
+  /**
+   * Calculates duration coefficient of variation (CV).
+   * CV measures duration consistency - lower is better.
+   *
+   * Formula: CV = (stdDev / mean) * 100
+   * Result is capped at 100% to prevent extreme variance from infinitely penalizing score.
+   *
+   * @param durations - Array of test durations in milliseconds
+   * @returns CV as percentage (0-100)
+   * @private
+   */
+  private calculateDurationCV(durations: number[]): number {
+    const { mean, stdDev } = this.calculateStats(durations)
+
+    // Handle edge case: if mean is 0, no variance exists
+    if (mean === 0) return 0
+
+    // Calculate CV as percentage
+    const cv = (stdDev / mean) * 100
+
+    // Cap at 100% for scoring purposes
+    return Math.min(cv, 100)
+  }
+
+  /**
+   * Maps composite score (0-100) to letter grade.
+   * Uses GRADE_THRESHOLDS from stability.ts.
+   *
+   * @param score - Composite stability score (0-100)
+   * @returns Letter grade (A+ to F)
+   * @private
+   */
+  private scoreToGrade(score: number): StabilityGrade {
+    if (score >= GRADE_THRESHOLDS['A+']) return 'A+'
+    if (score >= GRADE_THRESHOLDS['A']) return 'A'
+    if (score >= GRADE_THRESHOLDS['B']) return 'B'
+    if (score >= GRADE_THRESHOLDS['C']) return 'C'
+    if (score >= GRADE_THRESHOLDS['D']) return 'D'
+    return 'F'
   }
 
   /**
@@ -271,6 +365,71 @@ export class AnalyticsStore {
       meanDuration: Math.round(mean),
       stdDev: Math.round(stdDev),
       threshold: Math.round(threshold),
+    }
+  }
+
+  /**
+   * Calculates comprehensive stability score for a test using weighted multi-factor analysis.
+   *
+   * Algorithm:
+   * 1. Requires minimum 10 runs for accurate scoring (vs 5 for flakiness)
+   * 2. Calculates three metrics:
+   *    - Pass rate: % of runs that passed
+   *    - Flakiness: From getFlakinessScore (status transitions)
+   *    - Duration CV: Coefficient of variation (consistency)
+   * 3. Computes weighted composite score:
+   *    score = passRate*0.5 + (100-flakinessPercent)*0.3 + (100-durationCV)*0.2
+   * 4. Maps score to letter grade (A+ to F)
+   *
+   * @param signature - Test signature to analyze
+   * @returns StabilityResult with grade, score, and underlying metrics
+   */
+  getStabilityScore(signature: string): StabilityResult {
+    const runs = this.root.historyStore.getTestHistory(signature)
+
+    // Check minimum runs requirement
+    if (runs.length < MIN_RUNS_STABILITY) {
+      return {
+        grade: 'N/A',
+        score: 0,
+        passRate: 0,
+        flakinessPercent: 0,
+        durationCV: 0,
+        totalRuns: runs.length,
+        minRunsRequired: MIN_RUNS_STABILITY,
+      }
+    }
+
+    // Calculate pass rate
+    const passedCount = runs.filter((r) => r.status === 'passed').length
+    const passRate = (passedCount / runs.length) * 100
+
+    // Get flakiness percentage from existing method
+    const flakiness = this.getFlakinessScore(signature)
+    const flakinessPercent = flakiness.flakinessPercent
+
+    // Calculate duration CV
+    const durations = runs.map((r) => r.duration)
+    const durationCV = this.calculateDurationCV(durations)
+
+    // Calculate composite score (weighted)
+    // Pass rate: 50%, Stability (100-flakiness): 30%, Consistency (100-CV): 20%
+    const score = passRate * 0.5 + (100 - flakinessPercent) * 0.3 + (100 - durationCV) * 0.2
+
+    // Clamp score to 0-100 range
+    const clampedScore = Math.max(0, Math.min(100, score))
+
+    // Determine grade
+    const grade = this.scoreToGrade(clampedScore)
+
+    return {
+      grade,
+      score: Math.round(clampedScore),
+      passRate: Math.round(passRate),
+      flakinessPercent,
+      durationCV: Math.round(durationCV),
+      totalRuns: runs.length,
+      minRunsRequired: MIN_RUNS_STABILITY,
     }
   }
 
