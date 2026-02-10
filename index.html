@@ -9,7 +9,7 @@
         var key = 'mui-mode'
         var savedMode = localStorage.getItem(key)
         var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        var mode = savedMode || 'system'
+        var mode = savedMode || 'dark'
         if (mode === 'system') {
           mode = systemDark ? 'dark' : 'light'
         }

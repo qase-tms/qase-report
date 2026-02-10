@@ -10,31 +10,32 @@ Open-source инструмент для визуализации отчётов 
 
 ## Current State
 
-**v1.1 History & Trends shipped:** 2026-02-10
+**v1.2 Design Refresh shipped:** 2026-02-10
 
-- ~4,700 LOC TypeScript/TSX
-- Tech stack: React 18, TypeScript 5.9, Vite, MUI 5, MobX, Zod v4, Recharts
+- ~5,200 LOC TypeScript/TSX
+- Tech stack: React 18, TypeScript 5.9, Vite, MUI 5, MobX, Zod v4, Recharts, react-window
 - Full Qase Report Format support
 - History analytics: trends, flakiness detection, regression alerts, stability scoring
+- Theme system (light/dark/system), Bento Grid dashboard, sidebar navigation
+- Virtual scrolling for 500+ tests, microinteractions
 - Static HTML works with file:// protocol
 
-## Current Milestone: v1.2 Design Refresh
+## Current Milestone: v1.3 Design Overhaul
 
-**Goal:** Современный, удобный дизайн с Bento Grid layout, темами, sidebar навигацией и улучшенной производительностью.
+**Goal:** Полный редизайн в стиле Playwright Smart Reporter — dark theme по умолчанию, новый sidebar с фильтрами, overview dashboard, и три новые фичи для анализа результатов.
 
 **Target features:**
-- Theme system (light/dark/system) с persistence
-- Bento Grid layout для dashboard
-- Постоянный sidebar для навигации
-- Micro-visualizations (sparklines, progress rings)
-- Microinteractions (fade-ins, hover effects, transitions)
-- Progressive disclosure (filters, collapsible sections)
-- Оптимизация для 100-500 тестов
+- Dark theme по умолчанию
+- Новый sidebar: pass rate ring, quick stats, навигация с иконками, фильтры как chips
+- Top bar: поиск (⌘K), export, theme toggle, дата прогона
+- Overview dashboard: Suite Health, Pass Rate/Duration trends, Attention Required, Quick Insights
+- Failure Clusters — группировка тестов по типу ошибки
+- Gallery — просмотр всех attachments в одном месте
+- Comparison — diff view между прогонами
 
-**Design references:**
-- Allure 3 — минималистичный стиль, whitespace
-- Playwright Smart Reporter — цветовое кодирование, sidebar
-- Apple Bento Grid — модульная компоновка
+**Priority:** Failure Clusters → Gallery → Comparison
+
+**Design reference:** Playwright Smart Reporter (dark theme, sidebar filters, overview dashboard)
 
 ## Requirements
 
@@ -58,15 +59,24 @@ Open-source инструмент для визуализации отчётов 
 - ✓ Performance regression alerts — v1.1
 - ✓ Stability scoring (A+ to F grades) — v1.1
 
+**v1.2 Design Refresh:**
+- ✓ Theme system (light/dark/system) — v1.2
+- ✓ Bento Grid dashboard layout — v1.2
+- ✓ Sidebar navigation — v1.2
+- ✓ Micro-visualizations (sparklines, progress rings) — v1.2
+- ✓ Microinteractions (fade-in, hover effects) — v1.2
+- ✓ Progressive disclosure (collapsible suites) — v1.2
+- ✓ Virtual scrolling (100-500 tests) — v1.2
+
 ### Active
 
-- [ ] Theme system (light/dark/system)
-- [ ] Bento Grid dashboard layout
-- [ ] Sidebar navigation
-- [ ] Micro-visualizations
-- [ ] Microinteractions
-- [ ] Progressive disclosure
-- [ ] Performance optimization (100-500 tests)
+- [ ] Dark theme по умолчанию
+- [ ] Новый sidebar (pass rate ring, quick stats, навигация, фильтры)
+- [ ] Top bar (поиск ⌘K, export, theme toggle, дата прогона)
+- [ ] Overview dashboard (Suite Health, trends, Attention Required, Quick Insights)
+- [ ] Failure Clusters (группировка по типу ошибки)
+- [ ] Gallery (просмотр всех attachments)
+- [ ] Comparison (diff view между прогонами)
 
 ### Out of Scope
 
@@ -74,10 +84,10 @@ Open-source инструмент для визуализации отчётов 
 - Real-time reporting — низкий приоритет, сложная реализация
 - Slack/Teams notifications — low priority
 - Локализация — nice-to-have
-- Keyboard shortcuts — deferred to v1.3
+- Keyboard shortcuts — deferred to v1.4+
 - Infinite history — Storage bloat, diminishing returns after 30-50 runs
 - Per-step performance tracking — Exponentially increases data volume
-- Enterprise scale (2000+ tests) — v1.2 targets 100-500 tests
+- Enterprise scale (2000+ tests) — v1.3 targets 100-500 tests
 
 ## Context
 
@@ -117,4 +127,4 @@ Open-source инструмент для визуализации отчётов 
 | Weighted stability formula | Balances pass rate, flakiness, and variance | ✓ Good |
 
 ---
-*Last updated: 2026-02-10 after v1.2 milestone start*
+*Last updated: 2026-02-10 after v1.3 milestone start*

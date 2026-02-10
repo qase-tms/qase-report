@@ -5,7 +5,7 @@ import { theme } from './index'
 
 export const ThemeRegistry = ({ children }: PropsWithChildren) => {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme} defaultMode="dark">
       <CssBaseline />
       {children}
     </CssVarsProvider>
