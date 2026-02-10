@@ -162,8 +162,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 15-01-PLAN.md — CSS Grid Bento layout (BentoGrid container, DashboardCard wrapper, Dashboard refactor)
-- [ ] 15-02-PLAN.md — Micro-visualizations (SparklineCard, ProgressRingCard, Dashboard integration)
+- [x] 15-01-PLAN.md — CSS Grid Bento layout (BentoGrid container, DashboardCard wrapper, Dashboard refactor)
+- [x] 15-02-PLAN.md — Micro-visualizations (SparklineCard, ProgressRingCard, Dashboard integration)
 
 ### Phase 16: Microinteractions
 **Goal**: UI provides smooth visual feedback through animations and transitions
@@ -174,10 +174,11 @@ Plans:
   2. Collapsible sections animate when expanding/collapsing
   3. Interactive elements show hover feedback (elevation or color change)
   4. Animations respect prefers-reduced-motion setting
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 16-01: TBD
+- [x] 16-01-PLAN.md — Accessibility foundation (usePrefersReducedMotion hook) and Dashboard fade-in
+- [x] 16-02-PLAN.md — Hover effects on cards/list items, Collapse accessibility updates
 
 ### Phase 17: Progressive Disclosure & Performance
 **Goal**: UI handles complexity gracefully at scale (100-500 tests)
@@ -188,10 +189,11 @@ Plans:
   2. Step timeline sections can be expanded/collapsed
   3. Test list with 500 tests scrolls without visible lag (virtual scrolling)
   4. Scroll position preserved when switching between views
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 17-01: TBD
+- [ ] 17-01-PLAN.md — Default-collapsed suites, expand state persistence, ARIA accessibility
+- [ ] 17-02-PLAN.md — Virtual scrolling with react-window, scroll position preservation
 
 ## Progress
 
@@ -211,6 +213,6 @@ Plans:
 | 12. Stability Scoring | v1.1 | 3/3 | Complete | 2026-02-10 |
 | 13. Theme Foundation | v1.2 | 1/1 | Complete | 2026-02-10 |
 | 14. Sidebar Navigation | v1.2 | 1/1 | Complete | 2026-02-10 |
-| 15. Bento Grid Dashboard | v1.2 | 0/2 | Not started | - |
-| 16. Microinteractions | v1.2 | 0/TBD | Not started | - |
-| 17. Progressive Disclosure & Performance | v1.2 | 0/TBD | Not started | - |
+| 15. Bento Grid Dashboard | v1.2 | 2/2 | Complete | 2026-02-10 |
+| 16. Microinteractions | v1.2 | 2/2 | Complete | 2026-02-10 |
+| 17. Progressive Disclosure & Performance | v1.2 | 0/2 | Not started | - |
