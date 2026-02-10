@@ -15,13 +15,16 @@ export class AttachmentsStore {
   /**
    * Registers an attachment file and creates a blob URL.
    * Extracts UUID from filename format: "{uuid}-filename.ext"
+   * UUID format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (5 segments)
    *
    * @param file - File object for the attachment
    * @returns Blob URL for the attachment
    */
   registerAttachment(file: File): string {
-    // Extract UUID from filename (format: "{uuid}-filename.ext")
-    const id = file.name.split('-')[0]
+    // Extract full UUID from filename (format: "{uuid}-filename.ext")
+    // UUID has 5 segments: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+    const parts = file.name.split('-')
+    const id = parts.slice(0, 5).join('-')
     const url = URL.createObjectURL(file)
 
     this.attachmentUrls.set(id, url)
