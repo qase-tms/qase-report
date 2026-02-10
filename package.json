@@ -19,6 +19,7 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hotkeys-hook": "^5.2.4",
     "react-window": "^1.8.11",
     "recharts": "^2.15.4",
     "yet-another-react-lightbox": "^3.28.0",
