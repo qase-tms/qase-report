@@ -6,9 +6,10 @@ import { RunInfoCard } from './RunInfoCard'
 import { HostInfoCard } from './HostInfoCard'
 import { TrendsChart } from './TrendsChart'
 import { HistoryTimeline } from './HistoryTimeline'
+import { AlertsPanel } from './AlertsPanel'
 
 export const Dashboard = observer(() => {
-  const { reportStore, analyticsStore, historyStore } = useRootStore()
+  const { reportStore, analyticsStore, historyStore, testResultsStore } = useRootStore()
 
   if (!reportStore.runData) {
     return (
@@ -19,6 +20,17 @@ export const Dashboard = observer(() => {
   }
 
   const { stats } = reportStore.runData
+
+  // Handle alert click - find test by signature and select it
+  const handleAlertClick = (testSignature: string) => {
+    // Find test with matching signature in current results
+    for (const [id, test] of testResultsStore.testResults) {
+      if (test.signature === testSignature) {
+        reportStore.root.selectTest(id)
+        return
+      }
+    }
+  }
 
   return (
     <>
@@ -61,6 +73,13 @@ export const Dashboard = observer(() => {
           <HostInfoCard />
         </Grid>
       </Grid>
+
+      {/* Alerts panel - show when alerts exist */}
+      {analyticsStore.hasAlerts && (
+        <Box sx={{ mt: 3 }}>
+          <AlertsPanel onAlertClick={handleAlertClick} />
+        </Box>
+      )}
 
       {/* Trend visualization - show when history data available */}
       {(analyticsStore.hasTrendData || historyStore.recentRuns.length > 0) && (
