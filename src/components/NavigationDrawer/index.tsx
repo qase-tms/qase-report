@@ -1,0 +1,104 @@
+import { observer } from 'mobx-react-lite'
+import {
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Toolbar,
+  Box,
+} from '@mui/material'
+import {
+  Dashboard as DashboardIcon,
+  Assignment as AssignmentIcon,
+  Analytics as AnalyticsIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+} from '@mui/icons-material'
+import { useRootStore } from '../../store'
+
+const DRAWER_WIDTH_EXPANDED = 240
+const DRAWER_WIDTH_COLLAPSED = 64
+
+export const NavigationDrawer = observer(() => {
+  const { isNavigationCollapsed, activeView, toggleNavigation, setActiveView } =
+    useRootStore()
+
+  const drawerWidth = isNavigationCollapsed
+    ? DRAWER_WIDTH_COLLAPSED
+    : DRAWER_WIDTH_EXPANDED
+
+  const navItems = [
+    {
+      id: 'dashboard' as const,
+      label: 'Dashboard',
+      icon: <DashboardIcon />,
+    },
+    {
+      id: 'tests' as const,
+      label: 'Tests',
+      icon: <AssignmentIcon />,
+    },
+    {
+      id: 'analytics' as const,
+      label: 'Analytics',
+      icon: <AnalyticsIcon />,
+    },
+  ]
+
+  return (
+    <Drawer
+      variant="permanent"
+      anchor="left"
+      aria-label="main navigation"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+          transition: theme =>
+            theme.transitions.create('width', {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
+        },
+      }}
+    >
+      <Toolbar variant="dense" />
+      <List>
+        {navItems.map(item => (
+          <ListItemButton
+            key={item.id}
+            selected={activeView === item.id}
+            onClick={() => setActiveView(item.id)}
+            aria-current={activeView === item.id ? 'page' : undefined}
+            sx={{
+              minHeight: 48,
+              justifyContent: isNavigationCollapsed ? 'center' : 'initial',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: isNavigationCollapsed ? 'auto' : 3,
+                justifyContent: 'center',
+              }}
+            >
+              {item.icon}
+            </ListItemIcon>
+            {!isNavigationCollapsed && <ListItemText primary={item.label} />}
+          </ListItemButton>
+        ))}
+      </List>
+      <Box sx={{ flexGrow: 1 }} />
+      <Box sx={{ display: 'flex', justifyContent: 'center', pb: 2 }}>
+        <IconButton onClick={toggleNavigation} aria-label="toggle navigation">
+          {isNavigationCollapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </Box>
+    </Drawer>
+  )
+})
