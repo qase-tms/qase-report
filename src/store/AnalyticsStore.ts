@@ -97,6 +97,89 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns all alerts (flakiness + regressions) for dashboard display.
+   * Alerts are sorted by severity (error first, then warning).
+   *
+   * Computed property automatically updates when history data changes.
+   */
+  get alerts(): AlertItem[] {
+    const history = this.root.historyStore.history
+    if (!history || history.tests.length === 0) return []
+
+    const alerts: AlertItem[] = []
+
+    for (const test of history.tests) {
+      const signature = test.signature
+
+      // Check flakiness (existing logic)
+      const flakiness = this.getFlakinessScore(signature)
+
+      if (flakiness.status === 'flaky') {
+        alerts.push({
+          id: `flaky-${signature}`,
+          type: 'flaky_warning',
+          severity: 'warning',
+          testSignature: signature,
+          testTitle: test.title,
+          message: `Flaky in ${flakiness.statusChanges} of ${flakiness.totalRuns} runs (${flakiness.flakinessPercent}%)`,
+        })
+      } else if (flakiness.status === 'new_failure') {
+        alerts.push({
+          id: `new-failure-${signature}`,
+          type: 'new_failure',
+          severity: 'error',
+          testSignature: signature,
+          testTitle: test.title,
+          message: `Started failing after ${flakiness.totalRuns - 1} stable runs`,
+        })
+      }
+
+      // Check performance regression
+      const regression = this.getPerformanceRegression(signature)
+      if (regression?.isRegression) {
+        const pctIncrease = Math.round(
+          ((regression.currentDuration - regression.meanDuration) / regression.meanDuration) * 100
+        )
+        alerts.push({
+          id: `regression-${signature}`,
+          type: 'performance_regression',
+          severity: 'error',
+          testSignature: signature,
+          testTitle: test.title,
+          message: `Duration ${pctIncrease}% above normal (${regression.currentDuration}ms vs ${regression.meanDuration}ms avg)`,
+          details: {
+            currentDuration: regression.currentDuration,
+            meanDuration: regression.meanDuration,
+            stdDev: regression.stdDev,
+            threshold: regression.threshold,
+          },
+        })
+      }
+    }
+
+    // Sort: errors first, then warnings
+    return alerts.sort((a, b) => {
+      if (a.severity === 'error' && b.severity !== 'error') return -1
+      if (a.severity !== 'error' && b.severity === 'error') return 1
+      return 0
+    })
+  }
+
+  /**
+   * Returns count of alerts for dashboard badge display.
+   */
+  get alertCount(): number {
+    return this.alerts.length
+  }
+
+  /**
+   * Indicates whether any alerts exist.
+   */
+  get hasAlerts(): boolean {
+    return this.alerts.length > 0
+  }
+
+  /**
    * Calculates mean and standard deviation for an array of numbers
    * @private
    */
