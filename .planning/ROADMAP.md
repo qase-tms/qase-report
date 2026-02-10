@@ -132,8 +132,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 11-01-PLAN.md — Alert types and 2-sigma regression detection in AnalyticsStore
-- [ ] 11-02-PLAN.md — AlertsPanel component and Dashboard integration
+- [x] 11-01-PLAN.md — Alert types and 2-sigma regression detection in AnalyticsStore
+- [x] 11-02-PLAN.md — AlertsPanel component and Dashboard integration
 
 #### Phase 12: Stability Scoring
 **Goal**: Users can assess test health with A+ to F stability grades
@@ -145,12 +145,12 @@ Plans:
   3. User sees test health widget on dashboard with grade distribution
   4. Grades require minimum 10 runs to ensure accuracy
   5. Scoring formula is transparent and shows underlying metrics
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 12-01: TBD
-- [ ] 12-02: TBD
-- [ ] 12-03: TBD
+- [ ] 12-01-PLAN.md — Stability types and getStabilityScore algorithm
+- [ ] 12-02-PLAN.md — Grade filtering in TestList and grade badges
+- [ ] 12-03-PLAN.md — TestHealthWidget dashboard component
 
 ## Progress
 
@@ -169,5 +169,5 @@ Phases execute in numeric order: 8 -> 9 -> 10 -> 11 -> 12
 | 8. History Infrastructure | v1.1 | 3/3 | Complete | 2026-02-10 |
 | 9. Trend Visualization | v1.1 | 3/3 | Complete | 2026-02-10 |
 | 10. Flakiness Detection | v1.1 | 2/2 | Complete | 2026-02-10 |
-| 11. Regression Alerts | v1.1 | 0/2 | Planned | - |
-| 12. Stability Scoring | v1.1 | 0/TBD | Not started | - |
+| 11. Regression Alerts | v1.1 | 2/2 | Complete | 2026-02-10 |
+| 12. Stability Scoring | v1.1 | 0/3 | Planned | - |
