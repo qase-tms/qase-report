@@ -10,12 +10,12 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 17 of 17 (Progressive Disclosure & Performance)
-Plan: 1 of 2 complete
-Status: In progress
-Last activity: 2026-02-10 — Completed 17-01 (Default-collapsed suites)
+Plan: 2 of 2 complete
+Status: Phase complete
+Last activity: 2026-02-10 — Completed 17-02 (Virtual scrolling with react-window)
 
 Progress: v1.0 + v1.1 complete (12 phases, 23 plans shipped)
-v1.2: [#########.] 90% (Phase 13-16 complete; Phase 17: 1/2 plans complete)
+v1.2: [##########] 100% (Phase 13-17 complete)
 
 ## Performance Metrics
 
@@ -32,6 +32,7 @@ v1.2: [#########.] 90% (Phase 13-16 complete; Phase 17: 1/2 plans complete)
 | Phase 16 P01 | 94 | 2 tasks | 2 files |
 | Phase 16 P02 | - | 4 tasks | 4 files |
 | Phase 17 P01 | 189 | 3 tasks | 3 files |
+| Phase 17 P02 | 3 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,9 @@ Key decisions preserved for future reference:
 - [Phase 17-01]: Set<string> over Record for suite expand state (memory efficiency + O(1) checks)
 - [Phase 17-01]: sessionStorage over localStorage for session-scoped expand preference
 - [Phase 17-01]: Empty Set default = all suites collapsed (progressive disclosure first)
+- [Phase 17-02]: VariableSizeList over FixedSizeList for variable item heights (48px/72px)
+- [Phase 17-02]: Flatten grouped data into single array for virtual rendering (simpler than nested)
+- [Phase 17-02]: Debounce scroll save at 100ms for performance (reduces sessionStorage writes)
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 17-01-PLAN.md (Default-collapsed suites with persistent expand state)
+Stopped at: Completed 17-02-PLAN.md (Virtual scrolling with react-window)
 Resume file: None
-Next action: Execute 17-02-PLAN.md (Virtual scrolling with react-window)
+Next action: Phase 17 complete. v1.2 milestone complete.
