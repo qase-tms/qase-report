@@ -7,6 +7,7 @@ import { HostInfoCard } from './HostInfoCard'
 import { TrendsChart } from './TrendsChart'
 import { HistoryTimeline } from './HistoryTimeline'
 import { AlertsPanel } from './AlertsPanel'
+import { TestHealthWidget } from './TestHealthWidget'
 
 export const Dashboard = observer(() => {
   const { reportStore, analyticsStore, historyStore, testResultsStore } = useRootStore()
@@ -86,12 +87,17 @@ export const Dashboard = observer(() => {
         <Box sx={{ mt: 3 }}>
           <Grid container spacing={3}>
             {analyticsStore.hasTrendData && (
-              <Grid item xs={12} lg={8}>
+              <Grid item xs={12} lg={6}>
                 <TrendsChart />
               </Grid>
             )}
+            {historyStore.isHistoryLoaded && (
+              <Grid item xs={12} sm={6} lg={3}>
+                <TestHealthWidget />
+              </Grid>
+            )}
             {historyStore.recentRuns.length > 0 && (
-              <Grid item xs={12} lg={4}>
+              <Grid item xs={12} sm={6} lg={3}>
                 <HistoryTimeline />
               </Grid>
             )}
