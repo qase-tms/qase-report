@@ -4,7 +4,7 @@ import { Button, Box, Alert } from '@mui/material'
 import { useRootStore } from '../../store'
 
 export const LoadReportButton = observer(() => {
-  const { reportStore, testResultsStore, loadReport } = useRootStore()
+  const { reportStore, testResultsStore, historyStore, loadReport } = useRootStore()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const isLoading = reportStore.isLoading || testResultsStore.isLoading
@@ -63,6 +63,16 @@ export const LoadReportButton = observer(() => {
       {error && (
         <Alert severity="error" sx={{ mt: 2 }}>
           {error}
+        </Alert>
+      )}
+      {historyStore.isHistoryLoaded && (
+        <Alert severity="success" sx={{ mt: 2 }}>
+          History loaded: {historyStore.totalRuns} run(s) available
+        </Alert>
+      )}
+      {historyStore.historyError && (
+        <Alert severity="warning" sx={{ mt: 2 }}>
+          History error: {historyStore.historyError}
         </Alert>
       )}
     </Box>
