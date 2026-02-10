@@ -53,10 +53,11 @@ export class AttachmentViewerStore {
   }
 
   /**
-   * Returns true if current attachment is text.
+   * Returns true if current attachment is text-like (text/* or application/json).
    */
   get isText(): boolean {
-    return this.currentAttachment?.mime_type?.startsWith('text/') ?? false
+    const mime = this.currentAttachment?.mime_type
+    return mime?.startsWith('text/') || mime === 'application/json' ? true : false
   }
 
   /**

@@ -21,17 +21,19 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
   const { attachmentViewerStore, attachmentsStore } = useRootStore()
   const isImage = attachment.mime_type?.startsWith('image/')
   const isText = attachment.mime_type?.startsWith('text/')
+  const isJson = attachment.mime_type === 'application/json'
+  const isTextLike = isText || isJson
   const [imageError, setImageError] = useState(false)
   const [textContent, setTextContent] = useState<string | null>(null)
 
-  const isViewable = isImage || isText
+  const isViewable = isImage || isTextLike
 
   // Get blob URL from store (created when loading report)
   const blobUrl = attachmentsStore.getAttachmentUrl(attachment.id)
 
-  // Decode text content for preview
+  // Decode text content for preview (text and JSON files)
   useEffect(() => {
-    if (!isText) {
+    if (!isTextLike) {
       setTextContent(null)
       return
     }
@@ -64,7 +66,7 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
     }
 
     setTextContent(null)
-  }, [attachment, isText, blobUrl])
+  }, [attachment, isTextLike, blobUrl])
 
   return (
     <Box sx={{ ml: 4, mt: 0.5 }}>
@@ -73,7 +75,7 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
         icon={
           isImage ? (
             <ImageIcon fontSize="small" />
-          ) : isText ? (
+          ) : isTextLike ? (
             <TextIcon fontSize="small" />
           ) : (
             <FileIcon fontSize="small" />
@@ -129,8 +131,8 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
         </Box>
       )}
 
-      {/* Inline text preview with syntax highlighting - clickable to open viewer */}
-      {isText && textContent && (
+      {/* Inline text/JSON preview with syntax highlighting - clickable to open viewer */}
+      {isTextLike && textContent && (
         <Box
           sx={{ mt: 1, maxWidth: 500, cursor: 'pointer' }}
           onClick={() => attachmentViewerStore.openViewer(attachment)}
