@@ -45,7 +45,7 @@ export const Dashboard = observer(() => {
       <Grid item xs={12} sm={6} md={3}>
         <StatsCard
           status="broken"
-          count={stats.broken}
+          count={reportStore.brokenCount}
           percentage={reportStore.brokenRate}
         />
       </Grid>

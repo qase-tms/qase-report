@@ -27,6 +27,7 @@ const RunExecutionSchema = z.object({
 
 /**
  * Statistical summary of test run results.
+ * Supports both old format (broken) and new format (blocked, invalid).
  */
 const RunStatsSchema = z.object({
   /**
@@ -50,14 +51,24 @@ const RunStatsSchema = z.object({
   skipped: z.number(),
 
   /**
-   * Number of broken tests
+   * Number of broken tests (old format)
    */
-  broken: z.number(),
+  broken: z.number().optional(),
+
+  /**
+   * Number of blocked tests (new format)
+   */
+  blocked: z.number().optional(),
+
+  /**
+   * Number of invalid tests (new format)
+   */
+  invalid: z.number().optional(),
 
   /**
    * Number of muted tests
    */
-  muted: z.number(),
+  muted: z.number().optional(),
 })
 
 /**
@@ -123,6 +134,11 @@ const HostDataSchema = z.object({
    * Python version if applicable (optional)
    */
   python: z.string().optional(),
+
+  /**
+   * pip version if applicable (optional)
+   */
+  pip: z.string().optional(),
 })
 
 /**
@@ -132,9 +148,9 @@ const HostDataSchema = z.object({
  */
 export const QaseRunSchema = z.object({
   /**
-   * Run title
+   * Run title (optional - may not be present in all formats)
    */
-  title: z.string(),
+  title: z.string().optional(),
 
   /**
    * Environment where tests ran (optional, nullable)
