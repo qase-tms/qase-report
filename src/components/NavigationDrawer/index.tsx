@@ -8,15 +8,18 @@ import {
   IconButton,
   Toolbar,
   Box,
+  Divider,
 } from '@mui/material'
 import {
   Dashboard as DashboardIcon,
-  Assignment as AssignmentIcon,
-  Analytics as AnalyticsIcon,
+  FormatListBulleted as TestsIcon,
+  ErrorOutline as FailureClustersIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
 } from '@mui/icons-material'
 import { useRootStore } from '../../store'
+import { SidebarStats } from '../SidebarStats'
+import { SidebarFilters } from '../SidebarFilters'
 
 const DRAWER_WIDTH_EXPANDED = 240
 const DRAWER_WIDTH_COLLAPSED = 64
@@ -38,12 +41,12 @@ export const NavigationDrawer = observer(() => {
     {
       id: 'tests' as const,
       label: 'Tests',
-      icon: <AssignmentIcon />,
+      icon: <TestsIcon />,
     },
     {
       id: 'analytics' as const,
       label: 'Analytics',
-      icon: <AnalyticsIcon />,
+      icon: <FailureClustersIcon />,
     },
   ]
 
@@ -67,6 +70,8 @@ export const NavigationDrawer = observer(() => {
       }}
     >
       <Toolbar variant="dense" />
+      {!isNavigationCollapsed && <SidebarStats />}
+      {!isNavigationCollapsed && <Divider />}
       <List>
         {navItems.map(item => (
           <ListItemButton
@@ -93,6 +98,8 @@ export const NavigationDrawer = observer(() => {
           </ListItemButton>
         ))}
       </List>
+      {!isNavigationCollapsed && <Divider />}
+      {!isNavigationCollapsed && <SidebarFilters />}
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ display: 'flex', justifyContent: 'center', pb: 2 }}>
         <IconButton onClick={toggleNavigation} aria-label="toggle navigation">
