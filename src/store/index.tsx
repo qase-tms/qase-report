@@ -62,13 +62,13 @@ export class RootStore {
 
   /**
    * Coordinates loading of a complete report directory.
-   * Loads run.json, test results, and registers attachments.
+   * Loads run.json, test results, history file, and registers attachments.
    *
    * @param files - FileList from input element with webkitdirectory
    */
   loadReport = async (files: FileList): Promise<void> => {
     const fileLoader = new FileLoaderService()
-    const { runFile, resultFiles, attachmentFiles } =
+    const { runFile, historyFile, resultFiles, attachmentFiles } =
       await fileLoader.loadReportDirectory(files)
 
     if (!runFile) {
@@ -76,10 +76,29 @@ export class RootStore {
     }
 
     await this.reportStore.loadRun(runFile)
+
+    // Load history file if present
+    if (historyFile) {
+      try {
+        await this.historyStore.loadHistoryFile(historyFile)
+      } catch (error) {
+        console.error('Failed to load history file:', error)
+        // Continue loading report even if history fails
+      }
+    }
+
     await this.testResultsStore.loadResults(resultFiles)
 
     for (const file of attachmentFiles) {
       this.attachmentsStore.registerAttachment(file)
+    }
+
+    // Add current run to history after all loading completes
+    if (this.historyStore.isHistoryLoaded && this.reportStore.runData) {
+      this.historyStore.addCurrentRun(
+        this.reportStore.runData,
+        this.testResultsStore.testResults
+      )
     }
   }
 }
