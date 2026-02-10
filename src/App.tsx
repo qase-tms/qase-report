@@ -1,19 +1,23 @@
-import { AppBar, createTheme, ThemeProvider, Toolbar } from '@mui/material'
+import { AppBar, Toolbar, Box } from '@mui/material'
 import { MainLayout } from './layout/MainLayout'
+import { ThemeRegistry } from './theme/ThemeRegistry'
+import { ThemeToggle } from './components/ThemeToggle'
 
 function App() {
-  const theme = createTheme()
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeRegistry>
       <AppBar
         position="fixed"
         sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}
       >
-        <Toolbar variant={'dense'}>Qase | Report</Toolbar>
+        <Toolbar variant={'dense'}>
+          <Box sx={{ flexGrow: 1 }}>Qase | Report</Box>
+          <ThemeToggle />
+        </Toolbar>
       </AppBar>
       <Toolbar variant={'dense'} />
       <MainLayout />
-    </ThemeProvider>
+    </ThemeRegistry>
   )
 }
 

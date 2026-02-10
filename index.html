@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qase Report</title>
+    <script>
+      (function() {
+        var key = 'mui-mode'
+        var savedMode = localStorage.getItem(key)
+        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var mode = savedMode || 'system'
+        if (mode === 'system') {
+          mode = systemDark ? 'dark' : 'light'
+        }
+        document.documentElement.setAttribute('data-mui-color-scheme', mode)
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
