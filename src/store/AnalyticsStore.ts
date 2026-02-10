@@ -7,6 +7,7 @@ import {
   type StabilityStatus,
   MIN_RUNS,
 } from '../types/flakiness'
+import { AlertItem, MIN_RUNS_REGRESSION } from '../types/alerts'
 
 /**
  * Data point for trend visualization.
@@ -96,6 +97,22 @@ export class AnalyticsStore {
   }
 
   /**
+   * Calculates mean and standard deviation for an array of numbers
+   * @private
+   */
+  private calculateStats(values: number[]): { mean: number; stdDev: number } {
+    const n = values.length
+    if (n === 0) return { mean: 0, stdDev: 0 }
+
+    const mean = values.reduce((sum, v) => sum + v, 0) / n
+    const squaredDiffs = values.map(v => (v - mean) ** 2)
+    const variance = squaredDiffs.reduce((sum, v) => sum + v, 0) / n
+    const stdDev = Math.sqrt(variance)
+
+    return { mean, stdDev }
+  }
+
+  /**
    * Maps a HistoricalRun to a TrendDataPoint.
    * Calculates pass rate percentage and formats date for chart display.
    *
@@ -124,6 +141,53 @@ export class AnalyticsStore {
       total,
       passRate,
       duration: run.duration,
+    }
+  }
+
+  /**
+   * Detects performance regression for a test using 2-sigma outlier detection.
+   * A regression is detected when the most recent duration exceeds mean + 2*stdDev.
+   *
+   * @param signature - Test signature to analyze
+   * @returns Object with isRegression flag and stats, or null if insufficient data
+   */
+  getPerformanceRegression(signature: string): {
+    isRegression: boolean
+    currentDuration: number
+    meanDuration: number
+    stdDev: number
+    threshold: number
+  } | null {
+    const runs = this.root.historyStore.getTestHistory(signature)
+
+    // Require minimum runs for statistical validity
+    if (runs.length < MIN_RUNS_REGRESSION) {
+      return null
+    }
+
+    // Sort chronologically, get durations
+    const sortedRuns = [...runs].sort((a, b) => a.start_time - b.start_time)
+    const durations = sortedRuns.map(r => r.duration)
+
+    // Calculate stats from all BUT the most recent run (to compare against)
+    const historicalDurations = durations.slice(0, -1)
+    const { mean, stdDev } = this.calculateStats(historicalDurations)
+
+    // Current (most recent) duration
+    const currentDuration = durations[durations.length - 1]
+
+    // 2-sigma threshold
+    const threshold = mean + 2 * stdDev
+
+    // Detect regression
+    const isRegression = currentDuration > threshold && stdDev > 0
+
+    return {
+      isRegression,
+      currentDuration,
+      meanDuration: Math.round(mean),
+      stdDev: Math.round(stdDev),
+      threshold: Math.round(threshold),
     }
   }
 
