@@ -244,6 +244,62 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns failed tests grouped by normalized error message similarity.
+   * Only returns clusters with 2+ tests (single failures are not clusters).
+   * Clusters are sorted by test count descending.
+   *
+   * Error extraction priority:
+   * 1. test.message (user-friendly error)
+   * 2. First line of execution.stacktrace (fallback)
+   * 3. '__no_error__' (tests without error info)
+   *
+   * Computed property automatically updates when test results change.
+   */
+  get failureClusters(): FailureCluster[] {
+    const failedTests = this.root.testResultsStore.resultsList
+      .filter(test => test.execution.status === 'failed')
+
+    if (failedTests.length === 0) return []
+
+    const clusters = new Map<string, QaseTestResult[]>()
+
+    for (const test of failedTests) {
+      // Extract error: prefer message, fallback to first stacktrace line
+      const errorSource = test.message
+        ?? test.execution.stacktrace?.split('\n')[0]
+        ?? null
+
+      const errorKey = this.normalizeErrorMessage(errorSource)
+
+      if (!clusters.has(errorKey)) {
+        clusters.set(errorKey, [])
+      }
+      clusters.get(errorKey)!.push(test)
+    }
+
+    // Convert to array, filter single-test "clusters", sort by count desc
+    return Array.from(clusters.entries())
+      .filter(([_, tests]) => tests.length >= 2)
+      .map(([errorPattern, tests]) => ({ errorPattern, tests }))
+      .sort((a, b) => b.tests.length - a.tests.length)
+  }
+
+  /**
+   * Returns count of failure clusters.
+   * Useful for sidebar/dashboard badges.
+   */
+  get failureClusterCount(): number {
+    return this.failureClusters.length
+  }
+
+  /**
+   * Indicates whether any failure clusters exist.
+   */
+  get hasFailureClusters(): boolean {
+    return this.failureClusters.length > 0
+  }
+
+  /**
    * Calculates mean and standard deviation for an array of numbers
    * @private
    */
