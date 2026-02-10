@@ -1,10 +1,12 @@
-import { Box, List, Typography, Paper } from '@mui/material'
+import { useRef } from 'react'
+import { Box, Typography, Paper } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import { useSuiteExpandState } from '../../hooks/useSuiteExpandState'
+import { useScrollPosition } from '../../hooks/useScrollPosition'
 import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
-import { SuiteGroup } from './SuiteGroup'
+import { VirtualizedTestList } from './VirtualizedTestList'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
 // Group tests by top-level suite
@@ -27,6 +29,9 @@ export const TestList = observer(() => {
   const { testResultsStore, selectTest } = useRootStore()
   const { filteredResults, resultsList, activeFilterCount } = testResultsStore
   const { expandedSuites, toggleSuite } = useSuiteExpandState()
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useScrollPosition('test-list', containerRef)
 
   // Early return if no tests loaded
   if (resultsList.length === 0) {
@@ -64,19 +69,19 @@ export const TestList = observer(() => {
         </Typography>
       )}
 
-      {/* Grouped test list */}
-      <List sx={{ maxHeight: 'calc(100vh - 400px)', overflow: 'auto' }}>
-        {Array.from(grouped.entries()).map(([suite, tests]) => (
-          <SuiteGroup
-            key={suite}
-            suiteTitle={suite}
-            tests={tests}
-            onSelectTest={selectTest}
-            isExpanded={expandedSuites.has(suite)}
-            onToggle={() => toggleSuite(suite)}
-          />
-        ))}
-      </List>
+      {/* Virtualized test list */}
+      <Box
+        ref={containerRef}
+        sx={{ height: 'calc(100vh - 400px)', minHeight: 300 }}
+      >
+        <VirtualizedTestList
+          grouped={grouped}
+          expandedSuites={expandedSuites}
+          toggleSuite={toggleSuite}
+          onSelectTest={selectTest}
+          height={containerRef.current?.offsetHeight || 400}
+        />
+      </Box>
     </Paper>
   )
 })
