@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 ## Current Position
 
-Phase: 20 of 24 (Sidebar Overhaul)
+Phase: 21 of 24 (Overview Dashboard)
 Plan: 1 of 1 complete
 Status: Phase complete
-Last activity: 2026-02-10 — Completed Phase 20-01
+Last activity: 2026-02-10 — Completed Phase 21-01
 
 Progress: v1.0 + v1.1 + v1.2 complete (17 phases, 32 plans shipped)
-v1.3: [####------] 42% (Phases 18-20 complete, 21-24 pending)
+v1.3: [#####-----] 50% (Phases 18-21 complete, 22-24 pending)
 
 ## Performance Metrics
 
@@ -35,6 +35,7 @@ v1.3: [####------] 42% (Phases 18-20 complete, 21-24 pending)
 | 18 | 01 | ~15 min | 2 | 3 | 2026-02-10 |
 | 19 | 01 | ~2 min | 3 | 5 | 2026-02-10 |
 | 20 | 01 | ~3 min | 3 | 3 | 2026-02-10 |
+| 21 | 01 | ~3 min | 3 | 5 | 2026-02-10 |
 
 ## Accumulated Context
 
@@ -63,6 +64,9 @@ Key decisions preserved for future reference:
 - **Suite hierarchy display** — breadcrumb format for full test path
 - [Phase 20-01]: Stats and filters hidden when sidebar collapsed for clean UI
 - [Phase 20-01]: Pass rate ring uses 80px size (compact sidebar design)
+- [Phase 21-01]: Suite health shows worst-performing suites first for attention
+- [Phase 21-01]: Attention Required always renders with internal empty state handling
+- [Phase 21-01]: Quick Insights combines failures and performance in single card
 
 ### Pending Todos
 
@@ -80,6 +84,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed Phase 20-01 (Sidebar stats & filters with pass rate ring)
+Stopped at: Completed Phase 21-01 (Overview Dashboard with suite health, attention required, and quick insights cards)
 Resume file: None
-Next action: `/gsd:plan-phase 21` to start Phase 21 planning
+Next action: `/gsd:plan-phase 22` to start Phase 22 planning (Failure Clusters)
