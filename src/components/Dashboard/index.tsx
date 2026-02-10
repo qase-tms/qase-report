@@ -13,6 +13,9 @@ import { AlertsPanel } from './AlertsPanel'
 import { TestHealthWidget } from './TestHealthWidget'
 import { SparklineCard } from './SparklineCard'
 import { ProgressRingCard } from './ProgressRingCard'
+import { SuiteHealthCard } from './SuiteHealthCard'
+import { AttentionRequiredCard } from './AttentionRequiredCard'
+import { QuickInsightsCard } from './QuickInsightsCard'
 
 export const Dashboard = observer(() => {
   const { reportStore, analyticsStore, historyStore, testResultsStore } = useRootStore()
@@ -37,6 +40,11 @@ export const Dashboard = observer(() => {
         return
       }
     }
+  }
+
+  // Handle test click - select test by ID directly
+  const handleTestClick = (testId: string) => {
+    reportStore.root.selectTest(testId)
   }
 
   return (
@@ -112,6 +120,23 @@ export const Dashboard = observer(() => {
           rowSpan={1}
         />
       )}
+
+      {/* Suite Health - 2x2 for proper list display */}
+      {reportStore.suitePassRates.length > 0 && (
+        <DashboardCard colSpan={2} rowSpan={2}>
+          <SuiteHealthCard />
+        </DashboardCard>
+      )}
+
+      {/* Attention Required - 3x1 wide list */}
+      <DashboardCard colSpan={3}>
+        <AttentionRequiredCard onTestClick={handleTestClick} />
+      </DashboardCard>
+
+      {/* Quick Insights - 2x2 for two sections */}
+      <DashboardCard colSpan={2} rowSpan={2}>
+        <QuickInsightsCard onTestClick={handleTestClick} />
+      </DashboardCard>
 
       {/* Alerts panel - 3x1 wide alert list */}
       {analyticsStore.hasAlerts && (
