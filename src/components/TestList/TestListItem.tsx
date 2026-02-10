@@ -50,7 +50,18 @@ export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => 
 
   return (
     <ListItem disablePadding>
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton
+        onClick={handleClick}
+        sx={{
+          transition: (theme) =>
+            theme.transitions.create(['transform', 'background-color'], {
+              duration: theme.transitions.duration.shorter,
+            }),
+          '&:hover': {
+            transform: 'translateX(4px)',
+          },
+        }}
+      >
         <ListItemIcon sx={{ minWidth: 36 }}>
           {getStatusIcon(test.execution.status)}
         </ListItemIcon>
