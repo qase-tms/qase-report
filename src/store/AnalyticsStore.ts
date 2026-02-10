@@ -14,6 +14,7 @@ import {
   MIN_RUNS_STABILITY,
   GRADE_THRESHOLDS,
 } from '../types/stability'
+import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 
 /**
  * Data point for trend visualization.
@@ -30,6 +31,16 @@ export interface TrendDataPoint {
   total: number
   passRate: number // percentage 0-100
   duration: number // milliseconds
+}
+
+/**
+ * Represents a cluster of failed tests sharing similar error messages.
+ */
+export interface FailureCluster {
+  /** Normalized error pattern (first 100 chars, lowercased, whitespace-normalized) */
+  errorPattern: string
+  /** Tests in this cluster */
+  tests: QaseTestResult[]
 }
 
 /**
@@ -287,6 +298,24 @@ export class AnalyticsStore {
     if (score >= GRADE_THRESHOLDS['C']) return 'C'
     if (score >= GRADE_THRESHOLDS['D']) return 'D'
     return 'F'
+  }
+
+  /**
+   * Normalizes an error message for clustering comparison.
+   * Takes first 100 chars, normalizes whitespace and case.
+   *
+   * @param message - Raw error message or null
+   * @returns Normalized string key for clustering
+   * @private
+   */
+  private normalizeErrorMessage(message: string | null): string {
+    if (!message) return '__no_error__'
+
+    return message
+      .slice(0, 100)
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, ' ')
   }
 
   /**
