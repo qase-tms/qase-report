@@ -10,6 +10,8 @@ import { TrendsChart } from './TrendsChart'
 import { HistoryTimeline } from './HistoryTimeline'
 import { AlertsPanel } from './AlertsPanel'
 import { TestHealthWidget } from './TestHealthWidget'
+import { SparklineCard } from './SparklineCard'
+import { ProgressRingCard } from './ProgressRingCard'
 
 export const Dashboard = observer(() => {
   const { reportStore, analyticsStore, historyStore, testResultsStore } = useRootStore()
@@ -67,6 +69,25 @@ export const Dashboard = observer(() => {
         />
       </DashboardCard>
 
+      {/* Progress ring for pass rate visualization */}
+      <ProgressRingCard
+        title="Pass Rate"
+        value={reportStore.passRate}
+        colSpan={1}
+        rowSpan={1}
+      />
+
+      {/* Pass rate trend sparkline - only when trend data available */}
+      {analyticsStore.hasTrendData && (
+        <SparklineCard
+          title="Pass Rate Trend"
+          data={analyticsStore.passRateTrend.map(d => ({ value: d.passRate, label: d.date }))}
+          currentValue={`${reportStore.passRate.toFixed(0)}%`}
+          colSpan={2}
+          rowSpan={1}
+        />
+      )}
+
       {/* Metadata cards - 2x1 horizontal layout */}
       <DashboardCard colSpan={2}>
         <RunInfoCard />
@@ -74,6 +95,16 @@ export const Dashboard = observer(() => {
       <DashboardCard colSpan={2}>
         <HostInfoCard />
       </DashboardCard>
+
+      {/* Duration trend sparkline - only when trend data available */}
+      {analyticsStore.hasTrendData && (
+        <SparklineCard
+          title="Duration Trend"
+          data={analyticsStore.durationTrend.map(d => ({ value: d.duration / 1000, label: d.date }))}
+          colSpan={2}
+          rowSpan={1}
+        />
+      )}
 
       {/* Alerts panel - 3x1 wide alert list */}
       {analyticsStore.hasAlerts && (
