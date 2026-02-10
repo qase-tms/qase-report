@@ -17,6 +17,14 @@ export const DashboardCard = ({
       sx={{
         gridColumn: 'span 1',
         gridRow: 'span 1',
+        transition: (theme) =>
+          theme.transitions.create(['transform', 'box-shadow'], {
+            duration: theme.transitions.duration.shorter,
+          }),
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          boxShadow: 3,
+        },
         '@media (min-width: 900px)': {
           gridColumn: `span ${Math.min(colSpan, 4)}`,
           gridRow: `span ${rowSpan}`,

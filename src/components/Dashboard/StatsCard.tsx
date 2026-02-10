@@ -21,7 +21,19 @@ export const StatsCard = ({ status, count, percentage }: StatsCardProps) => {
   }
 
   return (
-    <Card elevation={2}>
+    <Card
+      elevation={2}
+      sx={{
+        transition: (theme) =>
+          theme.transitions.create(['transform', 'box-shadow'], {
+            duration: theme.transitions.duration.shorter,
+          }),
+        '&:hover': {
+          transform: 'translateY(-2px)',
+          boxShadow: 4,
+        },
+      }}
+    >
       <CardContent>
         <Typography variant="overline" color="text.secondary" gutterBottom>
           {status.charAt(0).toUpperCase() + status.slice(1)}
