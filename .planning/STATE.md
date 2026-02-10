@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 ## Current Position
 
-Phase: 11 of 12 (Regression Alerts)
-Plan: 2 of 2 complete
-Status: Phase 11 complete - regression alerts with dashboard UI
-Last activity: 2026-02-10 — Phase 11 Plan 02 executed (AlertsPanel with navigation)
+Phase: 12 of 12 (Stability Scoring)
+Plan: 1 of 3 complete
+Status: Phase 12 in progress - stability scoring algorithm implemented
+Last activity: 2026-02-10 — Phase 12 Plan 01 executed (stability scoring types and AnalyticsStore methods)
 
-Progress: [███████████░░░░░] 92% (11 of 12 phases complete)
+Progress: [████████████░░░░] 92% (11 of 12 phases complete)
 
 ## Performance Metrics
 
@@ -44,6 +44,7 @@ Progress: [███████████░░░░░] 92% (11 of 12 phase
 | 10 | 02 | ~3m | 3 | 2 |
 | 11 | 01 | 1m 51s | 3 | 2 |
 | 11 | 02 | ~4m | 3 | 2 |
+| 12 | 01 | 3m 25s | 3 | 2 |
 
 ## Accumulated Context
 
@@ -78,6 +79,10 @@ See PROJECT.md Key Decisions table for full history.
 - [Phase 11-02]: AlertsPanel navigation callback pattern - onAlertClick(testSignature) for loose coupling
 - [Phase 11-02]: 10-alert display limit with overflow indicator for clean dashboard UI
 - [Phase 11-02]: Type-specific UI mapping (getAlertIcon/getAlertBadge) for extensible alert rendering
+- [Phase 12-01]: MIN_RUNS_STABILITY=10 (vs flakiness MIN_RUNS=5) for multi-factor statistical validity
+- [Phase 12-01]: Weighted formula: passRate*0.5 + (100-flakiness)*0.3 + (100-CV)*0.2 balances correctness and reliability
+- [Phase 12-01]: CV capped at 100% prevents extreme variance from infinitely penalizing score
+- [Phase 12-01]: Grade thresholds: A+=95, A=90, B=80, C=70, D=60, F=<60 for standard academic scale
 
 ### Pending Todos
 
@@ -93,6 +98,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed 11-02-PLAN.md (AlertsPanel UI with navigation)
+Stopped at: Completed 12-01-PLAN.md (stability scoring algorithm)
 Resume file: None
-Next action: Run `/gsd:plan-phase 12` to plan Stability Scoring phase
+Next action: Execute 12-02-PLAN.md (Stability UI) or 12-03-PLAN.md (Grade Badges)
