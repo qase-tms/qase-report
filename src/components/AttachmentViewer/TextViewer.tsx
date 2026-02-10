@@ -10,6 +10,7 @@ import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { DownloadButton } from './DownloadButton'
 import { detectLanguage } from '../../utils/detectLanguage'
+import { useRootStore } from '../../store'
 
 interface TextViewerProps {
   attachment: Attachment
@@ -22,6 +23,7 @@ interface TextViewerProps {
  * Uses prism-react-renderer for lightweight React-optimized highlighting.
  */
 export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
+  const { attachmentsStore } = useRootStore()
   const [content, setContent] = useState<string>('')
 
   useEffect(() => {
@@ -37,25 +39,21 @@ export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
       return
     }
 
-    // If file_path exists, try to fetch it
-    if (attachment.file_path) {
-      fetch(attachment.file_path)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`)
-          }
-          return response.text()
-        })
+    // Try to get blob URL from store (created when loading report)
+    const blobUrl = attachmentsStore.getAttachmentUrl(attachment.id)
+    if (blobUrl) {
+      fetch(blobUrl)
+        .then((response) => response.text())
         .then((text) => setContent(text))
         .catch((error) => {
-          console.error('Failed to fetch attachment:', error)
+          console.error('Failed to fetch from blob URL:', error)
           setContent(`Error: Could not load file (${error.message})`)
         })
       return
     }
 
     setContent('No content available')
-  }, [attachment])
+  }, [attachment, attachmentsStore])
 
   const language = detectLanguage(attachment.file_name)
 

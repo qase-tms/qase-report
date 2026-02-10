@@ -18,13 +18,16 @@ interface TestStepAttachmentProps {
 }
 
 export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
-  const { attachmentViewerStore } = useRootStore()
+  const { attachmentViewerStore, attachmentsStore } = useRootStore()
   const isImage = attachment.mime_type?.startsWith('image/')
   const isText = attachment.mime_type?.startsWith('text/')
   const [imageError, setImageError] = useState(false)
   const [textContent, setTextContent] = useState<string | null>(null)
 
   const isViewable = isImage || isText
+
+  // Get blob URL from store (created when loading report)
+  const blobUrl = attachmentsStore.getAttachmentUrl(attachment.id)
 
   // Decode text content for preview
   useEffect(() => {
@@ -51,20 +54,17 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
       return
     }
 
-    // If file_path exists, try to fetch it
-    if (attachment.file_path) {
-      fetch(attachment.file_path)
-        .then((response) => {
-          if (!response.ok) throw new Error()
-          return response.text()
-        })
+    // Try to fetch from blob URL (created when loading report)
+    if (blobUrl) {
+      fetch(blobUrl)
+        .then((response) => response.text())
         .then((text) => setTextContent(processText(text)))
         .catch(() => setTextContent(null))
       return
     }
 
     setTextContent(null)
-  }, [attachment, isText])
+  }, [attachment, isText, blobUrl])
 
   return (
     <Box sx={{ ml: 4, mt: 0.5 }}>
@@ -110,14 +110,14 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
         </Box>
       )}
 
-      {/* Inline image preview for external file path - clickable to open viewer */}
-      {isImage && attachment.file_path && !attachment.content && !imageError && (
+      {/* Inline image preview for blob URL - clickable to open viewer */}
+      {isImage && blobUrl && !attachment.content && !imageError && (
         <Box
           sx={{ mt: 1, maxWidth: 300, cursor: 'pointer' }}
           onClick={() => attachmentViewerStore.openViewer(attachment)}
         >
           <img
-            src={attachment.file_path}
+            src={blobUrl}
             alt={attachment.file_name}
             style={{
               maxWidth: '100%',
