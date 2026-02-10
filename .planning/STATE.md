@@ -10,12 +10,12 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 ## Current Position
 
 Phase: 17 of 17 (Progressive Disclosure & Performance)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-02-10 — Completed Phase 16 (Microinteractions)
+Plan: 1 of 2 complete
+Status: In progress
+Last activity: 2026-02-10 — Completed 17-01 (Default-collapsed suites)
 
 Progress: v1.0 + v1.1 complete (12 phases, 23 plans shipped)
-v1.2: [########..] 80% (4/5 phases - Phase 13-16 complete; Phase 17 not started)
+v1.2: [#########.] 90% (Phase 13-16 complete; Phase 17: 1/2 plans complete)
 
 ## Performance Metrics
 
@@ -31,6 +31,7 @@ v1.2: [########..] 80% (4/5 phases - Phase 13-16 complete; Phase 17 not started)
 | Phase 15 P02 | 1 | 3 tasks | 3 files |
 | Phase 16 P01 | 94 | 2 tasks | 2 files |
 | Phase 16 P02 | - | 4 tasks | 4 files |
+| Phase 17 P01 | 189 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -58,6 +59,9 @@ Key decisions preserved for future reference:
 - [Phase 16-01]: 200ms fade timeout for responsive dashboard load feedback
 - [Phase 16-01]: usePrefersReducedMotion hook with SSR-safe default (true) for WCAG compliance
 - [Phase 16-02]: Box wrapper for BentoGrid inside Fade (ref forwarding requirement)
+- [Phase 17-01]: Set<string> over Record for suite expand state (memory efficiency + O(1) checks)
+- [Phase 17-01]: sessionStorage over localStorage for session-scoped expand preference
+- [Phase 17-01]: Empty Set default = all suites collapsed (progressive disclosure first)
 
 ### Pending Todos
 
@@ -75,6 +79,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed Phase 16 (Microinteractions)
+Stopped at: Completed 17-01-PLAN.md (Default-collapsed suites with persistent expand state)
 Resume file: None
-Next action: Plan Phase 17 (Progressive Disclosure & Performance) with /gsd:plan-phase 17
+Next action: Execute 17-02-PLAN.md (Virtual scrolling with react-window)
