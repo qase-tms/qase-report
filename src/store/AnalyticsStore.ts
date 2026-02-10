@@ -15,6 +15,8 @@ import {
   GRADE_THRESHOLDS,
 } from '../types/stability'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
+import type { GalleryAttachment } from '../types/gallery'
+import type { Step } from '../schemas/Step.schema'
 
 /**
  * Data point for trend visualization.
@@ -300,6 +302,59 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns all attachments from all tests with test metadata for Gallery view.
+   * Collects attachments from both test-level and step-level (recursively) sources.
+   *
+   * Each attachment includes:
+   * - Original attachment data
+   * - Test ID, title, and status for navigation/display
+   * - Source location (test or step)
+   * - Step ID if from step
+   *
+   * Computed property automatically updates when test results change.
+   */
+  get galleryAttachments(): GalleryAttachment[] {
+    const results: GalleryAttachment[] = []
+
+    for (const test of this.root.testResultsStore.resultsList) {
+      const testId = test.id
+      const testTitle = test.title
+      const testStatus = test.execution.status
+
+      // Collect test-level attachments
+      for (const attachment of test.attachments) {
+        results.push({
+          attachment,
+          testId,
+          testTitle,
+          testStatus,
+          source: 'test',
+        })
+      }
+
+      // Collect step-level attachments (recursive)
+      this.collectStepAttachments(test.steps, testId, testTitle, testStatus, results)
+    }
+
+    return results
+  }
+
+  /**
+   * Returns total count of gallery attachments.
+   * Useful for sidebar/dashboard badges.
+   */
+  get galleryAttachmentCount(): number {
+    return this.galleryAttachments.length
+  }
+
+  /**
+   * Indicates whether any gallery attachments exist.
+   */
+  get hasGalleryAttachments(): boolean {
+    return this.galleryAttachments.length > 0
+  }
+
+  /**
    * Calculates mean and standard deviation for an array of numbers
    * @private
    */
@@ -372,6 +427,44 @@ export class AnalyticsStore {
       .toLowerCase()
       .trim()
       .replace(/\s+/g, ' ')
+  }
+
+  /**
+   * Recursively collects attachments from step hierarchy.
+   * Steps can contain nested steps, so this method traverses the tree.
+   *
+   * @param steps - Array of steps to process
+   * @param testId - Test ID for navigation
+   * @param testTitle - Test title for display
+   * @param testStatus - Test execution status
+   * @param collector - Array to push collected attachments into
+   * @private
+   */
+  private collectStepAttachments(
+    steps: Step[],
+    testId: string,
+    testTitle: string,
+    testStatus: 'passed' | 'failed' | 'skipped' | 'broken',
+    collector: GalleryAttachment[]
+  ): void {
+    for (const step of steps) {
+      // Collect attachments from this step
+      for (const attachment of step.execution.attachments) {
+        collector.push({
+          attachment,
+          testId,
+          testTitle,
+          testStatus,
+          source: 'step',
+          stepId: step.id,
+        })
+      }
+
+      // Recursively collect from nested steps
+      if (step.steps && step.steps.length > 0) {
+        this.collectStepAttachments(step.steps, testId, testTitle, testStatus, collector)
+      }
+    }
   }
 
   /**
