@@ -113,7 +113,9 @@ export const VirtualizedTestList = observer(({
   }, [expandedSuites])
 
   const getItemSize = (index: number) => {
-    return flatItems[index].type === 'suite-header' ? 48 : 72
+    // Suite headers with primary + secondary text need 72px
+    // Test items also need 72px for consistent layout
+    return 72
   }
 
   const itemData: RowData = {
