@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 ## Current Position
 
-Phase: 19 of 24 (Top Bar Redesign)
+Phase: 20 of 24 (Sidebar Overhaul)
 Plan: 1 of 1 complete
 Status: Phase complete
-Last activity: 2026-02-10 — Completed Phase 19-01
+Last activity: 2026-02-10 — Completed Phase 20-01
 
 Progress: v1.0 + v1.1 + v1.2 complete (17 phases, 32 plans shipped)
-v1.3: [###-------] 28% (Phases 18-19 complete, 20-24 pending)
+v1.3: [####------] 42% (Phases 18-20 complete, 21-24 pending)
 
 ## Performance Metrics
 
@@ -34,6 +34,7 @@ v1.3: [###-------] 28% (Phases 18-19 complete, 20-24 pending)
 |-------|------|----------|-------|-------|------|
 | 18 | 01 | ~15 min | 2 | 3 | 2026-02-10 |
 | 19 | 01 | ~2 min | 3 | 5 | 2026-02-10 |
+| 20 | 01 | ~3 min | 3 | 3 | 2026-02-10 |
 
 ## Accumulated Context
 
@@ -60,6 +61,8 @@ Key decisions preserved for future reference:
 - **Search result limit (10 items)** — performance optimization for large test suites
 - **Export format (run + results)** — complete snapshot for import/sharing
 - **Suite hierarchy display** — breadcrumb format for full test path
+- [Phase 20-01]: Stats and filters hidden when sidebar collapsed for clean UI
+- [Phase 20-01]: Pass rate ring uses 80px size (compact sidebar design)
 
 ### Pending Todos
 
@@ -77,6 +80,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Completed Phase 19-01 (Top bar redesign with search, export, date display)
+Stopped at: Completed Phase 20-01 (Sidebar stats & filters with pass rate ring)
 Resume file: None
-Next action: `/gsd:plan-phase 20` to start Phase 20 (Test list improvements) planning
+Next action: `/gsd:plan-phase 21` to start Phase 21 planning

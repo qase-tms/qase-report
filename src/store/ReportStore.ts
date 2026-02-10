@@ -128,4 +128,34 @@ export class ReportStore {
     }
     return `${seconds}s`
   }
+
+  /**
+   * Returns pass rates per suite, computed from test results.
+   * Groups tests by suite relation, calculates passed/total ratio.
+   */
+  get suitePassRates(): Array<{ suite: string; passRate: number; total: number; passed: number }> {
+    if (!this.runData) return []
+
+    const suiteGroups = new Map<string, { passed: number; total: number }>()
+
+    for (const test of this.root.testResultsStore.resultsList) {
+      const suites = test.relations?.suite?.data || []
+
+      for (const suite of suites) {
+        const existing = suiteGroups.get(suite.title) || { passed: 0, total: 0 }
+        existing.total++
+        if (test.execution.status === 'passed') existing.passed++
+        suiteGroups.set(suite.title, existing)
+      }
+    }
+
+    return Array.from(suiteGroups.entries())
+      .map(([suite, stats]) => ({
+        suite,
+        passRate: stats.total > 0 ? (stats.passed / stats.total) * 100 : 0,
+        total: stats.total,
+        passed: stats.passed,
+      }))
+      .sort((a, b) => a.passRate - b.passRate) // Worst first for attention
+  }
 }
