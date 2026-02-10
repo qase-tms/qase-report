@@ -22,7 +22,7 @@ export class RootStore {
 
   // Navigation state
   isNavigationCollapsed = false
-  activeView: 'dashboard' | 'tests' | 'analytics' = 'dashboard'
+  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' = 'dashboard'
 
   constructor() {
     this.reportStore = new ReportStore(this)
@@ -63,9 +63,9 @@ export class RootStore {
   }
 
   /**
-   * Sets the active view (dashboard, tests, or analytics).
+   * Sets the active view (dashboard, tests, analytics, or failure-clusters).
    */
-  setActiveView = (view: 'dashboard' | 'tests' | 'analytics') => {
+  setActiveView = (view: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters') => {
     this.activeView = view
   }
 

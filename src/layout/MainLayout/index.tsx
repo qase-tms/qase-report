@@ -7,6 +7,7 @@ import { Dashboard } from '../../components/Dashboard'
 import { TestList } from '../../components/TestList'
 import { TestDetails } from '../../components/TestDetails'
 import { AttachmentViewer } from '../../components/AttachmentViewer'
+import { FailureClusters } from '../../components/FailureClusters'
 
 export const MainLayout = observer(() => {
   const { isDockOpen, closeDock, reportStore, activeView } = useRootStore()
@@ -42,6 +43,10 @@ export const MainLayout = observer(() => {
           No report loaded
         </Box>
       )
+    }
+
+    if (activeView === 'failure-clusters') {
+      return <FailureClusters />
     }
 
     if (activeView === 'analytics') {

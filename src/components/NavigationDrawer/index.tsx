@@ -16,6 +16,7 @@ import {
   ErrorOutline as FailureClustersIcon,
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
+  BubbleChart as AnalyticsIcon,
 } from '@mui/icons-material'
 import { useRootStore } from '../../store'
 import { SidebarStats } from '../SidebarStats'
@@ -44,9 +45,14 @@ export const NavigationDrawer = observer(() => {
       icon: <TestsIcon />,
     },
     {
+      id: 'failure-clusters' as const,
+      label: 'Failure Clusters',
+      icon: <FailureClustersIcon />,
+    },
+    {
       id: 'analytics' as const,
       label: 'Analytics',
-      icon: <FailureClustersIcon />,
+      icon: <AnalyticsIcon />,
     },
   ]
 
