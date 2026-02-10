@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
-import { Typography } from '@mui/material'
+import { Typography, Fade } from '@mui/material'
 import { useRootStore } from '../../store'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { BentoGrid } from './BentoGrid'
 import { DashboardCard } from './DashboardCard'
 import { StatsCard } from './StatsCard'
@@ -15,6 +16,7 @@ import { ProgressRingCard } from './ProgressRingCard'
 
 export const Dashboard = observer(() => {
   const { reportStore, analyticsStore, historyStore, testResultsStore } = useRootStore()
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   if (!reportStore.runData) {
     return (
@@ -38,8 +40,12 @@ export const Dashboard = observer(() => {
   }
 
   return (
-    <BentoGrid>
-      {/* Statistics cards - 1x1 compact counters */}
+    <Fade
+      in={!!reportStore.runData}
+      timeout={prefersReducedMotion ? 0 : 200}
+    >
+      <BentoGrid>
+        {/* Statistics cards - 1x1 compact counters */}
       <DashboardCard>
         <StatsCard
           status="passed"
@@ -133,6 +139,7 @@ export const Dashboard = observer(() => {
           <HistoryTimeline />
         </DashboardCard>
       )}
-    </BentoGrid>
+      </BentoGrid>
+    </Fade>
   )
 })
