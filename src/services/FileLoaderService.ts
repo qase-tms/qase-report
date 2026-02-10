@@ -17,6 +17,7 @@ export class FileLoaderService {
    */
   async loadReportDirectory(files: FileList): Promise<{
     runFile: File | null
+    historyFile: File | null
     resultFiles: File[]
     attachmentFiles: File[]
   }> {
@@ -25,6 +26,11 @@ export class FileLoaderService {
     // Filter files by their relative path structure
     const runFile =
       fileArray.find((f) => f.webkitRelativePath.endsWith('run.json')) || null
+
+    const historyFile =
+      fileArray.find((f) =>
+        f.webkitRelativePath.endsWith('test-history.json')
+      ) || null
 
     const resultFiles = fileArray.filter(
       (f) =>
@@ -37,6 +43,7 @@ export class FileLoaderService {
 
     return {
       runFile,
+      historyFile,
       resultFiles,
       attachmentFiles,
     }
