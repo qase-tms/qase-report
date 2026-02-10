@@ -1,6 +1,7 @@
 import { Box, List, Typography, Paper } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
+import { useSuiteExpandState } from '../../hooks/useSuiteExpandState'
 import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
 import { SuiteGroup } from './SuiteGroup'
@@ -25,6 +26,7 @@ const groupBySuite = (tests: QaseTestResult[]) => {
 export const TestList = observer(() => {
   const { testResultsStore, selectTest } = useRootStore()
   const { filteredResults, resultsList, activeFilterCount } = testResultsStore
+  const { expandedSuites, toggleSuite } = useSuiteExpandState()
 
   // Early return if no tests loaded
   if (resultsList.length === 0) {
@@ -70,6 +72,8 @@ export const TestList = observer(() => {
             suiteTitle={suite}
             tests={tests}
             onSelectTest={selectTest}
+            isExpanded={expandedSuites.has(suite)}
+            onToggle={() => toggleSuite(suite)}
           />
         ))}
       </List>
