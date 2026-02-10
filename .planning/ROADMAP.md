@@ -100,9 +100,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 09-01-PLAN.md — AnalyticsStore with computed trend data
-- [ ] 09-02-PLAN.md — TrendsChart with pass rate and duration charts
-- [ ] 09-03-PLAN.md — HistoryTimeline and Dashboard integration
+- [x] 09-01-PLAN.md — AnalyticsStore with computed trend data
+- [x] 09-02-PLAN.md — TrendsChart with pass rate and duration charts
+- [x] 09-03-PLAN.md — HistoryTimeline and Dashboard integration
 
 #### Phase 10: Flakiness Detection
 **Goal**: Users can identify flaky tests with multi-factor analysis
@@ -114,12 +114,11 @@ Plans:
   3. User sees flakiness percentage showing "flaky in X of Y runs"
   4. Flakiness detection requires minimum 5-run window to avoid false positives
   5. Detection algorithm considers error message patterns, not just status changes
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 10-01: TBD
-- [ ] 10-02: TBD
-- [ ] 10-03: TBD
+- [ ] 10-01-PLAN.md — Flakiness detection algorithm in AnalyticsStore
+- [ ] 10-02-PLAN.md — StabilityBadge component and TestListItem integration
 
 #### Phase 11: Regression Alerts
 **Goal**: Users receive alerts for performance regressions and test failures
@@ -168,7 +167,7 @@ Phases execute in numeric order: 8 -> 9 -> 10 -> 11 -> 12
 | 6. Step Timeline & Attachments | v1.0 | 2/2 | Complete | 2026-02-10 |
 | 7. Static HTML Export | v1.0 | 1/1 | Complete | 2026-02-10 |
 | 8. History Infrastructure | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 9. Trend Visualization | v1.1 | 0/3 | Planned | - |
-| 10. Flakiness Detection | v1.1 | 0/TBD | Not started | - |
+| 9. Trend Visualization | v1.1 | 3/3 | Complete | 2026-02-10 |
+| 10. Flakiness Detection | v1.1 | 0/2 | Planned | - |
 | 11. Regression Alerts | v1.1 | 0/TBD | Not started | - |
 | 12. Stability Scoring | v1.1 | 0/TBD | Not started | - |
