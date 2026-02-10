@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { Typography, Fade } from '@mui/material'
+import { Typography, Fade, Box } from '@mui/material'
 import { useRootStore } from '../../store'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { BentoGrid } from './BentoGrid'
@@ -44,7 +44,8 @@ export const Dashboard = observer(() => {
       in={!!reportStore.runData}
       timeout={prefersReducedMotion ? 0 : 200}
     >
-      <BentoGrid>
+      <Box>
+        <BentoGrid>
         {/* Statistics cards - 1x1 compact counters */}
       <DashboardCard>
         <StatsCard
@@ -139,7 +140,8 @@ export const Dashboard = observer(() => {
           <HistoryTimeline />
         </DashboardCard>
       )}
-      </BentoGrid>
+        </BentoGrid>
+      </Box>
     </Fade>
   )
 })
