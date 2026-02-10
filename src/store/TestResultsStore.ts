@@ -5,6 +5,7 @@ import {
   type QaseTestResult,
 } from '../schemas/QaseTestResult.schema'
 import { ParserService } from '../services/ParserService'
+import type { StabilityGrade } from '../types/stability'
 
 /**
  * MobX store for managing test results collection with reactive state.
@@ -19,6 +20,7 @@ export class TestResultsStore {
   // Filtering and search state
   searchQuery = ''
   statusFilters = new Set<string>()
+  stabilityGradeFilters = new Set<StabilityGrade>()
 
   constructor(public root: RootStore) {
     makeAutoObservable(this)
@@ -111,6 +113,22 @@ export class TestResultsStore {
       )
     }
 
+    // Filter by stability grade if any grade filters are active
+    if (this.stabilityGradeFilters.size > 0) {
+      results = results.filter((test) => {
+        // Skip tests without signature (can't calculate stability)
+        if (!test.signature) {
+          return false
+        }
+
+        // Get stability score for this test
+        const stabilityResult = this.root.analyticsStore.getStabilityScore(test.signature)
+
+        // Include test if its grade matches any selected filter
+        return this.stabilityGradeFilters.has(stabilityResult.grade)
+      })
+    }
+
     return results
   }
 
@@ -118,7 +136,7 @@ export class TestResultsStore {
    * Returns count of active filters (status filters + search query).
    */
   get activeFilterCount(): number {
-    return this.statusFilters.size + (this.searchQuery.trim() ? 1 : 0)
+    return this.statusFilters.size + this.stabilityGradeFilters.size + (this.searchQuery.trim() ? 1 : 0)
   }
 
   /**
@@ -141,10 +159,23 @@ export class TestResultsStore {
   }
 
   /**
+   * Toggles a stability grade filter on/off.
+   * If grade is in the set, removes it; otherwise adds it.
+   */
+  toggleStabilityGradeFilter = (grade: StabilityGrade) => {
+    if (this.stabilityGradeFilters.has(grade)) {
+      this.stabilityGradeFilters.delete(grade)
+    } else {
+      this.stabilityGradeFilters.add(grade)
+    }
+  }
+
+  /**
    * Clears all filters (search query and status filters).
    */
   clearFilters = () => {
     this.searchQuery = ''
     this.statusFilters.clear()
+    this.stabilityGradeFilters.clear()
   }
 }
