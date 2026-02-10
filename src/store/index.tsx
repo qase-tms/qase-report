@@ -20,6 +20,10 @@ export class RootStore {
   isDockOpen = false
   selectedTestId: string | null = null
 
+  // Navigation state
+  isNavigationCollapsed = false
+  activeView: 'dashboard' | 'tests' | 'analytics' = 'dashboard'
+
   constructor() {
     this.reportStore = new ReportStore(this)
     this.testResultsStore = new TestResultsStore(this)
@@ -28,12 +32,41 @@ export class RootStore {
     this.historyStore = new HistoryStore(this)
     this.analyticsStore = new AnalyticsStore(this)
     makeAutoObservable(this)
+
+    // Load navigation collapsed state from localStorage
+    const stored = localStorage.getItem('navigationCollapsed')
+    if (stored !== null) {
+      try {
+        this.isNavigationCollapsed = JSON.parse(stored)
+      } catch (e) {
+        console.warn('Failed to parse navigation state')
+      }
+    }
   }
 
   openDock = () => (this.isDockOpen = true)
   closeDock = () => {
     console.log('Fire!')
     this.isDockOpen = false
+  }
+
+  /**
+   * Toggles the navigation drawer between expanded and collapsed states.
+   * Persists state to localStorage.
+   */
+  toggleNavigation = () => {
+    this.isNavigationCollapsed = !this.isNavigationCollapsed
+    localStorage.setItem(
+      'navigationCollapsed',
+      JSON.stringify(this.isNavigationCollapsed)
+    )
+  }
+
+  /**
+   * Sets the active view (dashboard, tests, or analytics).
+   */
+  setActiveView = (view: 'dashboard' | 'tests' | 'analytics') => {
+    this.activeView = view
   }
 
   /**
