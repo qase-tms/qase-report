@@ -5,7 +5,7 @@
 See: .planning/PROJECT.md (updated 2026-02-10)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами и вложениями.
-**Current focus:** Phase 11 - Regression Alerts (v1.1 milestone)
+**Current focus:** Phase 12 - Stability Scoring (v1.1 milestone)
 
 ## Current Position
 
@@ -95,4 +95,4 @@ None yet.
 Last session: 2026-02-10
 Stopped at: Completed 11-02-PLAN.md (AlertsPanel UI with navigation)
 Resume file: None
-Next action: Phase 11 complete - ready for Phase 12 (Stability Scoring)
+Next action: Run `/gsd:plan-phase 12` to plan Stability Scoring phase

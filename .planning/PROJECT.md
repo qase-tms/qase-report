@@ -17,6 +17,17 @@ Open-source инструмент для визуализации отчётов 
 - Full Qase Report Format support
 - Static HTML works with file:// protocol
 
+## Current Milestone: v1.1 History & Trends
+
+**Goal:** Добавить аналитику истории тестов — тренды, flakiness detection, regression alerts, stability scoring.
+
+**Target features:**
+- История прогонов (test-history.json)
+- Тренды pass rate и duration
+- Flakiness detection
+- Performance regression alerts
+- Stability scoring (A+ to F grades)
+
 ## Requirements
 
 ### Validated
@@ -80,4 +91,4 @@ Open-source инструмент для визуализации отчётов 
 | Vite legacy plugin | file:// protocol support | ✓ Good |
 
 ---
-*Last updated: 2026-02-10 after v1.0 milestone*
+*Last updated: 2026-02-10 after v1.1 milestone start*
