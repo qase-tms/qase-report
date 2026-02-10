@@ -133,7 +133,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 13-01-PLAN.md — Theme system with colorSchemes API, ThemeToggle component, and FOWT prevention
+- [x] 13-01-PLAN.md — Theme system with colorSchemes API, ThemeToggle component, and FOWT prevention
 
 ### Phase 14: Sidebar Navigation
 **Goal**: Users navigate via persistent left sidebar with collapsible state
@@ -145,10 +145,10 @@ Plans:
   3. User can expand collapsed sidebar back to full width
   4. Active view is visually highlighted in sidebar
   5. Sidebar state (collapsed/expanded) persists across sessions
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 14-01: TBD
+- [x] 14-01-PLAN.md — NavigationDrawer with permanent mini variant, MobX state, localStorage persistence
 
 ### Phase 15: Bento Grid Dashboard
 **Goal**: Dashboard displays data in modern Bento Grid layout with micro-visualizations
@@ -159,10 +159,11 @@ Plans:
   2. Layout adapts responsively to different screen sizes (desktop 1280px+, tablet 900px+)
   3. Dashboard shows sparklines for trend data in cards
   4. Dashboard shows progress rings for pass rate visualization
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 15-01: TBD
+- [ ] 15-01-PLAN.md — CSS Grid Bento layout (BentoGrid container, DashboardCard wrapper, Dashboard refactor)
+- [ ] 15-02-PLAN.md — Micro-visualizations (SparklineCard, ProgressRingCard, Dashboard integration)
 
 ### Phase 16: Microinteractions
 **Goal**: UI provides smooth visual feedback through animations and transitions
@@ -208,8 +209,8 @@ Plans:
 | 10. Flakiness Detection | v1.1 | 2/2 | Complete | 2026-02-10 |
 | 11. Regression Alerts | v1.1 | 2/2 | Complete | 2026-02-10 |
 | 12. Stability Scoring | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 13. Theme Foundation | v1.2 | 0/1 | Planned | - |
-| 14. Sidebar Navigation | v1.2 | 0/TBD | Not started | - |
-| 15. Bento Grid Dashboard | v1.2 | 0/TBD | Not started | - |
+| 13. Theme Foundation | v1.2 | 1/1 | Complete | 2026-02-10 |
+| 14. Sidebar Navigation | v1.2 | 1/1 | Complete | 2026-02-10 |
+| 15. Bento Grid Dashboard | v1.2 | 0/2 | Not started | - |
 | 16. Microinteractions | v1.2 | 0/TBD | Not started | - |
 | 17. Progressive Disclosure & Performance | v1.2 | 0/TBD | Not started | - |
