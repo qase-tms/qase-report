@@ -3,7 +3,8 @@
 ## Milestones
 
 - v1.0 MVP - Phases 1-7 (shipped 2026-02-10)
-- v1.1 History & Trends - Phases 8-12 (in progress)
+- v1.1 History & Trends - Phases 8-12 (shipped 2026-02-10)
+- v1.2 Design Refresh - Phases 13-17 (in progress)
 
 ## Phases
 
@@ -66,96 +67,132 @@ Plans:
 
 </details>
 
-### v1.1 History & Trends (In Progress)
+<details>
+<summary>v1.1 History & Trends (Phases 8-12) - SHIPPED 2026-02-10</summary>
 
 **Milestone Goal:** Add analytics features for test history tracking, trend visualization, flakiness detection, performance regression alerts, and stability scoring.
 
-#### Phase 8: History Infrastructure
+### Phase 8: History Infrastructure
 **Goal**: Users can load and store historical test run data
-**Depends on**: Phase 7 (v1.0 complete)
-**Requirements**: HIST-01, HIST-02, HIST-03, HIST-04
-**Success Criteria** (what must be TRUE):
-  1. User can load test-history.json file alongside run.json
-  2. System validates history data with schema version field
-  3. System tracks tests across runs using stable signatures
-  4. History data persists in localStorage without crashing browser
-  5. System handles large history files (100+ runs) without memory issues
 **Plans**: 3 plans
 
 Plans:
-- [x] 08-01-PLAN.md — History schema with versioning and signature-based test identity
-- [x] 08-02-PLAN.md — HistoryStore with tiered loading and localStorage persistence
-- [x] 08-03-PLAN.md — FileLoader integration and history file upload UI
+- [x] 08-01: History schema with versioning and signature-based test identity
+- [x] 08-02: HistoryStore with tiered loading and localStorage persistence
+- [x] 08-03: FileLoader integration and history file upload UI
 
-#### Phase 9: Trend Visualization
+### Phase 9: Trend Visualization
 **Goal**: Users can see pass rate and duration trends over time
-**Depends on**: Phase 8
-**Requirements**: TRND-01, TRND-02, TRND-03, TRND-04
-**Success Criteria** (what must be TRUE):
-  1. User can see pass rate trend chart with passed/failed/skipped over time
-  2. User can see duration trend chart showing test execution time changes
-  3. User can see history timeline of recent runs with status indicators
-  4. Charts display tooltips with detailed information on hover
-  5. Charts gracefully handle missing data points and outliers
 **Plans**: 3 plans
 
 Plans:
-- [x] 09-01-PLAN.md — AnalyticsStore with computed trend data
-- [x] 09-02-PLAN.md — TrendsChart with pass rate and duration charts
-- [x] 09-03-PLAN.md — HistoryTimeline and Dashboard integration
+- [x] 09-01: AnalyticsStore with computed trend data
+- [x] 09-02: TrendsChart with pass rate and duration charts
+- [x] 09-03: HistoryTimeline and Dashboard integration
 
-#### Phase 10: Flakiness Detection
+### Phase 10: Flakiness Detection
 **Goal**: Users can identify flaky tests with multi-factor analysis
-**Depends on**: Phase 9
-**Requirements**: FLKY-01, FLKY-02, FLKY-03, FLKY-04
-**Success Criteria** (what must be TRUE):
-  1. System detects flaky tests using status changes and error consistency
-  2. User sees stability badges on test list items (flaky, stable, new failure)
-  3. User sees flakiness percentage showing "flaky in X of Y runs"
-  4. Flakiness detection requires minimum 5-run window to avoid false positives
-  5. Detection algorithm considers error message patterns, not just status changes
 **Plans**: 2 plans
 
 Plans:
-- [x] 10-01-PLAN.md — Flakiness detection algorithm in AnalyticsStore
-- [x] 10-02-PLAN.md — StabilityBadge component and TestListItem integration
+- [x] 10-01: Flakiness detection algorithm in AnalyticsStore
+- [x] 10-02: StabilityBadge component and TestListItem integration
 
-#### Phase 11: Regression Alerts
+### Phase 11: Regression Alerts
 **Goal**: Users receive alerts for performance regressions and test failures
-**Depends on**: Phase 10
-**Requirements**: REGR-01, REGR-02, REGR-03
-**Success Criteria** (what must be TRUE):
-  1. System detects performance regressions using 2-sigma outlier detection
-  2. User sees alerts panel on dashboard with flakiness and regression warnings
-  3. User can click alert to navigate directly to affected test
-  4. Alerts distinguish between flakiness warnings and regression errors
 **Plans**: 2 plans
 
 Plans:
-- [x] 11-01-PLAN.md — Alert types and 2-sigma regression detection in AnalyticsStore
-- [x] 11-02-PLAN.md — AlertsPanel component and Dashboard integration
+- [x] 11-01: Alert types and 2-sigma regression detection in AnalyticsStore
+- [x] 11-02: AlertsPanel component and Dashboard integration
 
-#### Phase 12: Stability Scoring
+### Phase 12: Stability Scoring
 **Goal**: Users can assess test health with A+ to F stability grades
-**Depends on**: Phase 10
-**Requirements**: STAB-01, STAB-02, STAB-03
-**Success Criteria** (what must be TRUE):
-  1. System calculates stability grade (A+ to F) based on pass rate, flakiness, duration variance
-  2. User can group and filter tests by stability grade
-  3. User sees test health widget on dashboard with grade distribution
-  4. Grades require minimum 10 runs to ensure accuracy
-  5. Scoring formula is transparent and shows underlying metrics
 **Plans**: 3 plans
 
 Plans:
-- [ ] 12-01-PLAN.md — Stability types and getStabilityScore algorithm
-- [ ] 12-02-PLAN.md — Grade filtering in TestList and grade badges
-- [ ] 12-03-PLAN.md — TestHealthWidget dashboard component
+- [x] 12-01: Stability types and getStabilityScore algorithm
+- [x] 12-02: Grade filtering in TestList and grade badges
+- [x] 12-03: TestHealthWidget dashboard component
+
+</details>
+
+### v1.2 Design Refresh (In Progress)
+
+**Milestone Goal:** Modern, user-friendly design with Bento Grid layout, themes, sidebar navigation, and improved performance for 100-500 tests.
+
+### Phase 13: Theme Foundation
+**Goal**: Users can switch between light/dark/system themes with persistence
+**Depends on**: Phase 12 (v1.1 complete)
+**Requirements**: THEME-01, THEME-02, THEME-03
+**Success Criteria** (what must be TRUE):
+  1. User can switch between Light, Dark, and System theme modes via UI control
+  2. Theme preference persists across browser sessions (survives refresh/close)
+  3. No flash of wrong theme on page load (dark mode users see dark immediately)
+  4. System mode follows OS preference and updates when OS setting changes
+**Plans**: 1 plan
+
+Plans:
+- [ ] 13-01-PLAN.md — Theme system with colorSchemes API, ThemeToggle component, and FOWT prevention
+
+### Phase 14: Sidebar Navigation
+**Goal**: Users navigate via persistent left sidebar with collapsible state
+**Depends on**: Phase 13
+**Requirements**: NAV-01, NAV-02, NAV-03
+**Success Criteria** (what must be TRUE):
+  1. User sees left sidebar with navigation sections (Dashboard, Tests, Analytics)
+  2. User can collapse sidebar to icon-only mode for more content space
+  3. User can expand collapsed sidebar back to full width
+  4. Active view is visually highlighted in sidebar
+  5. Sidebar state (collapsed/expanded) persists across sessions
+**Plans**: TBD
+
+Plans:
+- [ ] 14-01: TBD
+
+### Phase 15: Bento Grid Dashboard
+**Goal**: Dashboard displays data in modern Bento Grid layout with micro-visualizations
+**Depends on**: Phase 14
+**Requirements**: DASH-01, DASH-02, DASH-03
+**Success Criteria** (what must be TRUE):
+  1. Dashboard displays widgets in Bento Grid layout with varied card sizes
+  2. Layout adapts responsively to different screen sizes (desktop 1280px+, tablet 900px+)
+  3. Dashboard shows sparklines for trend data in cards
+  4. Dashboard shows progress rings for pass rate visualization
+**Plans**: TBD
+
+Plans:
+- [ ] 15-01: TBD
+
+### Phase 16: Microinteractions
+**Goal**: UI provides smooth visual feedback through animations and transitions
+**Depends on**: Phase 15
+**Requirements**: ANIM-01, ANIM-02
+**Success Criteria** (what must be TRUE):
+  1. Data loading shows smooth fade-in animation (not instant pop-in)
+  2. Collapsible sections animate when expanding/collapsing
+  3. Interactive elements show hover feedback (elevation or color change)
+  4. Animations respect prefers-reduced-motion setting
+**Plans**: TBD
+
+Plans:
+- [ ] 16-01: TBD
+
+### Phase 17: Progressive Disclosure & Performance
+**Goal**: UI handles complexity gracefully at scale (100-500 tests)
+**Depends on**: Phase 16
+**Requirements**: DISC-01, DISC-02, PERF-01
+**Success Criteria** (what must be TRUE):
+  1. Test suites are collapsed by default in test list (expandable on click)
+  2. Step timeline sections can be expanded/collapsed
+  3. Test list with 500 tests scrolls without visible lag (virtual scrolling)
+  4. Scroll position preserved when switching between views
+**Plans**: TBD
+
+Plans:
+- [ ] 17-01: TBD
 
 ## Progress
-
-**Execution Order:**
-Phases execute in numeric order: 8 -> 9 -> 10 -> 11 -> 12
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -170,4 +207,9 @@ Phases execute in numeric order: 8 -> 9 -> 10 -> 11 -> 12
 | 9. Trend Visualization | v1.1 | 3/3 | Complete | 2026-02-10 |
 | 10. Flakiness Detection | v1.1 | 2/2 | Complete | 2026-02-10 |
 | 11. Regression Alerts | v1.1 | 2/2 | Complete | 2026-02-10 |
-| 12. Stability Scoring | v1.1 | 0/3 | Planned | - |
+| 12. Stability Scoring | v1.1 | 3/3 | Complete | 2026-02-10 |
+| 13. Theme Foundation | v1.2 | 0/1 | Planned | - |
+| 14. Sidebar Navigation | v1.2 | 0/TBD | Not started | - |
+| 15. Bento Grid Dashboard | v1.2 | 0/TBD | Not started | - |
+| 16. Microinteractions | v1.2 | 0/TBD | Not started | - |
+| 17. Progressive Disclosure & Performance | v1.2 | 0/TBD | Not started | - |
