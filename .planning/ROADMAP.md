@@ -179,7 +179,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 18-01-PLAN.md — Dark theme default, Playwright-style color palette
+- [x] 18-01-PLAN.md — Dark theme default, Playwright-style color palette
 
 ### Phase 19: Top Bar Redesign
 **Goal**: Top bar provides search, export, theme toggle, and run info
@@ -194,7 +194,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 19-01-PLAN.md — Command palette search (⌘K), export button, theme toggle, run date display
+- [x] 19-01-PLAN.md — Command palette search (⌘K), export button, theme toggle, run date display
 
 ### Phase 20: Sidebar Overhaul
 **Goal**: Sidebar shows stats visualization and filter chips
@@ -209,7 +209,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 20-01-PLAN.md — Pass rate ring, quick stats, navigation icons, filter chips
+- [x] 20-01-PLAN.md — Pass rate ring, quick stats, navigation icons, filter chips
 
 ### Phase 21: Overview Dashboard
 **Goal**: Dashboard provides comprehensive test health overview
@@ -224,7 +224,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 21-01-PLAN.md — Suite Health, Pass Rate/Duration trends, Attention Required, Quick Insights
+- [x] 21-01-PLAN.md — Suite Health, Pass Rate/Duration trends, Attention Required, Quick Insights
 
 ### Phase 22: Failure Clusters
 **Goal**: Users can view tests grouped by similar error messages
@@ -238,8 +238,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 22-01-PLAN.md — Error clustering algorithm in AnalyticsStore
-- [ ] 22-02-PLAN.md — FailureClusters view component and navigation
+- [x] 22-01-PLAN.md — Error clustering algorithm in AnalyticsStore
+- [x] 22-02-PLAN.md — FailureClusters view component and navigation
 
 ### Phase 23: Gallery View
 **Goal**: Users can browse all attachments across all tests
@@ -253,7 +253,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 23-01-PLAN.md — AttachmentsStore computed values for cross-test gallery
+- [ ] 23-01-PLAN.md — GalleryAttachment type and galleryAttachments computed in AnalyticsStore
 - [ ] 23-02-PLAN.md — Gallery view component with filters and navigation
 
 ### Phase 24: Comparison View
@@ -292,10 +292,10 @@ Plans:
 | 15. Bento Grid Dashboard | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 16. Microinteractions | v1.2 | 2/2 | Complete | 2026-02-10 |
 | 17. Progressive Disclosure & Performance | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 18. Dark Theme Foundation | v1.3 | 0/1 | Pending | - |
-| 19. Top Bar Redesign | v1.3 | 0/1 | Pending | - |
-| 20. Sidebar Overhaul | v1.3 | 0/1 | Pending | - |
-| 21. Overview Dashboard | v1.3 | 0/1 | Pending | - |
-| 22. Failure Clusters | v1.3 | 0/2 | Pending | - |
+| 18. Dark Theme Foundation | v1.3 | 1/1 | Complete | 2026-02-10 |
+| 19. Top Bar Redesign | v1.3 | 1/1 | Complete | 2026-02-10 |
+| 20. Sidebar Overhaul | v1.3 | 1/1 | Complete | 2026-02-10 |
+| 21. Overview Dashboard | v1.3 | 1/1 | Complete | 2026-02-10 |
+| 22. Failure Clusters | v1.3 | 2/2 | Complete | 2026-02-10 |
 | 23. Gallery View | v1.3 | 0/2 | Pending | - |
 | 24. Comparison View | v1.3 | 0/2 | Pending | - |
