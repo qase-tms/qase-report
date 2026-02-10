@@ -7,6 +7,7 @@ import { formatDuration } from '../../utils/formatDuration'
 import type { Step } from '../../schemas/Step.schema'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { TestStepAttachment } from './TestStepAttachment'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 interface TestStepProps {
   step: Step
@@ -15,6 +16,7 @@ interface TestStepProps {
 
 export const TestStep = observer(({ step, depth }: TestStepProps) => {
   const [isExpanded, setIsExpanded] = useState(true)
+  const prefersReducedMotion = usePrefersReducedMotion()
   const hasChildren = step.steps && step.steps.length > 0
   const hasAttachments =
     step.execution.attachments && step.execution.attachments.length > 0
@@ -52,7 +54,7 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
       </Box>
 
       {/* Expanded content: attachments and nested steps */}
-      <Collapse in={isExpanded}>
+      <Collapse in={isExpanded} timeout={prefersReducedMotion ? 0 : 'auto'}>
         {/* Attachments */}
         {hasAttachments &&
           step.execution.attachments.map((attachment: Attachment) => (

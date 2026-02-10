@@ -3,6 +3,7 @@ import { List, ListItemButton, ListItemText, Collapse, Box } from '@mui/material
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 import { TestListItem } from './TestListItem'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 interface SuiteGroupProps {
   suiteTitle: string
@@ -12,6 +13,7 @@ interface SuiteGroupProps {
 
 export const SuiteGroup = ({ suiteTitle, tests, onSelectTest }: SuiteGroupProps) => {
   const [open, setOpen] = useState(true) // Start expanded
+  const prefersReducedMotion = usePrefersReducedMotion()
 
   return (
     <>
@@ -22,7 +24,7 @@ export const SuiteGroup = ({ suiteTitle, tests, onSelectTest }: SuiteGroupProps)
         />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse in={open} timeout={prefersReducedMotion ? 0 : 'auto'} unmountOnExit>
         <List component="div" disablePadding>
           <Box sx={{ pl: 2 }}>
             {tests.map((test) => (
