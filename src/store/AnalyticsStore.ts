@@ -71,6 +71,31 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns signatures of all tests classified as flaky.
+   * Useful for filtering test list to show only flaky tests.
+   *
+   * Computed property automatically updates when history data changes.
+   */
+  get flakyTests(): string[] {
+    const history = this.root.historyStore.history
+    if (!history) return []
+
+    return history.tests
+      .map((t) => t.signature)
+      .filter((sig) => this.getFlakinessScore(sig).status === 'flaky')
+  }
+
+  /**
+   * Returns the count of flaky tests.
+   * Useful for dashboard display.
+   *
+   * Computed property automatically updates when history data changes.
+   */
+  get flakyTestCount(): number {
+    return this.flakyTests.length
+  }
+
+  /**
    * Maps a HistoricalRun to a TrendDataPoint.
    * Calculates pass rate percentage and formats date for chart display.
    *
