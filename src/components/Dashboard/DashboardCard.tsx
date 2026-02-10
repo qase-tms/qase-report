@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@mui/material'
+import { Box } from '@mui/material'
 import { ReactNode } from 'react'
 
 interface DashboardCardProps {
@@ -13,8 +13,7 @@ export const DashboardCard = ({
   children,
 }: DashboardCardProps) => {
   return (
-    <Card
-      elevation={2}
+    <Box
       sx={{
         gridColumn: 'span 1',
         gridRow: 'span 1',
@@ -28,7 +27,7 @@ export const DashboardCard = ({
         },
       }}
     >
-      <CardContent>{children}</CardContent>
-    </Card>
+      {children}
+    </Box>
   )
 }

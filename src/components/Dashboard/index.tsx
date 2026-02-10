@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite'
-import { Box, Grid, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { useRootStore } from '../../store'
+import { BentoGrid } from './BentoGrid'
+import { DashboardCard } from './DashboardCard'
 import { StatsCard } from './StatsCard'
 import { RunInfoCard } from './RunInfoCard'
 import { HostInfoCard } from './HostInfoCard'
@@ -34,76 +36,72 @@ export const Dashboard = observer(() => {
   }
 
   return (
-    <>
-      <Grid container spacing={3}>
-        {/* Statistics cards - 4 columns on desktop, 2 on tablet, 1 on mobile */}
-        <Grid item xs={12} sm={6} md={3}>
-          <StatsCard
-            status="passed"
-            count={stats.passed}
-            percentage={reportStore.passRate}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatsCard
-            status="failed"
-            count={stats.failed}
-            percentage={reportStore.failedRate}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatsCard
-            status="skipped"
-            count={stats.skipped}
-            percentage={reportStore.skippedRate}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatsCard
-            status="broken"
-            count={reportStore.brokenCount}
-            percentage={reportStore.brokenRate}
-          />
-        </Grid>
+    <BentoGrid>
+      {/* Statistics cards - 1x1 compact counters */}
+      <DashboardCard>
+        <StatsCard
+          status="passed"
+          count={stats.passed}
+          percentage={reportStore.passRate}
+        />
+      </DashboardCard>
+      <DashboardCard>
+        <StatsCard
+          status="failed"
+          count={stats.failed}
+          percentage={reportStore.failedRate}
+        />
+      </DashboardCard>
+      <DashboardCard>
+        <StatsCard
+          status="skipped"
+          count={stats.skipped}
+          percentage={reportStore.skippedRate}
+        />
+      </DashboardCard>
+      <DashboardCard>
+        <StatsCard
+          status="broken"
+          count={reportStore.brokenCount}
+          percentage={reportStore.brokenRate}
+        />
+      </DashboardCard>
 
-        {/* Metadata cards - 2 columns on desktop, 1 on mobile */}
-        <Grid item xs={12} md={6}>
-          <RunInfoCard />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <HostInfoCard />
-        </Grid>
-      </Grid>
+      {/* Metadata cards - 2x1 horizontal layout */}
+      <DashboardCard colSpan={2}>
+        <RunInfoCard />
+      </DashboardCard>
+      <DashboardCard colSpan={2}>
+        <HostInfoCard />
+      </DashboardCard>
 
-      {/* Alerts panel - show when alerts exist */}
+      {/* Alerts panel - 3x1 wide alert list */}
       {analyticsStore.hasAlerts && (
-        <Box sx={{ mt: 3 }}>
+        <DashboardCard colSpan={3}>
           <AlertsPanel onAlertClick={handleAlertClick} />
-        </Box>
+        </DashboardCard>
       )}
 
-      {/* Trend visualization - show when history data available */}
-      {(analyticsStore.hasTrendData || historyStore.recentRuns.length > 0) && (
-        <Box sx={{ mt: 3 }}>
-          <Grid container spacing={3}>
-            {analyticsStore.hasTrendData && (
-              <Grid item xs={12} lg={6}>
-                <TrendsChart />
-              </Grid>
-            )}
-            {historyStore.isHistoryLoaded && (
-              <Grid item xs={12} sm={6} lg={3}>
-                <TestHealthWidget />
-              </Grid>
-            )}
-            {historyStore.recentRuns.length > 0 && (
-              <Grid item xs={12} sm={6} lg={3}>
-                <HistoryTimeline />
-              </Grid>
-            )}
-          </Grid>
-        </Box>
+      {/* Trend visualization - 4x2 large chart prominence */}
+      {analyticsStore.hasTrendData && (
+        <DashboardCard colSpan={4} rowSpan={2}>
+          <TrendsChart />
+        </DashboardCard>
       )}
-    </>
+
+      {/* Test health widget - 2x2 visual importance */}
+      {historyStore.isHistoryLoaded && (
+        <DashboardCard colSpan={2} rowSpan={2}>
+          <TestHealthWidget />
+        </DashboardCard>
+      )}
+
+      {/* History timeline - 2x2 vertical timeline */}
+      {historyStore.recentRuns.length > 0 && (
+        <DashboardCard colSpan={2} rowSpan={2}>
+          <HistoryTimeline />
+        </DashboardCard>
+      )}
+    </BentoGrid>
   )
 })
