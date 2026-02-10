@@ -5,9 +5,10 @@ import { StatsCard } from './StatsCard'
 import { RunInfoCard } from './RunInfoCard'
 import { HostInfoCard } from './HostInfoCard'
 import { TrendsChart } from './TrendsChart'
+import { HistoryTimeline } from './HistoryTimeline'
 
 export const Dashboard = observer(() => {
-  const { reportStore, analyticsStore } = useRootStore()
+  const { reportStore, analyticsStore, historyStore } = useRootStore()
 
   if (!reportStore.runData) {
     return (
@@ -61,10 +62,21 @@ export const Dashboard = observer(() => {
         </Grid>
       </Grid>
 
-      {/* Trend charts - only show when history data available */}
-      {analyticsStore.hasTrendData && (
+      {/* Trend visualization - show when history data available */}
+      {(analyticsStore.hasTrendData || historyStore.recentRuns.length > 0) && (
         <Box sx={{ mt: 3 }}>
-          <TrendsChart />
+          <Grid container spacing={3}>
+            {analyticsStore.hasTrendData && (
+              <Grid item xs={12} lg={8}>
+                <TrendsChart />
+              </Grid>
+            )}
+            {historyStore.recentRuns.length > 0 && (
+              <Grid item xs={12} lg={4}>
+                <HistoryTimeline />
+              </Grid>
+            )}
+          </Grid>
         </Box>
       )}
     </>
