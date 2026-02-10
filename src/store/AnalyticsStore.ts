@@ -1,6 +1,12 @@
 import { makeAutoObservable } from 'mobx'
 import type { RootStore } from './index'
 import type { HistoricalRun } from '../schemas/QaseHistory.schema'
+import type { HistoricalTestRunData } from '../schemas/QaseHistory.schema'
+import {
+  type FlakinessResult,
+  type StabilityStatus,
+  MIN_RUNS,
+} from '../types/flakiness'
 
 /**
  * Data point for trend visualization.
@@ -93,6 +99,120 @@ export class AnalyticsStore {
       total,
       passRate,
       duration: run.duration,
+    }
+  }
+
+  /**
+   * Calculates flakiness score for a specific test using multi-factor analysis.
+   * Analyzes status transitions and error message consistency to avoid false positives.
+   *
+   * Algorithm:
+   * 1. Requires minimum 5 runs for accurate detection
+   * 2. Counts status transitions (pass<->fail)
+   * 3. Analyzes error message consistency across failures
+   * 4. Reduces flakiness score if errors are consistent (likely real bug)
+   *
+   * @param signature - Test signature to analyze
+   * @returns FlakinessResult with score, status, and analysis details
+   */
+  getFlakinessScore(signature: string): FlakinessResult {
+    // Get test history from HistoryStore
+    const runs = this.root.historyStore.getTestHistory(signature)
+
+    // Check minimum runs requirement (FLKY-04)
+    if (runs.length < MIN_RUNS) {
+      return {
+        flakinessPercent: 0,
+        status: 'insufficient_data',
+        totalRuns: runs.length,
+        statusChanges: 0,
+        hasConsistentErrors: false,
+        minRunsRequired: MIN_RUNS,
+      }
+    }
+
+    // Sort runs chronologically for transition analysis
+    const sortedRuns = [...runs].sort((a, b) => a.start_time - b.start_time)
+
+    // Count status transitions (pass<->fail)
+    // Skip skipped/broken in transition counting (they don't indicate flakiness)
+    let statusChanges = 0
+    let previousStatus: 'passed' | 'failed' | null = null
+
+    for (const run of sortedRuns) {
+      if (run.status === 'skipped' || run.status === 'broken') {
+        continue // Don't count skipped/broken in transitions
+      }
+
+      if (previousStatus !== null && previousStatus !== run.status) {
+        statusChanges++
+      }
+
+      previousStatus = run.status
+    }
+
+    // Analyze error message consistency
+    const failedRuns = sortedRuns.filter((run) => run.status === 'failed')
+    let hasConsistentErrors = false
+
+    if (failedRuns.length > 0) {
+      // Group errors by first 100 chars (normalize)
+      const errorPatterns = new Map<string, number>()
+
+      for (const run of failedRuns) {
+        const errorKey = run.error_message
+          ? run.error_message.slice(0, 100)
+          : '__no_error__'
+        errorPatterns.set(errorKey, (errorPatterns.get(errorKey) || 0) + 1)
+      }
+
+      // Check if >80% of failures have same error pattern
+      const mostCommonErrorCount = Math.max(...errorPatterns.values())
+      const consistencyRatio = mostCommonErrorCount / failedRuns.length
+
+      hasConsistentErrors = consistencyRatio > 0.8
+    }
+
+    // Calculate flakiness score
+    // Base: proportion of possible transitions that occurred
+    const possibleTransitions = sortedRuns.length - 1
+    let baseScore =
+      possibleTransitions > 0 ? statusChanges / possibleTransitions : 0
+
+    // Penalty: If errors are consistent, multiply by 0.5 (likely real bug, not flaky)
+    if (hasConsistentErrors) {
+      baseScore *= 0.5
+    }
+
+    const flakinessPercent = Math.round(baseScore * 100)
+
+    // Determine status
+    let status: StabilityStatus
+
+    if (flakinessPercent >= 20) {
+      // 20%+ transitions = flaky
+      status = 'flaky'
+    } else {
+      // Check for new_failure pattern: last run failed AND previous 3+ runs passed
+      const recentRuns = sortedRuns.slice(-4) // Last 4 runs
+      const lastRunFailed = recentRuns[recentRuns.length - 1]?.status === 'failed'
+      const previousRunsPassed =
+        recentRuns.slice(0, -1).filter((r) => r.status === 'passed').length >= 3
+
+      if (lastRunFailed && previousRunsPassed) {
+        status = 'new_failure'
+      } else {
+        status = 'stable'
+      }
+    }
+
+    return {
+      flakinessPercent,
+      status,
+      totalRuns: runs.length,
+      statusChanges,
+      hasConsistentErrors,
+      minRunsRequired: MIN_RUNS,
     }
   }
 }
