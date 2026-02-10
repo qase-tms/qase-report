@@ -17,6 +17,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   BubbleChart as AnalyticsIcon,
+  Collections as GalleryIcon,
 } from '@mui/icons-material'
 import { useRootStore } from '../../store'
 import { SidebarStats } from '../SidebarStats'
@@ -48,6 +49,11 @@ export const NavigationDrawer = observer(() => {
       id: 'failure-clusters' as const,
       label: 'Failure Clusters',
       icon: <FailureClustersIcon />,
+    },
+    {
+      id: 'gallery' as const,
+      label: 'Gallery',
+      icon: <GalleryIcon />,
     },
     {
       id: 'analytics' as const,
