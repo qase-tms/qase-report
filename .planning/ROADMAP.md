@@ -117,8 +117,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 10-01-PLAN.md — Flakiness detection algorithm in AnalyticsStore
-- [ ] 10-02-PLAN.md — StabilityBadge component and TestListItem integration
+- [x] 10-01-PLAN.md — Flakiness detection algorithm in AnalyticsStore
+- [x] 10-02-PLAN.md — StabilityBadge component and TestListItem integration
 
 #### Phase 11: Regression Alerts
 **Goal**: Users receive alerts for performance regressions and test failures
@@ -129,11 +129,11 @@ Plans:
   2. User sees alerts panel on dashboard with flakiness and regression warnings
   3. User can click alert to navigate directly to affected test
   4. Alerts distinguish between flakiness warnings and regression errors
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 11-01: TBD
-- [ ] 11-02: TBD
+- [ ] 11-01-PLAN.md — Alert types and 2-sigma regression detection in AnalyticsStore
+- [ ] 11-02-PLAN.md — AlertsPanel component and Dashboard integration
 
 #### Phase 12: Stability Scoring
 **Goal**: Users can assess test health with A+ to F stability grades
@@ -168,6 +168,6 @@ Phases execute in numeric order: 8 -> 9 -> 10 -> 11 -> 12
 | 7. Static HTML Export | v1.0 | 1/1 | Complete | 2026-02-10 |
 | 8. History Infrastructure | v1.1 | 3/3 | Complete | 2026-02-10 |
 | 9. Trend Visualization | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 10. Flakiness Detection | v1.1 | 0/2 | Planned | - |
-| 11. Regression Alerts | v1.1 | 0/TBD | Not started | - |
+| 10. Flakiness Detection | v1.1 | 2/2 | Complete | 2026-02-10 |
+| 11. Regression Alerts | v1.1 | 0/2 | Planned | - |
 | 12. Stability Scoring | v1.1 | 0/TBD | Not started | - |
