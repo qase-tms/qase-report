@@ -9,19 +9,12 @@ import { TestDetails } from '../../components/TestDetails'
 import { AttachmentViewer } from '../../components/AttachmentViewer'
 
 export const MainLayout = observer(() => {
-  const { isDockOpen, closeDock, reportStore } = useRootStore()
-  return (
-    <>
-      <Grid
-        container
-        spacing={2}
-        component={'main'}
-        sx={{ height: 'calc(100vh - 48px)', width: '100vw', p: 2 }}
-      >
-        <Grid item xs={10}>
-          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-            <LoadReportButton />
-          </Box>
+  const { isDockOpen, closeDock, reportStore, activeView } = useRootStore()
+
+  const renderView = () => {
+    if (activeView === 'dashboard') {
+      return (
+        <>
           <Dashboard />
           {/* Show TestList only when report is loaded */}
           {reportStore.runData && (
@@ -29,8 +22,61 @@ export const MainLayout = observer(() => {
               <TestList />
             </Box>
           )}
+        </>
+      )
+    }
+
+    if (activeView === 'tests') {
+      return reportStore.runData ? (
+        <TestList />
+      ) : (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+            color: 'text.secondary',
+          }}
+        >
+          No report loaded
+        </Box>
+      )
+    }
+
+    if (activeView === 'analytics') {
+      return (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '50vh',
+            color: 'text.secondary',
+          }}
+        >
+          Analytics - Coming Soon
+        </Box>
+      )
+    }
+
+    return null
+  }
+
+  return (
+    <>
+      <Grid
+        container
+        spacing={2}
+        component={'main'}
+        sx={{ height: 'calc(100vh - 48px)', width: '100%', p: 2 }}
+      >
+        <Grid item xs={12}>
+          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+            <LoadReportButton />
+          </Box>
+          {renderView()}
         </Grid>
-        <Grid item xs={2}></Grid>
         <Sidebar isOpen={isDockOpen} onClose={closeDock}>
           <TestDetails />
         </Sidebar>
