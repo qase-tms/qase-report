@@ -9,10 +9,10 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 ## Current Position
 
-Phase: 10 of 12 (Flakiness Detection)
-Plan: 2 of 2 complete
-Status: Phase 10 complete - flakiness detection with UI badges
-Last activity: 2026-02-10 — Phase 10 Plan 02 executed (flakiness UI components)
+Phase: 11 of 12 (Regression Alerts)
+Plan: 1 of 2 complete
+Status: Phase 11 in progress - regression detection complete, UI pending
+Last activity: 2026-02-10 — Phase 11 Plan 01 executed (2-sigma regression detection)
 
 Progress: [██████████░░░░░░] 83% (10 of 12 phases complete)
 
@@ -31,6 +31,7 @@ Progress: [██████████░░░░░░] 83% (10 of 12 phase
 | 8 (History Infrastructure) | 3/3 | ~8m | Complete |
 | 9 (Trend Visualization) | 3/3 | ~7m | Complete |
 | 10 (Flakiness Detection) | 2/2 | ~6m | Complete |
+| 11 (Regression Alerts) | 1/2 | ~2m | In Progress |
 
 **Recent Executions:**
 
@@ -41,6 +42,7 @@ Progress: [██████████░░░░░░] 83% (10 of 12 phase
 | 09 | 03 | ~2m | 4 | 3 |
 | 10 | 01 | 2m 33s | 3 | 2 |
 | 10 | 02 | ~3m | 3 | 2 |
+| 11 | 01 | 1m 51s | 3 | 2 |
 
 ## Accumulated Context
 
@@ -68,6 +70,10 @@ See PROJECT.md Key Decisions table for full history.
 - [Phase 10-02]: Replace memo() with observer() in TestListItem for MobX reactivity
 - [Phase 10-02]: Hide badges when insufficient_data (< 5 runs) for clean UI
 - [Phase 10-02]: Color-coded chips (warning/success/error) for immediate status recognition
+- [Phase 11-01]: 2-sigma threshold (mean + 2*stddev) balances between false positives and catching real regressions
+- [Phase 11-01]: Compare latest run against historical mean (excluding current) to detect if current run is outlier
+- [Phase 11-01]: stdDev > 0 check prevents false positives when all durations are identical
+- [Phase 11-01]: AlertItem unified interface for all alert types (flakiness, regression, new_failure)
 
 ### Pending Todos
 
@@ -83,6 +89,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-10
-Stopped at: Phase 10 complete (flakiness detection algorithm + UI badges)
+Stopped at: Completed 11-01-PLAN.md (2-sigma regression detection algorithm)
 Resume file: None
-Next action: Run `/gsd:plan-phase 11` to plan Regression Alerts phase
+Next action: Run `/gsd:execute-phase 11` for plan 02 (Alerts Panel UI)
