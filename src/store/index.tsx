@@ -4,6 +4,7 @@ import { ReportStore } from './ReportStore'
 import { TestResultsStore } from './TestResultsStore'
 import { AttachmentsStore } from './AttachmentsStore'
 import { AttachmentViewerStore } from './AttachmentViewerStore'
+import { HistoryStore } from './HistoryStore'
 import { FileLoaderService } from '../services/FileLoaderService'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 
@@ -12,6 +13,7 @@ export class RootStore {
   testResultsStore: TestResultsStore
   attachmentsStore: AttachmentsStore
   attachmentViewerStore: AttachmentViewerStore
+  historyStore: HistoryStore
 
   isDockOpen = false
   selectedTestId: string | null = null
@@ -21,6 +23,7 @@ export class RootStore {
     this.testResultsStore = new TestResultsStore(this)
     this.attachmentsStore = new AttachmentsStore(this)
     this.attachmentViewerStore = new AttachmentViewerStore(this)
+    this.historyStore = new HistoryStore(this)
     makeAutoObservable(this)
   }
 
