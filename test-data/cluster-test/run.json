@@ -1,0 +1,36 @@
+{
+  "title": "Failure Clusters Test Run",
+  "execution": {
+    "start_time": 1707580800000,
+    "end_time": 1707581400000,
+    "duration": 600000,
+    "cumulative_duration": 450000
+  },
+  "stats": {
+    "total": 12,
+    "passed": 4,
+    "failed": 8,
+    "skipped": 0
+  },
+  "environment": null,
+  "suites": ["Auth Tests", "API Tests", "UI Tests"],
+  "results": [
+    { "id": "test-001", "title": "Login with valid credentials", "status": "passed", "duration": 1500 },
+    { "id": "test-002", "title": "Login with invalid password", "status": "failed", "duration": 2000 },
+    { "id": "test-003", "title": "Login with empty email", "status": "failed", "duration": 1800 },
+    { "id": "test-004", "title": "Registration form validation", "status": "passed", "duration": 3000 },
+    { "id": "test-005", "title": "API timeout on slow network", "status": "failed", "duration": 30000 },
+    { "id": "test-006", "title": "API retry mechanism", "status": "failed", "duration": 31000 },
+    { "id": "test-007", "title": "API connection drop", "status": "failed", "duration": 30500 },
+    { "id": "test-008", "title": "Button click handler", "status": "passed", "duration": 500 },
+    { "id": "test-009", "title": "Form submission", "status": "passed", "duration": 800 },
+    { "id": "test-010", "title": "Element not found - header", "status": "failed", "duration": 5000 },
+    { "id": "test-011", "title": "Element not found - footer", "status": "failed", "duration": 4800 },
+    { "id": "test-012", "title": "Element not found - sidebar", "status": "failed", "duration": 5200 }
+  ],
+  "host": {
+    "name": "test-runner-01",
+    "os": "Linux",
+    "arch": "x64"
+  }
+}

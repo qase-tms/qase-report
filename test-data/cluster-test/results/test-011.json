@@ -1,0 +1,27 @@
+{
+  "id": "test-011",
+  "title": "Element not found - footer",
+  "signature": "ui.element.footer",
+  "run_id": null,
+  "testops_id": null,
+  "execution": {
+    "status": "failed",
+    "start_time": 1707580945000,
+    "end_time": 1707580949800,
+    "duration": 4800,
+    "stacktrace": "ElementNotFoundError: Unable to find element with selector '#footer'\n    at findElement (test/helpers.js:42:9)",
+    "thread": "main"
+  },
+  "fields": {},
+  "attachments": [],
+  "steps": [],
+  "params": {},
+  "author": null,
+  "relations": {
+    "suite": {
+      "data": [{ "title": "UI Tests", "public_id": null }]
+    }
+  },
+  "muted": false,
+  "message": "ElementNotFoundError: Unable to find element with selector '#footer' after 5000ms timeout"
+}

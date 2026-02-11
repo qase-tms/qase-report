@@ -1,0 +1,27 @@
+{
+  "id": "test-012",
+  "title": "Element not found - sidebar",
+  "signature": "ui.element.sidebar",
+  "run_id": null,
+  "testops_id": null,
+  "execution": {
+    "status": "failed",
+    "start_time": 1707580955000,
+    "end_time": 1707580960200,
+    "duration": 5200,
+    "stacktrace": "ElementNotFoundError: Unable to find element with selector '.sidebar-nav'\n    at findElement (test/helpers.js:42:9)",
+    "thread": "main"
+  },
+  "fields": {},
+  "attachments": [],
+  "steps": [],
+  "params": {},
+  "author": null,
+  "relations": {
+    "suite": {
+      "data": [{ "title": "UI Tests", "public_id": null }]
+    }
+  },
+  "muted": false,
+  "message": "ElementNotFoundError: Unable to find element with selector '.sidebar-nav' after 5000ms timeout"
+}

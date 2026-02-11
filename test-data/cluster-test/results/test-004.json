@@ -1,0 +1,27 @@
+{
+  "id": "test-004",
+  "title": "Registration form validation",
+  "signature": "auth.register.validation",
+  "run_id": null,
+  "testops_id": null,
+  "execution": {
+    "status": "passed",
+    "start_time": 1707580810000,
+    "end_time": 1707580813000,
+    "duration": 3000,
+    "stacktrace": null,
+    "thread": "main"
+  },
+  "fields": {},
+  "attachments": [],
+  "steps": [],
+  "params": {},
+  "author": null,
+  "relations": {
+    "suite": {
+      "data": [{ "title": "Auth Tests", "public_id": null }]
+    }
+  },
+  "muted": false,
+  "message": null
+}

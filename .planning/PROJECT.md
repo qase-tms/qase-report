@@ -8,6 +8,18 @@ Open-source инструмент для визуализации отчётов 
 
 Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
+## Current Milestone: v1.5 Qase TMS Style
+
+**Goal:** Переделать UI под стиль Qase TMS с миграцией на shadcn/ui — tabs navigation, right sidebar, drawer для test details, table-style test list.
+
+**Target features:**
+- Миграция с MUI на shadcn/ui (Tailwind CSS + Radix primitives)
+- Tab-based navigation (Test cases, Overview, Failure Clusters, Gallery, Comparison)
+- Right sidebar с completion rate ring и run metadata (всегда видимый)
+- Test details в drawer справа (вместо modal)
+- Table-style test list с колонками (ID, Status, Title, Duration)
+- Suite progress bars (pass/fail сегменты + duration)
+
 ## Current State
 
 **v1.4 Layout Simplification shipped:** 2026-02-11
@@ -83,7 +95,13 @@ Open-source инструмент для визуализации отчётов 
 
 ### Active
 
-(No active requirements — define next milestone with /gsd:new-milestone)
+**v1.5 Qase TMS Style:**
+- [ ] Миграция с MUI на shadcn/ui (Tailwind + Radix)
+- [ ] Tab-based navigation (replacing hamburger menu)
+- [ ] Right sidebar с completion rate ring и run info
+- [ ] Test details drawer (replacing modal)
+- [ ] Table-style test list с колонками
+- [ ] Suite progress bars
 
 ### Out of Scope
 
@@ -135,4 +153,4 @@ Open-source инструмент для визуализации отчётов 
 | Weighted stability formula | Balances pass rate, flakiness, and variance | ✓ Good |
 
 ---
-*Last updated: 2026-02-11 after v1.4 milestone completion*
+*Last updated: 2026-02-11 after v1.5 milestone start*

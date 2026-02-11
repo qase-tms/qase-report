@@ -1,0 +1,27 @@
+{
+  "id": "test-009",
+  "title": "Form submission",
+  "signature": "ui.form.submit",
+  "run_id": null,
+  "testops_id": null,
+  "execution": {
+    "status": "passed",
+    "start_time": 1707580930000,
+    "end_time": 1707580930800,
+    "duration": 800,
+    "stacktrace": null,
+    "thread": "main"
+  },
+  "fields": {},
+  "attachments": [],
+  "steps": [],
+  "params": {},
+  "author": null,
+  "relations": {
+    "suite": {
+      "data": [{ "title": "UI Tests", "public_id": null }]
+    }
+  },
+  "muted": false,
+  "message": null
+}

@@ -1,83 +1,91 @@
-# Requirements: Qase Report v1.4 Layout Simplification
+# Requirements: Qase Report v1.5
 
 **Defined:** 2026-02-11
-**Core Value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
+**Core Value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в интерфейсе стиля Qase TMS
 
-## v1.4 Requirements
+## v1.5 Requirements
 
-Requirements for Layout Simplification milestone. Each maps to roadmap phases.
+Requirements for Qase TMS style redesign with shadcn/ui migration.
 
-### Navigation
+### Foundation
 
-- [ ] **NAV-01**: User sees hamburger menu in top bar for navigation
-- [ ] **NAV-02**: Dropdown shows text labels (Overview, Tests, Clusters, Gallery, Comparison)
-- [ ] **NAV-03**: Dropdown closes when user selects a navigation item
-
-### Status Bar
-
-- [ ] **STAT-01**: User sees compact pass rate donut in top bar (always visible)
-- [ ] **STAT-02**: User sees run info (name, date, duration) in top bar
-- [ ] **STAT-03**: User sees quick stats (passed/failed/skipped counts) in top bar
-
-### Test Details
-
-- [ ] **DET-01**: User opens test details as modal dialog (not separate page)
-- [ ] **DET-02**: User can close modal with Escape key or clicking outside
-- [ ] **DET-03**: User can scroll within modal for long test content
+- [ ] **FOUND-01**: Tailwind CSS v4 установлен и настроен с Vite plugin
+- [ ] **FOUND-02**: shadcn/ui CLI инициализирован с path aliases
+- [ ] **FOUND-03**: Dark theme настроен через Tailwind CSS variables
+- [ ] **FOUND-04**: MUI и Emotion полностью удалены из проекта
+- [ ] **FOUND-05**: lucide-react заменяет @mui/icons-material
 
 ### Layout
 
-- [ ] **LAY-01**: Sidebar is removed entirely from the layout
-- [ ] **LAY-02**: User can filter tests by status/stability in test list view
-- [ ] **LAY-03**: Layout does not shift when modal opens (scrollbar compensation)
+- [ ] **LAYOUT-01**: Tab-based navigation заменяет hamburger menu (Test cases, Overview, Failure Clusters, Gallery, Comparison)
+- [ ] **LAYOUT-02**: Right sidebar отображает completion rate ring и run metadata (всегда видимый)
+- [ ] **LAYOUT-03**: Test details открываются в Sheet drawer справа (вместо modal)
+- [ ] **LAYOUT-04**: Nested tabs внутри drawer (Execution, Info, Run History, Retries)
+- [ ] **LAYOUT-05**: Top bar содержит заголовок run и action buttons
+
+### Data Display
+
+- [ ] **DATA-01**: Test list отображается как Data Table (TanStack) с колонками ID, Status, Title, Duration
+- [ ] **DATA-02**: Table поддерживает сортировку по всем колонкам
+- [ ] **DATA-03**: Status отображается через Badge компонент с цветовыми вариантами
+- [ ] **DATA-04**: Suite hierarchy отображается как expandable rows с Progress bar
+- [ ] **DATA-05**: Progress bar показывает pass/fail сегменты (multi-color)
+- [ ] **DATA-06**: Completion rate ring в sidebar показывает общий pass rate (Radial Chart)
+- [ ] **DATA-07**: Loading skeletons отображаются при загрузке данных
+
+### Interaction
+
+- [ ] **INT-01**: Command palette (⌘K) для поиска тестов с fuzzy matching
+- [ ] **INT-02**: Row actions dropdown для каждого теста (view details, view history)
+- [ ] **INT-03**: Suite collapse/expand с сохранением состояния
+
+### Migration
+
+- [ ] **MIG-01**: Все существующие views мигрированы на shadcn/ui компоненты
+- [ ] **MIG-02**: Virtual scrolling сохранён для больших test lists (react-window)
+- [ ] **MIG-03**: Recharts интегрирован с Tailwind темой
+- [ ] **MIG-04**: Static HTML export продолжает работать с file:// protocol
+
+## v1.4 Requirements (Completed)
+
+All v1.4 Layout Simplification requirements completed 2026-02-11.
+
+### Navigation
+- [x] **NAV-01** through **NAV-03**: Hamburger menu navigation — Phase 25
+
+### Status Bar
+- [x] **STAT-01** through **STAT-03**: Pass rate donut and run info in top bar — Phase 26
+
+### Test Details
+- [x] **DET-01** through **DET-03**: Modal test details — Phase 27
+
+### Layout
+- [x] **LAY-01** through **LAY-03**: Sidebar removal, filters in test list — Phase 28
 
 ### Cleanup
+- [x] **CLN-01**, **CLN-02**: Statistics consolidation — Phase 29
 
-- [ ] **CLN-01**: Duplicate pass rate rings/charts are removed
-- [ ] **CLN-02**: Statistics are consolidated in status bar only
+## Future Requirements (v1.6+)
 
-## v1.3 Requirements (Completed)
+Deferred to future release. Tracked but not in current roadmap.
 
-All v1.3 Design Overhaul requirements completed 2026-02-11.
+### Enhanced Interaction
 
-### Theme & Branding
-- [x] **THEME-04**: Dark theme is default — Phase 18
-- [x] **THEME-05**: Color palette matches Playwright Smart Reporter style — Phase 18
+- **INT-04**: Column visibility toggle (show/hide columns)
+- **INT-05**: Context menu на right-click для тестов
+- **INT-06**: Keyboard shortcuts для навигации
+- **INT-07**: Sticky table headers при скролле
 
-### Sidebar Redesign
-- [x] **SIDE-01**: Sidebar shows pass rate ring visualization — Phase 20
-- [x] **SIDE-02**: Sidebar shows quick stats — Phase 20
-- [x] **SIDE-03**: Navigation items have icons — Phase 20
-- [x] **SIDE-04**: Filters rendered as chips — Phase 20
+### Polish
 
-### Top Bar
-- [x] **TOP-01**: Search with ⌘K — Phase 19
-- [x] **TOP-02**: Export button — Phase 19
-- [x] **TOP-03**: Theme toggle — Phase 19
-- [x] **TOP-04**: Run date displayed — Phase 19
+- **POLISH-01**: Empty states с illustrations
+- **POLISH-02**: ScrollArea для consistent scrollbars
+- **POLISH-03**: Collapsible filters panel
 
-### Overview Dashboard
-- [x] **OVER-01** through **OVER-05**: Suite Health, trends, Attention Required, Quick Insights — Phase 21
+### Scale
 
-### Failure Clusters
-- [x] **CLUST-01** through **CLUST-04**: Error grouping, expand, navigate — Phase 22
-
-### Gallery
-- [x] **GAL-01** through **GAL-04**: Attachment gallery with filtering — Phase 23
-
-### Comparison
-- [x] **COMP-01** through **COMP-04**: Run comparison with diff display — Phase 24
-
-## Future Requirements
-
-Deferred to v1.5+. Tracked but not in current roadmap.
-
-### UX Enhancements
-
-- **KEY-01**: User can navigate with keyboard shortcuts (J/K, Enter, Esc)
-- **MOB-01**: User can view report on mobile devices (responsive layout)
-- **ACC-01**: Full WCAG 2.1 AA accessibility compliance
-- **SCALE-01**: System handles 2000+ tests (enterprise scale)
+- **SCALE-01**: Enterprise scale (2000+ tests)
+- **MOB-01**: Mobile responsive layout
 
 ## Out of Scope
 
@@ -85,10 +93,13 @@ Explicitly excluded. Documented to prevent scope creep.
 
 | Feature | Reason |
 |---------|--------|
-| Hamburger-only menu (no text labels) | NN/G research shows 50% reduced discoverability |
-| Split-view test details | Modal is simpler, achieves same goal |
-| Mobile-first responsive | Desktop primary, mobile deferred to v1.5 |
-| Animated transitions | Nice-to-have, not essential for v1.4 |
+| Incremental MUI→shadcn migration | Research показал — полная замена необходима (CSS conflicts) |
+| Real-time filtering | Performance issues с 1000+ тестами, используем debounced search |
+| Infinite scroll | Конфликтует с virtual scrolling, users теряют позицию |
+| Inline editing | Report read-only, не применимо |
+| Drag-and-drop reordering | Test order = execution order |
+| Mobile responsive | Deferred to v1.6+ |
+| AI-анализ ошибок | Out of scope |
 
 ## Traceability
 
@@ -96,27 +107,44 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| NAV-01 | Phase 25 | Pending |
-| NAV-02 | Phase 25 | Pending |
-| NAV-03 | Phase 25 | Pending |
-| STAT-01 | Phase 26 | Pending |
-| STAT-02 | Phase 26 | Pending |
-| STAT-03 | Phase 26 | Pending |
-| DET-01 | Phase 27 | Pending |
-| DET-02 | Phase 27 | Pending |
-| DET-03 | Phase 27 | Pending |
-| LAY-01 | Phase 28 | Pending |
-| LAY-02 | Phase 28 | Pending |
-| LAY-03 | Phase 27 | Pending |
-| CLN-01 | Phase 29 | Pending |
-| CLN-02 | Phase 29 | Pending |
+| FOUND-01 | Phase 30 | Pending |
+| FOUND-02 | Phase 30 | Pending |
+| FOUND-03 | Phase 30 | Pending |
+| FOUND-04 | Phase 30 | Pending |
+| FOUND-05 | Phase 30 | Pending |
+| LAYOUT-01 | Phase 32 | Pending |
+| LAYOUT-02 | Phase 32 | Pending |
+| LAYOUT-03 | Phase 33 | Pending |
+| LAYOUT-04 | Phase 33 | Pending |
+| LAYOUT-05 | Phase 32 | Pending |
+| DATA-01 | Phase 34 | Pending |
+| DATA-02 | Phase 34 | Pending |
+| DATA-03 | Phase 31 | Pending |
+| DATA-04 | Phase 35 | Pending |
+| DATA-05 | Phase 35 | Pending |
+| DATA-06 | Phase 36 | Pending |
+| DATA-07 | Phase 31 | Pending |
+| INT-01 | Phase 34 | Pending |
+| INT-02 | Phase 34 | Pending |
+| INT-03 | Phase 35 | Pending |
+| MIG-01 | Phase 36 | Pending |
+| MIG-02 | Phase 34 | Pending |
+| MIG-03 | Phase 36 | Pending |
+| MIG-04 | Phase 36 | Pending |
 
 **Coverage:**
-- v1.4 requirements: 14 total
-- Mapped to phases: 14
+- v1.5 requirements: 24 total
+- Mapped to phases: 24 (100% ✓)
 - Unmapped: 0
 
-**Coverage validation:** 100% ✓
+**Phase coverage:**
+- Phase 30 (Foundation Setup): 5 requirements
+- Phase 31 (Core UI Components): 2 requirements
+- Phase 32 (Layout Restructure): 3 requirements
+- Phase 33 (Test Details Drawer): 2 requirements
+- Phase 34 (TanStack Table Migration): 5 requirements
+- Phase 35 (Suite Hierarchy & Progress): 3 requirements
+- Phase 36 (Views Migration & Polish): 4 requirements
 
 ---
 *Requirements defined: 2026-02-11*
