@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-02-10)
 
 ## Current Position
 
-Phase: 23 of 24 (Gallery View)
-Plan: 2 of 2 complete
-Status: Complete
-Last activity: 2026-02-10 — Completed Phase 23 Plan 02 (Gallery UI)
+Phase: 24 of 24 (Comparison View)
+Plan: 1 of 2 complete
+Status: In Progress
+Last activity: 2026-02-11 — Completed Phase 24 Plan 01 (Comparison Store)
 
 Progress: v1.0 + v1.1 + v1.2 complete (17 phases, 32 plans shipped)
-v1.3: [#########-] 89% (Phases 18-23 complete, 24 pending)
+v1.3: [#########-] 92% (Phases 18-23 complete, 24 in progress)
 
 ## Performance Metrics
 
@@ -37,6 +37,7 @@ v1.3: [#########-] 89% (Phases 18-23 complete, 24 pending)
 | 22 | 02 | ~2 min | 4 | 4 | 2026-02-10 |
 | 23 | 01 | ~2 min | 2 | 2 | 2026-02-10 |
 | 23 | 02 | ~3 min | 3 | 7 | 2026-02-10 |
+| 24 | 01 | ~3 min | 2 | 2 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -74,6 +75,10 @@ Key decisions preserved for future reference:
 - [Phase 23-01]: Gallery attachments use 3-category MIME type system (screenshots/logs/other)
 - [Phase 23-02]: Responsive grid uses 1-4 columns based on breakpoints (xs/sm/md/lg)
 - [Phase 23-02]: Collections icon chosen for Gallery navigation item
+- [Phase 24-01]: Map-based O(n+m) diff algorithm for efficient comparison computation
+- [Phase 24-01]: Duration significance threshold: >20% OR >500ms (whichever is larger)
+- [Phase 24-01]: Comparison runs limited to 20 most recent for dropdown usability
+- [Phase 24-01]: Status change categorization: regression (passed->failed), fixed (failed->passed), other
 
 ### Pending Todos
 
@@ -90,7 +95,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-10
-Stopped at: Completed Phase 23 Plan 02 (Gallery UI)
+Last session: 2026-02-11
+Stopped at: Completed Phase 24 Plan 01 (Comparison Store)
 Resume file: None
-Next action: Phase 23 complete. Ready for Phase 24 (Comparison View)
+Next action: Phase 24 in progress. Ready for Plan 02 (Comparison UI)
