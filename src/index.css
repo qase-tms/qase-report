@@ -1,8 +1,92 @@
 @import "tailwindcss";
 
-/* Temporary: MUI coexistence styles */
-/* MUI CssBaseline handles most resets, Tailwind Preflight will take over after MUI removal */
+/* Base layer for Tailwind compatibility */
+@layer base {
+  /* Dark theme as DEFAULT (no class needed) */
+  :root {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 216 34% 17%;
+    --radius: 0.5rem;
 
+    /* Status colors (match current MUI theme) */
+    --status-passed: 142 76% 36%;
+    --status-failed: 0 84% 60%;
+    --status-skipped: 48 96% 53%;
+    --status-broken: 0 0% 45%;
+
+    /* Chart colors for Recharts */
+    --chart-1: 142 76% 36%;
+    --chart-2: 0 84% 60%;
+    --chart-3: 48 96% 53%;
+    --chart-4: 217 91% 60%;
+    --chart-5: 280 65% 60%;
+  }
+
+  /* Light theme (activated by .light class on html) */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    /* Status colors (light variants) */
+    --status-passed: 142 71% 45%;
+    --status-failed: 0 84% 60%;
+    --status-skipped: 48 96% 53%;
+    --status-broken: 0 0% 55%;
+
+    /* Chart colors */
+    --chart-1: 142 71% 45%;
+    --chart-2: 0 84% 60%;
+    --chart-3: 48 96% 53%;
+    --chart-4: 217 91% 60%;
+    --chart-5: 280 65% 60%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* MUI coexistence - preserve until Phase 30-04 */
 html,
 body,
 #root {
@@ -11,9 +95,7 @@ body,
   min-height: 100vh;
 }
 
-/* Preserve scrollbar stability during transition */
 html {
-  background-color: var(--mui-palette-background-default, hsl(var(--background)));
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
