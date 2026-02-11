@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 32 - Layout Restructure (v1.5 Qase TMS Style)
+**Current focus:** Phase 33 - Test Details Drawer (v1.5 Qase TMS Style)
 
 ## Current Position
 
-Phase: 32 of 36 (Layout Restructure)
-Plan: 3 of 3 in current phase
+Phase: 33 of 36 (Test Details Drawer)
+Plan: 1 of 3 in current phase
 Status: Completed
-Last activity: 2026-02-11 — Completed 32-03: Layout Integration
+Last activity: 2026-02-11 — Completed 33-01: TestDetailsDrawer Foundation
 
-Progress: [█████████████████████████████░░░░░░░] 84% (53/63 total plans)
+Progress: [█████████████████████████████░░░░░░░] 86% (54/63 total plans)
 
 ## Performance Metrics
 
@@ -27,7 +27,7 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 9/27 | In progress |
+| v1.5 Qase TMS Style | 30-36 | 10/27 | In progress |
 
 **Recent completions:**
 
@@ -45,6 +45,7 @@ Progress: [███████████████████████
 | 32 | 01 | ~2 min | 2 | 3 | 2026-02-11 |
 | 32 | 02 | ~2.5 min | 1 | 1 | 2026-02-11 |
 | 32 | 03 | ~2.2 min | 3 | 2 | 2026-02-11 |
+| 33 | 01 | ~1.2 min | 2 | 2 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -109,6 +110,13 @@ Key decisions preserved for future reference:
 - Dashboard view simplified to show only Dashboard component (no TestList combo)
 - Fixed 300px right sidebar (hidden on mobile with lg:grid-cols pattern)
 
+**Phase 33-01 (TestDetailsDrawer Foundation):**
+- Sheet drawer opens from right side (more space for test details than left)
+- Responsive width: 600px mobile, 800px desktop for comfortable reading
+- 4 tabs structure: Execution (default), Info, Run History, Retries
+- open={true} with early return pattern (cleaner than open={!!selectedTest})
+- Execution tab as defaultValue (most useful for debugging failures)
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -140,7 +148,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T17:58:28Z
-Stopped at: Completed 32-03-PLAN.md (Layout Integration) - Phase 32 Complete
+Last session: 2026-02-11T18:20:14Z
+Stopped at: Completed 33-01-PLAN.md (TestDetailsDrawer Foundation)
 Resume file: None
-Next action: Begin Phase 33 (Test Table Implementation)
+Next action: Begin Phase 33-02 (Tab Content Components)
