@@ -441,14 +441,13 @@ Plans:
   3. Command palette (Cmd+K) works for test search with fuzzy matching
   4. Row actions dropdown shows actions (view details, view history)
   5. Virtual scrolling works with 500+ tests without performance issues
-**Plans**: TBD
+**Plans**: 4 plans (4 waves)
 
 Plans:
-- [ ] 34-01: Set up TanStack Table with columns
-- [ ] 34-02: Implement column sorting
-- [ ] 34-03: Add command palette search
-- [ ] 34-04: Integrate virtual scrolling with table
-- [ ] 34-05: Add row actions dropdown
+- [x] 34-01-PLAN.md — Install TanStack Table packages and shadcn UI components (Wave 1)
+- [x] 34-02-PLAN.md — Create column definitions and DataTable with sorting (Wave 2)
+- [x] 34-03-PLAN.md — Integrate virtual scrolling with @tanstack/react-virtual (Wave 3)
+- [x] 34-04-PLAN.md — Add command palette with fuzzy search (Wave 4)
 
 #### Phase 35: Suite Hierarchy & Progress
 
@@ -504,8 +503,8 @@ Plans:
 | 31. Core UI Components | v1.5 | 2/2 | Complete | 2026-02-11 |
 | 32. Layout Restructure | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 33. Test Details Drawer | v1.5 | 3/3 | Complete | 2026-02-11 |
-| 34. TanStack Table | v1.5 | 0/5 | Not started | - |
+| 34. TanStack Table | v1.5 | 4/4 | Complete | 2026-02-11 |
 | 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
-**Total v1.5:** 13/25 plans complete (52%)
+**Total v1.5:** 17/24 plans complete (71%)
