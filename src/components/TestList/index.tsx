@@ -1,36 +1,14 @@
-import { useRef } from 'react'
+import { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
-import { useSuiteExpandState } from '../../hooks/useSuiteExpandState'
-import { useScrollPosition } from '../../hooks/useScrollPosition'
 import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
-import { VirtualizedTestList } from './VirtualizedTestList'
-import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
-
-// Group tests by top-level suite
-const groupBySuite = (tests: QaseTestResult[]) => {
-  const grouped = new Map<string, QaseTestResult[]>()
-
-  for (const test of tests) {
-    const suiteTitle = test.relations?.suite?.data?.[0]?.title || 'Uncategorized'
-
-    if (!grouped.has(suiteTitle)) {
-      grouped.set(suiteTitle, [])
-    }
-    grouped.get(suiteTitle)!.push(test)
-  }
-
-  return grouped
-}
+import { DataTable } from './DataTable'
+import { createColumns } from './columns'
 
 export const TestList = observer(() => {
   const { testResultsStore, selectTest } = useRootStore()
   const { filteredResults, resultsList, activeFilterCount } = testResultsStore
-  const { expandedSuites, toggleSuite } = useSuiteExpandState()
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useScrollPosition('test-list', containerRef)
 
   // Early return if no tests loaded
   if (resultsList.length === 0) {
@@ -41,7 +19,18 @@ export const TestList = observer(() => {
     )
   }
 
-  const grouped = groupBySuite(filteredResults)
+  // Memoize data to prevent table re-initialization on every render
+  // MobX observer ensures re-render when filteredResults changes
+  const data = useMemo(
+    () => filteredResults,
+    [filteredResults]
+  )
+
+  // Memoize columns with selectTest callback
+  const columns = useMemo(
+    () => createColumns(selectTest),
+    [selectTest]
+  )
 
   return (
     <div className="bg-card rounded-lg border shadow-sm p-4">
@@ -60,25 +49,20 @@ export const TestList = observer(() => {
       </p>
 
       {/* Empty state when filters match nothing */}
-      {filteredResults.length === 0 && resultsList.length > 0 && (
+      {filteredResults.length === 0 && resultsList.length > 0 ? (
         <p className="text-sm text-muted-foreground py-4 text-center">
           No tests match current filters.
         </p>
+      ) : (
+        /* Data table */
+        <div className="h-[calc(100vh-400px)] min-h-[300px]">
+          <DataTable
+            columns={columns}
+            data={data}
+            onRowClick={(test) => selectTest(test.id)}
+          />
+        </div>
       )}
-
-      {/* Virtualized test list */}
-      <div
-        ref={containerRef}
-        className="h-[calc(100vh-400px)] min-h-[300px]"
-      >
-        <VirtualizedTestList
-          grouped={grouped}
-          expandedSuites={expandedSuites}
-          toggleSuite={toggleSuite}
-          onSelectTest={selectTest}
-          height={containerRef.current?.offsetHeight || 400}
-        />
-      </div>
     </div>
   )
 })
