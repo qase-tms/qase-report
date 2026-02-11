@@ -288,10 +288,10 @@ Plans:
   2. User sees text labels for all navigation items (Overview, Tests, Clusters, Gallery, Comparison)
   3. User clicks navigation item and dropdown closes automatically
   4. User navigates to selected view successfully
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 25-01: TBD
+- [x] 25-01-PLAN.md — Hamburger menu with MUI Menu dropdown in AppBar
 
 ### Phase 26: Persistent Status Bar
 **Goal**: User sees run status and statistics in top bar at all times
@@ -302,10 +302,10 @@ Plans:
   2. User sees run metadata (name, date, duration) in top bar
   3. User sees quick statistics (passed/failed/skipped counts) in top bar
   4. User can see status information in all views without scrolling
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 26-01: TBD
+- [ ] 26-01-PLAN.md — StatusBarPill component with pass rate ring, quick stats, run metadata
 
 ### Phase 27: Modal Test Details
 **Goal**: User can inspect test details in modal dialog without layout shift
@@ -359,7 +359,7 @@ Plans:
 | 8-12. History | v1.1 | 13/13 | Complete | 2026-02-10 |
 | 13-17. Design | v1.2 | 9/9 | Complete | 2026-02-10 |
 | 18-24. Overhaul | v1.3 | 14/14 | Complete | 2026-02-11 |
-| 25. Hamburger Menu | v1.4 | 0/1 | Not started | - |
+| 25. Hamburger Menu | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 26. Status Bar | v1.4 | 0/1 | Not started | - |
 | 27. Modal Details | v1.4 | 0/1 | Not started | - |
 | 28. Layout Cleanup | v1.4 | 0/1 | Not started | - |
