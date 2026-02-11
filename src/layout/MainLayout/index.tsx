@@ -8,23 +8,14 @@ import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
 import { TestDetailsModal } from '../../components/TestDetailsModal'
+import { TabNavigation } from '../../components/TabNavigation'
 
 export const MainLayout = observer(() => {
   const { reportStore, activeView } = useRootStore()
 
   const renderView = () => {
     if (activeView === 'dashboard') {
-      return (
-        <>
-          <Dashboard />
-          {/* Show TestList only when report is loaded */}
-          {reportStore.runData && (
-            <div className="mt-6">
-              <TestList />
-            </div>
-          )}
-        </>
-      )
+      return <Dashboard />
     }
 
     if (activeView === 'tests') {
@@ -49,25 +40,20 @@ export const MainLayout = observer(() => {
       return <Comparison />
     }
 
-    if (activeView === 'analytics') {
-      return (
-        <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
-          Analytics - Coming Soon
-        </div>
-      )
-    }
-
     return null
   }
 
   return (
     <>
-      <main className="h-[calc(100vh-48px)] w-full p-4">
-        <div className="flex gap-4 mb-4">
-          <LoadReportButton />
+      <div className="flex flex-col h-full">
+        <TabNavigation />
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex gap-4 mb-4">
+            <LoadReportButton />
+          </div>
+          {renderView()}
         </div>
-        {renderView()}
-      </main>
+      </div>
       <TestDetailsModal />
       {/* Global attachment viewer */}
       <AttachmentViewer />
