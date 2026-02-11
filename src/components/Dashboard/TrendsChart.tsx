@@ -23,7 +23,13 @@ const useThemeColor = (cssVar: string, fallback: string) => {
         .getPropertyValue(cssVar)
         .trim()
       if (computed) {
-        setColor(`hsl(${computed})`)
+        // CSS uses oklch() format, wrap accordingly
+        if (computed.startsWith('oklch') || computed.startsWith('hsl') || computed.startsWith('rgb') || computed.startsWith('#')) {
+          setColor(computed)
+        } else {
+          // Assume oklch values without prefix (e.g., "0.922 0 0")
+          setColor(`oklch(${computed})`)
+        }
       }
     }
     updateColor()
