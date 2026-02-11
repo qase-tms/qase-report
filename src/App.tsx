@@ -17,7 +17,7 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { NavigationDrawer } from './components/NavigationDrawer'
 import { SearchModal } from './components/SearchModal'
 import { ExportButton } from './components/ExportButton'
-import { RunDateDisplay } from './components/RunDateDisplay'
+import { StatusBarPill } from './components/StatusBarPill'
 import { useRootStore } from './store'
 
 const App = () => {
@@ -67,9 +67,9 @@ const App = () => {
               </Typography>
             </Box>
 
-            {/* Center: Run Date (pushed by flexGrow) */}
+            {/* Center: Status Bar (pushed by flexGrow) */}
             <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
-              <RunDateDisplay />
+              <StatusBarPill />
             </Box>
 
             {/* Right: Actions */}
