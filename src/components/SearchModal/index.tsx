@@ -1,15 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import {
-  Dialog,
-  TextField,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Typography,
-  Box,
-} from '@mui/material'
 import { useRootStore } from '../../store'
 
 interface SearchModalProps {
@@ -47,70 +37,71 @@ export const SearchModal = observer(({ open, onClose }: SearchModalProps) => {
     return test.relations.suite.data.map((s) => s.title).join(' > ')
   }
 
-  return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      fullWidth
-      maxWidth="md"
-      PaperProps={{
-        sx: {
-          position: 'fixed',
-          top: '20%',
-          m: 0,
-        },
-      }}
-    >
-      <Box sx={{ p: 2 }}>
-        <TextField
-          autoFocus
-          fullWidth
-          placeholder="Search tests..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          variant="outlined"
-          size="small"
-        />
-      </Box>
+  // Handle escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        handleClose()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [open])
 
-      <List sx={{ maxHeight: '400px', overflow: 'auto', px: 1, pb: 1 }}>
-        {query.trim() === '' ? (
-          <ListItem>
-            <ListItemText
-              primary={
-                <Typography variant="body2" color="text.secondary">
-                  Type to search tests...
-                </Typography>
-              }
-            />
-          </ListItem>
-        ) : displayedResults.length === 0 ? (
-          <ListItem>
-            <ListItemText
-              primary={
-                <Typography variant="body2" color="text.secondary">
-                  No results found
-                </Typography>
-              }
-            />
-          </ListItem>
-        ) : (
-          displayedResults.map((test) => (
-            <ListItemButton
-              key={test.id}
-              onClick={() => handleResultClick(test.id)}
-              sx={{ borderRadius: 1 }}
-            >
-              <ListItemText
-                primary={test.title}
-                secondary={`${test.execution.status} • ${getSuiteName(test)}`}
-                primaryTypographyProps={{ variant: 'body2' }}
-                secondaryTypographyProps={{ variant: 'caption' }}
-              />
-            </ListItemButton>
-          ))
-        )}
-      </List>
-    </Dialog>
+  if (!open) return null
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/50"
+        onClick={handleClose}
+      />
+
+      {/* Dialog */}
+      <div className="relative z-10 w-full max-w-2xl bg-card rounded-lg border shadow-lg">
+        {/* Search input */}
+        <div className="p-4">
+          <input
+            autoFocus
+            type="text"
+            className="w-full px-3 py-2 text-sm bg-background border rounded-md focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground"
+            placeholder="Search tests..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+
+        {/* Results list */}
+        <div className="max-h-[400px] overflow-auto px-2 pb-2">
+          {query.trim() === '' ? (
+            <div className="px-3 py-2">
+              <span className="text-sm text-muted-foreground">
+                Type to search tests...
+              </span>
+            </div>
+          ) : displayedResults.length === 0 ? (
+            <div className="px-3 py-2">
+              <span className="text-sm text-muted-foreground">
+                No results found
+              </span>
+            </div>
+          ) : (
+            displayedResults.map((test) => (
+              <button
+                key={test.id}
+                onClick={() => handleResultClick(test.id)}
+                className="w-full text-left px-3 py-2 rounded-md hover:bg-accent transition-colors"
+              >
+                <div className="text-sm">{test.title}</div>
+                <div className="text-xs text-muted-foreground">
+                  {test.execution.status} • {getSuiteName(test)}
+                </div>
+              </button>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
   )
 })

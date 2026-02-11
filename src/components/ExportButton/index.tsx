@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { IconButton } from '@mui/material'
-import { Download } from '@mui/icons-material'
+import { Download } from 'lucide-react'
 import { useRootStore } from '../../store'
 
 export const ExportButton = observer(() => {
@@ -39,13 +38,13 @@ export const ExportButton = observer(() => {
   }
 
   return (
-    <IconButton
-      color="inherit"
+    <button
       onClick={handleExport}
       disabled={!root.reportStore.runData}
       aria-label="Export report"
+      className="p-2 rounded-md hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
     >
-      <Download />
-    </IconButton>
+      <Download className="h-5 w-5" />
+    </button>
   )
 })

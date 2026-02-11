@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { TextField, InputAdornment } from '@mui/material'
-import { Search } from '@mui/icons-material'
+import { Search } from 'lucide-react'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 
@@ -18,19 +17,15 @@ export const TestListSearch = observer(() => {
   }, [localQuery, testResultsStore])
 
   return (
-    <TextField
-      fullWidth
-      size="small"
-      placeholder="Search tests..."
-      value={localQuery}
-      onChange={(e) => setLocalQuery(e.target.value)}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <Search color="action" />
-          </InputAdornment>
-        ),
-      }}
-    />
+    <div className="relative">
+      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+      <input
+        type="text"
+        className="w-full pl-9 pr-3 py-2 text-sm bg-background border rounded-md focus:outline-none focus:ring-2 focus:ring-ring placeholder:text-muted-foreground"
+        placeholder="Search tests..."
+        value={localQuery}
+        onChange={(e) => setLocalQuery(e.target.value)}
+      />
+    </div>
   )
 })

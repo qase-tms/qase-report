@@ -1,4 +1,4 @@
-import { Box, Chip } from '@mui/material'
+import { cn } from '../../lib/utils'
 
 interface GalleryFiltersProps {
   activeFilter: 'all' | 'screenshots' | 'logs' | 'other'
@@ -24,16 +24,21 @@ export const GalleryFilters = ({
   ]
 
   return (
-    <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
+    <div className="flex gap-2 flex-wrap mb-4">
       {filters.map(filter => (
-        <Chip
+        <button
           key={filter.value}
-          label={filter.label}
-          color={activeFilter === filter.value ? 'primary' : 'default'}
           onClick={() => onFilterChange(filter.value)}
-          size="small"
-        />
+          className={cn(
+            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors',
+            activeFilter === filter.value
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          )}
+        >
+          {filter.label}
+        </button>
       ))}
-    </Box>
+    </div>
   )
 }

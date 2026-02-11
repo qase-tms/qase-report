@@ -1,15 +1,15 @@
-import { CheckCircle, Error, Warning, DoNotDisturb } from '@mui/icons-material'
+import { CheckCircle, XCircle, AlertTriangle, MinusCircle } from 'lucide-react'
 
 export const getStatusIcon = (status: string) => {
   switch (status) {
     case 'passed':
-      return <CheckCircle color="success" />
+      return <CheckCircle className="h-5 w-5 text-green-500" />
     case 'failed':
-      return <Error color="error" />
+      return <XCircle className="h-5 w-5 text-red-500" />
     case 'broken':
-      return <Warning color="warning" />
+      return <AlertTriangle className="h-5 w-5 text-yellow-500" />
     case 'skipped':
     default:
-      return <DoNotDisturb color="disabled" />
+      return <MinusCircle className="h-5 w-5 text-muted-foreground" />
   }
 }

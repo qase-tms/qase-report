@@ -1,9 +1,9 @@
 import { observer } from 'mobx-react-lite'
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, Chip, Tooltip } from '@mui/material'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 import { getStatusIcon } from './statusIcon'
 import { useRootStore } from '../../store'
 import { StabilityBadge } from './StabilityBadge'
+import { cn } from '../../lib/utils'
 import type { StabilityGrade } from '../../types/stability'
 
 interface TestListItemProps {
@@ -11,20 +11,20 @@ interface TestListItemProps {
   onSelect: (id: string) => void
 }
 
-const getGradeColor = (grade: StabilityGrade): 'success' | 'info' | 'warning' | 'error' | 'default' => {
+const getGradeClass = (grade: StabilityGrade): string => {
   switch (grade) {
     case 'A+':
     case 'A':
-      return 'success'
+      return 'bg-green-500/10 text-green-500 border-green-500/20'
     case 'B':
-      return 'info'
+      return 'bg-blue-500/10 text-blue-500 border-blue-500/20'
     case 'C':
     case 'D':
-      return 'warning'
+      return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'
     case 'F':
-      return 'error'
+      return 'bg-red-500/10 text-red-500 border-red-500/20'
     default:
-      return 'default'
+      return 'bg-muted text-muted-foreground border-border'
   }
 }
 
@@ -49,39 +49,29 @@ export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => 
     : null
 
   return (
-    <ListItem disablePadding>
-      <ListItemButton
-        onClick={handleClick}
-        sx={{
-          transition: (theme) =>
-            theme.transitions.create(['transform', 'background-color'], {
-              duration: theme.transitions.duration.shorter,
-            }),
-          '&:hover': {
-            transform: 'translateX(4px)',
-          },
-        }}
-      >
-        <ListItemIcon sx={{ minWidth: 36 }}>
-          {getStatusIcon(test.execution.status)}
-        </ListItemIcon>
-        <ListItemText
-          primary={test.title}
-          secondary={durationText}
-          primaryTypographyProps={{ noWrap: true }}
-        />
-        {stabilityResult && stabilityResult.grade !== 'N/A' && (
-          <Tooltip title={`Score: ${Math.round(stabilityResult.score)} (Pass: ${Math.round(stabilityResult.passRate)}%, Flaky: ${Math.round(stabilityResult.flakinessPercent)}%, CV: ${Math.round(stabilityResult.durationCV)}%)`}>
-            <Chip
-              label={stabilityResult.grade}
-              size="small"
-              color={getGradeColor(stabilityResult.grade)}
-              sx={{ ml: 1, minWidth: 32 }}
-            />
-          </Tooltip>
-        )}
-        {flakinessResult && <StabilityBadge result={flakinessResult} />}
-      </ListItemButton>
-    </ListItem>
+    <button
+      onClick={handleClick}
+      className="w-full flex items-center px-4 py-3 hover:bg-accent transition-all hover:translate-x-1 text-left"
+    >
+      <div className="flex-shrink-0 mr-3">
+        {getStatusIcon(test.execution.status)}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="text-sm truncate">{test.title}</div>
+        <div className="text-xs text-muted-foreground">{durationText}</div>
+      </div>
+      {stabilityResult && stabilityResult.grade !== 'N/A' && (
+        <span
+          title={`Score: ${Math.round(stabilityResult.score)} (Pass: ${Math.round(stabilityResult.passRate)}%, Flaky: ${Math.round(stabilityResult.flakinessPercent)}%, CV: ${Math.round(stabilityResult.durationCV)}%)`}
+          className={cn(
+            'inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ml-2',
+            getGradeClass(stabilityResult.grade)
+          )}
+        >
+          {stabilityResult.grade}
+        </span>
+      )}
+      {flakinessResult && <StabilityBadge result={flakinessResult} />}
+    </button>
   )
 })

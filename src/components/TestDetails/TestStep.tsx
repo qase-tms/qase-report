@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Box, Collapse, IconButton, Typography } from '@mui/material'
-import { ExpandMore, ChevronRight } from '@mui/icons-material'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import { getStatusIcon } from '../TestList/statusIcon'
 import { formatDuration } from '../../utils/formatDuration'
 import type { Step } from '../../schemas/Step.schema'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { TestStepAttachment } from './TestStepAttachment'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { cn } from '../../lib/utils'
 
 interface TestStepProps {
   step: Step
@@ -21,40 +21,52 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
   const hasAttachments =
     step.execution.attachments && step.execution.attachments.length > 0
 
+  const marginLeft = Math.min(depth * 12, 96) // 12px per depth level, max 96px
+
   return (
-    <Box sx={{ ml: Math.min(depth * 3, 24), py: 0.5 }}>
+    <div style={{ marginLeft: `${marginLeft}px` }} className="py-1">
       {/* Step row */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+      <div className="flex items-center gap-2">
         {/* Expand/collapse button or spacer */}
         {hasChildren ? (
-          <IconButton
-            size="small"
+          <button
             onClick={() => setIsExpanded(!isExpanded)}
             aria-label={isExpanded ? 'collapse' : 'expand'}
+            className="p-1 rounded hover:bg-accent transition-colors"
           >
-            {isExpanded ? <ExpandMore /> : <ChevronRight />}
-          </IconButton>
+            {isExpanded ? (
+              <ChevronDown className="h-4 w-4" />
+            ) : (
+              <ChevronRight className="h-4 w-4" />
+            )}
+          </button>
         ) : (
-          <Box sx={{ width: 28 }} />
+          <div className="w-6" />
         )}
 
         {/* Status icon */}
         {getStatusIcon(step.execution.status)}
 
         {/* Step action/title */}
-        <Typography variant="body2" sx={{ flex: 1 }}>
+        <span className="text-sm flex-1">
           {step.data?.action ||
             step.step_type.charAt(0).toUpperCase() + step.step_type.slice(1)}
-        </Typography>
+        </span>
 
         {/* Duration */}
-        <Typography variant="caption" color="text.secondary">
+        <span className="text-xs text-muted-foreground">
           {formatDuration(step.execution.duration)}
-        </Typography>
-      </Box>
+        </span>
+      </div>
 
       {/* Expanded content: attachments and nested steps */}
-      <Collapse in={isExpanded} timeout={prefersReducedMotion ? 0 : 'auto'}>
+      <div
+        className={cn(
+          'overflow-hidden',
+          prefersReducedMotion ? '' : 'transition-all duration-200',
+          isExpanded ? 'max-h-[10000px] opacity-100' : 'max-h-0 opacity-0'
+        )}
+      >
         {/* Attachments */}
         {hasAttachments &&
           step.execution.attachments.map((attachment: Attachment) => (
@@ -66,7 +78,7 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
           step.steps.map((childStep: Step) => (
             <TestStep key={childStep.id} step={childStep} depth={depth + 1} />
           ))}
-      </Collapse>
-    </Box>
+      </div>
+    </div>
   )
 })

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Box, Button, Typography, Alert } from '@mui/material'
 import { useRootStore } from '../store'
+import { cn } from '../lib/utils'
 
 /**
  * File upload UI component for loading Qase Report data.
@@ -56,10 +56,10 @@ export const FileUploader = observer(() => {
   }
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Typography variant="h6" gutterBottom>
+    <div className="p-4">
+      <h6 className="text-lg font-semibold mb-4">
         Load Qase Report
-      </Typography>
+      </h6>
 
       {/* Directory upload button */}
       <input
@@ -71,18 +71,17 @@ export const FileUploader = observer(() => {
         style={{ display: 'none' }}
         onChange={handleDirectorySelect}
       />
-      <Button
-        variant="contained"
+      <button
         onClick={() => directoryInputRef.current?.click()}
-        sx={{ mb: 2 }}
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors mb-4"
       >
         Select Report Directory
-      </Button>
+      </button>
 
       {/* Single file upload for history */}
-      <Typography sx={{ mt: 2, mb: 1 }}>
+      <p className="mt-4 mb-2 text-sm">
         Or load history file separately:
-      </Typography>
+      </p>
       <input
         ref={historyInputRef}
         type="file"
@@ -90,31 +89,31 @@ export const FileUploader = observer(() => {
         style={{ display: 'none' }}
         onChange={handleHistorySelect}
       />
-      <Button
-        variant="outlined"
+      <button
         onClick={() => historyInputRef.current?.click()}
+        className="px-4 py-2 border rounded-md hover:bg-accent transition-colors"
       >
         Select test-history.json
-      </Button>
+      </button>
 
       {/* Status alerts */}
       {reportStore.runData && (
-        <Alert severity="info" sx={{ mt: 2 }}>
+        <div className="mt-4 p-3 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400">
           Report loaded: {reportStore.runData.title || 'Untitled run'}
-        </Alert>
+        </div>
       )}
 
       {historyStore.isHistoryLoaded && (
-        <Alert severity="success" sx={{ mt: 2 }}>
+        <div className="mt-4 p-3 rounded-md bg-green-500/10 border border-green-500/20 text-green-400">
           History loaded: {historyStore.totalRuns} runs available
-        </Alert>
+        </div>
       )}
 
       {(historyStore.historyError || localError) && (
-        <Alert severity="error" sx={{ mt: 2 }}>
+        <div className="mt-4 p-3 rounded-md bg-red-500/10 border border-red-500/20 text-red-400">
           {historyStore.historyError || localError}
-        </Alert>
+        </div>
       )}
-    </Box>
+    </div>
   )
 })

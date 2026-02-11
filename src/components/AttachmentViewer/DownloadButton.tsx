@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Button } from '@mui/material'
-import { Download as DownloadIcon } from '@mui/icons-material'
+import { Download } from 'lucide-react'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { useRootStore } from '../../store'
+import { cn } from '../../lib/utils'
 
 interface DownloadButtonProps {
   attachment: Attachment
@@ -55,15 +55,23 @@ export const DownloadButton = ({
 
   if (!downloadUrl) return null
 
+  const variantClasses = {
+    text: 'hover:bg-accent',
+    outlined: 'border hover:bg-accent',
+    contained: 'bg-primary text-primary-foreground hover:bg-primary/90',
+  }
+
   return (
-    <Button
-      variant={variant}
-      startIcon={<DownloadIcon />}
-      component="a"
+    <a
       href={downloadUrl}
       download={attachment.file_name}
+      className={cn(
+        'inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md transition-colors',
+        variantClasses[variant]
+      )}
     >
+      <Download className="h-4 w-4" />
       Download
-    </Button>
+    </a>
   )
 }

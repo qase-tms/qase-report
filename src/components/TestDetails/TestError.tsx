@@ -1,4 +1,3 @@
-import { Box, Typography, Stack } from '@mui/material'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
 interface TestErrorProps {
@@ -7,37 +6,20 @@ interface TestErrorProps {
 
 export const TestError = ({ test }: TestErrorProps) => {
   return (
-    <Stack spacing={2}>
-      <Typography variant="subtitle2">Error Details</Typography>
+    <div className="space-y-4">
+      <h6 className="text-sm font-semibold">Error Details</h6>
       {test.message && (
-        <Typography variant="body2" color="error">
+        <p className="text-sm text-red-500">
           {test.message}
-        </Typography>
+        </p>
       )}
       {test.execution.stacktrace && (
-        <Box
-          sx={{
-            bgcolor: 'grey.100',
-            p: 2,
-            borderRadius: 1,
-            maxHeight: 400,
-            overflow: 'auto',
-          }}
-        >
-          <Typography
-            component="pre"
-            sx={{
-              fontFamily: 'monospace',
-              fontSize: '0.875rem',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-all',
-              margin: 0,
-            }}
-          >
+        <div className="bg-muted p-4 rounded-md max-h-[400px] overflow-auto">
+          <pre className="font-mono text-sm whitespace-pre-wrap break-all m-0">
             {test.execution.stacktrace}
-          </Typography>
-        </Box>
+          </pre>
+        </div>
       )}
-    </Stack>
+    </div>
   )
 }

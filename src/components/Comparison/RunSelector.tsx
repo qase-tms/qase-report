@@ -1,14 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Typography,
-  Paper,
-} from '@mui/material'
-import { CompareArrows as CompareIcon } from '@mui/icons-material'
+import { ArrowLeftRight } from 'lucide-react'
 import { useRootStore } from '../../store'
 
 export const RunSelector = observer(() => {
@@ -34,71 +25,68 @@ export const RunSelector = observer(() => {
   }
 
   return (
-    <Paper sx={{ p: 2, mb: 3 }}>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 2,
-          flexWrap: 'wrap',
-        }}
-      >
-        <FormControl sx={{ minWidth: 280 }} size="small">
-          <InputLabel id="base-run-label">Base Run (older)</InputLabel>
-          <Select
-            labelId="base-run-label"
+    <div className="bg-card rounded-lg border shadow-sm p-4 mb-6">
+      <div className="flex items-center gap-4 flex-wrap">
+        <div className="min-w-[280px]">
+          <label
+            htmlFor="base-run-select"
+            className="block text-xs font-medium text-muted-foreground mb-1"
+          >
+            Base Run (older)
+          </label>
+          <select
             id="base-run-select"
             value={selectedBaseRunId ?? ''}
-            label="Base Run (older)"
             onChange={e => setSelectedBaseRunId(e.target.value || null)}
+            className="w-full px-3 py-2 text-sm bg-background border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
           >
-            <MenuItem value="">
-              <em>Select a run</em>
-            </MenuItem>
+            <option value="">Select a run</option>
             {comparableRuns.map(run => (
-              <MenuItem
+              <option
                 key={run.run_id}
                 value={run.run_id}
                 disabled={run.run_id === selectedCompareRunId}
               >
                 {formatRunLabel(run)}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        </FormControl>
+          </select>
+        </div>
 
-        <CompareIcon sx={{ color: 'text.secondary' }} />
+        <ArrowLeftRight className="h-5 w-5 text-muted-foreground" />
 
-        <FormControl sx={{ minWidth: 280 }} size="small">
-          <InputLabel id="compare-run-label">Compare Run (newer)</InputLabel>
-          <Select
-            labelId="compare-run-label"
+        <div className="min-w-[280px]">
+          <label
+            htmlFor="compare-run-select"
+            className="block text-xs font-medium text-muted-foreground mb-1"
+          >
+            Compare Run (newer)
+          </label>
+          <select
             id="compare-run-select"
             value={selectedCompareRunId ?? ''}
-            label="Compare Run (newer)"
             onChange={e => setSelectedCompareRunId(e.target.value || null)}
+            className="w-full px-3 py-2 text-sm bg-background border rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
           >
-            <MenuItem value="">
-              <em>Select a run</em>
-            </MenuItem>
+            <option value="">Select a run</option>
             {comparableRuns.map(run => (
-              <MenuItem
+              <option
                 key={run.run_id}
                 value={run.run_id}
                 disabled={run.run_id === selectedBaseRunId}
               >
                 {formatRunLabel(run)}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        </FormControl>
-      </Box>
+          </select>
+        </div>
+      </div>
 
       {comparableRuns.length === 0 && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+        <p className="text-sm text-muted-foreground mt-2">
           Load a report with history data to enable comparison.
-        </Typography>
+        </p>
       )}
-    </Paper>
+    </div>
   )
 })

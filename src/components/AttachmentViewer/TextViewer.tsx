@@ -1,11 +1,5 @@
 import { useState, useEffect } from 'react'
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-} from '@mui/material'
+import { X } from 'lucide-react'
 import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { DownloadButton } from './DownloadButton'
@@ -55,40 +49,81 @@ export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
     setContent('No content available')
   }, [attachment, attachmentsStore])
 
+  // Handle escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        onClose()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [open, onClose])
+
   const language = detectLanguage(attachment.file_name)
 
+  if (!open) return null
+
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth>
-      <DialogTitle>{attachment.file_name}</DialogTitle>
-      <DialogContent>
-        <Highlight theme={themes.github} code={content} language={language}>
-          {({ style, tokens, getLineProps, getTokenProps }) => (
-            <pre
-              style={{
-                ...style,
-                padding: 16,
-                borderRadius: 4,
-                overflow: 'auto',
-                maxHeight: '70vh',
-                margin: 0,
-                fontSize: 13,
-              }}
-            >
-              {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token })} />
-                  ))}
-                </div>
-              ))}
-            </pre>
-          )}
-        </Highlight>
-      </DialogContent>
-      <DialogActions>
-        <DownloadButton attachment={attachment} />
-        <Button onClick={onClose}>Close</Button>
-      </DialogActions>
-    </Dialog>
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/50"
+        onClick={onClose}
+      />
+
+      {/* Dialog */}
+      <div className="relative z-10 w-full max-w-4xl bg-card rounded-lg border shadow-lg max-h-[90vh] flex flex-col">
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-semibold">{attachment.file_name}</h2>
+          <button
+            onClick={onClose}
+            className="p-1 rounded hover:bg-accent transition-colors"
+            aria-label="Close"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-auto p-4">
+          <Highlight theme={themes.github} code={content} language={language}>
+            {({ style, tokens, getLineProps, getTokenProps }) => (
+              <pre
+                style={{
+                  ...style,
+                  padding: 16,
+                  borderRadius: 4,
+                  overflow: 'auto',
+                  maxHeight: '70vh',
+                  margin: 0,
+                  fontSize: 13,
+                }}
+              >
+                {tokens.map((line, i) => (
+                  <div key={i} {...getLineProps({ line })}>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </div>
+                ))}
+              </pre>
+            )}
+          </Highlight>
+        </div>
+
+        {/* Footer */}
+        <div className="flex items-center justify-end gap-2 p-4 border-t">
+          <DownloadButton attachment={attachment} />
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }

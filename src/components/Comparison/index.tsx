@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Box, Typography, Paper } from '@mui/material'
 import { useRootStore } from '../../store'
 import { RunSelector } from './RunSelector'
 import { ComparisonSummary } from './ComparisonSummary'
@@ -11,48 +10,40 @@ export const Comparison = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '50vh',
-          color: 'text.secondary',
-        }}
-      >
+      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
         No report loaded
-      </Box>
+      </div>
     )
   }
 
   // No history data
   if (!historyStore.isHistoryLoaded || analyticsStore.comparableRuns.length < 2) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>
+      <div className="p-6">
+        <h5 className="text-xl font-semibold mb-4">
           Comparison
-        </Typography>
-        <Paper sx={{ p: 3, textAlign: 'center' }}>
-          <Typography color="text.secondary">
+        </h5>
+        <div className="bg-card rounded-lg border shadow-sm p-6 text-center">
+          <p className="text-muted-foreground">
             At least 2 runs are required for comparison. Load a report with history data containing multiple runs.
-          </Typography>
-        </Paper>
-      </Box>
+          </p>
+        </div>
+      </div>
     )
   }
 
   const comparison = analyticsStore.comparison
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" gutterBottom>
+    <div className="p-6">
+      <div className="mb-6">
+        <h5 className="text-xl font-semibold mb-2">
           Comparison
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h5>
+        <p className="text-sm text-muted-foreground">
           Compare two test runs to see status changes, added/removed tests, and duration differences.
-        </Typography>
-      </Box>
+        </p>
+      </div>
 
       <RunSelector />
 
@@ -62,12 +53,12 @@ export const Comparison = observer(() => {
           <DiffList comparison={comparison} />
         </>
       ) : (
-        <Paper sx={{ p: 3, textAlign: 'center' }}>
-          <Typography color="text.secondary">
+        <div className="bg-card rounded-lg border shadow-sm p-6 text-center">
+          <p className="text-muted-foreground">
             Select two runs above to see the comparison.
-          </Typography>
-        </Paper>
+          </p>
+        </div>
       )}
-    </Box>
+    </div>
   )
 })

@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Typography } from '@mui/material'
 import { useRootStore } from '../../store'
 
 export const RunDateDisplay = observer(() => {
@@ -20,8 +19,8 @@ export const RunDateDisplay = observer(() => {
   }).format(new Date(startTime))
 
   return (
-    <Typography variant="body2" color="text.secondary">
+    <span className="text-sm text-muted-foreground">
       {formattedDate}
-    </Typography>
+    </span>
   )
 })

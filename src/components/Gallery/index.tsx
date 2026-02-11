@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Box, Typography, Paper } from '@mui/material'
 import { useRootStore } from '../../store'
 import { categorizeAttachment } from '../../types/gallery'
 import { GalleryFilters } from './GalleryFilters'
@@ -13,17 +12,9 @@ export const Gallery = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '50vh',
-          color: 'text.secondary',
-        }}
-      >
+      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
         No report loaded
-      </Box>
+      </div>
     )
   }
 
@@ -32,16 +23,16 @@ export const Gallery = observer(() => {
   // No attachments
   if (allAttachments.length === 0) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>
+      <div className="p-6">
+        <h5 className="text-xl font-semibold mb-4">
           Gallery
-        </Typography>
-        <Paper sx={{ p: 3, textAlign: 'center' }}>
-          <Typography color="text.secondary">
+        </h5>
+        <div className="bg-card rounded-lg border shadow-sm p-6 text-center">
+          <p className="text-muted-foreground">
             No attachments found in this report.
-          </Typography>
-        </Paper>
-      </Box>
+          </p>
+        </div>
+      </div>
     )
   }
 
@@ -62,21 +53,21 @@ export const Gallery = observer(() => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" gutterBottom>
+    <div className="p-6">
+      <div className="mb-6">
+        <h5 className="text-xl font-semibold mb-2">
           Gallery
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h5>
+        <p className="text-sm text-muted-foreground">
           {filteredAttachments.length} attachment{filteredAttachments.length !== 1 ? 's' : ''}
-        </Typography>
-      </Box>
+        </p>
+      </div>
       <GalleryFilters
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
         counts={counts}
       />
       <GalleryGrid attachments={filteredAttachments} />
-    </Box>
+    </div>
   )
 })

@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react'
 import { observer } from 'mobx-react-lite'
-import { Box, Typography, Paper, List } from '@mui/material'
 import { useRootStore } from '../../store'
 import { ClusterGroup } from './ClusterGroup'
 
@@ -27,17 +26,9 @@ export const FailureClusters = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '50vh',
-          color: 'text.secondary',
-        }}
-      >
+      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
         No report loaded
-      </Box>
+      </div>
     )
   }
 
@@ -46,16 +37,16 @@ export const FailureClusters = observer(() => {
   // No failure clusters
   if (clusters.length === 0) {
     return (
-      <Box sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>
+      <div className="p-6">
+        <h5 className="text-xl font-semibold mb-4">
           Failure Clusters
-        </Typography>
-        <Paper sx={{ p: 3, textAlign: 'center' }}>
-          <Typography color="text.secondary">
+        </h5>
+        <div className="bg-card rounded-lg border shadow-sm p-6 text-center">
+          <p className="text-muted-foreground">
             No failure clusters found. Tests with similar error messages will appear here when 2 or more tests fail with the same error pattern.
-          </Typography>
-        </Paper>
-      </Box>
+          </p>
+        </div>
+      </div>
     )
   }
 
@@ -63,16 +54,16 @@ export const FailureClusters = observer(() => {
   const totalTests = clusters.reduce((sum, c) => sum + c.tests.length, 0)
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" gutterBottom>
+    <div className="p-6">
+      <div className="mb-6">
+        <h5 className="text-xl font-semibold mb-2">
           Failure Clusters
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h5>
+        <p className="text-sm text-muted-foreground">
           {clusters.length} cluster{clusters.length !== 1 ? 's' : ''} grouping {totalTests} failed test{totalTests !== 1 ? 's' : ''} by similar error messages
-        </Typography>
-      </Box>
-      <List>
+        </p>
+      </div>
+      <div className="space-y-2">
         {clusters.map(cluster => (
           <ClusterGroup
             key={cluster.errorPattern}
@@ -83,7 +74,7 @@ export const FailureClusters = observer(() => {
             onSelectTest={handleSelectTest}
           />
         ))}
-      </List>
-    </Box>
+      </div>
+    </div>
   )
 })

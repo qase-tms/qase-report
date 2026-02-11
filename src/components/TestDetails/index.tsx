@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Stack, Divider, Typography, Box } from '@mui/material'
 import { useRootStore } from '../../store'
 import { TestHeader } from './TestHeader'
 import { TestError } from './TestError'
@@ -13,30 +12,42 @@ export const TestDetails = observer(() => {
 
   // Early return for null state
   if (!selectedTest) {
-    return <Typography>Select a test to view details</Typography>
+    return <p className="text-muted-foreground">Select a test to view details</p>
   }
 
   return (
-    <Box sx={{ p: 2 }}>
+    <div className="p-4">
       {/* Sections with dividers - conditional rendering */}
-      <Stack spacing={3} divider={<Divider />}>
-        <TestHeader test={selectedTest} />
+      <div className="space-y-6 divide-y divide-border">
+        <div className="pt-0">
+          <TestHeader test={selectedTest} />
+        </div>
         {selectedTest.execution.stacktrace && (
-          <TestError test={selectedTest} />
+          <div className="pt-6">
+            <TestError test={selectedTest} />
+          </div>
         )}
         {Object.keys(selectedTest.params).length > 0 && (
-          <TestParams test={selectedTest} />
+          <div className="pt-6">
+            <TestParams test={selectedTest} />
+          </div>
         )}
         {Object.keys(selectedTest.fields).length > 0 && (
-          <TestFields test={selectedTest} />
+          <div className="pt-6">
+            <TestFields test={selectedTest} />
+          </div>
         )}
         {selectedTest.attachments && selectedTest.attachments.length > 0 && (
-          <TestAttachments attachments={selectedTest.attachments} />
+          <div className="pt-6">
+            <TestAttachments attachments={selectedTest.attachments} />
+          </div>
         )}
         {selectedTest.steps && selectedTest.steps.length > 0 && (
-          <TestSteps steps={selectedTest.steps} />
+          <div className="pt-6">
+            <TestSteps steps={selectedTest.steps} />
+          </div>
         )}
-      </Stack>
-    </Box>
+      </div>
+    </div>
   )
 })

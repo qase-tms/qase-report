@@ -1,4 +1,3 @@
-import { Box, Typography } from '@mui/material'
 import type { Step } from '../../schemas/Step.schema'
 import { TestStep } from './TestStep'
 
@@ -8,13 +7,13 @@ interface TestStepsProps {
 
 export const TestSteps = ({ steps }: TestStepsProps) => {
   return (
-    <Box>
-      <Typography variant="subtitle1" sx={{ mb: 2 }}>
+    <div>
+      <h6 className="text-base font-semibold mb-4">
         Steps
-      </Typography>
+      </h6>
       {steps.map(step => (
         <TestStep key={step.id} step={step} depth={0} />
       ))}
-    </Box>
+    </div>
   )
 }

@@ -1,13 +1,13 @@
-import { Box, Chip } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import { StabilityGradeFilter } from './StabilityGradeFilter'
+import { cn } from '../../lib/utils'
 
 const statuses = [
-  { value: 'passed', label: 'Passed', color: 'success' as const },
-  { value: 'failed', label: 'Failed', color: 'error' as const },
-  { value: 'broken', label: 'Broken', color: 'warning' as const },
-  { value: 'skipped', label: 'Skipped', color: 'default' as const },
+  { value: 'passed', label: 'Passed', activeClass: 'bg-green-500 text-white border-green-500' },
+  { value: 'failed', label: 'Failed', activeClass: 'bg-red-500 text-white border-red-500' },
+  { value: 'broken', label: 'Broken', activeClass: 'bg-yellow-500 text-white border-yellow-500' },
+  { value: 'skipped', label: 'Skipped', activeClass: 'bg-muted text-muted-foreground border-muted' },
 ]
 
 export const TestListFilters = observer(() => {
@@ -15,23 +15,27 @@ export const TestListFilters = observer(() => {
   const { statusFilters, toggleStatusFilter } = testResultsStore
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <div className="flex flex-col gap-4">
       {/* Status filters */}
-      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+      <div className="flex gap-2 flex-wrap">
         {statuses.map((status) => (
-          <Chip
+          <button
             key={status.value}
-            label={status.label}
-            color={status.color}
-            variant={statusFilters.has(status.value) ? 'filled' : 'outlined'}
             onClick={() => toggleStatusFilter(status.value)}
-            size="small"
-          />
+            className={cn(
+              'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border transition-colors',
+              statusFilters.has(status.value)
+                ? status.activeClass
+                : 'bg-transparent text-foreground border-border hover:bg-accent'
+            )}
+          >
+            {status.label}
+          </button>
         ))}
-      </Box>
+      </div>
 
       {/* Grade filters */}
       <StabilityGradeFilter />
-    </Box>
+    </div>
   )
 })

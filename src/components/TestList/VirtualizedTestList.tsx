@@ -1,8 +1,7 @@
 import { useRef, useMemo, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { VariableSizeList, ListChildComponentProps } from 'react-window'
-import { ListItemButton, ListItemText } from '@mui/material'
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import { ChevronDown, ChevronRight } from 'lucide-react'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 import { TestListItem } from './TestListItem'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
@@ -70,18 +69,24 @@ const Row = observer(({ index, style, data }: ListChildComponentProps<RowData>) 
 
     return (
       <div style={style}>
-        <ListItemButton
+        <button
           onClick={() => toggleSuite(item.suiteTitle)}
-          sx={{ bgcolor: 'action.hover' }}
           aria-expanded={isExpanded}
           aria-controls={contentId}
+          className="w-full flex items-center justify-between px-4 py-3 bg-accent/50 hover:bg-accent transition-colors text-left"
         >
-          <ListItemText
-            primary={headerData.title}
-            secondary={`${headerData.count} test${headerData.count !== 1 ? 's' : ''}`}
-          />
-          {isExpanded ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
+          <div className="flex-1 min-w-0">
+            <div className="text-sm font-medium truncate">{headerData.title}</div>
+            <div className="text-xs text-muted-foreground">
+              {headerData.count} test{headerData.count !== 1 ? 's' : ''}
+            </div>
+          </div>
+          {isExpanded ? (
+            <ChevronDown className="h-5 w-5 flex-shrink-0 ml-2" />
+          ) : (
+            <ChevronRight className="h-5 w-5 flex-shrink-0 ml-2" />
+          )}
+        </button>
       </div>
     )
   }

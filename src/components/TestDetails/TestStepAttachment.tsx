@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Box, Chip } from '@mui/material'
-import {
-  Image as ImageIcon,
-  InsertDriveFile as FileIcon,
-  Description as TextIcon,
-} from '@mui/icons-material'
+import { Image, FileText, File } from 'lucide-react'
 import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { useRootStore } from '../../store'
@@ -69,72 +64,63 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
   }, [attachment, isTextLike, blobUrl])
 
   return (
-    <Box sx={{ ml: 4, mt: 0.5 }}>
+    <div className="ml-8 mt-1">
       {/* Attachment file chip - clickable if viewable */}
-      <Chip
-        icon={
-          isImage ? (
-            <ImageIcon fontSize="small" />
-          ) : isTextLike ? (
-            <TextIcon fontSize="small" />
-          ) : (
-            <FileIcon fontSize="small" />
-          )
-        }
-        label={attachment.file_name}
-        size="small"
-        variant="outlined"
+      <button
         onClick={isViewable ? () => attachmentViewerStore.openViewer(attachment) : undefined}
-        sx={{ cursor: isViewable ? 'pointer' : 'default' }}
-      />
+        className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs border rounded-full ${
+          isViewable ? 'cursor-pointer hover:bg-accent' : 'cursor-default'
+        } transition-colors`}
+      >
+        {isImage ? (
+          <Image className="h-3.5 w-3.5" />
+        ) : isTextLike ? (
+          <FileText className="h-3.5 w-3.5" />
+        ) : (
+          <File className="h-3.5 w-3.5" />
+        )}
+        {attachment.file_name}
+      </button>
 
       {/* Download button for all attachment types */}
-      <Box sx={{ display: 'inline-block', ml: 1 }}>
+      <span className="inline-block ml-2">
         <DownloadButton attachment={attachment} variant="text" />
-      </Box>
+      </span>
 
       {/* Inline image preview for base64 content - clickable to open viewer */}
       {isImage && attachment.content && !imageError && (
-        <Box
-          sx={{ mt: 1, maxWidth: 300, cursor: 'pointer' }}
+        <div
+          className="mt-2 max-w-[300px] cursor-pointer"
           onClick={() => attachmentViewerStore.openViewer(attachment)}
         >
           <img
             src={`data:${attachment.mime_type};base64,${attachment.content}`}
             alt={attachment.file_name}
-            style={{
-              maxWidth: '100%',
-              borderRadius: 4,
-              border: '1px solid #eee',
-            }}
+            className="max-w-full rounded border"
             onError={() => setImageError(true)}
           />
-        </Box>
+        </div>
       )}
 
       {/* Inline image preview for blob URL - clickable to open viewer */}
       {isImage && blobUrl && !attachment.content && !imageError && (
-        <Box
-          sx={{ mt: 1, maxWidth: 300, cursor: 'pointer' }}
+        <div
+          className="mt-2 max-w-[300px] cursor-pointer"
           onClick={() => attachmentViewerStore.openViewer(attachment)}
         >
           <img
             src={blobUrl}
             alt={attachment.file_name}
-            style={{
-              maxWidth: '100%',
-              borderRadius: 4,
-              border: '1px solid #eee',
-            }}
+            className="max-w-full rounded border"
             onError={() => setImageError(true)}
           />
-        </Box>
+        </div>
       )}
 
       {/* Inline text/JSON preview with syntax highlighting - clickable to open viewer */}
       {isTextLike && textContent && (
-        <Box
-          sx={{ mt: 1, maxWidth: 500, cursor: 'pointer' }}
+        <div
+          className="mt-2 max-w-[500px] cursor-pointer"
           onClick={() => attachmentViewerStore.openViewer(attachment)}
         >
           <Highlight
@@ -152,7 +138,7 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
                   maxHeight: 200,
                   margin: 0,
                   fontSize: 12,
-                  border: '1px solid #eee',
+                  border: '1px solid hsl(var(--border))',
                 }}
               >
                 {tokens.map((line, i) => (
@@ -165,8 +151,8 @@ export const TestStepAttachment = ({ attachment }: TestStepAttachmentProps) => {
               </pre>
             )}
           </Highlight>
-        </Box>
+        </div>
       )}
-    </Box>
+    </div>
   )
 }
