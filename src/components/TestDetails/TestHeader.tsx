@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Chip } from '@mui/material'
+import { Box, Typography, Chip } from '@mui/material'
 import { getStatusIcon } from '../TestList/statusIcon'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
@@ -14,21 +14,17 @@ export const TestHeader = ({ test }: TestHeaderProps) => {
       : `${duration}ms`
 
   return (
-    <Stack spacing={2}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
         {getStatusIcon(test.execution.status)}
-        <Typography variant="h6" sx={{ flex: 1 }}>
-          {test.title}
-        </Typography>
-      </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Typography variant="body2" color="text.secondary">
-          Duration: {formattedDuration}
+          {test.execution.status}
         </Typography>
-        {test.muted && (
-          <Chip size="small" label="Muted" color="default" />
-        )}
       </Box>
-    </Stack>
+      <Typography variant="body2" color="text.secondary">
+        Duration: {formattedDuration}
+      </Typography>
+      {test.muted && <Chip size="small" label="Muted" color="default" />}
+    </Box>
   )
 }

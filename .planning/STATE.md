@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
-**Current focus:** Phase 26 - Persistent Status Bar
+**Current focus:** Phase 27 - Modal Test Details
 
 ## Current Position
 
-Phase: 26 of 29 (Persistent Status Bar)
+Phase: 27 of 29 (Modal Test Details)
 Plan: 1 of 1 in current phase (COMPLETE)
 Status: Phase complete
-Last activity: 2026-02-11 — Completed 26-01-PLAN.md (persistent status bar)
+Last activity: 2026-02-11 — Completed 27-01-PLAN.md (modal test details)
 
-Progress: [█████████████████████████████░] 86% (48/56 total plans across all milestones)
+Progress: [█████████████████████████████░] 88% (49/56 total plans across all milestones)
 
 ## Performance Metrics
 
@@ -40,6 +40,7 @@ Progress: [███████████████████████
 | 24 | 02 | ~3 min | 3 | 7 | 2026-02-11 |
 | 25 | 01 | ~5 min | 2 | 1 | 2026-02-11 |
 | 26 | 01 | ~2 min | 2 | 2 | 2026-02-11 |
+| 27 | 01 | ~1.5 min | 2 | 3 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -92,17 +93,15 @@ Key decisions preserved for future reference:
 - [Phase 26-01]: StatusBarPill uses 40px ring for AppBar space efficiency (vs 80px sidebar ring)
 - [Phase 26-01]: Progressive disclosure: ring only (mobile) → ring+stats (tablet) → full (desktop)
 - [Phase 26-01]: Flaky count shown with ~ prefix to indicate approximation
+- [Phase 27]: DialogContent padding set to 0 to avoid double padding with TestDetails
+- [Phase 27]: Modal controlled by selectedTest state (no separate isDockOpen needed)
+- [Phase 27]: Default Dialog focus trap behavior retained (no disableEnforceFocus needed)
 
 ### Pending Todos
 
 None.
 
 ### Blockers/Concerns
-
-**Phase 27 (Modal Test Details):**
-- Research flag: Modal focus trap may interfere with virtual scrolling
-- Mitigation: Test prototype with Dialog + VirtualizedTestList before full implementation
-- Options: Responsive pattern (Drawer desktop, Dialog mobile) or `disableEnforceFocus={true}`
 
 **Phase 28 (Layout Simplification):**
 - Risk: Orphaned filter state during sidebar removal
@@ -114,6 +113,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed Phase 26-01 (Persistent Status Bar)
+Stopped at: Completed 27-01-PLAN.md (modal test details)
 Resume file: None
-Next action: Plan Phase 27 (Modal Test Details) with `/gsd:plan-phase 27`
+Next action: Plan Phase 28 (Layout Simplification) with `/gsd:plan-phase 28`
