@@ -14,7 +14,6 @@ import { useHotkeys } from 'react-hotkeys-hook'
 import { MainLayout } from './layout/MainLayout'
 import { ThemeRegistry } from './theme/ThemeRegistry'
 import { ThemeToggle } from './components/ThemeToggle'
-import { NavigationDrawer } from './components/NavigationDrawer'
 import { SearchModal } from './components/SearchModal'
 import { ExportButton } from './components/ExportButton'
 import { StatusBarPill } from './components/StatusBarPill'
@@ -168,7 +167,6 @@ const App = () => {
             <ListItemText primary="Analytics" />
           </MenuItem>
         </Menu>
-        <NavigationDrawer />
         <Box
           component="main"
           sx={{
