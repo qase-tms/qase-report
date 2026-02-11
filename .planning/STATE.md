@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 33 of 36 (Test Details Drawer)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Completed
-Last activity: 2026-02-11 — Completed 33-01: TestDetailsDrawer Foundation
+Last activity: 2026-02-11 — Completed 33-02: Tab Content Components
 
-Progress: [█████████████████████████████░░░░░░░] 86% (54/63 total plans)
+Progress: [█████████████████████████████░░░░░░░] 87% (55/63 total plans)
 
 ## Performance Metrics
 
@@ -46,6 +46,7 @@ Progress: [███████████████████████
 | 32 | 02 | ~2.5 min | 1 | 1 | 2026-02-11 |
 | 32 | 03 | ~2.2 min | 3 | 2 | 2026-02-11 |
 | 33 | 01 | ~1.2 min | 2 | 2 | 2026-02-11 |
+| 33 | 02 | ~2.8 min | 4 | 6 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -117,6 +118,14 @@ Key decisions preserved for future reference:
 - open={true} with early return pattern (cleaner than open={!!selectedTest})
 - Execution tab as defaultValue (most useful for debugging failures)
 
+**Phase 33-02 (Tab Content Components):**
+- ExecutionTab reuses TestHeader, TestError, and TestSteps components for consistent UI
+- InfoTab displays test metadata inline (ID, signature, TestOps IDs array, thread)
+- RunHistoryTab limits to last 20 runs per research recommendation
+- RunHistoryTab shows three empty states: no history loaded, no runs for test, or normal display
+- RetriesTab is intentionally simple empty state (no retry data in Qase schema)
+- testops_ids is plural array field, not singular testops_id
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -148,7 +157,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T18:20:14Z
-Stopped at: Completed 33-01-PLAN.md (TestDetailsDrawer Foundation)
+Last session: 2026-02-11T18:23:39Z
+Stopped at: Completed 33-02-PLAN.md (Tab Content Components)
 Resume file: None
-Next action: Begin Phase 33-02 (Tab Content Components)
+Next action: Begin Phase 33-03 (Integration & Cleanup)
