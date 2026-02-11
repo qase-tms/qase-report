@@ -7,7 +7,7 @@ import { AttachmentViewer } from '../../components/AttachmentViewer'
 import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
-import { TestDetailsModal } from '../../components/TestDetailsModal'
+import { TestDetailsDrawer } from '../../components/TestDetailsDrawer'
 import { TabNavigation } from '../../components/TabNavigation'
 
 export const MainLayout = observer(() => {
@@ -54,7 +54,7 @@ export const MainLayout = observer(() => {
           {renderView()}
         </div>
       </div>
-      <TestDetailsModal />
+      <TestDetailsDrawer />
       {/* Global attachment viewer */}
       <AttachmentViewer />
     </>
