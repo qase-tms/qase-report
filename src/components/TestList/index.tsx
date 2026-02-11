@@ -19,6 +19,10 @@ export const TestList = observer(() => {
     )
   }
 
+  // Calculate table height: viewport - header - filters - search - padding
+  // This ensures table fills available space without causing page scrollbar
+  const tableHeight = window.innerHeight - 300
+
   // Memoize data to prevent table re-initialization on every render
   // MobX observer ensures re-render when filteredResults changes
   const data = useMemo(
@@ -55,13 +59,12 @@ export const TestList = observer(() => {
         </p>
       ) : (
         /* Data table */
-        <div className="h-[calc(100vh-400px)] min-h-[300px]">
-          <DataTable
-            columns={columns}
-            data={data}
-            onRowClick={(test) => selectTest(test.id)}
-          />
-        </div>
+        <DataTable
+          columns={columns}
+          data={data}
+          onRowClick={(test) => selectTest(test.id)}
+          height={tableHeight}
+        />
       )}
     </div>
   )
