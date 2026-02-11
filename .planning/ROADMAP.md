@@ -2,15 +2,16 @@
 
 ## Milestones
 
-- v1.0 MVP - Phases 1-7 (shipped 2026-02-10)
-- v1.1 History & Trends - Phases 8-12 (shipped 2026-02-10)
-- v1.2 Design Refresh - Phases 13-17 (shipped 2026-02-10)
-- v1.3 Design Overhaul - Phases 18-24 (in progress)
+- ✅ **v1.0 MVP** - Phases 1-7 (shipped 2026-02-10)
+- ✅ **v1.1 History & Trends** - Phases 8-12 (shipped 2026-02-10)
+- ✅ **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
+- ✅ **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
+- 🚧 **v1.4 Layout Simplification** - Phases 25-29 (in progress)
 
 ## Phases
 
 <details>
-<summary>v1.0 MVP (Phases 1-7) - SHIPPED 2026-02-10</summary>
+<summary>✅ v1.0 MVP (Phases 1-7) - SHIPPED 2026-02-10</summary>
 
 ### Phase 1: Schema & Validation
 **Goal**: Define and validate Qase Report Format data structures
@@ -69,7 +70,7 @@ Plans:
 </details>
 
 <details>
-<summary>v1.1 History & Trends (Phases 8-12) - SHIPPED 2026-02-10</summary>
+<summary>✅ v1.1 History & Trends (Phases 8-12) - SHIPPED 2026-02-10</summary>
 
 **Milestone Goal:** Add analytics features for test history tracking, trend visualization, flakiness detection, performance regression alerts, and stability scoring.
 
@@ -119,7 +120,7 @@ Plans:
 </details>
 
 <details>
-<summary>v1.2 Design Refresh (Phases 13-17) - SHIPPED 2026-02-10</summary>
+<summary>✅ v1.2 Design Refresh (Phases 13-17) - SHIPPED 2026-02-10</summary>
 
 **Milestone Goal:** Modern, user-friendly design with Bento Grid layout, themes, sidebar navigation, and improved performance for 100-500 tests.
 
@@ -163,7 +164,8 @@ Plans:
 
 </details>
 
-### v1.3 Design Overhaul (In Progress)
+<details>
+<summary>✅ v1.3 Design Overhaul (Phases 18-24) - SHIPPED 2026-02-11</summary>
 
 **Milestone Goal:** Full redesign inspired by Playwright Smart Reporter with dark theme by default, new sidebar layout with filters, overview dashboard, and three new features (Failure Clusters, Gallery, Comparison).
 
@@ -253,8 +255,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 23-01-PLAN.md — GalleryAttachment type and galleryAttachments computed in AnalyticsStore
-- [ ] 23-02-PLAN.md — Gallery view component with filters and navigation
+- [x] 23-01-PLAN.md — GalleryAttachment type and galleryAttachments computed in AnalyticsStore
+- [x] 23-02-PLAN.md — Gallery view component with filters and navigation
 
 ### Phase 24: Comparison View
 **Goal**: Users can compare two test runs to see changes
@@ -268,34 +270,97 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 24-01-PLAN.md — Comparison computed values in HistoryStore/AnalyticsStore
-- [ ] 24-02-PLAN.md — Comparison view component with diff display
+- [x] 24-01-PLAN.md — Comparison computed values in HistoryStore/AnalyticsStore
+- [x] 24-02-PLAN.md — Comparison view component with diff display
+
+</details>
+
+### 🚧 v1.4 Layout Simplification (In Progress)
+
+**Milestone Goal:** Simplify layout by replacing permanent sidebar with hamburger menu navigation, adding persistent status bar in top bar, converting test details to modal dialog, and removing duplicate statistics.
+
+### Phase 25: Hamburger Navigation Menu
+**Goal**: User can navigate to all views via dropdown menu in top bar
+**Depends on**: Phase 24 (v1.3 complete)
+**Requirements**: NAV-01, NAV-02, NAV-03
+**Success Criteria** (what must be TRUE):
+  1. User sees hamburger menu icon in top bar that opens navigation dropdown
+  2. User sees text labels for all navigation items (Overview, Tests, Clusters, Gallery, Comparison)
+  3. User clicks navigation item and dropdown closes automatically
+  4. User navigates to selected view successfully
+**Plans**: TBD
+
+Plans:
+- [ ] 25-01: TBD
+
+### Phase 26: Persistent Status Bar
+**Goal**: User sees run status and statistics in top bar at all times
+**Depends on**: Phase 25
+**Requirements**: STAT-01, STAT-02, STAT-03
+**Success Criteria** (what must be TRUE):
+  1. User sees compact pass rate donut visualization in top bar
+  2. User sees run metadata (name, date, duration) in top bar
+  3. User sees quick statistics (passed/failed/skipped counts) in top bar
+  4. User can see status information in all views without scrolling
+**Plans**: TBD
+
+Plans:
+- [ ] 26-01: TBD
+
+### Phase 27: Modal Test Details
+**Goal**: User can inspect test details in modal dialog without layout shift
+**Depends on**: Phase 26
+**Requirements**: DET-01, DET-02, DET-03, LAY-03
+**Success Criteria** (what must be TRUE):
+  1. User clicks test in list and details open in centered modal dialog
+  2. User presses Escape key or clicks outside modal to close it
+  3. User can scroll long test content within modal without issues
+  4. User does not see layout shift or AppBar movement when modal opens
+  5. User can scroll test list with modal open (virtual scrolling still works)
+**Plans**: TBD
+
+Plans:
+- [ ] 27-01: TBD
+
+**Research Flag**: Phase 27 requires testing modal focus trap with virtual scrolling. Before implementation, create prototype to verify VirtualizedTestList scroll behavior with Dialog open. If scroll fails, use responsive pattern (Drawer desktop, Dialog mobile) or set `disableEnforceFocus={true}`.
+
+### Phase 28: Layout Simplification
+**Goal**: Sidebar removed, filters integrated into test list view
+**Depends on**: Phase 27
+**Requirements**: LAY-01, LAY-02
+**Success Criteria** (what must be TRUE):
+  1. User no longer sees permanent sidebar component
+  2. User can filter tests by status and stability from test list view
+  3. User sees more horizontal space for test content
+  4. User filter selections persist when navigating between views
+**Plans**: TBD
+
+Plans:
+- [ ] 28-01: TBD
+
+### Phase 29: Statistics Cleanup
+**Goal**: Duplicate statistics and charts removed from codebase
+**Depends on**: Phase 28
+**Requirements**: CLN-01, CLN-02
+**Success Criteria** (what must be TRUE):
+  1. User sees pass rate visualization only once (in status bar, not duplicated)
+  2. User sees statistics consolidated in status bar only
+  3. Codebase has no unused duplicate chart components
+**Plans**: TBD
+
+Plans:
+- [ ] 29-01: TBD
 
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 1. Schema & Validation | v1.0 | 2/2 | Complete | 2026-02-10 |
-| 2. Store Infrastructure | v1.0 | 2/2 | Complete | 2026-02-10 |
-| 3. Dashboard & Statistics | v1.0 | 2/2 | Complete | 2026-02-10 |
-| 4. Test List & Filtering | v1.0 | 2/2 | Complete | 2026-02-10 |
-| 5. Test Details | v1.0 | 1/1 | Complete | 2026-02-10 |
-| 6. Step Timeline & Attachments | v1.0 | 2/2 | Complete | 2026-02-10 |
-| 7. Static HTML Export | v1.0 | 1/1 | Complete | 2026-02-10 |
-| 8. History Infrastructure | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 9. Trend Visualization | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 10. Flakiness Detection | v1.1 | 2/2 | Complete | 2026-02-10 |
-| 11. Regression Alerts | v1.1 | 2/2 | Complete | 2026-02-10 |
-| 12. Stability Scoring | v1.1 | 3/3 | Complete | 2026-02-10 |
-| 13. Theme Foundation | v1.2 | 1/1 | Complete | 2026-02-10 |
-| 14. Sidebar Navigation | v1.2 | 1/1 | Complete | 2026-02-10 |
-| 15. Bento Grid Dashboard | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 16. Microinteractions | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 17. Progressive Disclosure & Performance | v1.2 | 2/2 | Complete | 2026-02-10 |
-| 18. Dark Theme Foundation | v1.3 | 1/1 | Complete | 2026-02-10 |
-| 19. Top Bar Redesign | v1.3 | 1/1 | Complete | 2026-02-10 |
-| 20. Sidebar Overhaul | v1.3 | 1/1 | Complete | 2026-02-10 |
-| 21. Overview Dashboard | v1.3 | 1/1 | Complete | 2026-02-10 |
-| 22. Failure Clusters | v1.3 | 2/2 | Complete | 2026-02-10 |
-| 23. Gallery View | v1.3 | 0/2 | Pending | - |
-| 24. Comparison View | v1.3 | 0/2 | Pending | - |
+| 1-7. MVP | v1.0 | 10/10 | Complete | 2026-02-10 |
+| 8-12. History | v1.1 | 13/13 | Complete | 2026-02-10 |
+| 13-17. Design | v1.2 | 9/9 | Complete | 2026-02-10 |
+| 18-24. Overhaul | v1.3 | 14/14 | Complete | 2026-02-11 |
+| 25. Hamburger Menu | v1.4 | 0/1 | Not started | - |
+| 26. Status Bar | v1.4 | 0/1 | Not started | - |
+| 27. Modal Details | v1.4 | 0/1 | Not started | - |
+| 28. Layout Cleanup | v1.4 | 0/1 | Not started | - |
+| 29. Stats Cleanup | v1.4 | 0/1 | Not started | - |

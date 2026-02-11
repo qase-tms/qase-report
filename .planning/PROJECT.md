@@ -10,32 +10,33 @@ Open-source инструмент для визуализации отчётов 
 
 ## Current State
 
-**v1.2 Design Refresh shipped:** 2026-02-10
+**v1.3 Design Overhaul shipped:** 2026-02-11
 
-- ~5,200 LOC TypeScript/TSX
+- ~5,500+ LOC TypeScript/TSX
 - Tech stack: React 18, TypeScript 5.9, Vite, MUI 5, MobX, Zod v4, Recharts, react-window
 - Full Qase Report Format support
 - History analytics: trends, flakiness detection, regression alerts, stability scoring
-- Theme system (light/dark/system), Bento Grid dashboard, sidebar navigation
+- Dark theme by default, Playwright-style design
+- Command palette search (⌘K), Failure Clusters, Gallery, Comparison views
 - Virtual scrolling for 500+ tests, microinteractions
 - Static HTML works with file:// protocol
 
-## Current Milestone: v1.3 Design Overhaul
+## Current Milestone: v1.4 Layout Simplification
 
-**Goal:** Полный редизайн в стиле Playwright Smart Reporter — dark theme по умолчанию, новый sidebar с фильтрами, overview dashboard, и три новые фичи для анализа результатов.
+**Goal:** Упрощение layout — hamburger menu для навигации, постоянный статус в top bar, удаление sidebar, test details как modal.
 
 **Target features:**
-- Dark theme по умолчанию
-- Новый sidebar: pass rate ring, quick stats, навигация с иконками, фильтры как chips
-- Top bar: поиск (⌘K), export, theme toggle, дата прогона
-- Overview dashboard: Suite Health, Pass Rate/Duration trends, Attention Required, Quick Insights
-- Failure Clusters — группировка тестов по типу ошибки
-- Gallery — просмотр всех attachments в одном месте
-- Comparison — diff view между прогонами
+- Hamburger menu с dropdown навигацией
+- Persistent status bar (компактный бублик pass rate + run info)
+- Удаление sidebar — больше места для контента
+- Дедупликация графиков и статистики
+- Test details как modal/dialog
+- Фильтры перемещены в test list view
 
-**Priority:** Failure Clusters → Gallery → Comparison
-
-**Design reference:** Playwright Smart Reporter (dark theme, sidebar filters, overview dashboard)
+**Design principles:**
+- Минимализм — меньше элементов, больше фокуса
+- Информация всегда видна — статус рана доступен везде
+- Быстрая навигация — один клик до любого view
 
 ## Requirements
 
@@ -68,15 +69,23 @@ Open-source инструмент для визуализации отчётов 
 - ✓ Progressive disclosure (collapsible suites) — v1.2
 - ✓ Virtual scrolling (100-500 tests) — v1.2
 
+**v1.3 Design Overhaul:**
+- ✓ Dark theme по умолчанию — v1.3
+- ✓ Новый sidebar (pass rate ring, quick stats, навигация, фильтры) — v1.3
+- ✓ Top bar (поиск ⌘K, export, theme toggle, дата прогона) — v1.3
+- ✓ Overview dashboard (Suite Health, trends, Attention Required, Quick Insights) — v1.3
+- ✓ Failure Clusters (группировка по типу ошибки) — v1.3
+- ✓ Gallery (просмотр всех attachments) — v1.3
+- ✓ Comparison (diff view между прогонами) — v1.3
+
 ### Active
 
-- [ ] Dark theme по умолчанию
-- [ ] Новый sidebar (pass rate ring, quick stats, навигация, фильтры)
-- [ ] Top bar (поиск ⌘K, export, theme toggle, дата прогона)
-- [ ] Overview dashboard (Suite Health, trends, Attention Required, Quick Insights)
-- [ ] Failure Clusters (группировка по типу ошибки)
-- [ ] Gallery (просмотр всех attachments)
-- [ ] Comparison (diff view между прогонами)
+- [ ] Hamburger menu с dropdown навигацией
+- [ ] Persistent status bar (бублик + run info в top bar)
+- [ ] Удаление sidebar
+- [ ] Дедупликация графиков/статистики
+- [ ] Test details как modal/dialog
+- [ ] Фильтры в test list view
 
 ### Out of Scope
 
@@ -84,10 +93,11 @@ Open-source инструмент для визуализации отчётов 
 - Real-time reporting — низкий приоритет, сложная реализация
 - Slack/Teams notifications — low priority
 - Локализация — nice-to-have
-- Keyboard shortcuts — deferred to v1.4+
+- Keyboard shortcuts — deferred to v1.5+
 - Infinite history — Storage bloat, diminishing returns after 30-50 runs
 - Per-step performance tracking — Exponentially increases data volume
-- Enterprise scale (2000+ tests) — v1.3 targets 100-500 tests
+- Enterprise scale (2000+ tests) — deferred, current target 100-500 tests
+- Mobile responsive — deferred to v1.5+
 
 ## Context
 
@@ -127,4 +137,4 @@ Open-source инструмент для визуализации отчётов 
 | Weighted stability formula | Balances pass rate, flakiness, and variance | ✓ Good |
 
 ---
-*Last updated: 2026-02-10 after v1.3 milestone start*
+*Last updated: 2026-02-11 after v1.4 milestone start*
