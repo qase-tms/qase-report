@@ -460,12 +460,12 @@ Plans:
   3. Progress bar for each suite shows pass/fail segments (multi-color)
   4. Progress bar colors: green (passed), red (failed), yellow (skipped), gray (broken)
   5. Suite duration displays in progress bar tooltip
-**Plans**: TBD
+**Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 35-01: Implement suite expandable rows
-- [ ] 35-02: Create multi-segment progress bars
-- [ ] 35-03: Persist collapse/expand state
+- [ ] 35-01-PLAN.md — Tree transformation utility and DataTable expanding support (Wave 1)
+- [ ] 35-02-PLAN.md — MultiSegmentProgress component with Tooltip (Wave 2)
+- [ ] 35-03-PLAN.md — Integrate tree data and expand state persistence (Wave 3)
 
 #### Phase 36: Views Migration & Polish
 
@@ -504,7 +504,7 @@ Plans:
 | 32. Layout Restructure | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 33. Test Details Drawer | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 34. TanStack Table | v1.5 | 4/4 | Complete | 2026-02-11 |
-| 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
+| 35. Suite Hierarchy | v1.5 | 0/3 | Planned | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
 **Total v1.5:** 17/24 plans complete (71%)
