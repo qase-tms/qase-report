@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
-**Current focus:** Phase 27 - Modal Test Details
+**Current focus:** Phase 28 - Layout Simplification (COMPLETE)
 
 ## Current Position
 
-Phase: 27 of 29 (Modal Test Details)
+Phase: 28 of 29 (Layout Simplification)
 Plan: 1 of 1 in current phase (COMPLETE)
 Status: Phase complete
-Last activity: 2026-02-11 — Completed 27-01-PLAN.md (modal test details)
+Last activity: 2026-02-11 — Completed 28-01-PLAN.md (remove permanent sidebar)
 
-Progress: [█████████████████████████████░] 88% (49/56 total plans across all milestones)
+Progress: [██████████████████████████████] 89% (50/56 total plans across all milestones)
 
 ## Performance Metrics
 
@@ -41,6 +41,7 @@ Progress: [███████████████████████
 | 25 | 01 | ~5 min | 2 | 1 | 2026-02-11 |
 | 26 | 01 | ~2 min | 2 | 2 | 2026-02-11 |
 | 27 | 01 | ~1.5 min | 2 | 3 | 2026-02-11 |
+| 28 | 01 | ~2 min | 2 | 5 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -96,6 +97,9 @@ Key decisions preserved for future reference:
 - [Phase 27]: DialogContent padding set to 0 to avoid double padding with TestDetails
 - [Phase 27]: Modal controlled by selectedTest state (no separate isDockOpen needed)
 - [Phase 27]: Default Dialog focus trap behavior retained (no disableEnforceFocus needed)
+- [Phase 28-01]: Remove permanent sidebar in favor of hamburger menu navigation
+- [Phase 28-01]: Delete orphaned dock state (isDockOpen, openDock, closeDock)
+- [Phase 28-01]: Selection state controls modal display (no separate open/close state)
 
 ### Pending Todos
 
@@ -103,16 +107,12 @@ None.
 
 ### Blockers/Concerns
 
-**Phase 28 (Layout Simplification):**
-- Risk: Orphaned filter state during sidebar removal
-- Mitigation: Document filter state ownership explicitly in RootStore before phase start
-
 **Deferred to v1.5+:**
 - Enterprise scale 2000+ tests (SCALE-01)
 
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 27-01-PLAN.md (modal test details)
+Stopped at: Completed 28-01-PLAN.md (remove permanent sidebar)
 Resume file: None
-Next action: Plan Phase 28 (Layout Simplification) with `/gsd:plan-phase 28`
+Next action: Plan Phase 29 (if exists) or complete v1.4 milestone
