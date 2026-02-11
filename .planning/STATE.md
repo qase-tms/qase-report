@@ -39,6 +39,7 @@ Progress: [███████████████████████
 | 30 | 01 | ~4.6 min | 3 | 4 | 2026-02-11 |
 | 30 | 02 | ~14.8 min | 3 | 6 | 2026-02-11 |
 | 30 | 03 | ~2.7 min | 3 | 3 | 2026-02-11 |
+| Phase 30 P05 | 653 | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -78,6 +79,8 @@ Key decisions preserved for future reference:
 - Dark theme by default (Playwright Smart Reporter inspiration)
 - Hamburger menu navigation (v1.4)
 - Modal test details (v1.4, will convert to Sheet drawer in v1.5)
+- [Phase ?]: Fixed automated conversion bugs in TestListItem and TestDetails components from 30-04 refactor
+- [Phase ?]: Uninstalled @mui/icons-material package after verifying zero imports remain
 
 ### Pending Todos
 
