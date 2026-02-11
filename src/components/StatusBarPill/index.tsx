@@ -2,98 +2,101 @@ import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 
 export const StatusBarPill = observer(() => {
- const { reportStore, analyticsStore } = useRootStore()
+  const { reportStore, analyticsStore } = useRootStore()
 
- // Guard: return null if no report loaded
- if (!reportStore.runData) {
- return null
- }
+  // Guard: return null if no report loaded
+  if (!reportStore.runData) {
+    return null
+  }
 
- const { stats } = reportStore.runData
- const passRate = reportStore.passRate
- const flakyCount = analyticsStore.flakyTestCount
+  const { stats } = reportStore.runData
+  const passRate = reportStore.passRate
+  const flakyCount = analyticsStore.flakyTestCount
 
- // Color logic for pass rate ring
- const getColor = (rate: number): string => {
- if (rate >= 80) return 'success.main'
- if (rate >= 50) return 'warning.main'
- return 'error.main'
- }
+  // Color logic for pass rate ring
+  const getColor = (rate: number): string => {
+    if (rate >= 80) return 'text-green-500'
+    if (rate >= 50) return 'text-yellow-500'
+    return 'text-red-500'
+  }
 
- // Format run date
- const startTime = reportStore.runData.execution.start_time
- const formattedDate = new Intl.DateTimeFormat('en-US', {
- dateStyle: 'medium',
- timeStyle: 'short',
- }).format(new Date(startTime))
+  // Format run date
+  const startTime = reportStore.runData.execution.start_time
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(startTime))
 
- return (
- <div>
- {/* Compact pass rate ring (40px) */}
- <div>
- {/* Background ring (track) */}
- <CircularProgress
- value={100}
- size={40}
- thickness={4}
- />
- {/* Foreground ring (progress) */}
- <CircularProgress
- value={passRate}
- size={40}
- thickness={4}
- />
- {/* Centered percentage label */}
- <div
- >
- <span className="text-xs">
- {Math.round(passRate)}%
- </p>
- </div>
- </div>
+  const ringColor = getColor(passRate)
 
- {/* Quick stats section - hidden on mobile */}
- <div,
- alignItems: 'center',
- gap: 1,
- }}
- >
- <p className="text-sm">
- {stats.passed} passed
- </p>
- <p className="text-sm" className="text-muted-foreground">
- •
- </p>
- <p className="text-sm">
- {stats.failed} failed
- </p>
- {stats.skipped > 0 && (
- <>
- <p className="text-sm" className="text-muted-foreground">
- •
- </p>
- <p className="text-sm" className="text-muted-foreground">
- {stats.skipped} skipped
- </p>
- </>
- )}
- {flakyCount > 0 && (
- <>
- <p className="text-sm" className="text-muted-foreground">
- •
- </p>
- <p className="text-sm">
- ~{flakyCount} flaky
- </p>
- </>
- )}
- </div>
+  return (
+    <div className="flex items-center gap-4">
+      {/* Compact pass rate ring (40px) */}
+      <div className="relative inline-flex">
+        {/* Background ring (track) */}
+        <svg className="w-10 h-10">
+          <circle
+            cx="20"
+            cy="20"
+            r="16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="4"
+            className="text-muted opacity-30"
+          />
+          {/* Foreground ring (progress) */}
+          <circle
+            cx="20"
+            cy="20"
+            r="16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="4"
+            strokeDasharray={`${(passRate / 100) * 100.53} 100.53`}
+            strokeLinecap="round"
+            transform="rotate(-90 20 20)"
+            className={ringColor}
+          />
+        </svg>
+        {/* Centered percentage label */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-xs font-semibold">
+            {Math.round(passRate)}%
+          </span>
+        </div>
+      </div>
 
- {/* Run metadata - hidden on small screens */}
- <p className="text-sm" className="text-muted-foreground" }}
- >
- {formattedDate} • {reportStore.formattedDuration}
- </p>
- </div>
- )
+      {/* Quick stats section - hidden on mobile */}
+      <div className="hidden sm:flex items-center gap-2">
+        <p className="text-sm text-green-500 font-medium">
+          {stats.passed} passed
+        </p>
+        <p className="text-sm text-muted-foreground">•</p>
+        <p className="text-sm text-red-500 font-medium">
+          {stats.failed} failed
+        </p>
+        {stats.skipped > 0 && (
+          <>
+            <p className="text-sm text-muted-foreground">•</p>
+            <p className="text-sm text-muted-foreground">
+              {stats.skipped} skipped
+            </p>
+          </>
+        )}
+        {flakyCount > 0 && (
+          <>
+            <p className="text-sm text-muted-foreground">•</p>
+            <p className="text-sm text-yellow-500 font-medium">
+              ~{flakyCount} flaky
+            </p>
+          </>
+        )}
+      </div>
+
+      {/* Run metadata - hidden on small screens */}
+      <p className="hidden md:block text-sm text-muted-foreground">
+        {formattedDate} • {reportStore.formattedDuration}
+      </p>
+    </div>
+  )
 })
