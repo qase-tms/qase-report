@@ -16,4 +16,6 @@ body,
 /* Use MUI theme background for scrollbar area */
 html {
   background-color: var(--mui-palette-background-default);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
