@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 34 - TanStack Table Migration (v1.5 Qase TMS Style)
+**Current focus:** Phase 35 - Suite Hierarchy & Progress (v1.5 Qase TMS Style)
 
 ## Current Position
 
-Phase: 34 of 36 (TanStack Table Migration)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-02-11 — Completed 34-04 (Command Palette with Cmd+K Hotkey)
+Phase: 35 of 36 (Suite Hierarchy & Progress)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-02-11 — Completed 35-01 (Suite Hierarchy Display with Expanding Rows)
 
-Progress: [████████████████████████████████░░░░] 95% (60/63 total plans)
+Progress: [████████████████████████████████░░░░] 96% (61/63 total plans)
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [███████████████████████
 | 34 | 03 | ~1.7 min | 2 | 2 | 2026-02-11 |
 | Phase 34 P03 | 102 | 2 tasks | 2 files |
 | Phase 34 P04 | 128 | 2 tasks | 5 files |
+| Phase 35 P01 | 250 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -169,6 +170,16 @@ Key decisions preserved for future reference:
 - Results limited to 10 items for clean UX
 - Phase 34 (TanStack Table Migration) complete - all 4 plans executed
 
+**Phase 35-01 (Suite Hierarchy Display):**
+- TreeNode discriminated union type with 'suite' | 'test' for type-safe row handling
+- O(n) single-pass tree building using Map<suiteKey, TreeNode> for efficient transformation
+- Suite key format: suite path joined with ' > ' separator (e.g., 'API > Users > Authentication')
+- Fallback to ['No Suite'] for tests without relations.suite data
+- Controlled/uncontrolled pattern for expanded state (accepts external or uses internal)
+- Name column replaces separate ID and Title columns for cleaner hierarchy display
+- 1.5rem indentation per depth level for visual hierarchy
+- Folder icon for suites, file icon for tests with lucide-react
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -202,7 +213,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T23:30:00Z
-Stopped at: Phase 34 verified and approved
+Last session: 2026-02-11T20:02:52Z
+Stopped at: Completed 35-01-PLAN.md
 Resume file: None
-Next action: Plan Phase 35 (/gsd:plan-phase 35)
+Next action: Execute 35-02-PLAN.md (/gsd:execute-phase 35)
