@@ -4,17 +4,17 @@
 
 See: .planning/PROJECT.md (updated 2026-02-11)
 
-**Core value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
-**Current focus:** Phase 29 - Statistics Cleanup (COMPLETE)
+**Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
+**Current focus:** Phase 30 - Foundation Setup (v1.5 Qase TMS Style)
 
 ## Current Position
 
-Phase: 29 of 29 (Statistics Cleanup)
-Plan: 1 of 1 in current phase (COMPLETE)
-Status: v1.4 Milestone complete
-Last activity: 2026-02-11 — Completed 29-01-PLAN.md (remove duplicate statistics from Dashboard)
+Phase: 30 of 36 (Foundation Setup)
+Plan: 1 of 5 in current phase
+Status: Executing
+Last activity: 2026-02-11 — Completed 30-01: Tailwind CSS v4 foundation setup
 
-Progress: [███████████████████████████████] 91% (51/56 total plans across all milestones)
+Progress: [████████████████████████████░░░░░░░░] 75% (47/63 total plans)
 
 ## Performance Metrics
 
@@ -26,23 +26,17 @@ Progress: [███████████████████████
 | v1.1 History & Trends | 8-12 | 13 | ~1 day |
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
-| v1.4 Layout Simplification | 25-29 | 5 (est) | ~2 min |
+| v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
+| v1.5 Qase TMS Style | 30-36 | 0/27 | Not started |
 
 **Recent completions:**
 
 | Phase | Plan | Duration | Tasks | Files | Date |
 |-------|------|----------|-------|-------|------|
-| 22 | 01 | ~1.5 min | 2 | 1 | 2026-02-10 |
-| 22 | 02 | ~2 min | 4 | 4 | 2026-02-10 |
-| 23 | 01 | ~2 min | 2 | 2 | 2026-02-10 |
-| 23 | 02 | ~3 min | 3 | 7 | 2026-02-10 |
-| 24 | 01 | ~3 min | 2 | 2 | 2026-02-11 |
-| 24 | 02 | ~3 min | 3 | 7 | 2026-02-11 |
-| 25 | 01 | ~5 min | 2 | 1 | 2026-02-11 |
-| 26 | 01 | ~2 min | 2 | 2 | 2026-02-11 |
 | 27 | 01 | ~1.5 min | 2 | 3 | 2026-02-11 |
 | 28 | 01 | ~2 min | 2 | 5 | 2026-02-11 |
 | 29 | 01 | ~2 min | 2 | 3 | 2026-02-11 |
+| 30 | 01 | ~4.6 min | 3 | 4 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -50,59 +44,26 @@ Progress: [███████████████████████
 
 Key decisions preserved for future reference:
 
-- **MobX computed properties** — reactive trend data caching
-- **Recharts v2.15** — stable visualization library
-- **Signature-based identity** — stable test tracking across runs
-- **2-sigma outlier detection** — balanced regression alerts
-- **Weighted stability formula** — transparent health scoring
+**v1.5 migration strategy:**
+- Complete MUI to shadcn/ui migration (no incremental coexistence) to avoid CSS conflicts
+- Tailwind CSS v4 with @tailwindcss/vite plugin for 182x faster rebuilds
+- Preserve MobX state management (only UI layer changes)
+- TanStack Table for test list (highest complexity, separate phase)
+- Virtual scrolling must continue working with 500+ tests
+- Static HTML export with file:// protocol must be preserved
 
-**v1.2 decisions:**
-- **MUI colorSchemes API** — theme system with light/dark/system modes
-- **react-window** — virtual scrolling (~6KB)
-- **CSS Grid for Bento** — variable-size widgets
+**Phase 30-01 (Foundation Setup):**
+- Upgraded Vite from v4 to v5 to satisfy @tailwindcss/vite peer dependency
+- Used @import 'tailwindcss' directive (Tailwind v4 CSS-first pattern)
+- Added CSS variable fallback (--background) for post-MUI migration support
+- tailwindcss() plugin placed after react() in Vite config per docs
 
-**v1.3 decisions:**
-- **Dark theme by default** — per Playwright Smart Reporter inspiration
-- **Failure Clusters** — error grouping for quick diagnosis (Priority 1)
-- **Gallery** — cross-test attachment browsing (Priority 2)
-- **Comparison** — run diff view (Priority 3)
-- **Search result limit (10 items)** — performance optimization for large test suites
-- **Export format (run + results)** — complete snapshot for import/sharing
-- **Suite hierarchy display** — breadcrumb format for full test path
-- [Phase 20-01]: Stats and filters hidden when sidebar collapsed for clean UI
-- [Phase 20-01]: Pass rate ring uses 80px size (compact sidebar design)
-- [Phase 21-01]: Suite health shows worst-performing suites first for attention
-- [Phase 21-01]: Attention Required always renders with internal empty state handling
-- [Phase 21-01]: Quick Insights combines failures and performance in single card
-- [Phase 22-01]: Error normalization uses 100 chars for clustering (balances specificity vs grouping)
-- [Phase 22-01]: Only clusters with 2+ tests shown (single failures not considered clusters)
-- [Phase 22-01]: Error extraction priority: test.message -> stacktrace -> '__no_error__'
-- [Phase 23-01]: Gallery attachments use 3-category MIME type system (screenshots/logs/other)
-- [Phase 23-02]: Responsive grid uses 1-4 columns based on breakpoints (xs/sm/md/lg)
-- [Phase 23-02]: Collections icon chosen for Gallery navigation item
-- [Phase 24-01]: Map-based O(n+m) diff algorithm for efficient comparison computation
-- [Phase 24-01]: Duration significance threshold: >20% OR >500ms (whichever is larger)
-- [Phase 24-01]: Comparison runs limited to 20 most recent for dropdown usability
-- [Phase 24-01]: Status change categorization: regression (passed->failed), fixed (failed->passed), other
-- [Phase 24-02]: Regressions section expanded by default (most important for users)
-- [Phase 24-02]: Pass rate shown in dropdown labels for quick identification
-- [Phase 24-02]: Test navigation via signature lookup in current results
-
-**v1.4 decisions:**
-- [Phase 25-01]: Hamburger menu coexists with sidebar (removal in Phase 28)
-- [Phase 25-01]: Text labels in menu items for better discoverability
-- [Phase 25-01]: Menu anchor state pattern (anchorEl + derived open state)
-- [Phase 26-01]: StatusBarPill uses 40px ring for AppBar space efficiency (vs 80px sidebar ring)
-- [Phase 26-01]: Progressive disclosure: ring only (mobile) → ring+stats (tablet) → full (desktop)
-- [Phase 26-01]: Flaky count shown with ~ prefix to indicate approximation
-- [Phase 27]: DialogContent padding set to 0 to avoid double padding with TestDetails
-- [Phase 27]: Modal controlled by selectedTest state (no separate isDockOpen needed)
-- [Phase 27]: Default Dialog focus trap behavior retained (no disableEnforceFocus needed)
-- [Phase 28-01]: Remove permanent sidebar in favor of hamburger menu navigation
-- [Phase 28-01]: Delete orphaned dock state (isDockOpen, openDock, closeDock)
-- [Phase 28-01]: Selection state controls modal display (no separate open/close state)
-- [Phase 29-01]: StatusBarPill is single source of truth for pass rate and status counts
-- [Phase 29-01]: Dashboard widgets focus on unique analytics (trends, health, insights)
+**Previous milestones:**
+- MobX computed properties for reactive trend data caching
+- react-window virtual scrolling (~6KB)
+- Dark theme by default (Playwright Smart Reporter inspiration)
+- Hamburger menu navigation (v1.4)
+- Modal test details (v1.4, will convert to Sheet drawer in v1.5)
 
 ### Pending Todos
 
@@ -110,12 +71,20 @@ None.
 
 ### Blockers/Concerns
 
-**Deferred to v1.5+:**
+**v1.5 migration risks:**
+- CSS injection order conflicts if MUI not fully removed before shadcn components added
+- TanStack Table complexity (3-5 days estimated) may require research phase
+- Virtual scrolling integration with TanStack Table needs testing
+- Recharts dark mode integration requires explicit theme colors
+- Static HTML export may need inline CSS adjustments
+
+**Deferred to v1.6+:**
 - Enterprise scale 2000+ tests (SCALE-01)
+- Mobile responsive layout (MOB-01)
 
 ## Session Continuity
 
-Last session: 2026-02-11
-Stopped at: Completed 29-01-PLAN.md (statistics cleanup)
+Last session: 2026-02-11T15:06:17Z
+Stopped at: Completed Phase 30 Plan 01 (Tailwind CSS v4 Foundation)
 Resume file: None
-Next action: v1.4 Layout Simplification milestone complete - ready for v1.5 planning
+Next action: Execute plan 30-02 (Theme Configuration) or continue with remaining Foundation Setup plans
