@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
-**Current focus:** Phase 25 - Hamburger Navigation Menu
+**Current focus:** Phase 26 - Persistent Status Bar
 
 ## Current Position
 
-Phase: 25 of 29 (Hamburger Navigation Menu)
+Phase: 26 of 29 (Persistent Status Bar)
 Plan: 1 of 1 in current phase (COMPLETE)
 Status: Phase complete
-Last activity: 2026-02-11 — Completed 25-01-PLAN.md (hamburger menu navigation)
+Last activity: 2026-02-11 — Completed 26-01-PLAN.md (persistent status bar)
 
-Progress: [█████████████████████████████░] 84% (47/56 total plans across all milestones)
+Progress: [█████████████████████████████░] 86% (48/56 total plans across all milestones)
 
 ## Performance Metrics
 
@@ -26,7 +26,7 @@ Progress: [███████████████████████
 | v1.1 History & Trends | 8-12 | 13 | ~1 day |
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
-| v1.4 Layout Simplification | 25-29 | 5 (est) | Not started |
+| v1.4 Layout Simplification | 25-29 | 5 (est) | ~2 min |
 
 **Recent completions:**
 
@@ -39,6 +39,7 @@ Progress: [███████████████████████
 | 24 | 01 | ~3 min | 2 | 2 | 2026-02-11 |
 | 24 | 02 | ~3 min | 3 | 7 | 2026-02-11 |
 | 25 | 01 | ~5 min | 2 | 1 | 2026-02-11 |
+| 26 | 01 | ~2 min | 2 | 2 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -88,6 +89,9 @@ Key decisions preserved for future reference:
 - [Phase 25-01]: Hamburger menu coexists with sidebar (removal in Phase 28)
 - [Phase 25-01]: Text labels in menu items for better discoverability
 - [Phase 25-01]: Menu anchor state pattern (anchorEl + derived open state)
+- [Phase 26-01]: StatusBarPill uses 40px ring for AppBar space efficiency (vs 80px sidebar ring)
+- [Phase 26-01]: Progressive disclosure: ring only (mobile) → ring+stats (tablet) → full (desktop)
+- [Phase 26-01]: Flaky count shown with ~ prefix to indicate approximation
 
 ### Pending Todos
 
@@ -110,6 +114,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed Phase 25-01 (Hamburger Navigation Menu)
+Stopped at: Completed Phase 26-01 (Persistent Status Bar)
 Resume file: None
-Next action: Start Phase 26 (Resizable Sidebar) or proceed to Phase 28 (Layout Simplification)
+Next action: Plan Phase 27 (Modal Test Details) with `/gsd:plan-phase 27`
