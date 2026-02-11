@@ -3,9 +3,11 @@ import {
   useReactTable,
   getCoreRowModel,
   getSortedRowModel,
+  getExpandedRowModel,
   flexRender,
   type ColumnDef,
   type SortingState,
+  type ExpandedState,
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import {
@@ -22,6 +24,11 @@ interface DataTableProps<TData, TValue> {
   data: TData[]
   onRowClick?: (row: TData) => void
   height?: number // Default: 600
+  // Expanding support
+  getSubRows?: (originalRow: TData) => TData[] | undefined
+  getRowId?: (originalRow: TData) => string
+  expanded?: ExpandedState
+  onExpandedChange?: (updater: ExpandedState | ((old: ExpandedState) => ExpandedState)) => void
 }
 
 export function DataTable<TData, TValue>({
@@ -29,19 +36,32 @@ export function DataTable<TData, TValue>({
   data,
   onRowClick,
   height = 600,
+  getSubRows,
+  getRowId,
+  expanded,
+  onExpandedChange,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
+  const [internalExpanded, setInternalExpanded] = useState<ExpandedState>({})
   const tableContainerRef = useRef<HTMLDivElement>(null)
+
+  // Use controlled state pattern for expansion
+  const expandedState = expanded ?? internalExpanded
 
   const table = useReactTable({
     data,
     columns,
     state: {
       sorting,
+      expanded: expandedState,
     },
     onSortingChange: setSorting,
+    onExpandedChange: onExpandedChange ?? setInternalExpanded,
+    getRowId: getRowId,
+    getSubRows: getSubRows,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
   })
 
   // Get sorted rows from table
