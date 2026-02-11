@@ -4,7 +4,6 @@ import { useRootStore } from '../../store'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { BentoGrid } from './BentoGrid'
 import { DashboardCard } from './DashboardCard'
-import { StatsCard } from './StatsCard'
 import { RunInfoCard } from './RunInfoCard'
 import { HostInfoCard } from './HostInfoCard'
 import { TrendsChart } from './TrendsChart'
@@ -12,7 +11,6 @@ import { HistoryTimeline } from './HistoryTimeline'
 import { AlertsPanel } from './AlertsPanel'
 import { TestHealthWidget } from './TestHealthWidget'
 import { SparklineCard } from './SparklineCard'
-import { ProgressRingCard } from './ProgressRingCard'
 import { SuiteHealthCard } from './SuiteHealthCard'
 import { AttentionRequiredCard } from './AttentionRequiredCard'
 import { QuickInsightsCard } from './QuickInsightsCard'
@@ -28,8 +26,6 @@ export const Dashboard = observer(() => {
       </Typography>
     )
   }
-
-  const { stats } = reportStore.runData
 
   // Handle alert click - find test by signature and select it
   const handleAlertClick = (testSignature: string) => {
@@ -54,44 +50,6 @@ export const Dashboard = observer(() => {
     >
       <Box>
         <BentoGrid>
-        {/* Statistics cards - 1x1 compact counters */}
-      <DashboardCard>
-        <StatsCard
-          status="passed"
-          count={stats.passed}
-          percentage={reportStore.passRate}
-        />
-      </DashboardCard>
-      <DashboardCard>
-        <StatsCard
-          status="failed"
-          count={stats.failed}
-          percentage={reportStore.failedRate}
-        />
-      </DashboardCard>
-      <DashboardCard>
-        <StatsCard
-          status="skipped"
-          count={stats.skipped}
-          percentage={reportStore.skippedRate}
-        />
-      </DashboardCard>
-      <DashboardCard>
-        <StatsCard
-          status="broken"
-          count={reportStore.brokenCount}
-          percentage={reportStore.brokenRate}
-        />
-      </DashboardCard>
-
-      {/* Progress ring for pass rate visualization */}
-      <ProgressRingCard
-        title="Pass Rate"
-        value={reportStore.passRate}
-        colSpan={1}
-        rowSpan={1}
-      />
-
       {/* Pass rate trend sparkline - only when trend data available */}
       {analyticsStore.hasTrendData && (
         <SparklineCard

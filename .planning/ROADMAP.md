@@ -346,10 +346,10 @@ Plans:
   1. User sees pass rate visualization only once (in status bar, not duplicated)
   2. User sees statistics consolidated in status bar only
   3. Codebase has no unused duplicate chart components
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 29-01: TBD
+- [ ] 29-01-PLAN.md — Remove StatsCard and ProgressRingCard from Dashboard, delete orphaned files
 
 ## Progress
 
