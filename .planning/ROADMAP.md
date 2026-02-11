@@ -7,6 +7,7 @@
 - ✅ **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
 - ✅ **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
 - ✅ **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
+- 🚧 **v1.5 Qase TMS Style** - Phases 30-36 (in progress)
 
 ## Phases
 
@@ -275,7 +276,8 @@ Plans:
 
 </details>
 
-### 🚧 v1.4 Layout Simplification (In Progress)
+<details>
+<summary>✅ v1.4 Layout Simplification (Phases 25-29) - SHIPPED 2026-02-11</summary>
 
 **Milestone Goal:** Simplify layout by replacing permanent sidebar with hamburger menu navigation, adding persistent status bar in top bar, converting test details to modal dialog, and removing duplicate statistics.
 
@@ -322,8 +324,6 @@ Plans:
 Plans:
 - [x] 27-01-PLAN.md — TestDetailsModal with Dialog, scrollbar-gutter CSS, MainLayout integration
 
-**Research Flag**: Phase 27 requires testing modal focus trap with virtual scrolling. Before implementation, create prototype to verify VirtualizedTestList scroll behavior with Dialog open. If scroll fails, use responsive pattern (Drawer desktop, Dialog mobile) or set `disableEnforceFocus={true}`.
-
 ### Phase 28: Layout Simplification
 **Goal**: Sidebar removed, filters integrated into test list view
 **Depends on**: Phase 27
@@ -351,6 +351,144 @@ Plans:
 Plans:
 - [x] 29-01-PLAN.md — Remove StatsCard and ProgressRingCard from Dashboard, delete orphaned files
 
+</details>
+
+### 🚧 v1.5 Qase TMS Style (In Progress)
+
+**Milestone Goal:** Migrate to shadcn/ui with Qase TMS visual style — tabs navigation, right sidebar, drawer test details, table-style test list.
+
+#### Phase 30: Foundation Setup
+
+**Goal**: Tailwind CSS v4 and shadcn/ui installed, dark theme configured, MUI completely removed
+**Depends on**: Phase 29 (v1.4 complete)
+**Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-04, FOUND-05
+**Success Criteria** (what must be TRUE):
+  1. Tailwind CSS v4 compiles via Vite plugin without errors
+  2. shadcn/ui CLI can add components to src/components/ui/
+  3. Dark theme works via Tailwind CSS variables (no FOUC on load)
+  4. MUI and Emotion removed from package.json and no imports in code
+  5. lucide-react icons replaced @mui/icons-material in all components
+**Plans**: 5 plans (3 waves)
+
+Plans:
+- [ ] 30-01-PLAN.md — Install Tailwind CSS v4 and configure Vite plugin (Wave 1)
+- [ ] 30-02-PLAN.md — Initialize shadcn/ui and configure path aliases (Wave 2)
+- [ ] 30-03-PLAN.md — Configure dark theme with CSS variables (Wave 2)
+- [ ] 30-04-PLAN.md — Remove MUI and Emotion dependencies (Wave 3)
+- [ ] 30-05-PLAN.md — Migrate icons to lucide-react (Wave 3)
+
+#### Phase 31: Core UI Components
+
+**Goal**: Base shadcn/ui components installed and ready for use
+**Depends on**: Phase 30
+**Requirements**: DATA-03, DATA-07
+**Success Criteria** (what must be TRUE):
+  1. Button, Card, Badge components installed and work with dark theme
+  2. Skeleton component displays loading states with correct styles
+  3. Badge component supports all statuses (passed, failed, skipped, broken)
+  4. All components work with MobX observer() without errors
+  5. TypeScript types for all components defined explicitly
+**Plans**: TBD
+
+Plans:
+- [ ] 31-01: Install and configure core shadcn/ui components
+- [ ] 31-02: Create status badge variants
+- [ ] 31-03: Test MobX observer compatibility
+
+#### Phase 32: Layout Restructure
+
+**Goal**: Tab navigation, right sidebar, top bar work with new layout
+**Depends on**: Phase 31
+**Requirements**: LAYOUT-01, LAYOUT-02, LAYOUT-05
+**Success Criteria** (what must be TRUE):
+  1. Tab navigation displays 5 tabs (Test cases, Overview, Failure Clusters, Gallery, Comparison)
+  2. Right sidebar always visible with fixed width
+  3. Completion rate ring displays in sidebar with correct pass rate percentage
+  4. Run metadata (title, date, environment) displays in sidebar
+  5. Top bar contains run title and action buttons (export, theme toggle)
+**Plans**: TBD
+
+Plans:
+- [ ] 32-01: Implement tab navigation with shadcn Tabs
+- [ ] 32-02: Create right sidebar layout
+- [ ] 32-03: Add completion rate ring to sidebar
+- [ ] 32-04: Implement top bar
+
+#### Phase 33: Test Details Drawer
+
+**Goal**: Test details open in Sheet drawer on the right with nested tabs
+**Depends on**: Phase 32
+**Requirements**: LAYOUT-03, LAYOUT-04
+**Success Criteria** (what must be TRUE):
+  1. Clicking test opens Sheet drawer on right (not modal)
+  2. Drawer contains 4 nested tabs (Execution, Info, Run History, Retries)
+  3. Execution tab shows step timeline and error details
+  4. Info tab shows test metadata and custom fields
+  5. Drawer closes via Escape or click on overlay
+**Plans**: TBD
+
+Plans:
+- [ ] 33-01: Replace modal with Sheet drawer
+- [ ] 33-02: Implement nested tabs in drawer
+- [ ] 33-03: Migrate test details content to drawer
+
+#### Phase 34: TanStack Table Migration
+
+**Goal**: Test list works as Data Table with sorting and columns
+**Depends on**: Phase 33
+**Requirements**: DATA-01, DATA-02, INT-01, INT-02, MIG-02
+**Success Criteria** (what must be TRUE):
+  1. Test list displays in table with columns (ID, Status, Title, Duration)
+  2. All columns support sorting (ascending/descending)
+  3. Command palette (Cmd+K) works for test search with fuzzy matching
+  4. Row actions dropdown shows actions (view details, view history)
+  5. Virtual scrolling works with 500+ tests without performance issues
+**Plans**: TBD
+
+Plans:
+- [ ] 34-01: Set up TanStack Table with columns
+- [ ] 34-02: Implement column sorting
+- [ ] 34-03: Add command palette search
+- [ ] 34-04: Integrate virtual scrolling with table
+- [ ] 34-05: Add row actions dropdown
+
+#### Phase 35: Suite Hierarchy & Progress
+
+**Goal**: Suite hierarchy with expandable rows and progress bars works
+**Depends on**: Phase 34
+**Requirements**: DATA-04, DATA-05, INT-03
+**Success Criteria** (what must be TRUE):
+  1. Suite hierarchy displays as expandable rows in table
+  2. Collapse/expand state persists during filtering
+  3. Progress bar for each suite shows pass/fail segments (multi-color)
+  4. Progress bar colors: green (passed), red (failed), yellow (skipped), gray (broken)
+  5. Suite duration displays in progress bar tooltip
+**Plans**: TBD
+
+Plans:
+- [ ] 35-01: Implement suite expandable rows
+- [ ] 35-02: Create multi-segment progress bars
+- [ ] 35-03: Persist collapse/expand state
+
+#### Phase 36: Views Migration & Polish
+
+**Goal**: All views migrated to shadcn/ui, Recharts integrated, static HTML works
+**Depends on**: Phase 35
+**Requirements**: DATA-06, MIG-01, MIG-03, MIG-04
+**Success Criteria** (what must be TRUE):
+  1. Overview, Failure Clusters, Gallery, Comparison views use shadcn/ui components
+  2. Recharts charts (trends, sparklines) use Tailwind dark theme colors
+  3. Static HTML export works with file:// protocol (CSS inline, assets embedded)
+  4. All view transitions smooth with consistent animation duration (300ms)
+  5. Loading skeletons show when loading data in all views
+**Plans**: TBD
+
+Plans:
+- [ ] 36-01: Migrate remaining views to shadcn/ui
+- [ ] 36-02: Integrate Recharts with Tailwind theme
+- [ ] 36-03: Verify static HTML export
+- [ ] 36-04: Polish animations and loading states
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -364,3 +502,12 @@ Plans:
 | 27. Modal Details | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 28. Layout Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 29. Stats Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
+| 30. Foundation Setup | v1.5 | 0/5 | Planning complete | - |
+| 31. Core UI Components | v1.5 | 0/3 | Not started | - |
+| 32. Layout Restructure | v1.5 | 0/4 | Not started | - |
+| 33. Test Details Drawer | v1.5 | 0/3 | Not started | - |
+| 34. TanStack Table | v1.5 | 0/5 | Not started | - |
+| 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
+| 36. Views & Polish | v1.5 | 0/4 | Not started | - |
+
+**Total v1.5:** 0/27 plans complete (0%)
