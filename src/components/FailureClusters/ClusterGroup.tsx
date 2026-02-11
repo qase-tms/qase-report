@@ -1,6 +1,6 @@
-import { List, ListItemButton, ListItemIcon, ListItemText, Collapse, Box, Typography } from '@mui/material'
-import { ExpandLess, ExpandMore, ErrorOutline } from '@mui/icons-material'
+import { ChevronDown, ChevronUp, AlertCircle } from 'lucide-react'
 import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 import { TestListItem } from '../TestList/TestListItem'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
@@ -32,46 +32,35 @@ export const ClusterGroup = observer(({
 
   return (
     <>
-      <ListItemButton
+      <button
         onClick={onToggle}
-        sx={{
-          bgcolor: 'error.dark',
-          '&:hover': { bgcolor: 'error.main' },
-          borderRadius: 1,
-          mb: 0.5,
-        }}
+        className="w-full flex items-center gap-2 p-3 mb-1 rounded bg-destructive hover:bg-destructive/90 text-destructive-foreground transition-colors"
         aria-expanded={isExpanded}
         aria-controls={contentId}
       >
-        <ListItemIcon sx={{ minWidth: 36, color: 'error.contrastText' }}>
-          <ErrorOutline />
-        </ListItemIcon>
-        <ListItemText
-          primary={
-            <Typography variant="body2" sx={{ color: 'error.contrastText', fontFamily: 'monospace' }}>
-              {displayPattern}
-            </Typography>
-          }
-          secondary={
-            <Typography variant="caption" sx={{ color: 'error.contrastText', opacity: 0.8 }}>
-              {tests.length} test{tests.length !== 1 ? 's' : ''} affected
-            </Typography>
-          }
-        />
+        <div className="min-w-[36px]">
+          <AlertCircle className="h-5 w-5" />
+        </div>
+        <div className="flex-1 text-left">
+          <p className="text-sm font-mono">
+            {displayPattern}
+          </p>
+          <p className="text-xs opacity-80">
+            {tests.length} test{tests.length !== 1 ? 's' : ''} affected
+          </p>
+        </div>
         {isExpanded ? (
-          <ExpandLess sx={{ color: 'error.contrastText' }} />
+          <ChevronUp className="h-5 w-5" />
         ) : (
-          <ExpandMore sx={{ color: 'error.contrastText' }} />
+          <ChevronDown className="h-5 w-5" />
         )}
-      </ListItemButton>
-      <Collapse
-        in={isExpanded}
-        timeout={prefersReducedMotion ? 0 : 'auto'}
-        unmountOnExit
-        id={contentId}
-      >
-        <List component="div" disablePadding>
-          <Box sx={{ pl: 2, py: 1 }}>
+      </button>
+      {isExpanded && (
+        <div
+          id={contentId}
+          className={prefersReducedMotion ? '' : 'transition-all duration-200'}
+        >
+          <div className="pl-4 py-2">
             {tests.map(test => (
               <TestListItem
                 key={test.id}
@@ -79,9 +68,9 @@ export const ClusterGroup = observer(({
                 onSelect={onSelectTest}
               />
             ))}
-          </Box>
-        </List>
-      </Collapse>
+          </div>
+        </div>
+      )}
     </>
   )
 })

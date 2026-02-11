@@ -1,11 +1,4 @@
-import { Box, Paper, Typography, Chip } from '@mui/material'
-import {
-  TrendingUp as RegressionIcon,
-  TrendingDown as FixedIcon,
-  Add as AddedIcon,
-  Remove as RemovedIcon,
-  Speed as DurationIcon,
-} from '@mui/icons-material'
+import { TrendingUp, TrendingDown, Plus, Minus, Gauge } from 'lucide-react'
 import type { ComparisonResult } from '../../types/comparison'
 
 interface ComparisonSummaryProps {
@@ -20,57 +13,46 @@ export const ComparisonSummary = ({ comparison }: ComparisonSummaryProps) => {
   }
 
   return (
-    <Paper sx={{ p: 2, mb: 3 }}>
-      <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+    <div className="bg-card rounded-lg border shadow-sm p-4 mb-6">
+      <p className="text-sm text-muted-foreground mb-2">
         Comparing {formatDate(baseRun.start_time)} to {formatDate(compareRun.start_time)}
-      </Typography>
+      </p>
 
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 1 }}>
+      <div className="flex flex-wrap gap-2 mt-2">
         {summary.regressionCount > 0 && (
-          <Chip
-            icon={<RegressionIcon />}
-            label={`${summary.regressionCount} regression${summary.regressionCount !== 1 ? 's' : ''}`}
-            color="error"
-            size="small"
-          />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-destructive text-destructive-foreground">
+            <TrendingUp className="h-3 w-3" />
+            {summary.regressionCount} regression{summary.regressionCount !== 1 ? 's' : ''}
+          </span>
         )}
         {summary.fixedCount > 0 && (
-          <Chip
-            icon={<FixedIcon />}
-            label={`${summary.fixedCount} fixed`}
-            color="success"
-            size="small"
-          />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-green-500 text-white">
+            <TrendingDown className="h-3 w-3" />
+            {summary.fixedCount} fixed
+          </span>
         )}
         {summary.addedCount > 0 && (
-          <Chip
-            icon={<AddedIcon />}
-            label={`${summary.addedCount} added`}
-            color="info"
-            size="small"
-          />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-blue-500 text-white">
+            <Plus className="h-3 w-3" />
+            {summary.addedCount} added
+          </span>
         )}
         {summary.removedCount > 0 && (
-          <Chip
-            icon={<RemovedIcon />}
-            label={`${summary.removedCount} removed`}
-            color="warning"
-            size="small"
-          />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-yellow-500 text-white">
+            <Minus className="h-3 w-3" />
+            {summary.removedCount} removed
+          </span>
         )}
         {summary.durationChangedCount > 0 && (
-          <Chip
-            icon={<DurationIcon />}
-            label={`${summary.durationChangedCount} duration change${summary.durationChangedCount !== 1 ? 's' : ''}`}
-            size="small"
-          />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-secondary text-secondary-foreground">
+            <Gauge className="h-3 w-3" />
+            {summary.durationChangedCount} duration change{summary.durationChangedCount !== 1 ? 's' : ''}
+          </span>
         )}
-        <Chip
-          label={`${comparison.diff.unchangedCount} unchanged`}
-          variant="outlined"
-          size="small"
-        />
-      </Box>
-    </Paper>
+        <span className="inline-flex items-center px-2 py-1 rounded text-xs border border-border">
+          {comparison.diff.unchangedCount} unchanged
+        </span>
+      </div>
+    </div>
   )
 }

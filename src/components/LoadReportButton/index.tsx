@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react-lite'
 import { useRef } from 'react'
-import { Button, Box, Alert } from '@mui/material'
+import { AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { useRootStore } from '../../store'
 
 export const LoadReportButton = observer(() => {
@@ -43,7 +45,7 @@ export const LoadReportButton = observer(() => {
   }
 
   return (
-    <Box>
+    <div>
       <input
         ref={inputRef}
         type="file"
@@ -54,27 +56,33 @@ export const LoadReportButton = observer(() => {
         onChange={handleFileSelect}
       />
       <Button
-        variant="contained"
         onClick={() => inputRef.current?.click()}
         disabled={isLoading}
       >
         {getButtonText()}
       </Button>
       {error && (
-        <Alert severity="error" sx={{ mt: 2 }}>
-          {error}
+        <Alert variant="destructive" className="mt-4">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
       {historyStore.isHistoryLoaded && (
-        <Alert severity="success" sx={{ mt: 2 }}>
-          History loaded: {historyStore.totalRuns} run(s) available
+        <Alert className="mt-4">
+          <CheckCircle className="h-4 w-4" />
+          <AlertDescription>
+            History loaded: {historyStore.totalRuns} run(s) available
+          </AlertDescription>
         </Alert>
       )}
       {historyStore.historyError && (
-        <Alert severity="warning" sx={{ mt: 2 }}>
-          History error: {historyStore.historyError}
+        <Alert variant="default" className="mt-4">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertDescription>
+            History error: {historyStore.historyError}
+          </AlertDescription>
         </Alert>
       )}
-    </Box>
+    </div>
   )
 })

@@ -1,4 +1,3 @@
-import { Box, Typography } from '@mui/material'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { TestStepAttachment } from './TestStepAttachment'
 
@@ -12,13 +11,13 @@ interface TestAttachmentsProps {
  */
 export const TestAttachments = ({ attachments }: TestAttachmentsProps) => {
   return (
-    <Box>
-      <Typography variant="subtitle1" sx={{ mb: 1 }}>
+    <div>
+      <h5 className="text-base font-semibold mb-2">
         Attachments
-      </Typography>
+      </h5>
       {attachments.map((attachment) => (
         <TestStepAttachment key={attachment.id} attachment={attachment} />
       ))}
-    </Box>
+    </div>
   )
 }

@@ -1,4 +1,3 @@
-import { Box, Typography, Stack } from '@mui/material'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
 interface TestParamsProps {
@@ -7,20 +6,20 @@ interface TestParamsProps {
 
 export const TestParams = ({ test }: TestParamsProps) => {
   return (
-    <Stack spacing={2}>
-      <Typography variant="subtitle2">Parameters</Typography>
-      <Box>
+    <div className="flex flex-col gap-4">
+      <h6 className="text-sm font-semibold">Parameters</h6>
+      <div>
         {Object.entries(test.params).map(([key, value]) => (
-          <Box key={key} sx={{ display: 'flex', gap: 1, mb: 1 }}>
-            <Typography variant="body2" sx={{ fontWeight: 600, minWidth: 120 }}>
+          <div key={key} className="flex gap-2 mb-2">
+            <p className="text-sm font-semibold min-w-[120px]">
               {key}:
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
+            </p>
+            <p className="text-sm text-muted-foreground">
               {value}
-            </Typography>
-          </Box>
+            </p>
+          </div>
         ))}
-      </Box>
-    </Stack>
+      </div>
+    </div>
   )
 }

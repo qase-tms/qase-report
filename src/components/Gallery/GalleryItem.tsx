@@ -1,5 +1,4 @@
-import { ImageListItem, ImageListItemBar, IconButton, Box } from '@mui/material'
-import { OpenInNew as OpenInNewIcon, InsertDriveFile as FileIcon } from '@mui/icons-material'
+import { ExternalLink, FileText } from 'lucide-react'
 import { useRootStore } from '../../store'
 import type { GalleryAttachment } from '../../types/gallery'
 
@@ -23,56 +22,43 @@ export const GalleryItem = ({ item }: GalleryItemProps) => {
   }
 
   return (
-    <ImageListItem
+    <div
       onClick={handleClick}
-      sx={{
-        cursor: 'pointer',
-        '&:hover': { opacity: 0.9 },
-      }}
+      className="relative cursor-pointer hover:opacity-90 transition-opacity"
     >
       {isImage && blobUrl ? (
         <img
           src={blobUrl}
           alt={item.attachment.file_name}
           loading="lazy"
-          style={{
-            height: 200,
-            objectFit: 'cover',
-          }}
+          className="h-[200px] w-full object-cover"
         />
       ) : (
-        <Box
-          sx={{
-            height: 200,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'grey.800',
-          }}
-        >
-          <FileIcon sx={{ fontSize: 48, color: 'grey.500' }} />
-        </Box>
+        <div className="h-[200px] flex items-center justify-center bg-gray-800">
+          <FileText className="h-12 w-12 text-gray-500" />
+        </div>
       )}
-      <ImageListItemBar
-        title={item.attachment.file_name}
-        subtitle={item.testTitle}
-        actionIcon={
-          <IconButton
-            sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
-            aria-label="open test"
+
+      {/* Image list item bar overlay */}
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1 min-w-0">
+            <p className="text-sm text-white overflow-hidden text-ellipsis whitespace-nowrap">
+              {item.attachment.file_name}
+            </p>
+            <p className="text-xs text-white/70 overflow-hidden text-ellipsis whitespace-nowrap">
+              {item.testTitle}
+            </p>
+          </div>
+          <button
             onClick={handleNavigateToTest}
+            className="text-white/70 hover:text-white transition-colors flex-shrink-0"
+            aria-label="open test"
           >
-            <OpenInNewIcon />
-          </IconButton>
-        }
-        sx={{
-          '& .MuiImageListItemBar-title': {
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-          },
-        }}
-      />
-    </ImageListItem>
+            <ExternalLink className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }

@@ -1,26 +1,15 @@
 import { useState, useCallback } from 'react'
 import {
-  Box,
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Collapse,
-  Typography,
-  Chip,
-  Paper,
-} from '@mui/material'
-import {
-  ExpandMore as ExpandMoreIcon,
-  ExpandLess as ExpandLessIcon,
-  ErrorOutline as RegressionIcon,
-  CheckCircleOutline as FixedIcon,
-  Add as AddedIcon,
-  Remove as RemovedIcon,
-  Speed as DurationIcon,
-  ArrowUpward as SlowerIcon,
-  ArrowDownward as FasterIcon,
-} from '@mui/icons-material'
+  ChevronDown,
+  ChevronUp,
+  AlertCircle,
+  CheckCircle,
+  Plus,
+  Minus,
+  Gauge,
+  ArrowUp,
+  ArrowDown,
+} from 'lucide-react'
 import type { ComparisonResult, StatusChange, DurationChange } from '../../types/comparison'
 import { useRootStore } from '../../store'
 
@@ -59,59 +48,61 @@ export const DiffList = ({ comparison }: DiffListProps) => {
   const fixed = diff.statusChanged.filter(c => c.changeType === 'fixed')
 
   const renderStatusChangeItem = (item: StatusChange) => (
-    <ListItemButton
+    <button
       key={item.signature}
       onClick={() => handleTestClick(item.signature)}
-      sx={{ pl: 4 }}
+      className="w-full p-3 pl-8 text-left hover:bg-accent transition-colors"
     >
-      <ListItemText
-        primary={item.title}
-        secondary={`${item.oldStatus} -> ${item.newStatus}`}
-      />
-    </ListItemButton>
+      <p className="text-sm">{item.title}</p>
+      <p className="text-xs text-muted-foreground">
+        {item.oldStatus} → {item.newStatus}
+      </p>
+    </button>
   )
 
   const renderDurationItem = (item: DurationChange) => {
     const isFaster = item.difference < 0
     return (
-      <ListItemButton
+      <button
         key={item.signature}
         onClick={() => handleTestClick(item.signature)}
-        sx={{ pl: 4 }}
+        className="w-full flex items-start gap-2 p-3 pl-8 text-left hover:bg-accent transition-colors"
       >
-        <ListItemIcon sx={{ minWidth: 36 }}>
+        <div className="mt-0.5">
           {isFaster ? (
-            <FasterIcon color="success" fontSize="small" />
+            <ArrowDown className="h-4 w-4 text-green-500" />
           ) : (
-            <SlowerIcon color="error" fontSize="small" />
+            <ArrowUp className="h-4 w-4 text-destructive" />
           )}
-        </ListItemIcon>
-        <ListItemText
-          primary={item.title}
-          secondary={`${item.oldDuration}ms -> ${item.newDuration}ms (${item.percentChange > 0 ? '+' : ''}${Math.round(item.percentChange)}%)`}
-        />
-      </ListItemButton>
+        </div>
+        <div className="flex-1">
+          <p className="text-sm">{item.title}</p>
+          <p className="text-xs text-muted-foreground">
+            {item.oldDuration}ms → {item.newDuration}ms ({item.percentChange > 0 ? '+' : ''}{Math.round(item.percentChange)}%)
+          </p>
+        </div>
+      </button>
     )
   }
 
   const renderAddedRemovedItem = (item: typeof diff.added[0]) => (
-    <ListItemButton
+    <button
       key={item.signature}
       onClick={() => handleTestClick(item.signature)}
-      sx={{ pl: 4 }}
+      className="w-full p-3 pl-8 text-left hover:bg-accent transition-colors"
     >
-      <ListItemText
-        primary={item.title}
-        secondary={`${item.status} (${item.duration}ms)`}
-      />
-    </ListItemButton>
+      <p className="text-sm">{item.title}</p>
+      <p className="text-xs text-muted-foreground">
+        {item.status} ({item.duration}ms)
+      </p>
+    </button>
   )
 
   const sections = [
     {
       id: 'regressions' as const,
       label: 'Regressions',
-      icon: <RegressionIcon color="error" />,
+      icon: <AlertCircle className="h-5 w-5 text-destructive" />,
       count: regressions.length,
       items: regressions,
       render: renderStatusChangeItem,
@@ -119,7 +110,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'fixed' as const,
       label: 'Fixed',
-      icon: <FixedIcon color="success" />,
+      icon: <CheckCircle className="h-5 w-5 text-green-500" />,
       count: fixed.length,
       items: fixed,
       render: renderStatusChangeItem,
@@ -127,7 +118,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'added' as const,
       label: 'Added Tests',
-      icon: <AddedIcon color="info" />,
+      icon: <Plus className="h-5 w-5 text-blue-500" />,
       count: diff.added.length,
       items: diff.added,
       render: renderAddedRemovedItem,
@@ -135,7 +126,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'removed' as const,
       label: 'Removed Tests',
-      icon: <RemovedIcon color="warning" />,
+      icon: <Minus className="h-5 w-5 text-yellow-500" />,
       count: diff.removed.length,
       items: diff.removed,
       render: renderAddedRemovedItem,
@@ -143,7 +134,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'duration' as const,
       label: 'Duration Changes',
-      icon: <DurationIcon />,
+      icon: <Gauge className="h-5 w-5" />,
       count: diff.durationChanged.length,
       items: diff.durationChanged,
       render: renderDurationItem,
@@ -151,36 +142,45 @@ export const DiffList = ({ comparison }: DiffListProps) => {
   ]
 
   return (
-    <Paper>
-      <List disablePadding>
+    <div className="bg-card rounded-lg border shadow-sm">
+      <div>
         {sections.map(section => {
           if (section.count === 0) return null
 
           return (
-            <Box key={section.id}>
-              <ListItemButton onClick={() => toggleSection(section.id)}>
-                <ListItemIcon>{section.icon}</ListItemIcon>
-                <ListItemText primary={section.label} />
-                <Chip label={section.count} size="small" sx={{ mr: 1 }} />
-                {expanded.has(section.id) ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </ListItemButton>
-              <Collapse in={expanded.has(section.id)} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+            <div key={section.id}>
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="w-full flex items-center gap-3 p-4 hover:bg-accent transition-colors"
+              >
+                <div className="min-w-[20px]">{section.icon}</div>
+                <p className="flex-1 text-left text-sm font-medium">{section.label}</p>
+                <span className="px-2 py-1 rounded text-xs bg-secondary text-secondary-foreground">
+                  {section.count}
+                </span>
+                {expanded.has(section.id) ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              {expanded.has(section.id) && (
+                <div className="border-t">
                   {section.items.map((item: any) => section.render(item))}
-                </List>
-              </Collapse>
-            </Box>
+                </div>
+              )}
+            </div>
           )
         })}
-      </List>
+      </div>
 
       {sections.every(s => s.count === 0) && (
-        <Box sx={{ p: 3, textAlign: 'center' }}>
-          <Typography color="text.secondary">
+        <div className="p-6 text-center">
+          <p className="text-sm text-muted-foreground">
             No differences found between selected runs.
-          </Typography>
-        </Box>
+          </p>
+        </div>
       )}
-    </Paper>
+    </div>
   )
 }
