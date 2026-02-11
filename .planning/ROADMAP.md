@@ -6,7 +6,7 @@
 - ✅ **v1.1 History & Trends** - Phases 8-12 (shipped 2026-02-10)
 - ✅ **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
 - ✅ **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
-- 🚧 **v1.4 Layout Simplification** - Phases 25-29 (in progress)
+- ✅ **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
 
 ## Phases
 
@@ -349,7 +349,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 29-01-PLAN.md — Remove StatsCard and ProgressRingCard from Dashboard, delete orphaned files
+- [x] 29-01-PLAN.md — Remove StatsCard and ProgressRingCard from Dashboard, delete orphaned files
 
 ## Progress
 
@@ -363,4 +363,4 @@ Plans:
 | 26. Status Bar | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 27. Modal Details | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 28. Layout Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
-| 29. Stats Cleanup | v1.4 | 0/1 | Not started | - |
+| 29. Stats Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |

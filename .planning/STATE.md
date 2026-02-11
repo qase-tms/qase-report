@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** User can open Qase Report JSON and see test results in a clear, interactive interface with filtering, detailed steps, attachments, and stability analytics.
-**Current focus:** Phase 28 - Layout Simplification (COMPLETE)
+**Current focus:** Phase 29 - Statistics Cleanup (COMPLETE)
 
 ## Current Position
 
-Phase: 28 of 29 (Layout Simplification)
+Phase: 29 of 29 (Statistics Cleanup)
 Plan: 1 of 1 in current phase (COMPLETE)
-Status: Phase complete
-Last activity: 2026-02-11 — Completed 28-01-PLAN.md (remove permanent sidebar)
+Status: v1.4 Milestone complete
+Last activity: 2026-02-11 — Completed 29-01-PLAN.md (remove duplicate statistics from Dashboard)
 
-Progress: [██████████████████████████████] 89% (50/56 total plans across all milestones)
+Progress: [███████████████████████████████] 91% (51/56 total plans across all milestones)
 
 ## Performance Metrics
 
@@ -42,6 +42,7 @@ Progress: [███████████████████████
 | 26 | 01 | ~2 min | 2 | 2 | 2026-02-11 |
 | 27 | 01 | ~1.5 min | 2 | 3 | 2026-02-11 |
 | 28 | 01 | ~2 min | 2 | 5 | 2026-02-11 |
+| 29 | 01 | ~2 min | 2 | 3 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -100,6 +101,8 @@ Key decisions preserved for future reference:
 - [Phase 28-01]: Remove permanent sidebar in favor of hamburger menu navigation
 - [Phase 28-01]: Delete orphaned dock state (isDockOpen, openDock, closeDock)
 - [Phase 28-01]: Selection state controls modal display (no separate open/close state)
+- [Phase 29-01]: StatusBarPill is single source of truth for pass rate and status counts
+- [Phase 29-01]: Dashboard widgets focus on unique analytics (trends, health, insights)
 
 ### Pending Todos
 
@@ -113,6 +116,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-11
-Stopped at: Completed 28-01-PLAN.md (remove permanent sidebar)
+Stopped at: Completed 29-01-PLAN.md (statistics cleanup)
 Resume file: None
-Next action: Plan Phase 29 (if exists) or complete v1.4 milestone
+Next action: v1.4 Layout Simplification milestone complete - ready for v1.5 planning
