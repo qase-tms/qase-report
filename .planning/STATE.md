@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 30 - Foundation Setup (v1.5 Qase TMS Style)
+**Current focus:** Phase 31 - Core UI Components (v1.5 Qase TMS Style)
 
 ## Current Position
 
-Phase: 30 of 36 (Foundation Setup)
-Plan: 3 of 5 in current phase
-Status: Executing
-Last activity: 2026-02-11 — Completed 30-02: shadcn/ui CLI and TypeScript Configuration
+Phase: 31 of 36 (Core UI Components)
+Plan: 1 of 3 in current phase
+Status: Completed
+Last activity: 2026-02-11 — Completed 31-01: Install Core UI Components (Card, Badge, Skeleton)
 
-Progress: [████████████████████████████░░░░░░░░] 76% (48/63 total plans)
+Progress: [████████████████████████████░░░░░░░░] 78% (49/63 total plans)
 
 ## Performance Metrics
 
@@ -27,7 +27,7 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 3/27 | In progress |
+| v1.5 Qase TMS Style | 30-36 | 4/27 | In progress |
 
 **Recent completions:**
 
@@ -40,6 +40,7 @@ Progress: [███████████████████████
 | 30 | 02 | ~14.8 min | 3 | 6 | 2026-02-11 |
 | 30 | 03 | ~2.7 min | 3 | 3 | 2026-02-11 |
 | Phase 30 P05 | 653 | 3 tasks | 6 files |
+| Phase 31 P01 | 73 | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -73,6 +74,11 @@ Key decisions preserved for future reference:
 - Used hsl(var(--)) pattern instead of @apply for Tailwind v4 compatibility
 - FOUC script coexists with MUI script during migration period
 
+**Phase 31-01 (Core UI Components):**
+- Installed Card, Badge, Skeleton components via single CLI command with -y flag for non-interactive setup
+- Badge uses CVA variant system for type-safe styling with 6 variants
+- Card uses compositional API with 7 subcomponents to avoid prop explosion
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -101,7 +107,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T15:25:34Z
-Stopped at: Completed Phase 30 Plan 02 (shadcn/ui CLI and TypeScript Configuration)
+Last session: 2026-02-11T17:21:15Z
+Stopped at: Completed 31-01-PLAN.md (Install Core UI Components)
 Resume file: None
-Next action: Execute plan 30-04 or 30-05 (remaining Foundation Setup plans)
+Next action: Execute remaining Phase 31 plans or continue with Phase 32
