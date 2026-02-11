@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 32 of 36 (Layout Restructure)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-02-11 — Completed 32-02: RunInfoSidebar Component
+Plan: 3 of 3 in current phase
+Status: Completed
+Last activity: 2026-02-11 — Completed 32-03: Layout Integration
 
-Progress: [█████████████████████████████░░░░░░░] 82% (52/63 total plans)
+Progress: [█████████████████████████████░░░░░░░] 84% (53/63 total plans)
 
 ## Performance Metrics
 
@@ -27,7 +27,7 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 6/27 | In progress |
+| v1.5 Qase TMS Style | 30-36 | 9/27 | In progress |
 
 **Recent completions:**
 
@@ -44,6 +44,7 @@ Progress: [███████████████████████
 | Phase 31 P02 | 81 | 3 tasks | 2 files |
 | 32 | 01 | ~2 min | 2 | 3 | 2026-02-11 |
 | 32 | 02 | ~2.5 min | 1 | 1 | 2026-02-11 |
+| 32 | 03 | ~2.2 min | 3 | 2 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -100,6 +101,14 @@ Key decisions preserved for future reference:
 - Conditional rendering for optional fields (skipped, flaky, environment)
 - Reused StatusBarPill color logic and data access patterns
 
+**Phase 32-03 (Layout Integration):**
+- CSS Grid layout with grid-rows-[auto_1fr] for header and grid-cols-[1fr_300px] for main+sidebar
+- Hamburger menu completely removed, replaced with horizontal TabNavigation in MainLayout
+- Run title from reportStore.runData?.title displayed in header with truncation
+- StatusBarPill removed from header, moved to RunInfoSidebar
+- Dashboard view simplified to show only Dashboard component (no TestList combo)
+- Fixed 300px right sidebar (hidden on mobile with lg:grid-cols pattern)
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -131,7 +140,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T17:53:29Z
-Stopped at: Completed 32-02-PLAN.md (RunInfoSidebar Component)
+Last session: 2026-02-11T17:58:28Z
+Stopped at: Completed 32-03-PLAN.md (Layout Integration) - Phase 32 Complete
 Resume file: None
-Next action: Execute 32-03-PLAN.md (Layout Integration)
+Next action: Begin Phase 33 (Test Table Implementation)

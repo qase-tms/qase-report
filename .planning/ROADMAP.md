@@ -408,9 +408,9 @@ Plans:
 **Plans**: 3 plans (2 waves)
 
 Plans:
-- [ ] 32-01-PLAN.md — Install Tabs component and create TabNavigation with 5 tabs (Wave 1)
-- [ ] 32-02-PLAN.md — Create RunInfoSidebar with pass rate ring and metadata (Wave 1)
-- [ ] 32-03-PLAN.md — Integrate CSS Grid layout with tabs and sidebar (Wave 2)
+- [x] 32-01-PLAN.md — Install Tabs component and create TabNavigation with 5 tabs (Wave 1)
+- [x] 32-02-PLAN.md — Create RunInfoSidebar with pass rate ring and metadata (Wave 1)
+- [x] 32-03-PLAN.md — Integrate CSS Grid layout with tabs and sidebar (Wave 2)
 
 #### Phase 33: Test Details Drawer
 
@@ -423,12 +423,12 @@ Plans:
   3. Execution tab shows step timeline and error details
   4. Info tab shows test metadata and custom fields
   5. Drawer closes via Escape or click on overlay
-**Plans**: TBD
+**Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 33-01: Replace modal with Sheet drawer
-- [ ] 33-02: Implement nested tabs in drawer
-- [ ] 33-03: Migrate test details content to drawer
+- [ ] 33-01-PLAN.md — Install Sheet component and create TestDetailsDrawer shell with tabs (Wave 1)
+- [ ] 33-02-PLAN.md — Implement drawer content tabs (ExecutionTab, InfoTab, RunHistoryTab, RetriesTab) (Wave 2)
+- [ ] 33-03-PLAN.md — Integrate drawer into MainLayout and remove TestDetailsModal (Wave 3)
 
 #### Phase 34: TanStack Table Migration
 
@@ -502,10 +502,10 @@ Plans:
 | 29. Stats Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 30. Foundation Setup | v1.5 | 5/5 | Complete | 2026-02-11 |
 | 31. Core UI Components | v1.5 | 2/2 | Complete | 2026-02-11 |
-| 32. Layout Restructure | v1.5 | 0/3 | Not started | - |
+| 32. Layout Restructure | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 33. Test Details Drawer | v1.5 | 0/3 | Not started | - |
 | 34. TanStack Table | v1.5 | 0/5 | Not started | - |
 | 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
-**Total v1.5:** 7/25 plans complete (28%)
+**Total v1.5:** 10/25 plans complete (40%)
