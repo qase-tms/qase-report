@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
+import { Skeleton } from '@/components/ui/skeleton'
 import { RunSelector } from './RunSelector'
 import { ComparisonSummary } from './ComparisonSummary'
 import { DiffList } from './DiffList'
@@ -10,8 +11,11 @@ export const Comparison = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
-        No report loaded
+      <div className="p-6">
+        <Skeleton className="h-8 w-40 mb-4" />
+        <Skeleton className="h-16 w-full mb-4" />
+        <Skeleton className="h-32 w-full mb-4" />
+        <Skeleton className="h-64 w-full" />
       </div>
     )
   }

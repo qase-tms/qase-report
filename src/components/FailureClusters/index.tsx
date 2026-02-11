@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
+import { Skeleton } from '@/components/ui/skeleton'
 import { ClusterGroup } from './ClusterGroup'
 
 export const FailureClusters = observer(() => {
@@ -26,8 +27,13 @@ export const FailureClusters = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
-        No report loaded
+      <div className="p-6">
+        <Skeleton className="h-8 w-48 mb-4" />
+        <div className="space-y-2">
+          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-24 w-full" />
+        </div>
       </div>
     )
   }

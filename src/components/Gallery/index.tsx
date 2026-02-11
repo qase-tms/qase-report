@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
+import { Skeleton } from '@/components/ui/skeleton'
 import { categorizeAttachment } from '../../types/gallery'
 import { GalleryFilters } from './GalleryFilters'
 import { GalleryGrid } from './GalleryGrid'
@@ -12,8 +13,13 @@ export const Gallery = observer(() => {
   // No report loaded
   if (!reportStore.runData) {
     return (
-      <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
-        No report loaded
+      <div className="p-6">
+        <Skeleton className="h-8 w-32 mb-4" />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <Skeleton key={i} className="h-48 w-full" />
+          ))}
+        </div>
       </div>
     )
   }
