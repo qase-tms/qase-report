@@ -1,9 +1,7 @@
-/* Minimal reset - MUI CssBaseline handles the rest */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import "tailwindcss";
+
+/* Temporary: MUI coexistence styles */
+/* MUI CssBaseline handles most resets, Tailwind Preflight will take over after MUI removal */
 
 html,
 body,
@@ -13,9 +11,9 @@ body,
   min-height: 100vh;
 }
 
-/* Use MUI theme background for scrollbar area */
+/* Preserve scrollbar stability during transition */
 html {
-  background-color: var(--mui-palette-background-default);
+  background-color: var(--mui-palette-background-default, hsl(var(--background)));
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
