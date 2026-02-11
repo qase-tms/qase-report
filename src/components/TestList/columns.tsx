@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
-import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
+import { ChevronDown, ChevronRight, ArrowUpDown, MoreHorizontal, FolderOpen, File } from 'lucide-react'
+import type { TreeNode } from './buildSuiteTree'
 import { getStatusIcon } from './statusIcon'
 import { Button } from '../ui/button'
 import {
@@ -11,21 +11,65 @@ import {
 } from '../ui/dropdown-menu'
 
 /**
- * Column definitions for the test results table.
- * Exported as a constant to prevent infinite re-renders (see TanStack Table best practices).
+ * Column definitions for the test results table with suite hierarchy support.
+ * Uses TreeNode type to handle both suite and test rows.
  */
 export const createColumns = (
   onSelectTest: (id: string) => void
-): ColumnDef<QaseTestResult>[] => [
+): ColumnDef<TreeNode>[] => [
   {
-    accessorKey: 'id',
-    header: 'ID',
-    size: 100,
-    cell: ({ row }) => (
-      <div className="font-mono text-xs text-muted-foreground">
-        {row.original.id.slice(0, 8)}
-      </div>
-    ),
+    id: 'name',
+    header: 'Name',
+    cell: ({ row }) => {
+      const canExpand = row.getCanExpand()
+      const isExpanded = row.getIsExpanded()
+      const isSuite = row.original.type === 'suite'
+
+      return (
+        <div
+          className="flex items-center"
+          style={{ paddingLeft: `${row.depth * 1.5}rem` }}
+        >
+          {/* Expand/collapse button for suites */}
+          {canExpand ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                row.toggleExpanded()
+              }}
+              className="mr-2 p-1 hover:bg-accent rounded"
+            >
+              {isExpanded ? (
+                <ChevronDown className="h-4 w-4" />
+              ) : (
+                <ChevronRight className="h-4 w-4" />
+              )}
+            </button>
+          ) : (
+            <span className="mr-2 w-6" />
+          )}
+
+          {/* Icon for row type */}
+          {isSuite ? (
+            <FolderOpen className="h-4 w-4 mr-2 text-muted-foreground" />
+          ) : (
+            <File className="h-4 w-4 mr-2 text-muted-foreground" />
+          )}
+
+          {/* Name */}
+          <span className={isSuite ? 'font-medium' : ''}>
+            {isSuite ? row.original.suiteTitle : row.original.testData?.title}
+          </span>
+
+          {/* Test count badge for suites */}
+          {isSuite && (
+            <span className="ml-2 text-xs text-muted-foreground">
+              ({row.original.totalTests} test{row.original.totalTests !== 1 ? 's' : ''})
+            </span>
+          )}
+        </div>
+      )
+    },
   },
   {
     accessorKey: 'execution.status',
@@ -43,7 +87,12 @@ export const createColumns = (
       )
     },
     cell: ({ row }) => {
-      const status = row.original.execution.status
+      // Suites don't have status column (progress bar in Plan 02)
+      if (row.original.type === 'suite') return null
+
+      const status = row.original.testData?.execution.status
+      if (!status) return null
+
       return (
         <div className="flex items-center gap-2">
           {getStatusIcon(status)}
@@ -52,29 +101,6 @@ export const createColumns = (
       )
     },
     size: 120,
-  },
-  {
-    accessorKey: 'title',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          className="h-8 px-2"
-        >
-          Title
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => {
-      return (
-        <div className="truncate max-w-[600px]" title={row.original.title}>
-          {row.original.title}
-        </div>
-      )
-    },
   },
   {
     accessorKey: 'execution.duration',
@@ -92,9 +118,15 @@ export const createColumns = (
       )
     },
     cell: ({ row }) => {
-      const duration = row.original.execution.duration
+      const duration = row.original.type === 'suite'
+        ? row.original.totalDuration
+        : row.original.testData?.execution.duration
+
+      if (!duration) return null
+
       const durationText =
         duration >= 1000 ? `${(duration / 1000).toFixed(1)}s` : `${duration}ms`
+
       return <div className="text-right">{durationText}</div>
     },
     size: 120,
@@ -103,7 +135,11 @@ export const createColumns = (
     id: 'actions',
     header: '',
     cell: ({ row }) => {
-      const test = row.original
+      // No actions for suites
+      if (row.original.type === 'suite') return null
+
+      const test = row.original.testData
+      if (!test) return null
 
       return (
         <DropdownMenu>

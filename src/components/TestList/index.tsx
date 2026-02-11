@@ -5,6 +5,7 @@ import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
 import { DataTable } from './DataTable'
 import { createColumns } from './columns'
+import { buildSuiteTree } from './buildSuiteTree'
 
 export const TestList = observer(() => {
   const { testResultsStore, selectTest } = useRootStore()
@@ -23,10 +24,10 @@ export const TestList = observer(() => {
   // This ensures table fills available space without causing page scrollbar
   const tableHeight = window.innerHeight - 300
 
-  // Memoize data to prevent table re-initialization on every render
+  // Transform flat test array to tree structure with suites
   // MobX observer ensures re-render when filteredResults changes
   const data = useMemo(
-    () => filteredResults,
+    () => buildSuiteTree(filteredResults),
     [filteredResults]
   )
 
@@ -62,8 +63,15 @@ export const TestList = observer(() => {
         <DataTable
           columns={columns}
           data={data}
-          onRowClick={(test) => selectTest(test.id)}
+          onRowClick={(node) => {
+            // Only open test details for test rows, not suite rows
+            if (node.type === 'test' && node.testData) {
+              selectTest(node.testData.id)
+            }
+          }}
           height={tableHeight}
+          getSubRows={(row) => row.subRows}
+          getRowId={(row) => row.id}
         />
       )}
     </div>
