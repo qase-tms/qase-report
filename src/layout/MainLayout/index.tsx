@@ -1,18 +1,17 @@
 import { observer } from 'mobx-react-lite'
 import { Grid, Box } from '@mui/material'
 import { useRootStore } from '../../store'
-import { Sidebar } from '../../components/Sidebar'
 import { LoadReportButton } from '../../components/LoadReportButton'
 import { Dashboard } from '../../components/Dashboard'
 import { TestList } from '../../components/TestList'
-import { TestDetails } from '../../components/TestDetails'
 import { AttachmentViewer } from '../../components/AttachmentViewer'
 import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
+import { TestDetailsModal } from '../../components/TestDetailsModal'
 
 export const MainLayout = observer(() => {
-  const { isDockOpen, closeDock, reportStore, activeView } = useRootStore()
+  const { reportStore, activeView } = useRootStore()
 
   const renderView = () => {
     if (activeView === 'dashboard') {
@@ -92,10 +91,8 @@ export const MainLayout = observer(() => {
           </Box>
           {renderView()}
         </Grid>
-        <Sidebar isOpen={isDockOpen} onClose={closeDock}>
-          <TestDetails />
-        </Sidebar>
       </Grid>
+      <TestDetailsModal />
       {/* Global attachment viewer */}
       <AttachmentViewer />
     </>
