@@ -1,26 +1,25 @@
-import { Box, Typography, Stack } from '@mui/material'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
 interface TestFieldsProps {
-  test: QaseTestResult
+ test: QaseTestResult
 }
 
 export const TestFields = ({ test }: TestFieldsProps) => {
-  return (
-    <Stack spacing={2}>
-      <Typography variant="subtitle2">Custom Fields</Typography>
-      <Box>
-        {Object.entries(test.fields).map(([key, value]) => (
-          <Box key={key} sx={{ display: 'flex', gap: 1, mb: 1 }}>
-            <Typography variant="body2" sx={{ fontWeight: 600, minWidth: 120 }}>
-              {key}:
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {value ?? 'N/A'}
-            </Typography>
-          </Box>
-        ))}
-      </Box>
-    </Stack>
-  )
+ return (
+ <div className="space-y-2">
+ <p>Custom Fields</p>
+ <div>
+ {Object.entries(test.fields).map(([key, value]) => (
+ <div key={key}>
+ <p className="text-sm">
+ {key}:
+ </p>
+ <p className="text-sm text-muted-foreground">
+ {value ?? 'N/A'}
+ </p>
+ </div>
+ ))}
+ </div>
+ </div>
+ )
 }

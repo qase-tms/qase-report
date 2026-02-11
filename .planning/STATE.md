@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 30 of 36 (Foundation Setup)
-Plan: 1 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: Executing
-Last activity: 2026-02-11 — Completed 30-01: Tailwind CSS v4 foundation setup
+Last activity: 2026-02-11 — Completed 30-02: shadcn/ui CLI and TypeScript Configuration
 
-Progress: [████████████████████████████░░░░░░░░] 75% (47/63 total plans)
+Progress: [████████████████████████████░░░░░░░░] 76% (48/63 total plans)
 
 ## Performance Metrics
 
@@ -27,7 +27,7 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 0/27 | Not started |
+| v1.5 Qase TMS Style | 30-36 | 3/27 | In progress |
 
 **Recent completions:**
 
@@ -37,6 +37,8 @@ Progress: [███████████████████████
 | 28 | 01 | ~2 min | 2 | 5 | 2026-02-11 |
 | 29 | 01 | ~2 min | 2 | 3 | 2026-02-11 |
 | 30 | 01 | ~4.6 min | 3 | 4 | 2026-02-11 |
+| 30 | 02 | ~14.8 min | 3 | 6 | 2026-02-11 |
+| 30 | 03 | ~2.7 min | 3 | 3 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -57,6 +59,18 @@ Key decisions preserved for future reference:
 - Used @import 'tailwindcss' directive (Tailwind v4 CSS-first pattern)
 - Added CSS variable fallback (--background) for post-MUI migration support
 - tailwindcss() plugin placed after react() in Vite config per docs
+
+**Phase 30-02 (shadcn/ui CLI Setup):**
+- Added TypeScript path aliases (baseUrl and @/* mapping) to match Vite configuration
+- Used shadcn@latest init --defaults for non-interactive setup with new-york style
+- Fixed Slot.Root TypeScript error with type casting workaround
+- Preserved MUI coexistence CSS during shadcn/ui initialization
+
+**Phase 30-03 (Theme Configuration):**
+- Dark theme is DEFAULT (:root) - no .dark class needed, inverted from shadcn standard
+- Light theme activated by .light class on html element
+- Used hsl(var(--)) pattern instead of @apply for Tailwind v4 compatibility
+- FOUC script coexists with MUI script during migration period
 
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
@@ -84,7 +98,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T15:06:17Z
-Stopped at: Completed Phase 30 Plan 01 (Tailwind CSS v4 Foundation)
+Last session: 2026-02-11T15:25:34Z
+Stopped at: Completed Phase 30 Plan 02 (shadcn/ui CLI and TypeScript Configuration)
 Resume file: None
-Next action: Execute plan 30-02 (Theme Configuration) or continue with remaining Foundation Setup plans
+Next action: Execute plan 30-04 or 30-05 (remaining Foundation Setup plans)

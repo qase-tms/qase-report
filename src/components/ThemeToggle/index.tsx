@@ -1,24 +1,10 @@
 import { useState } from 'react'
-import { useColorScheme } from '@mui/material/styles'
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material'
-import {
-  Brightness4 as Brightness4Icon,
-  Brightness7 as Brightness7Icon,
-  BrightnessAuto as BrightnessAutoIcon,
-} from '@mui/icons-material'
+import { Moon, Sun, Monitor } from 'lucide-react'
+import { useTheme } from '../ThemeProvider'
 
 export const ThemeToggle = () => {
-  const { mode, setMode } = useColorScheme()
+  const { theme, setTheme } = useTheme()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-
-  // SSR safety guard
-  if (!mode) return null
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -29,49 +15,56 @@ export const ThemeToggle = () => {
   }
 
   const handleModeChange = (newMode: 'light' | 'dark' | 'system') => {
-    setMode(newMode)
+    setTheme(newMode)
     handleMenuClose()
   }
 
   const getCurrentIcon = () => {
-    if (mode === 'dark') return <Brightness4Icon />
-    if (mode === 'light') return <Brightness7Icon />
-    return <BrightnessAutoIcon />
+    if (theme === 'dark') return <Moon className="h-5 w-5" />
+    if (theme === 'light') return <Sun className="h-5 w-5" />
+    return <Monitor className="h-5 w-5" />
   }
 
   return (
     <>
-      <IconButton
+      <button
         onClick={handleMenuOpen}
-        color="inherit"
+        className="p-2 rounded-md hover:bg-accent"
         aria-label="theme settings"
       >
         {getCurrentIcon()}
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={() => handleModeChange('light')}>
-          <ListItemIcon>
-            <Brightness7Icon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Light</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleModeChange('dark')}>
-          <ListItemIcon>
-            <Brightness4Icon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Dark</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleModeChange('system')}>
-          <ListItemIcon>
-            <BrightnessAutoIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>System</ListItemText>
-        </MenuItem>
-      </Menu>
+      </button>
+
+      {anchorEl && (
+        <div className="fixed inset-0 z-40" onClick={handleMenuClose}>
+          <div
+            className="absolute right-4 top-14 bg-card border rounded-md shadow-lg min-w-[150px]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => handleModeChange('light')}
+              className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-accent"
+            >
+              <Sun className="h-4 w-4" />
+              <span>Light</span>
+            </button>
+            <button
+              onClick={() => handleModeChange('dark')}
+              className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-accent"
+            >
+              <Moon className="h-4 w-4" />
+              <span>Dark</span>
+            </button>
+            <button
+              onClick={() => handleModeChange('system')}
+              className="w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-accent"
+            >
+              <Monitor className="h-4 w-4" />
+              <span>System</span>
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }

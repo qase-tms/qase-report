@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Grid, Box } from '@mui/material'
 import { useRootStore } from '../../store'
 import { LoadReportButton } from '../../components/LoadReportButton'
 import { Dashboard } from '../../components/Dashboard'
@@ -20,9 +19,9 @@ export const MainLayout = observer(() => {
           <Dashboard />
           {/* Show TestList only when report is loaded */}
           {reportStore.runData && (
-            <Box sx={{ mt: 3 }}>
+            <div className="mt-6">
               <TestList />
-            </Box>
+            </div>
           )}
         </>
       )
@@ -32,17 +31,9 @@ export const MainLayout = observer(() => {
       return reportStore.runData ? (
         <TestList />
       ) : (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '50vh',
-            color: 'text.secondary',
-          }}
-        >
+        <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
           No report loaded
-        </Box>
+        </div>
       )
     }
 
@@ -60,17 +51,9 @@ export const MainLayout = observer(() => {
 
     if (activeView === 'analytics') {
       return (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '50vh',
-            color: 'text.secondary',
-          }}
-        >
+        <div className="flex justify-center items-center h-[50vh] text-muted-foreground">
           Analytics - Coming Soon
-        </Box>
+        </div>
       )
     }
 
@@ -79,19 +62,12 @@ export const MainLayout = observer(() => {
 
   return (
     <>
-      <Grid
-        container
-        spacing={2}
-        component={'main'}
-        sx={{ height: 'calc(100vh - 48px)', width: '100%', p: 2 }}
-      >
-        <Grid item xs={12}>
-          <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-            <LoadReportButton />
-          </Box>
-          {renderView()}
-        </Grid>
-      </Grid>
+      <main className="h-[calc(100vh-48px)] w-full p-4">
+        <div className="flex gap-4 mb-4">
+          <LoadReportButton />
+        </div>
+        {renderView()}
+      </main>
       <TestDetailsModal />
       {/* Global attachment viewer */}
       <AttachmentViewer />

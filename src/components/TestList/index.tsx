@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { Box, Typography, Paper } from '@mui/material'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import { useSuiteExpandState } from '../../hooks/useSuiteExpandState'
@@ -36,43 +35,41 @@ export const TestList = observer(() => {
   // Early return if no tests loaded
   if (resultsList.length === 0) {
     return (
-      <Typography variant="body2" color="text.secondary">
+      <p className="text-sm text-muted-foreground">
         No tests loaded. Load a report to view tests.
-      </Typography>
+      </p>
     )
   }
 
   const grouped = groupBySuite(filteredResults)
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Typography variant="h6" gutterBottom>
-        Tests
-      </Typography>
+    <div className="bg-card rounded-lg border shadow-sm p-4">
+      <h6 className="text-lg font-semibold mb-4">Tests</h6>
 
       {/* Filters and search */}
-      <Box sx={{ mb: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <div className="mb-4 flex flex-col gap-4">
         <TestListSearch />
         <TestListFilters />
-      </Box>
+      </div>
 
       {/* Filter summary */}
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+      <p className="text-sm text-muted-foreground mb-2">
         Showing {filteredResults.length} of {resultsList.length} tests
         {activeFilterCount > 0 && ` (${activeFilterCount} filter${activeFilterCount !== 1 ? 's' : ''} active)`}
-      </Typography>
+      </p>
 
       {/* Empty state when filters match nothing */}
       {filteredResults.length === 0 && resultsList.length > 0 && (
-        <Typography variant="body2" color="text.secondary" sx={{ py: 2, textAlign: 'center' }}>
+        <p className="text-sm text-muted-foreground py-4 text-center">
           No tests match current filters.
-        </Typography>
+        </p>
       )}
 
       {/* Virtualized test list */}
-      <Box
+      <div
         ref={containerRef}
-        sx={{ height: 'calc(100vh - 400px)', minHeight: 300 }}
+        className="h-[calc(100vh-400px)] min-h-[300px]"
       >
         <VirtualizedTestList
           grouped={grouped}
@@ -81,7 +78,7 @@ export const TestList = observer(() => {
           onSelectTest={selectTest}
           height={containerRef.current?.offsetHeight || 400}
         />
-      </Box>
-    </Paper>
+      </div>
+    </div>
   )
 })

@@ -1,17 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import { Box, Card, CardContent, Typography, Chip, Stack } from '@mui/material'
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineOppositeContent,
-} from '@mui/lab'
-import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import ErrorIcon from '@mui/icons-material/Error'
-import WarningIcon from '@mui/icons-material/Warning'
+import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
 import { useRootStore } from '../../store'
 import type { HistoricalRun } from '../../schemas/QaseHistory.schema'
 
@@ -21,20 +9,20 @@ import type { HistoricalRun } from '../../schemas/QaseHistory.schema'
  */
 const getRunStatusColor = (
   run: HistoricalRun
-): 'success' | 'error' | 'warning' => {
-  if (run.stats.failed > 0) return 'error'
-  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return 'warning'
-  return 'success'
+): string => {
+  if (run.stats.failed > 0) return 'text-red-500'
+  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return 'text-yellow-500'
+  return 'text-green-500'
 }
 
 /**
  * Determines status icon based on run statistics.
- * Maps to Material-UI status icons for visual consistency.
  */
 const getRunStatusIcon = (run: HistoricalRun) => {
-  if (run.stats.failed > 0) return <ErrorIcon />
-  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return <WarningIcon />
-  return <CheckCircleIcon />
+  const colorClass = getRunStatusColor(run)
+  if (run.stats.failed > 0) return <XCircle className={`w-6 h-6 ${colorClass}`} />
+  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return <AlertTriangle className={`w-6 h-6 ${colorClass}`} />
+  return <CheckCircle className={`w-6 h-6 ${colorClass}`} />
 }
 
 /**
@@ -61,71 +49,60 @@ export const HistoryTimeline = observer(() => {
   }
 
   return (
-    <Card>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
-          Recent Runs
-        </Typography>
-        <Timeline position="right">
-          {historyStore.recentRuns.map((run, index) => (
-            <TimelineItem key={run.run_id}>
-              <TimelineOppositeContent sx={{ flex: 0.3 }}>
-                <Typography variant="body2" color="text.secondary">
-                  {new Date(run.start_time).toLocaleDateString()}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                  {new Date(run.start_time).toLocaleTimeString()}
-                </Typography>
-              </TimelineOppositeContent>
-              <TimelineSeparator>
-                <TimelineDot color={getRunStatusColor(run)}>
-                  {getRunStatusIcon(run)}
-                </TimelineDot>
-                {index < historyStore.recentRuns.length - 1 && (
-                  <TimelineConnector />
+    <div className="bg-card rounded-lg border shadow-sm p-4">
+      <h6 className="text-lg font-semibold mb-4">Recent Runs</h6>
+
+      {/* Custom Timeline */}
+      <div className="space-y-4">
+        {historyStore.recentRuns.map((run, index) => (
+          <div key={run.run_id} className="flex gap-4">
+            {/* Left: Date/Time */}
+            <div className="flex-shrink-0 w-32 text-right">
+              <p className="text-sm text-muted-foreground">
+                {new Date(run.start_time).toLocaleDateString()}
+              </p>
+              <span className="text-xs text-muted-foreground">
+                {new Date(run.start_time).toLocaleTimeString()}
+              </span>
+            </div>
+
+            {/* Center: Icon + Connector */}
+            <div className="flex flex-col items-center">
+              <div className="flex-shrink-0">
+                {getRunStatusIcon(run)}
+              </div>
+              {index < historyStore.recentRuns.length - 1 && (
+                <div className="flex-grow w-px bg-border min-h-[40px] my-2" />
+              )}
+            </div>
+
+            {/* Right: Content */}
+            <div className="flex-grow pb-4">
+              <p className="text-sm font-medium mb-1">
+                {run.title || `Run ${run.run_id}`}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-1">
+                <span className="px-2 py-0.5 rounded-full text-xs bg-green-500/20 text-green-500">
+                  {run.stats.passed} passed
+                </span>
+                {run.stats.failed > 0 && (
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-red-500/20 text-red-500">
+                    {run.stats.failed} failed
+                  </span>
                 )}
-              </TimelineSeparator>
-              <TimelineContent>
-                <Typography variant="body2" fontWeight="medium">
-                  {run.title || `Run ${run.run_id}`}
-                </Typography>
-                <Stack
-                  direction="row"
-                  spacing={0.5}
-                  flexWrap="wrap"
-                  sx={{ mt: 0.5 }}
-                >
-                  <Chip
-                    label={`${run.stats.passed} passed`}
-                    size="small"
-                    color="success"
-                    variant="outlined"
-                  />
-                  {run.stats.failed > 0 && (
-                    <Chip
-                      label={`${run.stats.failed} failed`}
-                      size="small"
-                      color="error"
-                      variant="outlined"
-                    />
-                  )}
-                  {run.stats.skipped > 0 && (
-                    <Chip
-                      label={`${run.stats.skipped} skipped`}
-                      size="small"
-                      color="warning"
-                      variant="outlined"
-                    />
-                  )}
-                </Stack>
-                <Typography variant="caption" color="text.secondary">
-                  {formatDuration(run.duration)}
-                </Typography>
-              </TimelineContent>
-            </TimelineItem>
-          ))}
-        </Timeline>
-      </CardContent>
-    </Card>
+                {run.stats.skipped > 0 && (
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500/20 text-yellow-500">
+                    {run.stats.skipped} skipped
+                  </span>
+                )}
+              </div>
+              <span className="text-xs text-muted-foreground">
+                {formatDuration(run.duration)}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 })

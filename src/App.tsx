@@ -1,18 +1,17 @@
 import { useState } from 'react'
-import { AppBar, Toolbar, Box, Typography, IconButton, Menu, MenuItem, ListItemIcon, ListItemText } from '@mui/material'
 import {
   Search as SearchIcon,
   Menu as MenuIcon,
-  Dashboard as DashboardIcon,
-  FormatListBulleted,
-  ErrorOutline,
-  Collections,
-  CompareArrows,
-  BubbleChart,
-} from '@mui/icons-material'
+  LayoutDashboard as DashboardIcon,
+  List as FormatListBulleted,
+  AlertCircle as ErrorOutline,
+  Images as Collections,
+  ArrowLeftRight as CompareArrows,
+  Activity as BubbleChart,
+} from 'lucide-react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { MainLayout } from './layout/MainLayout'
-import { ThemeRegistry } from './theme/ThemeRegistry'
+import { ThemeProvider } from './components/ThemeProvider'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SearchModal } from './components/SearchModal'
 import { ExportButton } from './components/ExportButton'
@@ -37,149 +36,99 @@ const App = () => {
     }
   )
 
+  const closeMenu = () => setAnchorEl(null)
+
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: DashboardIcon },
+    { id: 'tests', label: 'Tests', icon: FormatListBulleted },
+    { id: 'failure-clusters', label: 'Failure Clusters', icon: ErrorOutline },
+    { id: 'gallery', label: 'Gallery', icon: Collections },
+    { id: 'comparison', label: 'Comparison', icon: CompareArrows },
+    { id: 'analytics', label: 'Analytics', icon: BubbleChart },
+  ]
+
   return (
-    <ThemeRegistry>
-      <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
-        <AppBar
-          position="fixed"
-          sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}
-        >
-          <Toolbar variant="dense">
+    <ThemeProvider>
+      <div className="flex min-h-screen bg-background">
+        {/* AppBar - Fixed header */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-card border-b">
+          <div className="flex items-center h-12 px-4">
             {/* Hamburger menu */}
-            <IconButton
-              color="inherit"
+            <button
               onClick={(e) => setAnchorEl(e.currentTarget)}
               aria-label="Open navigation menu"
               aria-controls={open ? 'navigation-menu' : undefined}
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
-              edge="start"
-              sx={{ mr: 2 }}
+              className="p-2 mr-2 rounded-md hover:bg-accent"
             >
-              <MenuIcon />
-            </IconButton>
+              <MenuIcon className="w-5 h-5" />
+            </button>
 
             {/* Left: Title */}
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography variant="h6" component="div">
-                Qase | Report
-              </Typography>
-            </Box>
+            <div className="flex items-center">
+              <h6 className="text-lg font-semibold">Qase | Report</h6>
+            </div>
 
-            {/* Center: Status Bar (pushed by flexGrow) */}
-            <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+            {/* Center: Status Bar (pushed by flex-grow) */}
+            <div className="flex-grow flex justify-center">
               <StatusBarPill />
-            </Box>
+            </div>
 
             {/* Right: Actions */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <IconButton
-                color="inherit"
+            <div className="flex items-center gap-2">
+              <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search tests (Cmd+K)"
+                className="p-2 rounded-md hover:bg-accent"
               >
-                <SearchIcon />
-              </IconButton>
+                <SearchIcon className="w-5 h-5" />
+              </button>
               <ExportButton />
               <ThemeToggle />
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Menu
-          id="navigation-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={() => setAnchorEl(null)}
-          MenuListProps={{
-            'aria-labelledby': 'navigation-button',
-          }}
-        >
-          <MenuItem
-            selected={activeView === 'dashboard'}
-            onClick={() => {
-              setActiveView('dashboard')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </MenuItem>
-          <MenuItem
-            selected={activeView === 'tests'}
-            onClick={() => {
-              setActiveView('tests')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <FormatListBulleted />
-            </ListItemIcon>
-            <ListItemText primary="Tests" />
-          </MenuItem>
-          <MenuItem
-            selected={activeView === 'failure-clusters'}
-            onClick={() => {
-              setActiveView('failure-clusters')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <ErrorOutline />
-            </ListItemIcon>
-            <ListItemText primary="Failure Clusters" />
-          </MenuItem>
-          <MenuItem
-            selected={activeView === 'gallery'}
-            onClick={() => {
-              setActiveView('gallery')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <Collections />
-            </ListItemIcon>
-            <ListItemText primary="Gallery" />
-          </MenuItem>
-          <MenuItem
-            selected={activeView === 'comparison'}
-            onClick={() => {
-              setActiveView('comparison')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <CompareArrows />
-            </ListItemIcon>
-            <ListItemText primary="Comparison" />
-          </MenuItem>
-          <MenuItem
-            selected={activeView === 'analytics'}
-            onClick={() => {
-              setActiveView('analytics')
-              setAnchorEl(null)
-            }}
-          >
-            <ListItemIcon sx={{ minWidth: 40 }}>
-              <BubbleChart />
-            </ListItemIcon>
-            <ListItemText primary="Analytics" />
-          </MenuItem>
-        </Menu>
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            minWidth: 0,
-          }}
-        >
-          <Toolbar variant={'dense'} />
+            </div>
+          </div>
+        </header>
+
+        {/* Navigation Menu - Dropdown */}
+        {open && (
+          <div className="fixed inset-0 z-40" onClick={closeMenu}>
+            <div
+              className="absolute left-4 top-14 bg-card border rounded-md shadow-lg min-w-[200px]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {menuItems.map((item) => {
+                const Icon = item.icon
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveView(item.id as any)
+                      closeMenu()
+                    }}
+                    className={`w-full flex items-center gap-3 px-4 py-2 text-left hover:bg-accent ${
+                      activeView === item.id ? 'bg-accent' : ''
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Main content */}
+        <main className="flex-grow min-w-0">
+          {/* Spacer for fixed header */}
+          <div className="h-12" />
           <MainLayout />
-        </Box>
+        </main>
+
         <SearchModal open={isSearchOpen} onClose={() => setSearchOpen(false)} />
-      </Box>
-    </ThemeRegistry>
+      </div>
+    </ThemeProvider>
   )
 }
 

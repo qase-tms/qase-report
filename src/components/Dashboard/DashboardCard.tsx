@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { ReactNode } from 'react'
 
 interface DashboardCardProps {
@@ -13,29 +12,26 @@ export const DashboardCard = ({
   children,
 }: DashboardCardProps) => {
   return (
-    <Box
-      sx={{
-        gridColumn: 'span 1',
-        gridRow: 'span 1',
-        transition: (theme) =>
-          theme.transitions.create(['transform', 'box-shadow'], {
-            duration: theme.transitions.duration.shorter,
-          }),
-        '&:hover': {
-          transform: 'translateY(-2px)',
-          boxShadow: 3,
-        },
-        '@media (min-width: 900px)': {
-          gridColumn: `span ${Math.min(colSpan, 4)}`,
-          gridRow: `span ${rowSpan}`,
-        },
-        '@media (min-width: 1280px)': {
-          gridColumn: `span ${colSpan}`,
-          gridRow: `span ${rowSpan}`,
-        },
-      }}
+    <div
+      className="
+        col-span-1
+        row-span-1
+        transition-all
+        duration-200
+        hover:-translate-y-0.5
+        hover:shadow-lg
+        md:col-span-[var(--col-span-md)]
+        md:row-span-[var(--row-span)]
+        xl:col-span-[var(--col-span-xl)]
+        xl:row-span-[var(--row-span)]
+      "
+      style={{
+        '--col-span-md': Math.min(colSpan, 4),
+        '--col-span-xl': colSpan,
+        '--row-span': rowSpan,
+      } as React.CSSProperties}
     >
       {children}
-    </Box>
+    </div>
   )
 }
