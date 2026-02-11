@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-11)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 33 - Test Details Drawer (v1.5 Qase TMS Style)
+**Current focus:** Phase 34 - TanStack Table Migration (v1.5 Qase TMS Style)
 
 ## Current Position
 
-Phase: 33 of 36 (Test Details Drawer)
-Plan: 2 of 3 in current phase
-Status: Completed
-Last activity: 2026-02-11 — Completed 33-02: Tab Content Components
+Phase: 34 of 36 (TanStack Table Migration)
+Plan: 0 of 4 in current phase
+Status: Planning complete - ready for execution
+Last activity: 2026-02-11 — Created 4 plans for Phase 34
 
-Progress: [█████████████████████████████░░░░░░░] 87% (55/63 total plans)
+Progress: [██████████████████████████████░░░░░░] 89% (56/63 total plans)
 
 ## Performance Metrics
 
@@ -47,6 +47,7 @@ Progress: [███████████████████████
 | 32 | 03 | ~2.2 min | 3 | 2 | 2026-02-11 |
 | 33 | 01 | ~1.2 min | 2 | 2 | 2026-02-11 |
 | 33 | 02 | ~2.8 min | 4 | 6 | 2026-02-11 |
+| 33 | 03 | ~10 min | 3 | 5 | 2026-02-11 |
 
 ## Accumulated Context
 
@@ -126,6 +127,13 @@ Key decisions preserved for future reference:
 - RetriesTab is intentionally simple empty state (no retry data in Qase schema)
 - testops_ids is plural array field, not singular testops_id
 
+**Phase 33-03 (Layout Integration & Cleanup):**
+- TestDetailsDrawer replaces TestDetailsModal in MainLayout (side drawer vs centered modal)
+- Tab order changed: Overview first (user feedback during verification)
+- Recharts colors fixed: oklch CSS format not supported in SVG, use DOM element to get computed RGB
+- SparklineCard requires 2+ data points to draw line, shows message when insufficient
+- TestDetailsModal folder deleted after verification passed
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -157,7 +165,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T18:23:39Z
-Stopped at: Completed 33-02-PLAN.md (Tab Content Components)
+Last session: 2026-02-11T23:00:00Z
+Stopped at: Phase 34 planning complete
 Resume file: None
-Next action: Begin Phase 33-03 (Integration & Cleanup)
+Next action: Execute Phase 34 (/gsd:execute-phase 34)

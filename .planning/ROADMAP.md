@@ -426,9 +426,9 @@ Plans:
 **Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 33-01-PLAN.md — Install Sheet component and create TestDetailsDrawer shell with tabs (Wave 1)
-- [ ] 33-02-PLAN.md — Implement drawer content tabs (ExecutionTab, InfoTab, RunHistoryTab, RetriesTab) (Wave 2)
-- [ ] 33-03-PLAN.md — Integrate drawer into MainLayout and remove TestDetailsModal (Wave 3)
+- [x] 33-01-PLAN.md — Install Sheet component and create TestDetailsDrawer shell with tabs (Wave 1)
+- [x] 33-02-PLAN.md — Implement drawer content tabs (ExecutionTab, InfoTab, RunHistoryTab, RetriesTab) (Wave 2)
+- [x] 33-03-PLAN.md — Integrate drawer into MainLayout and remove TestDetailsModal (Wave 3)
 
 #### Phase 34: TanStack Table Migration
 
@@ -503,9 +503,9 @@ Plans:
 | 30. Foundation Setup | v1.5 | 5/5 | Complete | 2026-02-11 |
 | 31. Core UI Components | v1.5 | 2/2 | Complete | 2026-02-11 |
 | 32. Layout Restructure | v1.5 | 3/3 | Complete | 2026-02-11 |
-| 33. Test Details Drawer | v1.5 | 0/3 | Not started | - |
+| 33. Test Details Drawer | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 34. TanStack Table | v1.5 | 0/5 | Not started | - |
 | 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
-**Total v1.5:** 10/25 plans complete (40%)
+**Total v1.5:** 13/25 plans complete (52%)
