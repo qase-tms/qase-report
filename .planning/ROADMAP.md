@@ -305,7 +305,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 26-01-PLAN.md — StatusBarPill component with pass rate ring, quick stats, run metadata
+- [x] 26-01-PLAN.md — StatusBarPill component with pass rate ring, quick stats, run metadata
 
 ### Phase 27: Modal Test Details
 **Goal**: User can inspect test details in modal dialog without layout shift
@@ -317,10 +317,10 @@ Plans:
   3. User can scroll long test content within modal without issues
   4. User does not see layout shift or AppBar movement when modal opens
   5. User can scroll test list with modal open (virtual scrolling still works)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 27-01: TBD
+- [x] 27-01-PLAN.md — TestDetailsModal with Dialog, scrollbar-gutter CSS, MainLayout integration
 
 **Research Flag**: Phase 27 requires testing modal focus trap with virtual scrolling. Before implementation, create prototype to verify VirtualizedTestList scroll behavior with Dialog open. If scroll fails, use responsive pattern (Drawer desktop, Dialog mobile) or set `disableEnforceFocus={true}`.
 
@@ -333,10 +333,10 @@ Plans:
   2. User can filter tests by status and stability from test list view
   3. User sees more horizontal space for test content
   4. User filter selections persist when navigating between views
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 28-01: TBD
+- [ ] 28-01-PLAN.md — Remove NavigationDrawer and sidebar components, clean up RootStore state
 
 ### Phase 29: Statistics Cleanup
 **Goal**: Duplicate statistics and charts removed from codebase
@@ -360,7 +360,7 @@ Plans:
 | 13-17. Design | v1.2 | 9/9 | Complete | 2026-02-10 |
 | 18-24. Overhaul | v1.3 | 14/14 | Complete | 2026-02-11 |
 | 25. Hamburger Menu | v1.4 | 1/1 | Complete | 2026-02-11 |
-| 26. Status Bar | v1.4 | 0/1 | Not started | - |
-| 27. Modal Details | v1.4 | 0/1 | Not started | - |
+| 26. Status Bar | v1.4 | 1/1 | Complete | 2026-02-11 |
+| 27. Modal Details | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 28. Layout Cleanup | v1.4 | 0/1 | Not started | - |
 | 29. Stats Cleanup | v1.4 | 0/1 | Not started | - |
