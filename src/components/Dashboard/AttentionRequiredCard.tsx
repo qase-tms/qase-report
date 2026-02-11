@@ -1,17 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Chip,
-} from '@mui/material'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
+import { AlertCircle } from 'lucide-react'
 import { useRootStore } from '../../store'
 
 interface AttentionRequiredCardProps {
@@ -52,21 +40,17 @@ export const AttentionRequiredCard = observer(
     // Empty state
     if (testsNeedingAttention.length === 0) {
       return (
-        <Card sx={{ height: '100%' }}>
-          <CardHeader
-            title={
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <ErrorOutlineIcon color="success" />
-                <Typography variant="h6">Attention Required</Typography>
-              </Box>
-            }
-          />
-          <CardContent>
-            <Typography variant="body2" color="text.secondary">
+        <div className="bg-card rounded-lg border shadow-sm h-full">
+          <div className="p-4">
+            <div className="flex items-center gap-2 mb-4">
+              <AlertCircle className="h-5 w-5 text-green-500" />
+              <h6 className="text-lg font-semibold">Attention Required</h6>
+            </div>
+            <p className="text-sm text-muted-foreground">
               No tests require attention
-            </Typography>
-          </CardContent>
-        </Card>
+            </p>
+          </div>
+        </div>
       )
     }
 
@@ -74,76 +58,49 @@ export const AttentionRequiredCard = observer(
     const displayedTests = testsNeedingAttention.slice(0, 5)
 
     return (
-      <Card sx={{ height: '100%' }}>
-        <CardHeader
-          title={
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <ErrorOutlineIcon color="error" />
-              <Typography variant="h6">Attention Required</Typography>
-              <Chip
-                label={testsNeedingAttention.length}
-                size="small"
-                color="error"
-              />
-            </Box>
-          }
-          sx={{ pb: 0 }}
-        />
-        <CardContent sx={{ pt: 1 }}>
-          <List dense disablePadding>
+      <div className="bg-card rounded-lg border shadow-sm h-full">
+        <div className="p-4 pb-0">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="h-5 w-5 text-destructive" />
+            <h6 className="text-lg font-semibold">Attention Required</h6>
+            <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+              {testsNeedingAttention.length}
+            </span>
+          </div>
+        </div>
+        <div className="p-4 pt-2">
+          <div className="space-y-1">
             {displayedTests.map((test) => (
-              <ListItem key={test.id} disablePadding>
-                <ListItemButton
+              <div key={test.id}>
+                <button
                   onClick={() => onTestClick(test.id)}
-                  sx={{ borderRadius: 1 }}
+                  className="w-full p-2 rounded hover:bg-accent text-left transition-colors"
                 >
-                  <ListItemText
-                    primary={
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap',
-                            maxWidth: 300,
-                          }}
-                        >
-                          {test.title}
-                        </Typography>
-                        <Chip
-                          label="Failed"
-                          color="error"
-                          size="small"
-                          sx={{ height: 18, fontSize: '0.7rem' }}
-                        />
-                        {test.isFlaky && (
-                          <Chip
-                            label="Flaky"
-                            color="warning"
-                            size="small"
-                            sx={{ height: 18, fontSize: '0.7rem' }}
-                          />
-                        )}
-                      </Box>
-                    }
-                  />
-                </ListItemButton>
-              </ListItem>
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap max-w-[300px]">
+                      {test.title}
+                    </p>
+                    <span className="px-2 py-0.5 rounded-full text-xs bg-destructive text-destructive-foreground">
+                      Failed
+                    </span>
+                    {test.isFlaky && (
+                      <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500 text-white">
+                        Flaky
+                      </span>
+                    )}
+                  </div>
+                </button>
+              </div>
             ))}
-          </List>
+          </div>
 
           {testsNeedingAttention.length > 5 && (
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ mt: 1, display: 'block' }}
-            >
+            <p className="text-xs text-muted-foreground mt-2">
               +{testsNeedingAttention.length - 5} more tests
-            </Typography>
+            </p>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     )
   }
 )

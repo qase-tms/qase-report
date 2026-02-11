@@ -1,4 +1,3 @@
-import { Typography, useTheme } from '@mui/material'
 import {
   LineChart,
   Line,
@@ -21,41 +20,40 @@ export const SparklineCard = ({
   title,
   data,
   dataKey = 'value',
-  color,
+  color = 'hsl(var(--primary))',
   colSpan = 2,
   rowSpan = 1,
   currentValue,
 }: SparklineCardProps) => {
-  const theme = useTheme()
-  const lineColor = color || theme.palette.primary.main
-
   return (
     <DashboardCard colSpan={colSpan} rowSpan={rowSpan}>
-      <Typography variant="caption" color="text.secondary" gutterBottom>
-        {title}
-      </Typography>
-      {currentValue !== undefined && (
-        <Typography variant="h4">{currentValue}</Typography>
-      )}
-      <ResponsiveContainer width="100%" height={60}>
-        <LineChart
-          data={data}
-          margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
-        >
-          <Tooltip
-            contentStyle={{ fontSize: '0.75rem' }}
-            cursor={false}
-          />
-          <Line
-            type="monotone"
-            dataKey={dataKey}
-            stroke={lineColor}
-            strokeWidth={2}
-            dot={false}
-            isAnimationActive={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      <div className="bg-card rounded-lg border shadow-sm p-4">
+        <p className="text-xs text-muted-foreground mb-1">
+          {title}
+        </p>
+        {currentValue !== undefined && (
+          <h4 className="text-3xl font-bold mb-2">{currentValue}</h4>
+        )}
+        <ResponsiveContainer width="100%" height={60}>
+          <LineChart
+            data={data}
+            margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
+          >
+            <Tooltip
+              contentStyle={{ fontSize: '0.75rem' }}
+              cursor={false}
+            />
+            <Line
+              type="monotone"
+              dataKey={dataKey}
+              stroke={color}
+              strokeWidth={2}
+              dot={false}
+              isAnimationActive={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </DashboardCard>
   )
 }

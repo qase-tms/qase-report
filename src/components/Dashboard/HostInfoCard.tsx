@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Card, CardContent, Typography } from '@mui/material'
 import { useRootStore } from '../../store'
 
 export const HostInfoCard = observer(() => {
@@ -12,32 +11,32 @@ export const HostInfoCard = observer(() => {
   const { system, machine, python } = reportStore.runData.host_data
 
   return (
-    <Card elevation={2}>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
+    <div className="bg-card rounded-lg border shadow-sm">
+      <div className="p-4">
+        <h6 className="text-lg font-semibold mb-4">
           Host Information
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h6>
+        <p className="text-sm text-muted-foreground">
           System
-        </Typography>
-        <Typography variant="body1" gutterBottom>
+        </p>
+        <p className="text-base mb-4">
           {system}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </p>
+        <p className="text-sm text-muted-foreground">
           Machine
-        </Typography>
-        <Typography variant="body1" gutterBottom>
+        </p>
+        <p className="text-base mb-4">
           {machine}
-        </Typography>
+        </p>
         {python && (
           <>
-            <Typography variant="body2" color="text.secondary">
+            <p className="text-sm text-muted-foreground">
               Python
-            </Typography>
-            <Typography variant="body1">{python}</Typography>
+            </p>
+            <p className="text-base">{python}</p>
           </>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 })

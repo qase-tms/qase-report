@@ -1,18 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  Box,
-  Typography,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Stack,
-  Divider,
-} from '@mui/material'
-import InsightsIcon from '@mui/icons-material/Insights'
+import { TrendingUp } from 'lucide-react'
 import { useRootStore } from '../../store'
 
 interface QuickInsightsCardProps {
@@ -78,122 +65,84 @@ export const QuickInsightsCard = observer(
     }
 
     return (
-      <Card sx={{ height: '100%' }}>
-        <CardHeader
-          title={
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <InsightsIcon color="primary" />
-              <Typography variant="h6">Quick Insights</Typography>
-            </Box>
-          }
-          sx={{ pb: 0 }}
-        />
-        <CardContent sx={{ pt: 1 }}>
-          <Stack spacing={2} divider={<Divider />}>
+      <div className="bg-card rounded-lg border shadow-sm h-full">
+        <div className="p-4 pb-0">
+          <div className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            <h6 className="text-lg font-semibold">Quick Insights</h6>
+          </div>
+        </div>
+        <div className="p-4 pt-2">
+          <div className="flex flex-col gap-4">
             {/* Top Failures Section */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                display="block"
-                gutterBottom
-              >
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 Top Failures
-              </Typography>
+              </p>
 
               {topFailures.length === 0 ? (
-                <Typography variant="body2" color="text.secondary">
+                <p className="text-sm text-muted-foreground">
                   No failures to report
-                </Typography>
+                </p>
               ) : (
-                <List dense disablePadding>
+                <div className="space-y-1">
                   {topFailures.map(({ test, failureCount }) => (
-                    <ListItem key={test.id} disablePadding>
-                      <ListItemButton
+                    <div key={test.id}>
+                      <button
                         onClick={() => onTestClick(test.id)}
-                        sx={{ borderRadius: 1 }}
+                        className="w-full p-2 rounded hover:bg-accent text-left transition-colors"
                       >
-                        <ListItemText
-                          primary={
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                whiteSpace: 'nowrap',
-                              }}
-                            >
-                              {test.title}
-                            </Typography>
-                          }
-                          secondary={
-                            failureCount > 0
-                              ? `Failed ${failureCount} times historically`
-                              : 'New failure'
-                          }
-                          secondaryTypographyProps={{
-                            variant: 'caption',
-                            sx: { color: 'text.secondary' },
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
+                        <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap">
+                          {test.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {failureCount > 0
+                            ? `Failed ${failureCount} times historically`
+                            : 'New failure'}
+                        </p>
+                      </button>
+                    </div>
                   ))}
-                </List>
+                </div>
               )}
-            </Box>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t" />
 
             {/* Slowest Tests Section */}
-            <Box>
-              <Typography
-                variant="overline"
-                color="text.secondary"
-                display="block"
-                gutterBottom
-              >
+            <div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">
                 Slowest Tests
-              </Typography>
+              </p>
 
               {slowestTests.length === 0 ? (
-                <Typography variant="body2" color="text.secondary">
+                <p className="text-sm text-muted-foreground">
                   No test duration data
-                </Typography>
+                </p>
               ) : (
-                <List dense disablePadding>
+                <div className="space-y-1">
                   {slowestTests.map((test) => (
-                    <ListItem key={test.id} disablePadding>
-                      <ListItemButton
+                    <div key={test.id}>
+                      <button
                         onClick={() => onTestClick(test.id)}
-                        sx={{ borderRadius: 1 }}
+                        className="w-full p-2 rounded hover:bg-accent text-left transition-colors"
                       >
-                        <ListItemText
-                          primary={
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                whiteSpace: 'nowrap',
-                              }}
-                            >
-                              {test.title}
-                            </Typography>
-                          }
-                          secondary={formatDuration(test.execution.duration)}
-                          secondaryTypographyProps={{
-                            variant: 'caption',
-                            sx: { color: 'text.secondary' },
-                          }}
-                        />
-                      </ListItemButton>
-                    </ListItem>
+                        <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap">
+                          {test.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {formatDuration(test.execution.duration)}
+                        </p>
+                      </button>
+                    </div>
                   ))}
-                </List>
+                </div>
               )}
-            </Box>
-          </Stack>
-        </CardContent>
-      </Card>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 )

@@ -1,29 +1,30 @@
 import { observer } from 'mobx-react-lite'
-import {
-  Box,
-  Paper,
-  Typography,
-  Chip,
-  LinearProgress,
-  Stack,
-} from '@mui/material'
 import { useRootStore } from '../../store'
 import type { StabilityGrade } from '../../types/stability'
 
 /**
  * Grade configuration for display with colors and labels.
- * Maps grades to MUI color schemes and human-readable descriptions.
+ * Maps grades to Tailwind color classes and human-readable descriptions.
  */
 const gradeConfig: Record<
   Exclude<StabilityGrade, 'N/A'>,
-  { color: 'success' | 'info' | 'warning' | 'error'; label: string }
+  { colorClass: string; label: string }
 > = {
-  'A+': { color: 'success', label: 'Excellent' },
-  'A': { color: 'success', label: 'Good' },
-  'B': { color: 'info', label: 'Fair' },
-  'C': { color: 'warning', label: 'Needs attention' },
-  'D': { color: 'warning', label: 'Poor' },
-  'F': { color: 'error', label: 'Critical' },
+  'A+': { colorClass: 'bg-green-500 text-white', label: 'Excellent' },
+  'A': { colorClass: 'bg-green-500 text-white', label: 'Good' },
+  'B': { colorClass: 'bg-blue-500 text-white', label: 'Fair' },
+  'C': { colorClass: 'bg-yellow-500 text-white', label: 'Needs attention' },
+  'D': { colorClass: 'bg-yellow-600 text-white', label: 'Poor' },
+  'F': { colorClass: 'bg-destructive text-destructive-foreground', label: 'Critical' },
+}
+
+const gradeProgressColors: Record<Exclude<StabilityGrade, 'N/A'>, string> = {
+  'A+': 'bg-green-500',
+  'A': 'bg-green-500',
+  'B': 'bg-blue-500',
+  'C': 'bg-yellow-500',
+  'D': 'bg-yellow-600',
+  'F': 'bg-destructive',
 }
 
 /**
@@ -48,14 +49,14 @@ export const TestHealthWidget = observer(() => {
   // Show message if insufficient test data
   if (testStabilityMap.size === 0 || totalGraded < 3) {
     return (
-      <Paper sx={{ p: 2, height: '100%' }}>
-        <Typography variant="h6" gutterBottom>
+      <div className="bg-card rounded-lg border shadow-sm p-4 h-full">
+        <h6 className="text-lg font-semibold mb-4">
           Test Health
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h6>
+        <p className="text-sm text-muted-foreground">
           Load history data (10+ runs per test) to see test health grades
-        </Typography>
-      </Paper>
+        </p>
+      </div>
     )
   }
 
@@ -94,63 +95,59 @@ export const TestHealthWidget = observer(() => {
   const overallConfig = gradeConfig[overallGrade]
 
   return (
-    <Paper sx={{ p: 2, height: '100%' }}>
+    <div className="bg-card rounded-lg border shadow-sm p-4 h-full">
       {/* Header with overall health */}
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="h6">Test Health</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="body2" color="text.secondary">
+      <div className="flex justify-between items-center mb-4">
+        <h6 className="text-lg font-semibold">Test Health</h6>
+        <div className="flex items-center gap-2">
+          <p className="text-sm text-muted-foreground">
             Overall:
-          </Typography>
-          <Chip
-            label={`${overallGrade} (${overallScore})`}
-            color={overallConfig.color}
-            size="small"
-          />
-        </Box>
-      </Box>
+          </p>
+          <span className={`px-2 py-1 rounded text-xs ${overallConfig.colorClass}`}>
+            {overallGrade} ({overallScore})
+          </span>
+        </div>
+      </div>
 
       {/* Grade distribution */}
-      <Typography variant="overline" color="text.secondary" display="block" gutterBottom>
+      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">
         Grade Distribution
-      </Typography>
+      </p>
 
-      <Stack spacing={1.5}>
+      <div className="flex flex-col gap-3">
         {(Object.keys(gradeConfig) as Array<Exclude<StabilityGrade, 'N/A'>>).map((grade) => {
           const count = gradeDistribution[grade]
           const percentage = totalGraded > 0 ? (count / totalGraded) * 100 : 0
           const config = gradeConfig[grade]
+          const progressColor = gradeProgressColors[grade]
 
           return (
-            <Box key={grade}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                <Chip
-                  label={grade}
-                  color={config.color}
-                  size="small"
-                  sx={{ minWidth: 40, fontWeight: 'bold' }}
-                />
-                <Box sx={{ flexGrow: 1 }}>
-                  <LinearProgress
-                    variant="determinate"
-                    value={percentage}
-                    color={config.color}
-                    sx={{ height: 8, borderRadius: 1 }}
-                  />
-                </Box>
-                <Typography variant="body2" color="text.secondary" sx={{ minWidth: 60 }}>
+            <div key={grade}>
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`px-2 py-1 rounded text-xs font-bold min-w-[40px] text-center ${config.colorClass}`}>
+                  {grade}
+                </span>
+                <div className="flex-1">
+                  <div className="w-full bg-secondary rounded h-2">
+                    <div
+                      className={`h-2 rounded ${progressColor}`}
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground min-w-[60px] text-right">
                   {count} ({percentage.toFixed(0)}%)
-                </Typography>
-              </Box>
-            </Box>
+                </p>
+              </div>
+            </div>
           )
         })}
-      </Stack>
+      </div>
 
       {/* Total count footer */}
-      <Typography variant="caption" color="text.secondary" sx={{ mt: 2, display: 'block' }}>
+      <p className="text-xs text-muted-foreground mt-4">
         {totalGraded} tests graded
-      </Typography>
-    </Paper>
+      </p>
+    </div>
   )
 })

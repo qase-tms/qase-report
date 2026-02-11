@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Box, Card, CardContent, Typography, useTheme } from '@mui/material'
 import {
   LineChart,
   Line,
@@ -23,31 +22,31 @@ const CustomTooltip = ({ active, payload }: any) => {
   const data: TrendDataPoint = payload[0].payload
 
   return (
-    <Card sx={{ p: 1.5 }}>
-      <Typography variant="body2" fontWeight="bold" gutterBottom>
+    <div className="bg-card rounded-lg border shadow-sm p-3">
+      <p className="text-sm font-bold mb-1">
         {data.date}
-      </Typography>
-      <Typography variant="body2">Total: {data.total}</Typography>
-      <Typography variant="body2" color="success.main">
+      </p>
+      <p className="text-sm">Total: {data.total}</p>
+      <p className="text-sm text-green-500">
         Passed: {data.passed} ({data.passRate.toFixed(1)}%)
-      </Typography>
-      <Typography variant="body2" color="error.main">
+      </p>
+      <p className="text-sm text-destructive">
         Failed: {data.failed}
-      </Typography>
+      </p>
       {data.skipped > 0 && (
-        <Typography variant="body2" color="warning.main">
+        <p className="text-sm text-yellow-500">
           Skipped: {data.skipped}
-        </Typography>
+        </p>
       )}
       {data.broken > 0 && (
-        <Typography variant="body2" color="text.secondary">
+        <p className="text-sm text-muted-foreground">
           Broken: {data.broken}
-        </Typography>
+        </p>
       )}
-      <Typography variant="body2" sx={{ mt: 0.5 }}>
+      <p className="text-sm mt-1">
         Duration: {(data.duration / 1000).toFixed(1)}s
-      </Typography>
-    </Card>
+      </p>
+    </div>
   )
 }
 
@@ -61,7 +60,6 @@ const CustomTooltip = ({ active, payload }: any) => {
  */
 export const TrendsChart = observer(() => {
   const { analyticsStore } = useRootStore()
-  const theme = useTheme()
 
   // Only render if sufficient trend data exists
   if (!analyticsStore.hasTrendData) {
@@ -72,13 +70,13 @@ export const TrendsChart = observer(() => {
   const durationTrend = analyticsStore.durationTrend
 
   return (
-    <Box>
+    <div>
       {/* Pass Rate Trend Chart */}
-      <Card sx={{ mb: 3 }}>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
+      <div className="bg-card rounded-lg border shadow-sm mb-6">
+        <div className="p-4">
+          <h6 className="text-lg font-semibold mb-4">
             Pass Rate Trend
-          </Typography>
+          </h6>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart
               data={passRateTrend}
@@ -93,22 +91,22 @@ export const TrendsChart = observer(() => {
                 type="monotone"
                 dataKey="passRate"
                 name="Pass Rate"
-                stroke={theme.palette.success.main}
+                stroke="hsl(var(--chart-1))"
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>
           </ResponsiveContainer>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Duration Trend Chart */}
-      <Card>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
+      <div className="bg-card rounded-lg border shadow-sm">
+        <div className="p-4">
+          <h6 className="text-lg font-semibold mb-4">
             Duration Trend
-          </Typography>
+          </h6>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart
               data={durationTrend}
@@ -128,15 +126,15 @@ export const TrendsChart = observer(() => {
                 type="monotone"
                 dataKey="duration"
                 name="Duration"
-                stroke={theme.palette.primary.main}
+                stroke="hsl(var(--primary))"
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
               />
             </LineChart>
           </ResponsiveContainer>
-        </CardContent>
-      </Card>
-    </Box>
+        </div>
+      </div>
+    </div>
   )
 })

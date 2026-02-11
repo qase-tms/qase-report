@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite'
-import { Card, CardContent, Typography } from '@mui/material'
 import { useRootStore } from '../../store'
 
 export const RunInfoCard = observer(() => {
@@ -13,28 +12,28 @@ export const RunInfoCard = observer(() => {
   const duration = reportStore.formattedDuration
 
   return (
-    <Card elevation={2}>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
+    <div className="bg-card rounded-lg border shadow-sm">
+      <div className="p-4">
+        <h6 className="text-lg font-semibold mb-4">
           Run Information
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </h6>
+        <p className="text-sm text-muted-foreground">
           Title
-        </Typography>
-        <Typography variant="body1" gutterBottom>
+        </p>
+        <p className="text-base mb-4">
           {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </p>
+        <p className="text-sm text-muted-foreground">
           Environment
-        </Typography>
-        <Typography variant="body1" gutterBottom>
+        </p>
+        <p className="text-base mb-4">
           {environment || 'Not specified'}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        </p>
+        <p className="text-sm text-muted-foreground">
           Duration
-        </Typography>
-        <Typography variant="body1">{duration}</Typography>
-      </CardContent>
-    </Card>
+        </p>
+        <p className="text-base">{duration}</p>
+      </div>
+    </div>
   )
 })
