@@ -336,7 +336,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 28-01-PLAN.md — Remove NavigationDrawer and sidebar components, clean up RootStore state
+- [x] 28-01-PLAN.md — Remove NavigationDrawer and sidebar components, clean up RootStore state
 
 ### Phase 29: Statistics Cleanup
 **Goal**: Duplicate statistics and charts removed from codebase
@@ -362,5 +362,5 @@ Plans:
 | 25. Hamburger Menu | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 26. Status Bar | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 27. Modal Details | v1.4 | 1/1 | Complete | 2026-02-11 |
-| 28. Layout Cleanup | v1.4 | 0/1 | Not started | - |
+| 28. Layout Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 29. Stats Cleanup | v1.4 | 0/1 | Not started | - |
