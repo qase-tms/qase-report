@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   LineChart,
   Line,
@@ -16,15 +17,44 @@ interface SparklineCardProps {
   currentValue?: string | number
 }
 
+// Get computed CSS variable color for Recharts (SVG doesn't support CSS vars)
+const useThemeColor = (cssVar: string, fallback: string) => {
+  const [color, setColor] = useState(fallback)
+
+  useEffect(() => {
+    const updateColor = () => {
+      const computed = getComputedStyle(document.documentElement)
+        .getPropertyValue(cssVar)
+        .trim()
+      if (computed) {
+        setColor(`hsl(${computed})`)
+      }
+    }
+    updateColor()
+
+    // Update on theme change
+    const observer = new MutationObserver(updateColor)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+    return () => observer.disconnect()
+  }, [cssVar])
+
+  return color
+}
+
 export const SparklineCard = ({
   title,
   data,
   dataKey = 'value',
-  color = 'hsl(var(--primary))',
+  color,
   colSpan = 2,
   rowSpan = 1,
   currentValue,
 }: SparklineCardProps) => {
+  const themeColor = useThemeColor('--primary', '#3b82f6')
+  const strokeColor = color || themeColor
   return (
     <DashboardCard colSpan={colSpan} rowSpan={rowSpan}>
       <div className="bg-card rounded-lg border shadow-sm p-4">
@@ -46,7 +76,7 @@ export const SparklineCard = ({
             <Line
               type="monotone"
               dataKey={dataKey}
-              stroke={color}
+              stroke={strokeColor}
               strokeWidth={2}
               dot={false}
               isAnimationActive={false}

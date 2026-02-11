@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import {
   LineChart,
@@ -11,6 +12,33 @@ import {
 } from 'recharts'
 import { useRootStore } from '../../store'
 import type { TrendDataPoint } from '../../store/AnalyticsStore'
+
+// Get computed CSS variable color for Recharts (SVG doesn't support CSS vars)
+const useThemeColor = (cssVar: string, fallback: string) => {
+  const [color, setColor] = useState(fallback)
+
+  useEffect(() => {
+    const updateColor = () => {
+      const computed = getComputedStyle(document.documentElement)
+        .getPropertyValue(cssVar)
+        .trim()
+      if (computed) {
+        setColor(`hsl(${computed})`)
+      }
+    }
+    updateColor()
+
+    // Update on theme change
+    const observer = new MutationObserver(updateColor)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    })
+    return () => observer.disconnect()
+  }, [cssVar])
+
+  return color
+}
 
 /**
  * Custom tooltip component for trend charts.
@@ -60,6 +88,8 @@ const CustomTooltip = ({ active, payload }: any) => {
  */
 export const TrendsChart = observer(() => {
   const { analyticsStore } = useRootStore()
+  const chart1Color = useThemeColor('--chart-1', '#22c55e')
+  const primaryColor = useThemeColor('--primary', '#3b82f6')
 
   // Only render if sufficient trend data exists
   if (!analyticsStore.hasTrendData) {
@@ -91,7 +121,7 @@ export const TrendsChart = observer(() => {
                 type="monotone"
                 dataKey="passRate"
                 name="Pass Rate"
-                stroke="hsl(var(--chart-1))"
+                stroke={chart1Color}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
@@ -126,7 +156,7 @@ export const TrendsChart = observer(() => {
                 type="monotone"
                 dataKey="duration"
                 name="Duration"
-                stroke="hsl(var(--primary))"
+                stroke={primaryColor}
                 strokeWidth={2}
                 dot={{ r: 4 }}
                 activeDot={{ r: 6 }}
