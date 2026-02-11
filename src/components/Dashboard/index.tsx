@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { Skeleton } from '@/components/ui/skeleton'
 import { BentoGrid } from './BentoGrid'
 import { DashboardCard } from './DashboardCard'
 import { RunInfoCard } from './RunInfoCard'
@@ -20,9 +21,26 @@ export const Dashboard = observer(() => {
 
   if (!reportStore.runData) {
     return (
-      <p className="text-base text-muted-foreground">
-        Load a report to view dashboard
-      </p>
+      <div className="p-6">
+        <div className="grid grid-cols-4 gap-4 auto-rows-[minmax(100px,auto)]">
+          {/* SparklineCard placeholder - 2 cols */}
+          <Skeleton className="h-32 col-span-2" />
+          {/* RunInfoCard placeholder - 2 cols */}
+          <Skeleton className="h-32 col-span-2" />
+          {/* HostInfoCard placeholder - 2 cols */}
+          <Skeleton className="h-32 col-span-2" />
+          {/* Duration trend placeholder - 2 cols */}
+          <Skeleton className="h-32 col-span-2" />
+          {/* SuiteHealthCard placeholder - 2x2 */}
+          <Skeleton className="h-64 col-span-2 row-span-2" />
+          {/* AttentionRequired placeholder - 3 cols */}
+          <Skeleton className="h-32 col-span-3" />
+          {/* QuickInsights placeholder - 2x2 */}
+          <Skeleton className="h-64 col-span-2 row-span-2" />
+          {/* TrendsChart placeholder - 4x2 */}
+          <Skeleton className="h-64 col-span-4 row-span-2" />
+        </div>
+      </div>
     )
   }
 
@@ -50,7 +68,7 @@ export const Dashboard = observer(() => {
           : 'opacity-0'
       }`}
       style={{
-        transitionDuration: prefersReducedMotion ? '0ms' : '200ms',
+        transitionDuration: prefersReducedMotion ? '0ms' : '300ms',
       }}
     >
       <BentoGrid>
