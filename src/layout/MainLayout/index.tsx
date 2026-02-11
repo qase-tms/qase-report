@@ -9,6 +9,7 @@ import { TestDetails } from '../../components/TestDetails'
 import { AttachmentViewer } from '../../components/AttachmentViewer'
 import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
+import { Comparison } from '../../components/Comparison'
 
 export const MainLayout = observer(() => {
   const { isDockOpen, closeDock, reportStore, activeView } = useRootStore()
@@ -52,6 +53,10 @@ export const MainLayout = observer(() => {
 
     if (activeView === 'gallery') {
       return <Gallery />
+    }
+
+    if (activeView === 'comparison') {
+      return <Comparison />
     }
 
     if (activeView === 'analytics') {

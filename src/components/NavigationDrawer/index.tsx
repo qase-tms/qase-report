@@ -18,6 +18,7 @@ import {
   ChevronRight as ChevronRightIcon,
   BubbleChart as AnalyticsIcon,
   Collections as GalleryIcon,
+  CompareArrows as ComparisonIcon,
 } from '@mui/icons-material'
 import { useRootStore } from '../../store'
 import { SidebarStats } from '../SidebarStats'
@@ -54,6 +55,11 @@ export const NavigationDrawer = observer(() => {
       id: 'gallery' as const,
       label: 'Gallery',
       icon: <GalleryIcon />,
+    },
+    {
+      id: 'comparison' as const,
+      label: 'Comparison',
+      icon: <ComparisonIcon />,
     },
     {
       id: 'analytics' as const,

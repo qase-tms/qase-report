@@ -166,7 +166,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
               </ListItemButton>
               <Collapse in={expanded.has(section.id)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  {section.items.map(section.render)}
+                  {section.items.map((item: any) => section.render(item))}
                 </List>
               </Collapse>
             </Box>
