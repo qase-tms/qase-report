@@ -14,6 +14,9 @@
     "@mui/icons-material": "^5.18.0",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.12.0",
+    "@tailwindcss/vite": "^4.1.18",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
     "prism-react-renderer": "^2.4.1",
@@ -22,18 +25,22 @@
     "react-hotkeys-hook": "^5.2.4",
     "react-window": "^1.8.11",
     "recharts": "^2.15.4",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-animate": "^1.0.7",
     "yet-another-react-lightbox": "^3.28.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/node": "^25.2.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-window": "^1.8.8",
-    "@vitejs/plugin-legacy": "^4.1.1",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-legacy": "^5.4.3",
+    "@vitejs/plugin-react": "^4.7.0",
     "prettier": "2.8.7",
     "terser": "^5.46.0",
     "typescript": "^5.9.3",
-    "vite": "^4.2.0"
+    "vite": "^5.4.21"
   }
 }
