@@ -2,17 +2,17 @@
 
 ## Milestones
 
-- ✅ **v1.0 MVP** - Phases 1-7 (shipped 2026-02-10)
-- ✅ **v1.1 History & Trends** - Phases 8-12 (shipped 2026-02-10)
-- ✅ **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
-- ✅ **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
-- ✅ **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
-- 🚧 **v1.5 Qase TMS Style** - Phases 30-36 (in progress)
+- **v1.0 MVP** - Phases 1-7 (shipped 2026-02-10)
+- **v1.1 History & Trends** - Phases 8-12 (shipped 2026-02-10)
+- **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
+- **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
+- **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
+- **v1.5 Qase TMS Style** - Phases 30-36 (in progress)
 
 ## Phases
 
 <details>
-<summary>✅ v1.0 MVP (Phases 1-7) - SHIPPED 2026-02-10</summary>
+<summary>v1.0 MVP (Phases 1-7) - SHIPPED 2026-02-10</summary>
 
 ### Phase 1: Schema & Validation
 **Goal**: Define and validate Qase Report Format data structures
@@ -71,7 +71,7 @@ Plans:
 </details>
 
 <details>
-<summary>✅ v1.1 History & Trends (Phases 8-12) - SHIPPED 2026-02-10</summary>
+<summary>v1.1 History & Trends (Phases 8-12) - SHIPPED 2026-02-10</summary>
 
 **Milestone Goal:** Add analytics features for test history tracking, trend visualization, flakiness detection, performance regression alerts, and stability scoring.
 
@@ -121,7 +121,7 @@ Plans:
 </details>
 
 <details>
-<summary>✅ v1.2 Design Refresh (Phases 13-17) - SHIPPED 2026-02-10</summary>
+<summary>v1.2 Design Refresh (Phases 13-17) - SHIPPED 2026-02-10</summary>
 
 **Milestone Goal:** Modern, user-friendly design with Bento Grid layout, themes, sidebar navigation, and improved performance for 100-500 tests.
 
@@ -166,7 +166,7 @@ Plans:
 </details>
 
 <details>
-<summary>✅ v1.3 Design Overhaul (Phases 18-24) - SHIPPED 2026-02-11</summary>
+<summary>v1.3 Design Overhaul (Phases 18-24) - SHIPPED 2026-02-11</summary>
 
 **Milestone Goal:** Full redesign inspired by Playwright Smart Reporter with dark theme by default, new sidebar layout with filters, overview dashboard, and three new features (Failure Clusters, Gallery, Comparison).
 
@@ -189,7 +189,7 @@ Plans:
 **Depends on**: Phase 18
 **Requirements**: TOP-01, TOP-02, TOP-03, TOP-04
 **Success Criteria** (what must be TRUE):
-  1. User can open search with ⌘K (Mac) or Ctrl+K (Windows/Linux)
+  1. User can open search with Cmd+K (Mac) or Ctrl+K (Windows/Linux)
   2. Search shows results as user types (test names)
   3. Export button downloads current report
   4. Theme toggle visible in top bar
@@ -197,7 +197,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [x] 19-01-PLAN.md — Command palette search (⌘K), export button, theme toggle, run date display
+- [x] 19-01-PLAN.md — Command palette search (Cmd+K), export button, theme toggle, run date display
 
 ### Phase 20: Sidebar Overhaul
 **Goal**: Sidebar shows stats visualization and filter chips
@@ -265,7 +265,7 @@ Plans:
 **Requirements**: COMP-01, COMP-02, COMP-03, COMP-04
 **Success Criteria** (what must be TRUE):
   1. User can select two runs from history for comparison
-  2. View shows tests that changed status (pass→fail, fail→pass, etc.)
+  2. View shows tests that changed status (pass->fail, fail->pass, etc.)
   3. View shows tests added or removed between runs
   4. Duration changes highlighted (significantly faster/slower)
 **Plans**: 2 plans
@@ -277,7 +277,7 @@ Plans:
 </details>
 
 <details>
-<summary>✅ v1.4 Layout Simplification (Phases 25-29) - SHIPPED 2026-02-11</summary>
+<summary>v1.4 Layout Simplification (Phases 25-29) - SHIPPED 2026-02-11</summary>
 
 **Milestone Goal:** Simplify layout by replacing permanent sidebar with hamburger menu navigation, adding persistent status bar in top bar, converting test details to modal dialog, and removing duplicate statistics.
 
@@ -353,7 +353,7 @@ Plans:
 
 </details>
 
-### 🚧 v1.5 Qase TMS Style (In Progress)
+### v1.5 Qase TMS Style (In Progress)
 
 **Milestone Goal:** Migrate to shadcn/ui with Qase TMS visual style — tabs navigation, right sidebar, drawer test details, table-style test list.
 
@@ -371,11 +371,11 @@ Plans:
 **Plans**: 5 plans (3 waves)
 
 Plans:
-- [ ] 30-01-PLAN.md — Install Tailwind CSS v4 and configure Vite plugin (Wave 1)
-- [ ] 30-02-PLAN.md — Initialize shadcn/ui and configure path aliases (Wave 2)
-- [ ] 30-03-PLAN.md — Configure dark theme with CSS variables (Wave 2)
-- [ ] 30-04-PLAN.md — Remove MUI and Emotion dependencies (Wave 3)
-- [ ] 30-05-PLAN.md — Migrate icons to lucide-react (Wave 3)
+- [x] 30-01-PLAN.md — Install Tailwind CSS v4 and configure Vite plugin (Wave 1)
+- [x] 30-02-PLAN.md — Initialize shadcn/ui and configure path aliases (Wave 2)
+- [x] 30-03-PLAN.md — Configure dark theme with CSS variables (Wave 2)
+- [x] 30-04-PLAN.md — Remove MUI and Emotion dependencies (Wave 3)
+- [x] 30-05-PLAN.md — Migrate icons to lucide-react (Wave 3)
 
 #### Phase 31: Core UI Components
 
@@ -391,8 +391,8 @@ Plans:
 **Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 31-01-PLAN.md — Install Card, Badge, Skeleton components via CLI (Wave 1)
-- [ ] 31-02-PLAN.md — Extend Badge with status variants and create StatusBadge component (Wave 2)
+- [x] 31-01-PLAN.md — Install Card, Badge, Skeleton components via CLI (Wave 1)
+- [x] 31-02-PLAN.md — Extend Badge with status variants and create StatusBadge component (Wave 2)
 
 #### Phase 32: Layout Restructure
 
@@ -405,13 +405,12 @@ Plans:
   3. Completion rate ring displays in sidebar with correct pass rate percentage
   4. Run metadata (title, date, environment) displays in sidebar
   5. Top bar contains run title and action buttons (export, theme toggle)
-**Plans**: TBD
+**Plans**: 3 plans (2 waves)
 
 Plans:
-- [ ] 32-01: Implement tab navigation with shadcn Tabs
-- [ ] 32-02: Create right sidebar layout
-- [ ] 32-03: Add completion rate ring to sidebar
-- [ ] 32-04: Implement top bar
+- [ ] 32-01-PLAN.md — Install Tabs component and create TabNavigation with 5 tabs (Wave 1)
+- [ ] 32-02-PLAN.md — Create RunInfoSidebar with pass rate ring and metadata (Wave 1)
+- [ ] 32-03-PLAN.md — Integrate CSS Grid layout with tabs and sidebar (Wave 2)
 
 #### Phase 33: Test Details Drawer
 
@@ -501,12 +500,12 @@ Plans:
 | 27. Modal Details | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 28. Layout Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 29. Stats Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
-| 30. Foundation Setup | v1.5 | 0/5 | Planning complete | - |
-| 31. Core UI Components | v1.5 | 0/2 | Planning complete | - |
-| 32. Layout Restructure | v1.5 | 0/4 | Not started | - |
+| 30. Foundation Setup | v1.5 | 5/5 | Complete | 2026-02-11 |
+| 31. Core UI Components | v1.5 | 2/2 | Complete | 2026-02-11 |
+| 32. Layout Restructure | v1.5 | 0/3 | Not started | - |
 | 33. Test Details Drawer | v1.5 | 0/3 | Not started | - |
 | 34. TanStack Table | v1.5 | 0/5 | Not started | - |
 | 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
-**Total v1.5:** 0/26 plans complete (0%)
+**Total v1.5:** 7/25 plans complete (28%)

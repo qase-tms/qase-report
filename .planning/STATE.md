@@ -10,11 +10,11 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 ## Current Position
 
 Phase: 31 of 36 (Core UI Components)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Completed
-Last activity: 2026-02-11 — Completed 31-01: Install Core UI Components (Card, Badge, Skeleton)
+Last activity: 2026-02-11 — Completed 31-02: Badge Status Variants
 
-Progress: [████████████████████████████░░░░░░░░] 78% (49/63 total plans)
+Progress: [████████████████████████████░░░░░░░░] 79% (50/63 total plans)
 
 ## Performance Metrics
 
@@ -27,7 +27,7 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 4/27 | In progress |
+| v1.5 Qase TMS Style | 30-36 | 5/27 | In progress |
 
 **Recent completions:**
 
@@ -41,6 +41,7 @@ Progress: [███████████████████████
 | 30 | 03 | ~2.7 min | 3 | 3 | 2026-02-11 |
 | Phase 30 P05 | 653 | 3 tasks | 6 files |
 | Phase 31 P01 | 73 | 3 tasks | 4 files |
+| Phase 31 P02 | 81 | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,12 @@ Key decisions preserved for future reference:
 - Badge uses CVA variant system for type-safe styling with 6 variants
 - Card uses compositional API with 7 subcomponents to avoid prop explosion
 
+**Phase 31-02 (Badge Status Variants):**
+- Extended Badge component with custom test status variants (passed/failed/skipped/broken)
+- Created StatusBadge wrapper component with type-safe TestStatus union type
+- Dark-theme-aware colors using dark: modifier for both light and dark themes
+- MobX observer compatibility confirmed via production build
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -87,6 +94,9 @@ Key decisions preserved for future reference:
 - Modal test details (v1.4, will convert to Sheet drawer in v1.5)
 - [Phase ?]: Fixed automated conversion bugs in TestListItem and TestDetails components from 30-04 refactor
 - [Phase ?]: Uninstalled @mui/icons-material package after verifying zero imports remain
+- [Phase 31]: Dark theme color mapping: Used dark: modifier for all variants to ensure proper colors in both themes
+- [Phase 31]: StatusBadge not an observer: Component receives primitive status prop, parent should be observer
+- [Phase 31]: CVA variant extension: Extended existing Badge variants rather than creating separate component
 
 ### Pending Todos
 
@@ -107,7 +117,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T17:21:15Z
-Stopped at: Completed 31-01-PLAN.md (Install Core UI Components)
+Last session: 2026-02-11T17:25:08Z
+Stopped at: Completed 31-02-PLAN.md (Badge Status Variants)
 Resume file: None
-Next action: Execute remaining Phase 31 plans or continue with Phase 32
+Next action: Execute 31-03-PLAN.md or continue with Phase 32
