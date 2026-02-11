@@ -1,5 +1,6 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
+import { type ExpandedState } from '@tanstack/react-table'
 import { useRootStore } from '../../store'
 import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
@@ -7,9 +8,31 @@ import { DataTable } from './DataTable'
 import { createColumns } from './columns'
 import { buildSuiteTree } from './buildSuiteTree'
 
+const STORAGE_KEY = 'qase-report-expanded-suites'
+
+// Load expanded state from sessionStorage (SSR-safe)
+const loadExpandedState = (): ExpandedState => {
+  if (typeof window === 'undefined') return {}
+  try {
+    const stored = sessionStorage.getItem(STORAGE_KEY)
+    return stored ? JSON.parse(stored) : {}
+  } catch {
+    return {}
+  }
+}
+
 export const TestList = observer(() => {
   const { testResultsStore, selectTest } = useRootStore()
   const { filteredResults, resultsList, activeFilterCount } = testResultsStore
+
+  // Expanded state with sessionStorage persistence
+  const [expanded, setExpanded] = useState<ExpandedState>(loadExpandedState)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(expanded))
+    }
+  }, [expanded])
 
   // Early return if no tests loaded
   if (resultsList.length === 0) {
@@ -37,6 +60,12 @@ export const TestList = observer(() => {
     [selectTest]
   )
 
+  // Calculate total tests in tree for accurate summary
+  const totalTestsInTree = data.reduce(
+    (sum, suite) => sum + (suite.totalTests || 0),
+    0
+  )
+
   return (
     <div className="bg-card rounded-lg border shadow-sm p-4">
       <h6 className="text-lg font-semibold mb-4">Tests</h6>
@@ -49,12 +78,12 @@ export const TestList = observer(() => {
 
       {/* Filter summary */}
       <p className="text-sm text-muted-foreground mb-2">
-        Showing {filteredResults.length} of {resultsList.length} tests
+        Showing {totalTestsInTree} of {resultsList.length} tests
         {activeFilterCount > 0 && ` (${activeFilterCount} filter${activeFilterCount !== 1 ? 's' : ''} active)`}
       </p>
 
       {/* Empty state when filters match nothing */}
-      {filteredResults.length === 0 && resultsList.length > 0 ? (
+      {totalTestsInTree === 0 && resultsList.length > 0 ? (
         <p className="text-sm text-muted-foreground py-4 text-center">
           No tests match current filters.
         </p>
@@ -72,6 +101,8 @@ export const TestList = observer(() => {
           height={tableHeight}
           getSubRows={(row) => row.subRows}
           getRowId={(row) => row.id}
+          expanded={expanded}
+          onExpandedChange={setExpanded}
         />
       )}
     </div>
