@@ -46,7 +46,7 @@ export const SuiteGroup = ({
         id={contentId}
         className={cn(
           'overflow-hidden',
-          prefersReducedMotion ? '' : 'transition-all duration-200',
+          prefersReducedMotion ? '' : 'transition-all duration-300',
           isExpanded ? 'max-h-[10000px] opacity-100' : 'max-h-0 opacity-0'
         )}
       >

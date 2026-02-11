@@ -58,7 +58,7 @@ export const ClusterGroup = observer(({
       {isExpanded && (
         <div
           id={contentId}
-          className={prefersReducedMotion ? '' : 'transition-all duration-200'}
+          className={prefersReducedMotion ? '' : 'transition-all duration-300'}
         >
           <div className="pl-4 py-2">
             {tests.map(test => (

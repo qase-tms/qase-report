@@ -17,7 +17,7 @@ export const DashboardCard = ({
         col-span-1
         row-span-1
         transition-all
-        duration-200
+        duration-300
         hover:-translate-y-0.5
         hover:shadow-lg
         md:col-span-[var(--col-span-md)]
