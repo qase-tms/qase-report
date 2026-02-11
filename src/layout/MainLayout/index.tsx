@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { useRootStore } from '../../store'
 import { LoadReportButton } from '../../components/LoadReportButton'
 import { Dashboard } from '../../components/Dashboard'
@@ -9,9 +11,17 @@ import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
 import { TestDetailsDrawer } from '../../components/TestDetailsDrawer'
 import { TabNavigation } from '../../components/TabNavigation'
+import { CommandPalette } from '../../components/CommandPalette'
 
 export const MainLayout = observer(() => {
   const { reportStore, activeView } = useRootStore()
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
+
+  // mod+k works as Cmd+K on Mac, Ctrl+K on Windows/Linux
+  useHotkeys('mod+k', (e) => {
+    e.preventDefault() // Prevent browser default (search bar focus)
+    setCommandPaletteOpen(true)
+  }, { enableOnFormTags: true }) // Works even when input focused
 
   const renderView = () => {
     if (activeView === 'dashboard') {
@@ -57,6 +67,10 @@ export const MainLayout = observer(() => {
       <TestDetailsDrawer />
       {/* Global attachment viewer */}
       <AttachmentViewer />
+      <CommandPalette
+        open={commandPaletteOpen}
+        onOpenChange={setCommandPaletteOpen}
+      />
     </>
   )
 })
