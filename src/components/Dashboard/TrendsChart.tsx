@@ -13,23 +13,22 @@ import {
 import { useRootStore } from '../../store'
 import type { TrendDataPoint } from '../../store/AnalyticsStore'
 
-// Get computed CSS variable color for Recharts (SVG doesn't support CSS vars)
+// Get computed RGB color for Recharts (SVG doesn't support CSS vars or oklch)
 const useThemeColor = (cssVar: string, fallback: string) => {
   const [color, setColor] = useState(fallback)
 
   useEffect(() => {
     const updateColor = () => {
-      const computed = getComputedStyle(document.documentElement)
-        .getPropertyValue(cssVar)
-        .trim()
-      if (computed) {
-        // CSS uses oklch() format, wrap accordingly
-        if (computed.startsWith('oklch') || computed.startsWith('hsl') || computed.startsWith('rgb') || computed.startsWith('#')) {
-          setColor(computed)
-        } else {
-          // Assume oklch values without prefix (e.g., "0.922 0 0")
-          setColor(`oklch(${computed})`)
-        }
+      // Create a temporary element to get computed color
+      const el = document.createElement('div')
+      el.style.color = `var(${cssVar})`
+      el.style.display = 'none'
+      document.body.appendChild(el)
+      const computed = getComputedStyle(el).color
+      document.body.removeChild(el)
+
+      if (computed && computed !== 'rgba(0, 0, 0, 0)') {
+        setColor(computed)
       }
     }
     updateColor()
