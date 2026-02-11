@@ -388,12 +388,11 @@ Plans:
   3. Badge component supports all statuses (passed, failed, skipped, broken)
   4. All components work with MobX observer() without errors
   5. TypeScript types for all components defined explicitly
-**Plans**: TBD
+**Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 31-01: Install and configure core shadcn/ui components
-- [ ] 31-02: Create status badge variants
-- [ ] 31-03: Test MobX observer compatibility
+- [ ] 31-01-PLAN.md — Install Card, Badge, Skeleton components via CLI (Wave 1)
+- [ ] 31-02-PLAN.md — Extend Badge with status variants and create StatusBadge component (Wave 2)
 
 #### Phase 32: Layout Restructure
 
@@ -503,11 +502,11 @@ Plans:
 | 28. Layout Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 29. Stats Cleanup | v1.4 | 1/1 | Complete | 2026-02-11 |
 | 30. Foundation Setup | v1.5 | 0/5 | Planning complete | - |
-| 31. Core UI Components | v1.5 | 0/3 | Not started | - |
+| 31. Core UI Components | v1.5 | 0/2 | Planning complete | - |
 | 32. Layout Restructure | v1.5 | 0/4 | Not started | - |
 | 33. Test Details Drawer | v1.5 | 0/3 | Not started | - |
 | 34. TanStack Table | v1.5 | 0/5 | Not started | - |
 | 35. Suite Hierarchy | v1.5 | 0/3 | Not started | - |
 | 36. Views & Polish | v1.5 | 0/4 | Not started | - |
 
-**Total v1.5:** 0/27 plans complete (0%)
+**Total v1.5:** 0/26 plans complete (0%)
