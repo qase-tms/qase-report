@@ -17,6 +17,8 @@ import {
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 import type { GalleryAttachment } from '../types/gallery'
 import type { Step } from '../schemas/Step.schema'
+import type { ComparisonResult, TestDiff, StatusChange, DurationChange } from '../types/comparison'
+import { getStatusChangeType } from '../types/comparison'
 
 /**
  * Data point for trend visualization.
@@ -51,8 +53,30 @@ export interface FailureCluster {
  * Uses MobX computed values to cache results and only recompute when dependencies change.
  */
 export class AnalyticsStore {
+  /** Selected base run ID for comparison (older run) */
+  selectedBaseRunId: string | null = null
+
+  /** Selected compare run ID for comparison (newer run) */
+  selectedCompareRunId: string | null = null
+
   constructor(public root: RootStore) {
     makeAutoObservable(this)
+  }
+
+  /** Sets the base run for comparison */
+  setSelectedBaseRunId = (runId: string | null) => {
+    this.selectedBaseRunId = runId
+  }
+
+  /** Sets the compare run for comparison */
+  setSelectedCompareRunId = (runId: string | null) => {
+    this.selectedCompareRunId = runId
+  }
+
+  /** Clears comparison selection */
+  clearComparisonSelection = () => {
+    this.selectedBaseRunId = null
+    this.selectedCompareRunId = null
   }
 
   /**
@@ -355,6 +379,47 @@ export class AnalyticsStore {
   }
 
   /**
+   * Returns comparison result between two selected runs.
+   * Uses Map-based O(n+m) algorithm for efficient diff computation.
+   * Returns null if either run is not selected or not found.
+   *
+   * Computed property automatically updates when selections or history change.
+   */
+  get comparison(): ComparisonResult | null {
+    if (!this.selectedBaseRunId || !this.selectedCompareRunId) return null
+
+    const history = this.root.historyStore.history
+    if (!history) return null
+
+    const baseRun = history.runs.find(r => r.run_id === this.selectedBaseRunId)
+    const compareRun = history.runs.find(r => r.run_id === this.selectedCompareRunId)
+
+    if (!baseRun || !compareRun) return null
+
+    return this.computeComparison(baseRun, compareRun)
+  }
+
+  /**
+   * Indicates whether a valid comparison is available.
+   */
+  get hasComparison(): boolean {
+    return this.comparison !== null
+  }
+
+  /**
+   * Returns runs available for comparison selection.
+   * Limited to most recent 20 runs for dropdown usability.
+   */
+  get comparableRuns(): HistoricalRun[] {
+    const history = this.root.historyStore.history
+    if (!history) return []
+
+    return [...history.runs]
+      .sort((a, b) => b.start_time - a.start_time) // Most recent first
+      .slice(0, 20)
+  }
+
+  /**
    * Calculates mean and standard deviation for an array of numbers
    * @private
    */
@@ -464,6 +529,134 @@ export class AnalyticsStore {
       if (step.steps && step.steps.length > 0) {
         this.collectStepAttachments(step.steps, testId, testTitle, testStatus, collector)
       }
+    }
+  }
+
+  /**
+   * Computes diff between two runs using Map-based set operations.
+   * O(n+m) complexity where n=base tests, m=compare tests.
+   *
+   * @private
+   */
+  private computeComparison(baseRun: HistoricalRun, compareRun: HistoricalRun): ComparisonResult {
+    const history = this.root.historyStore.history!
+
+    // Build Maps for O(1) lookup by signature
+    const baseTestsMap = new Map<string, { signature: string; title: string; status: string; duration: number }>()
+    const compareTestsMap = new Map<string, { signature: string; title: string; status: string; duration: number }>()
+
+    for (const testEntry of history.tests) {
+      const baseRunData = testEntry.runs.find(r => r.run_id === baseRun.run_id)
+      const compareRunData = testEntry.runs.find(r => r.run_id === compareRun.run_id)
+
+      if (baseRunData) {
+        baseTestsMap.set(testEntry.signature, {
+          signature: testEntry.signature,
+          title: testEntry.title,
+          status: baseRunData.status,
+          duration: baseRunData.duration,
+        })
+      }
+
+      if (compareRunData) {
+        compareTestsMap.set(testEntry.signature, {
+          signature: testEntry.signature,
+          title: testEntry.title,
+          status: compareRunData.status,
+          duration: compareRunData.duration,
+        })
+      }
+    }
+
+    // Calculate diff
+    const added: TestDiff['added'] = []
+    const removed: TestDiff['removed'] = []
+    const statusChanged: StatusChange[] = []
+    const durationChanged: DurationChange[] = []
+    let unchangedCount = 0
+
+    // Find added tests (in compare but not in base)
+    for (const [signature, test] of compareTestsMap) {
+      if (!baseTestsMap.has(signature)) {
+        added.push(test)
+      }
+    }
+
+    // Find removed tests (in base but not in compare)
+    for (const [signature, test] of baseTestsMap) {
+      if (!compareTestsMap.has(signature)) {
+        removed.push(test)
+      }
+    }
+
+    // Find changed tests (in both)
+    for (const [signature, baseTest] of baseTestsMap) {
+      const compareTest = compareTestsMap.get(signature)
+      if (!compareTest) continue
+
+      let hasChange = false
+
+      // Check status change
+      if (baseTest.status !== compareTest.status) {
+        hasChange = true
+        statusChanged.push({
+          signature,
+          title: baseTest.title,
+          oldStatus: baseTest.status as StatusChange['oldStatus'],
+          newStatus: compareTest.status as StatusChange['newStatus'],
+          changeType: getStatusChangeType(baseTest.status, compareTest.status),
+        })
+      }
+
+      // Check duration change (significant = >20% or >500ms)
+      const difference = compareTest.duration - baseTest.duration
+      const percentChange = baseTest.duration > 0
+        ? (difference / baseTest.duration) * 100
+        : 0
+      const isSignificant = Math.abs(percentChange) > 20 || Math.abs(difference) > 500
+
+      if (isSignificant) {
+        hasChange = true
+        durationChanged.push({
+          signature,
+          title: baseTest.title,
+          oldDuration: baseTest.duration,
+          newDuration: compareTest.duration,
+          difference,
+          percentChange,
+          isSignificant,
+        })
+      }
+
+      if (!hasChange) {
+        unchangedCount++
+      }
+    }
+
+    // Build summary
+    const regressionCount = statusChanged.filter(c => c.changeType === 'regression').length
+    const fixedCount = statusChanged.filter(c => c.changeType === 'fixed').length
+
+    return {
+      baseRun,
+      compareRun,
+      diff: {
+        added,
+        removed,
+        statusChanged,
+        durationChanged,
+        unchangedCount,
+      },
+      summary: {
+        totalBase: baseTestsMap.size,
+        totalCompare: compareTestsMap.size,
+        addedCount: added.length,
+        removedCount: removed.length,
+        statusChangedCount: statusChanged.length,
+        durationChangedCount: durationChanged.length,
+        regressionCount,
+        fixedCount,
+      },
     }
   }
 
