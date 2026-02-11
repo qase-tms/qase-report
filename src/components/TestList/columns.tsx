@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
+import { MultiSegmentProgress, type ProgressSegment } from './MultiSegmentProgress'
 
 /**
  * Column definitions for the test results table with suite hierarchy support.
@@ -101,6 +102,69 @@ export const createColumns = (
       )
     },
     size: 120,
+  },
+  {
+    id: 'progress',
+    header: 'Progress',
+    cell: ({ row }) => {
+      // Only show progress for suite rows
+      if (row.original.type !== 'suite') return null
+
+      const {
+        totalTests = 0,
+        passedCount = 0,
+        failedCount = 0,
+        skippedCount = 0,
+        brokenCount = 0,
+        totalDuration = 0,
+      } = row.original
+
+      // Handle empty suite
+      if (totalTests === 0) {
+        return <span className="text-xs text-muted-foreground">No tests</span>
+      }
+
+      // Calculate cumulative percentages
+      // Order: passed -> failed -> skipped -> broken
+      const passedPct = (passedCount / totalTests) * 100
+      const failedPct = passedPct + (failedCount / totalTests) * 100
+      const skippedPct = failedPct + (skippedCount / totalTests) * 100
+      const brokenPct = skippedPct + (brokenCount / totalTests) * 100
+
+      const segments: ProgressSegment[] = [
+        {
+          value: passedPct,
+          color: 'bg-green-500',
+          label: `Passed: ${passedCount}`,
+          count: passedCount,
+        },
+        {
+          value: failedPct,
+          color: 'bg-red-500',
+          label: `Failed: ${failedCount}`,
+          count: failedCount,
+        },
+        {
+          value: skippedPct,
+          color: 'bg-yellow-500',
+          label: `Skipped: ${skippedCount}`,
+          count: skippedCount,
+        },
+        {
+          value: brokenPct,
+          color: 'bg-gray-500',
+          label: `Broken: ${brokenCount}`,
+          count: brokenCount,
+        },
+      ]
+
+      return (
+        <div className="w-32">
+          <MultiSegmentProgress segments={segments} duration={totalDuration} />
+        </div>
+      )
+    },
+    size: 150,
   },
   {
     accessorKey: 'execution.duration',
