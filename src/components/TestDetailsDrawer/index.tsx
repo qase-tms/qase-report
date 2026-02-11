@@ -12,6 +12,10 @@ import {
   TabsTrigger,
   TabsContent,
 } from '@/components/ui/tabs'
+import { ExecutionTab } from './ExecutionTab'
+import { InfoTab } from './InfoTab'
+import { RunHistoryTab } from './RunHistoryTab'
+import { RetriesTab } from './RetriesTab'
 
 export const TestDetailsDrawer = observer(() => {
   const { selectedTest, clearSelection } = useRootStore()
@@ -34,23 +38,19 @@ export const TestDetailsDrawer = observer(() => {
           </TabsList>
 
           <TabsContent value="execution" className="flex-1 overflow-y-auto p-4">
-            {/* Placeholder - will add ExecutionTab in Plan 02 */}
-            <p className="text-muted-foreground">Execution content</p>
+            <ExecutionTab />
           </TabsContent>
 
           <TabsContent value="info" className="flex-1 overflow-y-auto p-4">
-            {/* Placeholder - will add InfoTab in Plan 02 */}
-            <p className="text-muted-foreground">Info content</p>
+            <InfoTab />
           </TabsContent>
 
           <TabsContent value="history" className="flex-1 overflow-y-auto p-4">
-            {/* Placeholder - will add RunHistoryTab in Plan 02 */}
-            <p className="text-muted-foreground">Run History content</p>
+            <RunHistoryTab />
           </TabsContent>
 
           <TabsContent value="retries" className="flex-1 overflow-y-auto p-4">
-            {/* Placeholder - will add RetriesTab in Plan 02 */}
-            <p className="text-muted-foreground">Retries content</p>
+            <RetriesTab />
           </TabsContent>
         </Tabs>
       </SheetContent>

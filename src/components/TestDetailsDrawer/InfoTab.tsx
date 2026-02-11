@@ -31,10 +31,10 @@ export const InfoTab = observer(() => {
               <span className="font-mono text-xs break-all">{selectedTest.signature}</span>
             </div>
           )}
-          {selectedTest.testops_id && (
+          {selectedTest.testops_ids && selectedTest.testops_ids.length > 0 && (
             <div className="flex gap-2">
-              <span className="text-muted-foreground min-w-[80px]">TestOps ID:</span>
-              <span>{selectedTest.testops_id}</span>
+              <span className="text-muted-foreground min-w-[80px]">TestOps IDs:</span>
+              <span>{selectedTest.testops_ids.join(', ')}</span>
             </div>
           )}
           {selectedTest.execution.thread && (
