@@ -624,7 +624,7 @@ Plans:
 - [x] **Phase 44: CLI Foundation** - Entry point with argument parsing, help, and version
 - [x] **Phase 45: Local Server** - Serve React app with data API and browser integration
 - [x] **Phase 46: History Management** - Auto-save and history file options
-- [ ] **Phase 47: Generate Command** - Static HTML generation with embedded data
+- [x] **Phase 47: Generate Command** - Static HTML generation with embedded data
 - [ ] **Phase 48: NPM Package** - Packaging for global installation and npx usage
 
 #### Phase 44: CLI Foundation
@@ -689,8 +689,10 @@ Plans:
 **Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 47-01-PLAN.md — Configure vite-plugin-singlefile and create HTML generator module (Wave 1)
-- [ ] 47-02-PLAN.md — Implement generate command and React static mode loading (Wave 2)
+- [x] 47-01-PLAN.md — Configure vite-plugin-singlefile and create HTML generator module (Wave 1)
+- [x] 47-02-PLAN.md — Implement generate command and React static mode loading (Wave 2)
+
+**Completed:** 2026-02-12
 
 #### Phase 48: NPM Package
 **Goal**: User can install and use qase-report globally via NPM
@@ -737,13 +739,13 @@ Plans:
 | 44. CLI Foundation | v1.8 | 1/1 | Complete | 2026-02-12 |
 | 45. Local Server | v1.8 | 2/2 | Complete | 2026-02-12 |
 | 46. History Management | v1.8 | 2/2 | Complete | 2026-02-12 |
-| 47. Generate Command | v1.8 | 0/2 | Planned | - |
+| 47. Generate Command | v1.8 | 2/2 | Complete | 2026-02-12 |
 | 48. NPM Package | v1.8 | 0/TBD | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
-**Total v1.8:** 5/7 plans (71% of phases)
+**Total v1.8:** 7/9 plans (80% of phases)
 
 ---
 *Roadmap created: 2026-02-10*

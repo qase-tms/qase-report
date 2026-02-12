@@ -10,7 +10,7 @@ Requirements for v1.8 CLI & NPM Package. CLI utility for launching and generatin
 ### CLI Core
 
 - [x] **CLI-01**: User can run `qase-report open <path>` to serve report from results folder
-- [ ] **CLI-02**: User can run `qase-report generate <path>` to create static HTML report
+- [x] **CLI-02**: User can run `qase-report generate <path>` to create static HTML report
 - [x] **CLI-03**: User sees help with `qase-report --help`
 - [x] **CLI-04**: User sees version with `qase-report --version`
 
@@ -36,9 +36,9 @@ Requirements for v1.8 CLI & NPM Package. CLI utility for launching and generatin
 
 ### Generate Command
 
-- [ ] **GEN-01**: `generate` creates self-contained HTML file
-- [ ] **GEN-02**: User can specify output path via `-o` or `--output`
-- [ ] **GEN-03**: Generated HTML includes embedded history if available
+- [x] **GEN-01**: `generate` creates self-contained HTML file
+- [x] **GEN-02**: User can specify output path via `-o` or `--output`
+- [x] **GEN-03**: Generated HTML includes embedded history if available
 
 ## Future Requirements
 
@@ -72,7 +72,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | CLI-01 | Phase 45 | ✓ Complete |
-| CLI-02 | Phase 47 | Pending |
+| CLI-02 | Phase 47 | ✓ Complete |
 | CLI-03 | Phase 44 | ✓ Complete |
 | CLI-04 | Phase 44 | ✓ Complete |
 | SERV-01 | Phase 45 | ✓ Complete |
@@ -86,9 +86,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NPM-01 | Phase 48 | Pending |
 | NPM-02 | Phase 48 | Pending |
 | NPM-03 | Phase 48 | Pending |
-| GEN-01 | Phase 47 | Pending |
-| GEN-02 | Phase 47 | Pending |
-| GEN-03 | Phase 47 | Pending |
+| GEN-01 | Phase 47 | ✓ Complete |
+| GEN-02 | Phase 47 | ✓ Complete |
+| GEN-03 | Phase 47 | ✓ Complete |
 
 **Coverage:**
 - v1.8 requirements: 18 total
