@@ -3,17 +3,30 @@ interface TimelineAxisProps {
   maxTime: number
 }
 
+const formatRelativeTime = (ms: number): string => {
+  if (ms < 1000) {
+    return `${Math.round(ms)}ms`
+  }
+  const seconds = ms / 1000
+  if (seconds < 60) {
+    return `${seconds.toFixed(1)}s`
+  }
+  const minutes = Math.floor(seconds / 60)
+  const remainingSeconds = Math.floor(seconds % 60)
+  return `${minutes}m ${remainingSeconds}s`
+}
+
 export const TimelineAxis = ({ minTime, maxTime }: TimelineAxisProps) => {
   const totalDuration = maxTime - minTime
 
   // Create 5 time markers at 0%, 25%, 50%, 75%, 100%
   const markers = [0, 0.25, 0.5, 0.75, 1].map((ratio) => {
-    const time = minTime + totalDuration * ratio
+    const relativeTime = totalDuration * ratio
     const position = ratio * 100
 
     return {
       position,
-      time: new Date(time),
+      relativeTime,
     }
   })
 
@@ -26,11 +39,7 @@ export const TimelineAxis = ({ minTime, maxTime }: TimelineAxisProps) => {
           style={{ left: `${marker.position}%` }}
         >
           <span className="text-xs text-muted-foreground mb-1">
-            {marker.time.toLocaleTimeString('en-US', {
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            })}
+            {formatRelativeTime(marker.relativeTime)}
           </span>
           <div className="h-2 w-px bg-border" />
         </div>

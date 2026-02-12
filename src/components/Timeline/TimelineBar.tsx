@@ -24,7 +24,9 @@ export const TimelineBar = observer(({ test, minTime, totalDuration }: TimelineB
 
   // Calculate positioning as percentage
   const startOffset = ((test.execution.start_time - minTime) / totalDuration) * 100
-  const width = Math.max(0.5, (test.execution.duration / totalDuration) * 100) // Minimum 0.5% for visibility
+  const rawWidth = (test.execution.duration / totalDuration) * 100
+  // Clamp width: minimum 0.5% for visibility, maximum to not exceed container
+  const width = Math.max(0.5, Math.min(rawWidth, 100 - startOffset))
 
   // Status color classes
   const statusColors = {

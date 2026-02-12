@@ -112,7 +112,7 @@ export const Timeline = observer(() => {
               <div className="text-sm font-medium text-muted-foreground mb-2">
                 Thread: {thread}
               </div>
-              <div className="relative h-12 bg-muted/20 rounded">
+              <div className="relative h-12 bg-muted/20 rounded overflow-hidden">
                 {threadTests.map((test) => (
                   <TimelineBar
                     key={test.id}
