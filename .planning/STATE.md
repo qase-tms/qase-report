@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-12)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** v1.7 milestone archived — ready for next milestone
+**Current focus:** v1.8 CLI & NPM Package — defining requirements
 
 ## Current Position
 
-Phase: 43 of 43 (v1.7 complete)
-Plan: All complete
-Status: ✅ v1.7 Layout & Analytics Cleanup shipped
-Last activity: 2026-02-12 - Milestone archived
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-02-12 — Milestone v1.8 started
 
-Progress: [##########] 100% (v1.7)
+Progress: [░░░░░░░░░░] 0% (v1.8)
 
 ## Performance Metrics
 
@@ -37,13 +37,12 @@ Progress: [##########] 100% (v1.7)
 
 Key decisions preserved for future reference:
 
-**v1.7 accomplishments:**
-- Test cases as default (first) tab
-- Overview → Analytics rename
-- 2-column Analytics grid layout
-- Horizontal scrollable Recent Runs
-- Run Information in sidebar
-- Host Information in sidebar
+**v1.8 scope:**
+- CLI commands: `open` and `generate`
+- Input format: Qase Report Format (run.json + results/*.json)
+- Auto-history saving on open
+- --history option for custom path
+- NPM package for global install
 
 ### Pending Todos
 
@@ -56,6 +55,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: v1.7 milestone archived
+Stopped at: Defining requirements for v1.8
 Resume file: None
-Next action: `/gsd:new-milestone` to start next version
+Next action: Create REQUIREMENTS.md and ROADMAP.md
