@@ -20,7 +20,7 @@ export class RootStore {
   selectedTestId: string | null = null
 
   // Navigation state
-  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' = 'dashboard'
+  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' = 'tests'
 
   constructor() {
     this.reportStore = new ReportStore(this)
