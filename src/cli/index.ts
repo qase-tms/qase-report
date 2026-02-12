@@ -4,6 +4,7 @@ import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { registerOpenCommand } from './commands/open.js'
+import { registerGenerateCommand } from './commands/generate.js'
 
 // Get version from package.json dynamically
 const __filename = fileURLToPath(import.meta.url)
@@ -19,13 +20,7 @@ program
 
 // Register commands
 registerOpenCommand(program)
-
-program
-  .command('generate <path>')
-  .description('Generate static HTML report (coming soon)')
-  .action((path: string) => {
-    console.log(`Command 'generate' coming soon. Path provided: ${path}`)
-  })
+registerGenerateCommand(program)
 
 program.parse(process.argv)
 
