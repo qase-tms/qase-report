@@ -117,17 +117,10 @@ export const createColumns = (
         )
       }
 
-      // Test row: show testops ID only (no icon), or empty
-      const testopsId = row.original.testData?.testops_ids?.[0]
+      // Test row: empty (just indentation spacer)
       return (
-        <div
-          className="flex items-center"
-          style={{ paddingLeft: `${row.depth * 1.5}rem` }}
-        >
-          <span className="mr-1 w-5" />
-          {testopsId && (
-            <span className="text-xs text-muted-foreground">{testopsId}</span>
-          )}
+        <div style={{ paddingLeft: `${row.depth * 1.5}rem` }}>
+          <span className="inline-block w-5" />
         </div>
       )
     },
