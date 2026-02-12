@@ -52,26 +52,11 @@ export function registerGenerateCommand(program: Command): void {
       // 4. Resolve output path (default: "report.html" in cwd)
       const outputPath = resolve(options.output)
 
-      // 5. Check if dist/index.html exists
-      try {
-        // dist/index.html should be relative to the CLI package root
-        // This assumes dist-cli is at project root, so dist is a sibling
-        const distPath = resolve(dirname(process.argv[1]), '..', 'dist', 'index.html')
-
-        if (!existsSync(distPath)) {
-          console.error('Error: Build not found. Run \'npm run build\' first.')
-          process.exit(1)
-        }
-      } catch (error) {
-        console.error('Error: Build not found. Run \'npm run build\' first.')
-        process.exit(1)
-      }
-
-      // 6. Create parent directories for output
+      // 5. Create parent directories for output
       const outputDir = dirname(outputPath)
       mkdirSync(outputDir, { recursive: true })
 
-      // 7. Generate HTML report
+      // 6. Generate HTML report
       try {
         console.log(`Generating report from ${resolvedPath}`)
 
@@ -82,10 +67,10 @@ export function registerGenerateCommand(program: Command): void {
           historyPath,
         })
 
-        // 8. Write result to output path
+        // 7. Write result to output path
         writeFileSync(outputPath, html, 'utf-8')
 
-        // 9. Log success message with file size
+        // 8. Log success message with file size
         const stats = statSync(outputPath)
         const fileSize = formatFileSize(stats.size)
 
