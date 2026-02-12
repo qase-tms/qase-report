@@ -21,9 +21,11 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "commander": "^14.0.3",
+    "express": "^5.2.1",
     "lucide-react": "^0.563.0",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
+    "open": "^11.0.0",
     "prism-react-renderer": "^2.4.1",
     "radix-ui": "^1.4.3",
     "react": "^18.2.0",
@@ -38,6 +40,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^25.2.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
