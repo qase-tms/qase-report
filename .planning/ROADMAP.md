@@ -652,10 +652,11 @@ Plans:
   3. User can specify custom port with `--port 8080`
   4. User can disable auto-open with `--no-open`
   5. Server shuts down cleanly on Ctrl+C with exit message
-**Plans**: TBD
+**Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 45-01: TBD
+- [ ] 45-01-PLAN.md — Express server with static file serving and data API (Wave 1)
+- [ ] 45-02-PLAN.md — CLI open command implementation and React API loading (Wave 2)
 
 #### Phase 46: History Management
 **Goal**: User can persist and configure test run history for analytics
@@ -728,7 +729,7 @@ Plans:
 | 42. Sidebar Enhancement | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 43. Analytics Cleanup | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 44. CLI Foundation | v1.8 | 1/1 | Complete | 2026-02-12 |
-| 45. Local Server | v1.8 | 0/TBD | Not started | - |
+| 45. Local Server | v1.8 | 0/2 | Planned | - |
 | 46. History Management | v1.8 | 0/TBD | Not started | - |
 | 47. Generate Command | v1.8 | 0/TBD | Not started | - |
 | 48. NPM Package | v1.8 | 0/TBD | Not started | - |
@@ -736,7 +737,7 @@ Plans:
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
-**Total v1.8:** 1/1 plans (20% of phases)
+**Total v1.8:** 1/3 plans (33% of phase 44-45)
 
 ---
 *Roadmap created: 2026-02-10*
