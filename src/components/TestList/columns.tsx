@@ -106,7 +106,7 @@ export const createColumns = (
   // Column 1: ID (testops_id or "-")
   {
     id: 'id',
-    header: 'ID',
+    header: () => <span className="pl-8">ID</span>,
     cell: ({ row }) => {
       const isSuite = row.original.type === 'suite'
 
@@ -117,7 +117,7 @@ export const createColumns = (
         return (
           <div
             className="flex items-center"
-            style={{ paddingLeft: `${row.depth * 1.5}rem` }}
+            style={{ paddingLeft: `${row.depth * 1}rem` }}
           >
             {canExpand ? (
               <button
@@ -142,11 +142,15 @@ export const createColumns = (
         )
       }
 
-      // Test: testops_id or "-" (no indent - columns align with header)
+      // Test: testops_id or "-" - aligned with header
       const testopsId = row.original.testData?.testops_ids?.[0]
-      return <span className="text-muted-foreground">{testopsId || '-'}</span>
+      return (
+        <span className="text-muted-foreground pl-8">
+          {testopsId || '-'}
+        </span>
+      )
     },
-    size: 100,
+    size: 70,
   },
   // Column 2: Status
   {
@@ -161,7 +165,7 @@ export const createColumns = (
 
       return <Badge variant={status} className="capitalize">{status}</Badge>
     },
-    size: 90,
+    size: 80,
   },
   // Column 3: Title (flexible width)
   {
@@ -171,7 +175,7 @@ export const createColumns = (
       const isSuite = row.original.type === 'suite'
       if (isSuite) return null
 
-      return <span>{row.original.testData?.title}</span>
+      return <span className="truncate">{row.original.testData?.title}</span>
     },
   },
   // Column 4: Duration (right-aligned)

@@ -83,18 +83,18 @@ export function DataTable<TData, TValue>({
       className="rounded-md border overflow-auto"
       style={{ height: `${height}px` }}
     >
-      <Table className="table-fixed">
+      <Table className="w-full">
         <TableHeader className="sticky top-0 bg-background z-10">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
-                // Title column expands to fill space, others use fixed width
                 const isFlexColumn = header.id === 'title'
+                const width = header.getSize()
                 return (
                   <TableHead
                     key={header.id}
-                    style={isFlexColumn ? undefined : { width: `${header.getSize()}px` }}
                     className={isFlexColumn ? 'w-full' : ''}
+                    style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px` }}
                   >
                     {header.isPlaceholder
                       ? null
@@ -132,11 +132,12 @@ export function DataTable<TData, TValue>({
                 >
                   {row.getVisibleCells().map((cell) => {
                     const isFlexColumn = cell.column.id === 'title'
+                    const width = cell.column.getSize()
                     return (
                       <TableCell
                         key={cell.id}
-                        style={isFlexColumn ? undefined : { width: `${cell.column.getSize()}px` }}
                         className={isFlexColumn ? 'w-full' : ''}
+                        style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px` }}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>

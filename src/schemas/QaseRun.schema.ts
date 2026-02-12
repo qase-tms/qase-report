@@ -50,6 +50,11 @@ const RunStatsSchema = z.object({
   skipped: z.number(),
 
   /**
+   * Number of broken tests
+   */
+  broken: z.number().optional(),
+
+  /**
    * Number of blocked tests
    */
   blocked: z.number().optional(),

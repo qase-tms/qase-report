@@ -9,6 +9,28 @@ import {
 } from 'lucide-react'
 import { useRootStore } from '../../store'
 
+// Helper to create SVG arc path for donut segment
+const createArcPath = (
+  centerX: number,
+  centerY: number,
+  radius: number,
+  startAngle: number,
+  endAngle: number
+): string => {
+  // Convert angles from degrees to radians
+  const startRad = ((startAngle - 90) * Math.PI) / 180
+  const endRad = ((endAngle - 90) * Math.PI) / 180
+
+  const x1 = centerX + radius * Math.cos(startRad)
+  const y1 = centerY + radius * Math.sin(startRad)
+  const x2 = centerX + radius * Math.cos(endRad)
+  const y2 = centerY + radius * Math.sin(endRad)
+
+  const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0
+
+  return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`
+}
+
 export const RunInfoSidebar = observer(() => {
   const { reportStore, analyticsStore } = useRootStore()
 
@@ -24,15 +46,6 @@ export const RunInfoSidebar = observer(() => {
   const flakyCount = analyticsStore.flakyTestCount
   const passedCount = stats.passed
   const totalCount = stats.total
-
-  // Color logic for pass rate ring (Qase TMS colors)
-  const getColor = (rate: number): string => {
-    if (rate >= 80) return 'text-passed'
-    if (rate >= 50) return 'text-broken'
-    return 'text-failed'
-  }
-
-  const ringColor = getColor(passRate)
 
   // Run status determination
   const runStatus = stats.failed > 0 ? 'failed' : 'passed'
@@ -69,18 +82,41 @@ export const RunInfoSidebar = observer(() => {
   }
   const formattedElapsed = formatElapsed(elapsedMs)
 
-  // Calculate SVG strokeDasharray for completion ring
-  // Circumference = 2 * PI * radius = 2 * PI * 40 = 251.2
-  const circumference = 251.2
-  const strokeDasharray = `${(passRate / 100) * circumference} ${circumference}`
+  // Build donut segments data
+  const segments = [
+    { key: 'passed', value: stats.passed, color: 'var(--status-passed)' },
+    { key: 'failed', value: stats.failed, color: 'var(--status-failed)' },
+    { key: 'broken', value: stats.broken ?? 0, color: 'var(--status-broken)' },
+    { key: 'skipped', value: stats.skipped, color: 'var(--status-skipped)' },
+    { key: 'blocked', value: stats.blocked ?? 0, color: 'var(--palette-qase-blue-50)' },
+    { key: 'invalid', value: stats.invalid ?? 0, color: 'var(--palette-mustard-60)' },
+    { key: 'muted', value: stats.muted ?? 0, color: 'var(--palette-charcoal-50)' },
+  ].filter(s => s.value > 0)
+
+  // Calculate angles for each segment
+  let currentAngle = 0
+  const segmentPaths = segments.map(segment => {
+    const segmentAngle = (segment.value / totalCount) * 360
+    const startAngle = currentAngle
+    const endAngle = currentAngle + segmentAngle
+    currentAngle = endAngle
+
+    // Add small gap between segments (1 degree)
+    const gap = segments.length > 1 ? 1 : 0
+    const adjustedEndAngle = Math.max(startAngle + 1, endAngle - gap)
+
+    return {
+      ...segment,
+      path: createArcPath(48, 48, 40, startAngle, adjustedEndAngle),
+    }
+  })
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Completion rate ring - larger for sidebar (96px) */}
+      {/* Multi-segment donut chart */}
       <div className="flex flex-col items-center gap-2">
         <div className="relative inline-flex">
-          {/* SVG with 96px dimensions (w-24 h-24) */}
-          <svg className="w-24 h-24">
+          <svg className="w-24 h-24" viewBox="0 0 96 96">
             {/* Background circle (track) */}
             <circle
               cx="48"
@@ -89,21 +125,19 @@ export const RunInfoSidebar = observer(() => {
               fill="none"
               stroke="currentColor"
               strokeWidth="8"
-              className="text-muted opacity-30"
+              className="text-muted opacity-20"
             />
-            {/* Foreground circle (progress) */}
-            <circle
-              cx="48"
-              cy="48"
-              r="40"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="8"
-              strokeDasharray={strokeDasharray}
-              strokeLinecap="round"
-              transform="rotate(-90 48 48)"
-              className={ringColor}
-            />
+            {/* Donut segments */}
+            {segmentPaths.map(segment => (
+              <path
+                key={segment.key}
+                d={segment.path}
+                fill="none"
+                stroke={segment.color}
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+            ))}
           </svg>
           {/* Centered percentage label */}
           <div className="absolute inset-0 flex items-center justify-center">
@@ -133,6 +167,10 @@ export const RunInfoSidebar = observer(() => {
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Skipped</span>
           <span className="font-medium text-skipped">{stats.skipped}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Broken</span>
+          <span className="font-medium text-broken">{stats.broken ?? 0}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Blocked</span>
