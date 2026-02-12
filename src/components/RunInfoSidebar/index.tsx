@@ -1,5 +1,15 @@
 import { observer } from 'mobx-react-lite'
-import { CheckCircle, XCircle, Calendar, Clock } from 'lucide-react'
+import {
+  CheckCircle,
+  XCircle,
+  Calendar,
+  Clock,
+  FileText,
+  Monitor,
+  Cpu,
+  Box,
+  Code,
+} from 'lucide-react'
 import { useRootStore } from '../../store'
 
 export const RunInfoSidebar = observer(() => {
@@ -165,6 +175,21 @@ export const RunInfoSidebar = observer(() => {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Run Information section */}
+      <div className="pt-4 border-t space-y-3">
+        <h3 className="text-sm font-semibold">Run Information</h3>
+        {/* Title field */}
+        <div className="flex items-start gap-2">
+          <FileText className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground">Title</p>
+            <p className="text-sm">
+              {reportStore.runData.title || 'Untitled Run'}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   )
