@@ -522,7 +522,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 38-01-PLAN.md — Thin progress bar variant and suite row integration with duration display
+- [x] 38-01-PLAN.md — Thin progress bar variant and suite row integration with duration display
 
 #### Phase 39: Sidebar Enhancement
 
@@ -578,7 +578,7 @@ Plans:
 | 35. Suite Hierarchy | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 36. Views & Polish | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 37. Column Redesign | v1.6 | 1/1 | Complete | 2026-02-12 |
-| 38. Progress Bars | v1.6 | 0/1 | Not started | - |
+| 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 39. Sidebar Enhancement | v1.6 | 0/? | Not started | - |
 | 40. Timeline View | v1.6 | 0/? | Not started | - |
 
