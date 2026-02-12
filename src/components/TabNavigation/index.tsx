@@ -14,8 +14,8 @@ export const TabNavigation = observer(() => {
   const { activeView, setActiveView } = useRootStore()
 
   const tabs = [
-    { value: 'dashboard', label: 'Overview', icon: LayoutDashboard },
     { value: 'tests', label: 'Test cases', icon: List },
+    { value: 'dashboard', label: 'Analytics', icon: LayoutDashboard },
     {
       value: 'failure-clusters',
       label: 'Failure Clusters',
