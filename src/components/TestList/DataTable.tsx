@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => tableContainerRef.current,
-    estimateSize: () => 72, // Match current VirtualizedTestList row height
+    estimateSize: () => 40, // Compact row height
     overscan: 2, // Match current overscanCount
   })
 
@@ -121,7 +121,7 @@ export function DataTable<TData, TValue>({
                     position: 'absolute',
                     transform: `translateY(${virtualRow.start}px)`,
                     width: '100%',
-                    height: '72px', // Fixed height per research recommendation
+                    height: '40px', // Compact row height
                   }}
                 >
                   {row.getVisibleCells().map((cell) => (

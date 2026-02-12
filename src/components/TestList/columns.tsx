@@ -83,72 +83,54 @@ export const createColumns = (
       const isSuite = row.original.type === 'suite'
 
       if (isSuite) {
-        // Suite row: title + progress bar with duration
+        // Suite row: expand + folder + title (compact, single line)
         return (
-          <div className="flex flex-col gap-1">
-            <div
-              className="flex items-center"
-              style={{ paddingLeft: `${row.depth * 1.5}rem` }}
-            >
-              {/* Expand button */}
-              {canExpand ? (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    row.toggleExpanded()
-                  }}
-                  className="mr-2 p-1 hover:bg-accent rounded"
-                >
-                  {isExpanded ? (
-                    <ChevronDown className="h-4 w-4" />
-                  ) : (
-                    <ChevronRight className="h-4 w-4" />
-                  )}
-                </button>
-              ) : (
-                <span className="mr-2 w-6" />
-              )}
+          <div
+            className="flex items-center"
+            style={{ paddingLeft: `${row.depth * 1.5}rem` }}
+          >
+            {/* Expand button */}
+            {canExpand ? (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  row.toggleExpanded()
+                }}
+                className="mr-1 p-0.5 hover:bg-accent rounded"
+              >
+                {isExpanded ? (
+                  <ChevronDown className="h-4 w-4" />
+                ) : (
+                  <ChevronRight className="h-4 w-4" />
+                )}
+              </button>
+            ) : (
+              <span className="mr-1 w-5" />
+            )}
 
-              {/* Folder icon for suite */}
-              <Folder className="h-4 w-4 mr-2 text-muted-foreground" />
+            {/* Folder icon for suite */}
+            <Folder className="h-4 w-4 mr-2 text-muted-foreground" />
 
-              {/* Suite title */}
-              <span className="font-medium">{row.original.suiteTitle}</span>
-            </div>
-
-            {/* Progress bar row with duration */}
-            <div
-              className="flex items-center gap-2"
-              style={{ paddingLeft: `${row.depth * 1.5 + 2.5}rem` }}
-            >
-              <Clock className="h-3 w-3 text-muted-foreground flex-shrink-0" />
-              <span className="text-xs text-muted-foreground w-12">
-                {formatDuration(row.original.totalDuration || 0)}
-              </span>
-              <MultiSegmentProgress
-                segments={buildProgressSegments(row.original)}
-                duration={row.original.totalDuration || 0}
-                thin
-                showDurationInTooltip={false}
-                className="flex-1 max-w-[200px]"
-              />
-            </div>
+            {/* Suite title */}
+            <span className="font-medium">{row.original.suiteTitle}</span>
           </div>
         )
       }
 
-      // Test row: gear icon + ID
+      // Test row: gear icon + testops ID (only if exists)
+      const testopsId = row.original.testData?.testops_ids?.[0]
       return (
         <div
           className="flex items-center"
           style={{ paddingLeft: `${row.depth * 1.5}rem` }}
         >
-          <span className="mr-2 w-6" />
-          <Settings className="h-4 w-4 mr-2 text-muted-foreground" />
-          <span>
-            {row.original.testData?.testops_ids?.[0] ||
-              row.original.testData?.id.substring(0, 8)}
-          </span>
+          <span className="mr-1 w-5" />
+          {testopsId && (
+            <>
+              <Settings className="h-4 w-4 mr-2 text-muted-foreground" />
+              <span>{testopsId}</span>
+            </>
+          )}
         </div>
       )
     },
@@ -193,25 +175,51 @@ export const createColumns = (
     cell: ({ row }) => {
       const isSuite = row.original.type === 'suite'
 
-      // Suite rows show empty content (duration moved to ID column with progress bar)
+      // Suite rows show duration
       if (isSuite) {
-        return null
+        const duration = row.original.totalDuration || 0
+        return (
+          <div className="flex items-center gap-1 text-muted-foreground">
+            <Clock className="h-3 w-3" />
+            <span className="text-xs">{formatDuration(duration)}</span>
+          </div>
+        )
       }
 
       // Test duration with clock icon
       const duration = row.original.testData?.execution.duration
       if (!duration) return null
 
-      const durationText =
-        duration >= 1000 ? `${(duration / 1000).toFixed(1)}s` : `${duration}ms`
-
       return (
-        <div className="flex items-center gap-2">
-          <Clock className="h-4 w-4 text-muted-foreground" />
-          <span>{durationText}</span>
+        <div className="flex items-center gap-1">
+          <Clock className="h-3 w-3 text-muted-foreground" />
+          <span className="text-xs">{formatDuration(duration)}</span>
         </div>
       )
     },
-    size: 120,
+    size: 80,
+  },
+  {
+    id: 'progress',
+    header: '',
+    cell: ({ row }) => {
+      const isSuite = row.original.type === 'suite'
+
+      // Only suites show progress bar
+      if (!isSuite) {
+        return null
+      }
+
+      return (
+        <MultiSegmentProgress
+          segments={buildProgressSegments(row.original)}
+          duration={row.original.totalDuration || 0}
+          thin
+          showDurationInTooltip={false}
+          className="w-32"
+        />
+      )
+    },
+    size: 140,
   },
 ]
