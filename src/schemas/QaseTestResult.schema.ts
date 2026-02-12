@@ -8,8 +8,11 @@ import { StepSchema } from './Step.schema.js'
  * - failed: Test failed with assertion errors
  * - skipped: Test was skipped
  * - broken: Test encountered errors preventing execution
+ * - blocked: Test blocked by external dependency
+ * - invalid: Test has invalid configuration
+ * - muted: Test failures are muted/ignored
  */
-const TestStatusEnum = z.enum(['passed', 'failed', 'skipped', 'broken'])
+const TestStatusEnum = z.enum(['passed', 'failed', 'skipped', 'broken', 'blocked', 'invalid', 'muted'])
 
 /**
  * Execution information for a test result.

@@ -62,9 +62,9 @@ export const ExecutionTab = observer(() => {
 
       {hasError && <TestError test={selectedTest} />}
 
-      {hasSteps && <TestSteps steps={selectedTest.steps} />}
-
       {hasAttachments && <TestAttachments attachments={selectedTest.attachments} />}
+
+      {hasSteps && <TestSteps steps={selectedTest.steps} />}
     </div>
   )
 })

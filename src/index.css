@@ -307,3 +307,25 @@ html {
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
+
+/* Yet Another React Lightbox - ensure it's above all other elements */
+.yarl__root {
+  z-index: 99999 !important;
+}
+
+.yarl__portal {
+  z-index: 99999 !important;
+}
+
+.yarl__container {
+  z-index: 99999 !important;
+}
+
+.yarl__toolbar {
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+}
+
+.yarl__button {
+  pointer-events: auto !important;
+}

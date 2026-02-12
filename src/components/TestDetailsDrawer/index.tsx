@@ -20,7 +20,7 @@ import { GripVertical } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export const TestDetailsDrawer = observer(() => {
-  const { selectedTest, clearSelection } = useRootStore()
+  const { selectedTest, clearSelection, attachmentViewerStore } = useRootStore()
   const { width, isResizing, startResizing } = useResizable({
     initialWidth: 700,
     minWidth: 400,
@@ -31,11 +31,19 @@ export const TestDetailsDrawer = observer(() => {
   if (!selectedTest) return null
 
   return (
-    <Sheet open={true} onOpenChange={() => clearSelection()}>
+    <Sheet open={true} onOpenChange={(open) => !open && clearSelection()}>
       <SheetContent
         side="right"
         className="flex flex-col p-0 overflow-hidden"
         style={{ width: `${width}px`, maxWidth: 'none' }}
+        onInteractOutside={(e) => {
+          // Prevent closing when clicking outside if attachment viewer is open
+          if (attachmentViewerStore.viewerOpen) e.preventDefault()
+        }}
+        onEscapeKeyDown={(e) => {
+          // Prevent closing on Escape if attachment viewer is open
+          if (attachmentViewerStore.viewerOpen) e.preventDefault()
+        }}
       >
         {/* Resize handle - wider hit area for easier grabbing */}
         <div

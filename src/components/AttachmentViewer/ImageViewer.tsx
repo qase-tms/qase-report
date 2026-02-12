@@ -62,7 +62,8 @@ export const ImageViewer = ({
         scrollToZoom: true,
       }}
       styles={{
-        container: { zIndex: 100 },
+        container: { zIndex: 9999 },
+        root: { zIndex: 9999 },
       }}
     />
   )
