@@ -1,91 +1,54 @@
-# Requirements: Qase Report v1.5
+# Requirements: Qase Report v1.6
 
-**Defined:** 2026-02-11
-**Core Value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в интерфейсе стиля Qase TMS
+**Defined:** 2026-02-12
+**Core Value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
-## v1.5 Requirements
+## v1.6 Requirements
 
-Requirements for Qase TMS style redesign with shadcn/ui migration.
+Requirements for v1.6 Qase TMS Design Polish. Приближение дизайна к Qase TMS.
 
-### Foundation
+### Test List Columns
 
-- [ ] **FOUND-01**: Tailwind CSS v4 установлен и настроен с Vite plugin
-- [ ] **FOUND-02**: shadcn/ui CLI инициализирован с path aliases
-- [ ] **FOUND-03**: Dark theme настроен через Tailwind CSS variables
-- [ ] **FOUND-04**: MUI и Emotion полностью удалены из проекта
-- [ ] **FOUND-05**: lucide-react заменяет @mui/icons-material
+- [ ] **LIST-01**: User sees test ID column with gear icon prefix
+- [ ] **LIST-02**: User sees STATUS column with colored badge (Passed/Failed/Skipped/Broken)
+- [ ] **LIST-03**: User sees TITLE column with test name
+- [ ] **LIST-04**: User sees DURATION column with clock icon and time
+- [ ] **LIST-05**: User sees column headers (ID, STATUS, TITLE, DURATION) in suite rows
 
-### Layout
+### Progress Bars
 
-- [ ] **LAYOUT-01**: Tab-based navigation заменяет hamburger menu (Test cases, Overview, Failure Clusters, Gallery, Comparison)
-- [ ] **LAYOUT-02**: Right sidebar отображает completion rate ring и run metadata (всегда видимый)
-- [ ] **LAYOUT-03**: Test details открываются в Sheet drawer справа (вместо modal)
-- [ ] **LAYOUT-04**: Nested tabs внутри drawer (Execution, Info, Run History, Retries)
-- [ ] **LAYOUT-05**: Top bar содержит заголовок run и action buttons
+- [ ] **PROG-01**: User sees thin horizontal progress bar on suite rows
+- [ ] **PROG-02**: Progress bar shows green segment for passed tests
+- [ ] **PROG-03**: Progress bar shows red segment for failed tests
+- [ ] **PROG-04**: Duration displays left of progress bar with clock icon
 
-### Data Display
+### Sidebar
 
-- [ ] **DATA-01**: Test list отображается как Data Table (TanStack) с колонками ID, Status, Title, Duration
-- [ ] **DATA-02**: Table поддерживает сортировку по всем колонкам
-- [ ] **DATA-03**: Status отображается через Badge компонент с цветовыми вариантами
-- [ ] **DATA-04**: Suite hierarchy отображается как expandable rows с Progress bar
-- [ ] **DATA-05**: Progress bar показывает pass/fail сегменты (multi-color)
-- [ ] **DATA-06**: Completion rate ring в sidebar показывает общий pass rate (Radial Chart)
-- [ ] **DATA-07**: Loading skeletons отображаются при загрузке данных
+- [ ] **SIDE-01**: User sees "Status" field with icon (Passed/Failed)
+- [ ] **SIDE-02**: User sees "Started at" field with calendar icon and datetime
+- [ ] **SIDE-03**: User sees "Total Time" field with clock icon
+- [ ] **SIDE-04**: User sees "Finished at" field with calendar icon and datetime
+- [ ] **SIDE-05**: User sees larger completion ring with percentage and "X of Y" text
 
-### Interaction
+### Timeline View
 
-- [ ] **INT-01**: Command palette (⌘K) для поиска тестов с fuzzy matching
-- [ ] **INT-02**: Row actions dropdown для каждого теста (view details, view history)
-- [ ] **INT-03**: Suite collapse/expand с сохранением состояния
+- [ ] **TIME-01**: User can access Timeline tab in navigation
+- [ ] **TIME-02**: Timeline shows test execution over time (visualization TBD)
 
-### Migration
+## Future Requirements
 
-- [ ] **MIG-01**: Все существующие views мигрированы на shadcn/ui компоненты
-- [ ] **MIG-02**: Virtual scrolling сохранён для больших test lists (react-window)
-- [ ] **MIG-03**: Recharts интегрирован с Tailwind темой
-- [ ] **MIG-04**: Static HTML export продолжает работать с file:// protocol
+Deferred to future releases.
 
-## v1.4 Requirements (Completed)
+### Mobile & Scale
 
-All v1.4 Layout Simplification requirements completed 2026-02-11.
-
-### Navigation
-- [x] **NAV-01** through **NAV-03**: Hamburger menu navigation — Phase 25
-
-### Status Bar
-- [x] **STAT-01** through **STAT-03**: Pass rate donut and run info in top bar — Phase 26
-
-### Test Details
-- [x] **DET-01** through **DET-03**: Modal test details — Phase 27
-
-### Layout
-- [x] **LAY-01** through **LAY-03**: Sidebar removal, filters in test list — Phase 28
-
-### Cleanup
-- [x] **CLN-01**, **CLN-02**: Statistics consolidation — Phase 29
-
-## Future Requirements (v1.6+)
-
-Deferred to future release. Tracked but not in current roadmap.
+- **MOB-01**: Mobile responsive layout
+- **SCALE-01**: Enterprise scale (2000+ tests)
 
 ### Enhanced Interaction
 
 - **INT-04**: Column visibility toggle (show/hide columns)
 - **INT-05**: Context menu на right-click для тестов
 - **INT-06**: Keyboard shortcuts для навигации
-- **INT-07**: Sticky table headers при скролле
-
-### Polish
-
-- **POLISH-01**: Empty states с illustrations
-- **POLISH-02**: ScrollArea для consistent scrollbars
-- **POLISH-03**: Collapsible filters panel
-
-### Scale
-
-- **SCALE-01**: Enterprise scale (2000+ tests)
-- **MOB-01**: Mobile responsive layout
 
 ## Out of Scope
 
@@ -93,13 +56,10 @@ Explicitly excluded. Documented to prevent scope creep.
 
 | Feature | Reason |
 |---------|--------|
-| Incremental MUI→shadcn migration | Research показал — полная замена необходима (CSS conflicts) |
-| Real-time filtering | Performance issues с 1000+ тестами, используем debounced search |
-| Infinite scroll | Конфликтует с virtual scrolling, users теряют позицию |
-| Inline editing | Report read-only, не применимо |
-| Drag-and-drop reordering | Test order = execution order |
-| Mobile responsive | Deferred to v1.6+ |
-| AI-анализ ошибок | Out of scope |
+| Checkboxes + bulk actions | Not prioritized for v1.6, focus on visual style |
+| MEMBER column | Qase Report Format doesn't have user assignment data |
+| AI error analysis | Requires external API integration |
+| Real-time reporting | Low priority, complex implementation |
 
 ## Traceability
 
@@ -107,45 +67,28 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 30 | Pending |
-| FOUND-02 | Phase 30 | Pending |
-| FOUND-03 | Phase 30 | Pending |
-| FOUND-04 | Phase 30 | Pending |
-| FOUND-05 | Phase 30 | Pending |
-| LAYOUT-01 | Phase 32 | Pending |
-| LAYOUT-02 | Phase 32 | Pending |
-| LAYOUT-03 | Phase 33 | Pending |
-| LAYOUT-04 | Phase 33 | Pending |
-| LAYOUT-05 | Phase 32 | Pending |
-| DATA-01 | Phase 34 | Pending |
-| DATA-02 | Phase 34 | Pending |
-| DATA-03 | Phase 31 | Pending |
-| DATA-04 | Phase 35 | Pending |
-| DATA-05 | Phase 35 | Pending |
-| DATA-06 | Phase 36 | Pending |
-| DATA-07 | Phase 31 | Pending |
-| INT-01 | Phase 34 | Pending |
-| INT-02 | Phase 34 | Pending |
-| INT-03 | Phase 35 | Pending |
-| MIG-01 | Phase 36 | Pending |
-| MIG-02 | Phase 34 | Pending |
-| MIG-03 | Phase 36 | Pending |
-| MIG-04 | Phase 36 | Pending |
+| LIST-01 | Phase 37 | ✓ Done |
+| LIST-02 | Phase 37 | ✓ Done |
+| LIST-03 | Phase 37 | ✓ Done |
+| LIST-04 | Phase 37 | ✓ Done |
+| LIST-05 | Phase 37 | ✓ Done |
+| PROG-01 | Phase 38 | Pending |
+| PROG-02 | Phase 38 | Pending |
+| PROG-03 | Phase 38 | Pending |
+| PROG-04 | Phase 38 | Pending |
+| SIDE-01 | Phase 39 | Pending |
+| SIDE-02 | Phase 39 | Pending |
+| SIDE-03 | Phase 39 | Pending |
+| SIDE-04 | Phase 39 | Pending |
+| SIDE-05 | Phase 39 | Pending |
+| TIME-01 | Phase 40 | Pending |
+| TIME-02 | Phase 40 | Pending |
 
 **Coverage:**
-- v1.5 requirements: 24 total
-- Mapped to phases: 24 (100% ✓)
-- Unmapped: 0
-
-**Phase coverage:**
-- Phase 30 (Foundation Setup): 5 requirements
-- Phase 31 (Core UI Components): 2 requirements
-- Phase 32 (Layout Restructure): 3 requirements
-- Phase 33 (Test Details Drawer): 2 requirements
-- Phase 34 (TanStack Table Migration): 5 requirements
-- Phase 35 (Suite Hierarchy & Progress): 3 requirements
-- Phase 36 (Views Migration & Polish): 4 requirements
+- v1.6 requirements: 16 total
+- Mapped to phases: 16
+- Unmapped: 0 (100% coverage)
 
 ---
-*Requirements defined: 2026-02-11*
-*Last updated: 2026-02-11 after roadmap creation*
+*Requirements defined: 2026-02-12*
+*Last updated: 2026-02-12 after roadmap creation*

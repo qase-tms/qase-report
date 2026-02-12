@@ -507,7 +507,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 37-01-PLAN.md — Restructure columns to ID/STATUS/TITLE/DURATION with icons and badges
+- [x] 37-01-PLAN.md — Restructure columns to ID/STATUS/TITLE/DURATION with icons and badges
 
 #### Phase 38: Progress Bar Redesign
 
@@ -577,10 +577,10 @@ Plans:
 | 34. TanStack Table | v1.5 | 4/4 | Complete | 2026-02-11 |
 | 35. Suite Hierarchy | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 36. Views & Polish | v1.5 | 3/3 | Complete | 2026-02-11 |
-| 37. Column Redesign | v1.6 | 0/1 | Planned | - |
+| 37. Column Redesign | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 38. Progress Bars | v1.6 | 0/? | Not started | - |
 | 39. Sidebar Enhancement | v1.6 | 0/? | Not started | - |
 | 40. Timeline View | v1.6 | 0/? | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
-**Total v1.6:** 0/? plans complete (0%)
+**Total v1.6:** 1/? plans complete

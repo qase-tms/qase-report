@@ -2,19 +2,19 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-02-11)
+See: .planning/PROJECT.md (updated 2026-02-12)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 35 - Suite Hierarchy & Progress (v1.5 Qase TMS Style)
+**Current focus:** Phase 38 - Progress Bar Redesign
 
 ## Current Position
 
-Phase: 36 of 36 (Views Migration Polish)
-Plan: 4 of 6 in current phase
-Status: In progress
-Last activity: 2026-02-11 — Completed 36-03 (Static HTML Export Verification)
+Phase: 38 of 40 (Progress Bar Redesign)
+Plan: Ready to plan
+Status: Ready to plan
+Last activity: 2026-02-12 — Phase 37 complete
 
-Progress: [████████████████████████████████████] 100% (64/69 total plans)
+Progress: [█████████████████████░] 92% (37 of 40 phases complete)
 
 ## Performance Metrics
 
@@ -27,7 +27,8 @@ Progress: [███████████████████████
 | v1.2 Design Refresh | 13-17 | 9 | ~1 day |
 | v1.3 Design Overhaul | 18-24 | 14 | ~2 days |
 | v1.4 Layout Simplification | 25-29 | 5 | ~2 min |
-| v1.5 Qase TMS Style | 30-36 | 19/24 | In progress |
+| v1.5 Qase TMS Style | 30-36 | 23/23 | Complete |
+| v1.6 Qase TMS Design Polish | 37-40 | 1/? | In progress |
 
 **Recent completions:**
 
@@ -59,12 +60,20 @@ Progress: [███████████████████████
 | 36 | 01 | ~2.3 min | 2 | 4 | 2026-02-11 |
 | Phase 36 P02 | 117 | 2 tasks | 7 files |
 | Phase 36 P03 | 2 | 2 tasks | 0 files |
+| Phase 37 P01 | 183 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
 ### Decisions
 
 Key decisions preserved for future reference:
+
+**v1.6 milestone roadmap:**
+- 4 phases covering all 16 requirements
+- Phase 37: Test list column redesign (LIST-01 to LIST-05)
+- Phase 38: Progress bar redesign (PROG-01 to PROG-04)
+- Phase 39: Sidebar enhancement (SIDE-01 to SIDE-05)
+- Phase 40: Timeline view (TIME-01, TIME-02)
 
 **v1.5 migration strategy:**
 - Complete MUI to shadcn/ui migration (no incremental coexistence) to avoid CSS conflicts
@@ -206,20 +215,12 @@ Key decisions preserved for future reference:
 - FailureClusters skeleton displays title + 3 cluster placeholders matching typical data
 - Comparison skeleton uses 4 stacked sections matching UI hierarchy
 
-**Previous milestones:**
-- MobX computed properties for reactive trend data caching
-- react-window virtual scrolling (~6KB)
-- Dark theme by default (Playwright Smart Reporter inspiration)
-- Hamburger menu navigation (v1.4)
-- Modal test details (v1.4, will convert to Sheet drawer in v1.5)
-- [Phase ?]: Fixed automated conversion bugs in TestListItem and TestDetails components from 30-04 refactor
-- [Phase ?]: Uninstalled @mui/icons-material package after verifying zero imports remain
-- [Phase 31]: Dark theme color mapping: Used dark: modifier for all variants to ensure proper colors in both themes
-- [Phase 31]: StatusBadge not an observer: Component receives primitive status prop, parent should be observer
-- [Phase 31]: CVA variant extension: Extended existing Badge variants rather than creating separate component
-- [Phase 34-01]: TanStack Virtual instead of react-window for more responsive performance and active maintenance
-- [Phase 34-04]: Command palette with fuzzy search using rankItem from @tanstack/match-sorter-utils
-- [Phase 36-03]: Static HTML export with file:// protocol verified working after Tailwind v4 + Vite 5 migration
+**Phase 37-01 (Test List Column Redesign):**
+- Four-column test list design: ID (gear icon), STATUS (Badge), TITLE, DURATION (clock icon)
+- Suite rows display uppercase header labels instead of values for visual distinction
+- Replaced getStatusIcon() utility with Badge component for consistency across entire app
+- Column sizes: ID (150px), STATUS (100px), TITLE (flexible), DURATION (120px)
+- Removed Progress and Actions columns (deferred to Phase 38 and future phases)
 
 ### Pending Todos
 
@@ -227,21 +228,11 @@ None.
 
 ### Blockers/Concerns
 
-**v1.5 migration risks:**
-- CSS injection order conflicts if MUI not fully removed before shadcn components added
-- TanStack Table complexity (3-5 days estimated) may require research phase
-- Virtual scrolling integration with TanStack Table needs testing
-- Recharts dark mode integration requires explicit theme colors
-- Static HTML export may need inline CSS adjustments
-
-**Deferred to v1.6+:**
-- Enterprise scale 2000+ tests (SCALE-01)
-- Mobile responsive layout (MOB-01)
+None yet.
 
 ## Session Continuity
 
-Last session: 2026-02-11T20:40:37Z
-Stopped at: Completed 36-01-PLAN.md
+Last session: 2026-02-12
+Stopped at: Phase 37 complete, ready for Phase 38
 Resume file: None
-Next action: Continue to 36-02-PLAN.md (/gsd:execute-phase 36)
-Next action: Continue with Phase 36 remaining plans
+Next action: Plan Phase 38 using /gsd:plan-phase 38
