@@ -69,27 +69,25 @@ const formatDuration = (ms: number): string => {
 
 /**
  * Column definitions for the test results table with suite hierarchy support.
- * Uses TreeNode type to handle both suite and test rows.
  */
 export const createColumns = (
   onSelectTest: (id: string) => void
 ): ColumnDef<TreeNode>[] => [
   {
-    id: 'id',
-    header: 'ID',
+    id: 'name',
+    header: 'Name',
     cell: ({ row }) => {
       const canExpand = row.getCanExpand()
       const isExpanded = row.getIsExpanded()
       const isSuite = row.original.type === 'suite'
 
       if (isSuite) {
-        // Suite row: expand + folder + title (compact, single line)
+        // Suite row: expand + folder + title
         return (
           <div
             className="flex items-center"
             style={{ paddingLeft: `${row.depth * 1.5}rem` }}
           >
-            {/* Expand button */}
             {canExpand ? (
               <button
                 onClick={(e) => {
@@ -107,109 +105,76 @@ export const createColumns = (
             ) : (
               <span className="mr-1 w-5" />
             )}
-
-            {/* Folder icon for suite */}
             <Folder className="h-4 w-4 mr-2 text-muted-foreground" />
-
-            {/* Suite title */}
             <span className="font-medium">{row.original.suiteTitle}</span>
           </div>
         )
       }
 
-      // Test row: empty (just indentation spacer)
-      return (
-        <div style={{ paddingLeft: `${row.depth * 1.5}rem` }}>
-          <span className="inline-block w-5" />
-        </div>
-      )
-    },
-    size: 150,
-  },
-  {
-    accessorKey: 'execution.status',
-    header: 'Status',
-    cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
-
-      // Suite rows show empty content
-      if (isSuite) {
-        return null
-      }
-
-      // Test status badge
+      // Test row: indentation + status badge + title
       const status = row.original.testData?.execution.status
-      if (!status) return null
-
-      return <Badge variant={status} className="capitalize">{status}</Badge>
-    },
-    size: 100,
-  },
-  {
-    id: 'title',
-    header: 'Title',
-    cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
-
-      // Suite rows show empty content (title is in ID column)
-      if (isSuite) {
-        return null
-      }
-
-      return <span>{row.original.testData?.title}</span>
-    },
-  },
-  {
-    accessorKey: 'execution.duration',
-    header: 'Duration',
-    cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
-
-      // Suite rows show duration
-      if (isSuite) {
-        const duration = row.original.totalDuration || 0
-        return (
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <Clock className="h-3 w-3" />
-            <span className="text-xs">{formatDuration(duration)}</span>
-          </div>
-        )
-      }
-
-      // Test duration with clock icon
-      const duration = row.original.testData?.execution.duration
-      if (!duration) return null
-
       return (
-        <div className="flex items-center gap-1">
-          <Clock className="h-3 w-3 text-muted-foreground" />
-          <span className="text-xs">{formatDuration(duration)}</span>
+        <div
+          className="flex items-center gap-2"
+          style={{ paddingLeft: `${row.depth * 1.5 + 1.5}rem` }}
+        >
+          {status && <Badge variant={status} className="capitalize">{status}</Badge>}
+          <span>{row.original.testData?.title}</span>
         </div>
       )
+    },
+  },
+  {
+    id: 'testops_id',
+    header: 'ID',
+    cell: ({ row }) => {
+      const isSuite = row.original.type === 'suite'
+      if (isSuite) return null
+
+      const testopsId = row.original.testData?.testops_ids?.[0]
+      if (!testopsId) return null
+
+      return <span className="text-xs text-muted-foreground">{testopsId}</span>
     },
     size: 80,
   },
   {
-    id: 'progress',
-    header: '',
+    id: 'duration',
+    header: 'Duration',
     cell: ({ row }) => {
       const isSuite = row.original.type === 'suite'
 
-      // Only suites show progress bar
-      if (!isSuite) {
-        return null
+      if (isSuite) {
+        // Suite: duration + progress bar
+        const duration = row.original.totalDuration || 0
+        return (
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Clock className="h-3 w-3" />
+              <span className="text-xs">{formatDuration(duration)}</span>
+            </div>
+            <MultiSegmentProgress
+              segments={buildProgressSegments(row.original)}
+              duration={duration}
+              thin
+              showDurationInTooltip={false}
+              className="w-24"
+            />
+          </div>
+        )
       }
 
+      // Test: just duration
+      const duration = row.original.testData?.execution.duration
+      if (!duration) return null
+
       return (
-        <MultiSegmentProgress
-          segments={buildProgressSegments(row.original)}
-          duration={row.original.totalDuration || 0}
-          thin
-          showDurationInTooltip={false}
-          className="w-32"
-        />
+        <div className="flex items-center gap-1 text-muted-foreground">
+          <Clock className="h-3 w-3" />
+          <span className="text-xs">{formatDuration(duration)}</span>
+        </div>
       )
     },
-    size: 140,
+    size: 180,
   },
 ]
