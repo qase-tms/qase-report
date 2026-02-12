@@ -20,7 +20,7 @@ export class RootStore {
   selectedTestId: string | null = null
 
   // Navigation state
-  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' = 'dashboard'
+  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' = 'dashboard'
 
   constructor() {
     this.reportStore = new ReportStore(this)
@@ -33,9 +33,9 @@ export class RootStore {
   }
 
   /**
-   * Sets the active view (dashboard, tests, analytics, failure-clusters, gallery, or comparison).
+   * Sets the active view (dashboard, tests, analytics, failure-clusters, gallery, comparison, or timeline).
    */
-  setActiveView = (view: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison') => {
+  setActiveView = (view: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline') => {
     this.activeView = view
   }
 

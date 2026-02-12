@@ -7,6 +7,7 @@ import {
   AlertCircle,
   Images,
   ArrowLeftRight,
+  Clock,
 } from 'lucide-react'
 
 export const TabNavigation = observer(() => {
@@ -22,6 +23,7 @@ export const TabNavigation = observer(() => {
     },
     { value: 'gallery', label: 'Gallery', icon: Images },
     { value: 'comparison', label: 'Comparison', icon: ArrowLeftRight },
+    { value: 'timeline', label: 'Timeline', icon: Clock },
   ] as const
 
   return (
@@ -36,6 +38,7 @@ export const TabNavigation = observer(() => {
             | 'failure-clusters'
             | 'gallery'
             | 'comparison'
+            | 'timeline'
         )
       }
       className="w-full"

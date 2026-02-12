@@ -9,6 +9,7 @@ import { AttachmentViewer } from '../../components/AttachmentViewer'
 import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
+import { Timeline } from '../../components/Timeline'
 import { TestDetailsDrawer } from '../../components/TestDetailsDrawer'
 import { TabNavigation } from '../../components/TabNavigation'
 import { CommandPalette } from '../../components/CommandPalette'
@@ -48,6 +49,10 @@ export const MainLayout = observer(() => {
 
     if (activeView === 'comparison') {
       return <Comparison />
+    }
+
+    if (activeView === 'timeline') {
+      return <Timeline />
     }
 
     return null
