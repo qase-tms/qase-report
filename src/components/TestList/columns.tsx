@@ -1,5 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table'
-import { ChevronDown, ChevronRight, Settings, Clock, Folder } from 'lucide-react'
+import { ChevronDown, ChevronRight, Clock, Folder } from 'lucide-react'
 import type { TreeNode } from './buildSuiteTree'
 import { Badge } from '../ui/badge'
 import { MultiSegmentProgress, ProgressSegment } from './MultiSegmentProgress'
@@ -117,7 +117,7 @@ export const createColumns = (
         )
       }
 
-      // Test row: gear icon + testops ID (only if exists)
+      // Test row: show testops ID only (no icon), or empty
       const testopsId = row.original.testData?.testops_ids?.[0]
       return (
         <div
@@ -126,10 +126,7 @@ export const createColumns = (
         >
           <span className="mr-1 w-5" />
           {testopsId && (
-            <>
-              <Settings className="h-4 w-4 mr-2 text-muted-foreground" />
-              <span>{testopsId}</span>
-            </>
+            <span className="text-xs text-muted-foreground">{testopsId}</span>
           )}
         </div>
       )
