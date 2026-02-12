@@ -45,9 +45,11 @@ export const Timeline = observer(() => {
 
   const tests = Array.from(testResultsStore.testResults.values())
 
-  // Filter tests that have timing data
+  // Filter tests that have timing data (check for number type, not falsy)
   const testsWithTiming = tests.filter(
-    (test) => test.execution.start_time && test.execution.end_time
+    (test) =>
+      typeof test.execution.start_time === 'number' &&
+      typeof test.execution.end_time === 'number'
   )
 
   // Empty state: No tests with timing data
