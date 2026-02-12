@@ -1,3 +1,5 @@
+import type { QaseHistory } from '../schemas/QaseHistory.schema'
+
 /**
  * API response type for report data.
  * Matches the structure returned by /api/report endpoint.
@@ -77,4 +79,23 @@ export function isServerMode(): boolean {
   // Check for URL parameter (useful for testing)
   const params = new URLSearchParams(window.location.search)
   return params.get('server') === 'true'
+}
+
+/**
+ * Fetches history data from the server API.
+ * Returns null if history is empty or unavailable.
+ */
+export async function fetchHistory(): Promise<QaseHistory | null> {
+  const response = await fetch('/api/history')
+  if (!response.ok) {
+    throw new Error(`Failed to fetch history: ${response.status}`)
+  }
+  const data = await response.json()
+
+  // Return null if history is empty (no runs)
+  if (!data.runs || data.runs.length === 0) {
+    return null
+  }
+
+  return data as QaseHistory
 }

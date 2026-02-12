@@ -7,7 +7,7 @@ import { AttachmentViewerStore } from './AttachmentViewerStore'
 import { HistoryStore } from './HistoryStore'
 import { AnalyticsStore } from './AnalyticsStore'
 import { FileLoaderService } from '../services/FileLoaderService'
-import { ApiDataService } from '../services/ApiDataService'
+import { ApiDataService, fetchHistory } from '../services/ApiDataService'
 import { QaseRunSchema } from '../schemas/QaseRun.schema'
 import { TestResultSchema } from '../schemas/QaseTestResult.schema'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
@@ -181,6 +181,20 @@ export class RootStore {
         // Store attachments base path for API URLs
         this.attachmentsBasePath = response.attachmentsPath
       })
+
+      // Load history if available
+      try {
+        const historyData = await fetchHistory()
+        if (historyData) {
+          runInAction(() => {
+            this.historyStore.history = historyData
+            this.historyStore.isHistoryLoaded = true
+          })
+        }
+      } catch (historyError) {
+        // History loading is optional, just log warning
+        console.warn('Could not load history:', historyError)
+      }
     } catch (error) {
       runInAction(() => {
         this.apiError =
