@@ -88,24 +88,22 @@ export class ReportStore {
   }
 
   /**
-   * Number of broken/blocked tests.
-   * Supports both old format (broken) and new format (blocked).
+   * Number of blocked tests.
    */
-  get brokenCount(): number {
+  get blockedCount(): number {
     if (!this.runData) return 0
-    // Support both "broken" (old format) and "blocked" (new format)
-    return this.runData.stats.broken ?? this.runData.stats.blocked ?? 0
+    return this.runData.stats.blocked ?? 0
   }
 
   /**
-   * Broken rate percentage (0-100).
+   * Blocked rate percentage (0-100).
    * Returns 0 if no run data or no tests.
    */
-  get brokenRate(): number {
+  get blockedRate(): number {
     if (!this.runData || this.runData.stats.total === 0) {
       return 0
     }
-    return (this.brokenCount / this.runData.stats.total) * 100
+    return (this.blockedCount / this.runData.stats.total) * 100
   }
 
   /**

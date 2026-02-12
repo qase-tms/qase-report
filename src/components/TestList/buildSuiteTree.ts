@@ -33,6 +33,15 @@ export type TreeNode = {
   /** Number of broken tests */
   brokenCount?: number
 
+  /** Number of blocked tests */
+  blockedCount?: number
+
+  /** Number of invalid tests */
+  invalidCount?: number
+
+  /** Number of muted tests */
+  mutedCount?: number
+
   /** Sum of all test durations in milliseconds */
   totalDuration?: number
 
@@ -79,6 +88,9 @@ export function buildSuiteTree(tests: QaseTestResult[]): TreeNode[] {
         failedCount: 0,
         skippedCount: 0,
         brokenCount: 0,
+        blockedCount: 0,
+        invalidCount: 0,
+        mutedCount: 0,
         totalDuration: 0,
         subRows: [],
       }
@@ -92,6 +104,9 @@ export function buildSuiteTree(tests: QaseTestResult[]): TreeNode[] {
     else if (status === 'failed') suiteNode.failedCount!++
     else if (status === 'skipped') suiteNode.skippedCount!++
     else if (status === 'broken') suiteNode.brokenCount!++
+    else if (status === 'blocked') suiteNode.blockedCount!++
+    else if (status === 'invalid') suiteNode.invalidCount!++
+    else if (status === 'muted') suiteNode.mutedCount!++
 
     // Add test duration to suite total
     suiteNode.totalDuration! += test.execution.duration

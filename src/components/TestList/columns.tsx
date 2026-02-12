@@ -15,6 +15,9 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
   const failed = node.failedCount || 0
   const skipped = node.skippedCount || 0
   const broken = node.brokenCount || 0
+  const blocked = node.blockedCount || 0
+  const invalid = node.invalidCount || 0
+  const muted = node.mutedCount || 0
 
   const segments: ProgressSegment[] = []
   let cumulative = 0
@@ -37,22 +40,49 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
       count: failed,
     })
   }
-  if (skipped > 0) {
-    cumulative += (skipped / total) * 100
-    segments.push({
-      value: cumulative,
-      color: 'bg-yellow-500',
-      label: `Skipped: ${skipped}`,
-      count: skipped,
-    })
-  }
   if (broken > 0) {
     cumulative += (broken / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-gray-500',
+      color: 'bg-yellow-500',
       label: `Broken: ${broken}`,
       count: broken,
+    })
+  }
+  if (skipped > 0) {
+    cumulative += (skipped / total) * 100
+    segments.push({
+      value: cumulative,
+      color: 'bg-gray-500',
+      label: `Skipped: ${skipped}`,
+      count: skipped,
+    })
+  }
+  if (blocked > 0) {
+    cumulative += (blocked / total) * 100
+    segments.push({
+      value: cumulative,
+      color: 'bg-blue-500',
+      label: `Blocked: ${blocked}`,
+      count: blocked,
+    })
+  }
+  if (invalid > 0) {
+    cumulative += (invalid / total) * 100
+    segments.push({
+      value: cumulative,
+      color: 'bg-orange-500',
+      label: `Invalid: ${invalid}`,
+      count: invalid,
+    })
+  }
+  if (muted > 0) {
+    cumulative += (muted / total) * 100
+    segments.push({
+      value: cumulative,
+      color: 'bg-purple-500',
+      label: `Muted: ${muted}`,
+      count: muted,
     })
   }
 

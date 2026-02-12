@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
-import { StabilityGradeFilter } from './StabilityGradeFilter'
 import { cn } from '../../lib/utils'
 
 const statuses = [
@@ -8,6 +7,9 @@ const statuses = [
   { value: 'failed', label: 'Failed', activeClass: 'bg-red-500 text-white border-red-500' },
   { value: 'broken', label: 'Broken', activeClass: 'bg-yellow-500 text-white border-yellow-500' },
   { value: 'skipped', label: 'Skipped', activeClass: 'bg-muted text-muted-foreground border-muted' },
+  { value: 'blocked', label: 'Blocked', activeClass: 'bg-blue-500 text-white border-blue-500' },
+  { value: 'invalid', label: 'Invalid', activeClass: 'bg-orange-500 text-white border-orange-500' },
+  { value: 'muted', label: 'Muted', activeClass: 'bg-purple-500 text-white border-purple-500' },
 ]
 
 export const TestListFilters = observer(() => {
@@ -31,9 +33,6 @@ export const TestListFilters = observer(() => {
           {status.label}
         </button>
       ))}
-
-      {/* Grade filters */}
-      <StabilityGradeFilter />
     </div>
   )
 })

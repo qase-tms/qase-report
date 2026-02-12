@@ -1,10 +1,17 @@
-import { useState, useEffect } from 'react'
-import { X } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Highlight, themes } from 'prism-react-renderer'
 import type { Attachment } from '../../schemas/Attachment.schema'
 import { DownloadButton } from './DownloadButton'
 import { detectLanguage } from '../../utils/detectLanguage'
 import { useRootStore } from '../../store'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 
 interface TextViewerProps {
   attachment: Attachment
@@ -15,6 +22,7 @@ interface TextViewerProps {
 /**
  * Text viewer with syntax highlighting.
  * Uses prism-react-renderer for lightweight React-optimized highlighting.
+ * Rendered via portal with high z-index to appear above Sheet.
  */
 export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
   const { attachmentsStore } = useRootStore()
@@ -49,45 +57,20 @@ export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
     setContent('No content available')
   }, [attachment, attachmentsStore])
 
-  // Handle escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && open) {
-        onClose()
-      }
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [open, onClose])
-
   const language = detectLanguage(attachment.file_name)
 
-  if (!open) return null
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/50"
-        onClick={onClose}
-      />
-
-      {/* Dialog */}
-      <div className="relative z-10 w-full max-w-4xl bg-card rounded-lg border shadow-lg max-h-[90vh] flex flex-col">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold">{attachment.file_name}</h2>
-          <button
-            onClick={onClose}
-            className="p-1 rounded hover:bg-accent transition-colors"
-            aria-label="Close"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
+    <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
+      <DialogContent
+        className="!max-w-6xl !w-[90vw] max-h-[90vh] flex flex-col z-[100]"
+        overlayClassName="z-[100]"
+      >
+        <DialogHeader>
+          <DialogTitle>{attachment.file_name}</DialogTitle>
+        </DialogHeader>
 
         {/* Content */}
-        <div className="flex-1 overflow-auto p-4">
+        <div className="flex-1 overflow-auto min-h-0">
           <Highlight theme={themes.github} code={content} language={language}>
             {({ style, tokens, getLineProps, getTokenProps }) => (
               <pre
@@ -114,16 +97,13 @@ export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-2 p-4 border-t">
+        <DialogFooter>
           <DownloadButton attachment={attachment} />
-          <button
-            onClick={onClose}
-            className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors"
-          >
+          <Button variant="outline" onClick={onClose}>
             Close
-          </button>
-        </div>
-      </div>
-    </div>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }

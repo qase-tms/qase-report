@@ -199,9 +199,9 @@ export class HistoryStore {
         passed: run.stats.passed,
         failed: run.stats.failed,
         skipped: run.stats.skipped,
-        broken: run.stats.broken,
         blocked: run.stats.blocked,
         invalid: run.stats.invalid,
+        muted: run.stats.muted,
       },
     }
 

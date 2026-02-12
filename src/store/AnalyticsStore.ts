@@ -31,7 +31,7 @@ export interface TrendDataPoint {
   passed: number
   failed: number
   skipped: number
-  broken: number
+  blocked: number
   total: number
   passRate: number // percentage 0-100
   duration: number // milliseconds
@@ -669,7 +669,7 @@ export class AnalyticsStore {
    * @private
    */
   private mapRunToTrendPoint(run: HistoricalRun): TrendDataPoint {
-    const { passed, failed, skipped, broken, total } = run.stats
+    const { passed, failed, skipped, blocked, total } = run.stats
 
     // Calculate pass rate percentage (0-100)
     // Handle edge case: zero total (passRate = 0)
@@ -685,7 +685,7 @@ export class AnalyticsStore {
       passed,
       failed,
       skipped,
-      broken: broken ?? 0,
+      blocked: blocked ?? 0,
       total,
       passRate,
       duration: run.duration,
@@ -837,13 +837,14 @@ export class AnalyticsStore {
     const sortedRuns = [...runs].sort((a, b) => a.start_time - b.start_time)
 
     // Count status transitions (pass<->fail)
-    // Skip skipped/broken in transition counting (they don't indicate flakiness)
+    // Only count passed/failed in transition counting (other statuses don't indicate flakiness)
     let statusChanges = 0
     let previousStatus: 'passed' | 'failed' | null = null
 
     for (const run of sortedRuns) {
-      if (run.status === 'skipped' || run.status === 'broken') {
-        continue // Don't count skipped/broken in transitions
+      // Only consider passed and failed for flakiness detection
+      if (run.status !== 'passed' && run.status !== 'failed') {
+        continue
       }
 
       if (previousStatus !== null && previousStatus !== run.status) {

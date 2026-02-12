@@ -124,6 +124,15 @@ export const Timeline = observer(() => {
               <Badge variant="outline" className="bg-gray-500/10 text-gray-500 border-gray-500/20 text-xs">
                 Skipped
               </Badge>
+              <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 text-xs">
+                Blocked
+              </Badge>
+              <Badge variant="outline" className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs">
+                Invalid
+              </Badge>
+              <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20 text-xs">
+                Muted
+              </Badge>
             </div>
             {/* Zoom controls */}
             <div className="flex items-center gap-1">

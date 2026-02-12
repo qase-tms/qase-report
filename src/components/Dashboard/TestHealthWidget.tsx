@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import type { StabilityGrade } from '../../types/stability'
+import { HelpTooltip } from './HelpTooltip'
 
 /**
  * Grade configuration for display with colors and labels.
@@ -46,13 +47,17 @@ export const TestHealthWidget = observer(() => {
     .filter(([grade]) => grade !== 'N/A')
     .reduce((sum, [_, count]) => sum + count, 0)
 
+  const helpText =
+    'Grades tests by historical stability: A+ (98%+), A (95%+), B (85%+), C (75%+), D (60%+), F (<60%). Based on pass rate across last 10+ runs.'
+
   // Show message if insufficient test data
   if (testStabilityMap.size === 0 || totalGraded < 3) {
     return (
       <div className="bg-card rounded-lg border shadow-sm p-4 h-full">
-        <h6 className="text-lg font-semibold mb-4">
-          Test Health
-        </h6>
+        <div className="flex items-center justify-between mb-4">
+          <h6 className="text-lg font-semibold">Test Health</h6>
+          <HelpTooltip content={helpText} />
+        </div>
         <p className="text-sm text-muted-foreground">
           Load history data (10+ runs per test) to see test health grades
         </p>
@@ -98,7 +103,10 @@ export const TestHealthWidget = observer(() => {
     <div className="bg-card rounded-lg border shadow-sm p-4 h-full">
       {/* Header with overall health */}
       <div className="flex justify-between items-center mb-4">
-        <h6 className="text-lg font-semibold">Test Health</h6>
+        <div className="flex items-center gap-2">
+          <h6 className="text-lg font-semibold">Test Health</h6>
+          <HelpTooltip content={helpText} />
+        </div>
         <div className="flex items-center gap-2">
           <p className="text-sm text-muted-foreground">
             Overall:

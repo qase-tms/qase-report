@@ -1,6 +1,14 @@
+import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { AlertCircle } from 'lucide-react'
 import { useRootStore } from '../../store'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { HelpTooltip } from './HelpTooltip'
 
 interface AttentionRequiredCardProps {
   /** Callback when test is clicked - receives test ID for navigation */
@@ -22,6 +30,7 @@ interface AttentionRequiredCardProps {
 export const AttentionRequiredCard = observer(
   ({ onTestClick }: AttentionRequiredCardProps) => {
     const { testResultsStore, analyticsStore } = useRootStore()
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
 
     // Get failed tests from current run
     const failedTests = testResultsStore.resultsList.filter(
@@ -37,14 +46,20 @@ export const AttentionRequiredCard = observer(
       isFlaky: test.signature ? flakyTestSignatures.has(test.signature) : false,
     }))
 
+    const helpText =
+      'Shows failed tests from the current run. Tests marked as "Flaky" have inconsistent historical results. Click any test to view details.'
+
     // Empty state
     if (testsNeedingAttention.length === 0) {
       return (
         <div className="bg-card rounded-lg border shadow-sm h-full">
           <div className="p-4">
-            <div className="flex items-center gap-2 mb-4">
-              <AlertCircle className="h-5 w-5 text-green-500" />
-              <h6 className="text-lg font-semibold">Attention Required</h6>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-green-500" />
+                <h6 className="text-lg font-semibold">Attention Required</h6>
+              </div>
+              <HelpTooltip content={helpText} />
             </div>
             <p className="text-sm text-muted-foreground">
               No tests require attention
@@ -60,12 +75,15 @@ export const AttentionRequiredCard = observer(
     return (
       <div className="bg-card rounded-lg border shadow-sm h-full">
         <div className="p-4 pb-0">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-5 w-5 text-destructive" />
-            <h6 className="text-lg font-semibold">Attention Required</h6>
-            <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
-              {testsNeedingAttention.length}
-            </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="h-5 w-5 text-destructive" />
+              <h6 className="text-lg font-semibold">Attention Required</h6>
+              <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+                {testsNeedingAttention.length}
+              </span>
+            </div>
+            <HelpTooltip content={helpText} />
           </div>
         </div>
         <div className="p-4 pt-2">
@@ -95,11 +113,58 @@ export const AttentionRequiredCard = observer(
           </div>
 
           {testsNeedingAttention.length > 5 && (
-            <p className="text-xs text-muted-foreground mt-2">
+            <button
+              onClick={() => setIsDialogOpen(true)}
+              className="text-xs text-muted-foreground mt-2 hover:text-foreground transition-colors"
+            >
               +{testsNeedingAttention.length - 5} more tests
-            </p>
+            </button>
           )}
         </div>
+
+        {/* Dialog with all tests */}
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+          <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-destructive" />
+                Attention Required
+                <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+                  {testsNeedingAttention.length}
+                </span>
+              </DialogTitle>
+            </DialogHeader>
+            <div className="overflow-y-auto flex-1 -mx-6 px-6">
+              <div className="space-y-1">
+                {testsNeedingAttention.map((test) => (
+                  <div key={test.id}>
+                    <button
+                      onClick={() => {
+                        onTestClick(test.id)
+                        setIsDialogOpen(false)
+                      }}
+                      className="w-full p-2 rounded hover:bg-accent text-left transition-colors"
+                    >
+                      <div className="flex items-center gap-2">
+                        <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap flex-1">
+                          {test.title}
+                        </p>
+                        <span className="px-2 py-0.5 rounded-full text-xs bg-destructive text-destructive-foreground shrink-0">
+                          Failed
+                        </span>
+                        {test.isFlaky && (
+                          <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500 text-white shrink-0">
+                            Flaky
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     )
   }

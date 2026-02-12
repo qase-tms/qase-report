@@ -12,9 +12,10 @@ import { cn } from '../../lib/utils'
 interface TestStepProps {
   step: Step
   depth: number
+  stepNumber: string
 }
 
-export const TestStep = observer(({ step, depth }: TestStepProps) => {
+export const TestStep = observer(({ step, depth, stepNumber }: TestStepProps) => {
   const [isExpanded, setIsExpanded] = useState(true)
   const prefersReducedMotion = usePrefersReducedMotion()
   const hasChildren = step.steps && step.steps.length > 0
@@ -43,6 +44,11 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
         ) : (
           <div className="w-6" />
         )}
+
+        {/* Step number */}
+        <span className="text-sm font-medium text-muted-foreground min-w-[2rem]">
+          {stepNumber}
+        </span>
 
         {/* Status badge */}
         <Badge variant={step.execution.status} className="capitalize shrink-0">
@@ -77,8 +83,13 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
 
         {/* Nested steps */}
         {hasChildren &&
-          step.steps.map((childStep: Step) => (
-            <TestStep key={childStep.id} step={childStep} depth={depth + 1} />
+          step.steps.map((childStep: Step, index: number) => (
+            <TestStep
+              key={childStep.id}
+              step={childStep}
+              depth={depth + 1}
+              stepNumber={`${stepNumber}.${index + 1}`}
+            />
           ))}
       </div>
     </div>

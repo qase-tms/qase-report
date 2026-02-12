@@ -4,6 +4,7 @@ import {
   XCircle,
   Calendar,
   Clock,
+  Timer,
   Monitor,
 } from 'lucide-react'
 import { useRootStore } from '../../store'
@@ -47,6 +48,26 @@ export const RunInfoSidebar = observer(() => {
   })
   const formattedDate = dateFormatter.format(new Date(startTime))
   const formattedEndTime = dateFormatter.format(new Date(endTime))
+
+  // Calculate and format elapsed time (wall clock time)
+  const elapsedMs = endTime - startTime
+  const formatElapsed = (ms: number): string => {
+    const seconds = Math.floor(ms / 1000)
+    const minutes = Math.floor(seconds / 60)
+    const hours = Math.floor(minutes / 60)
+
+    if (hours > 0) {
+      const remainingMinutes = minutes % 60
+      const remainingSeconds = seconds % 60
+      return `${hours}h ${remainingMinutes}m ${remainingSeconds}s`
+    }
+    if (minutes > 0) {
+      const remainingSeconds = seconds % 60
+      return `${minutes}m ${remainingSeconds}s`
+    }
+    return `${seconds}s`
+  }
+  const formattedElapsed = formatElapsed(elapsedMs)
 
   // Calculate SVG strokeDasharray for completion ring
   // Circumference = 2 * PI * radius = 2 * PI * 40 = 251.2
@@ -109,12 +130,22 @@ export const RunInfoSidebar = observer(() => {
           <span className="text-muted-foreground">Failed</span>
           <span className="font-medium text-red-500">{stats.failed}</span>
         </div>
-        {stats.skipped > 0 && (
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Skipped</span>
-            <span className="font-medium">{stats.skipped}</span>
-          </div>
-        )}
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Skipped</span>
+          <span className="font-medium text-gray-500">{stats.skipped}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Blocked</span>
+          <span className="font-medium text-blue-500">{stats.blocked ?? 0}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Invalid</span>
+          <span className="font-medium text-orange-500">{stats.invalid ?? 0}</span>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Muted</span>
+          <span className="font-medium text-purple-500">{stats.muted ?? 0}</span>
+        </div>
         {flakyCount > 0 && (
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Flaky</span>
@@ -158,6 +189,15 @@ export const RunInfoSidebar = observer(() => {
           <div className="flex-1">
             <p className="text-xs text-muted-foreground">Finished at</p>
             <p className="text-sm">{formattedEndTime}</p>
+          </div>
+        </div>
+
+        {/* Elapsed Time field */}
+        <div className="flex items-start gap-2">
+          <Timer className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground">Elapsed Time</p>
+            <p className="text-sm">{formattedElapsed}</p>
           </div>
         </div>
 

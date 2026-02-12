@@ -4,7 +4,7 @@ import { z } from 'zod'
  * Enum for test execution status in historical data.
  * Matches TestStatusEnum from QaseTestResult.schema.ts
  */
-const TestStatusEnum = z.enum(['passed', 'failed', 'skipped', 'broken'])
+const TestStatusEnum = z.enum(['passed', 'failed', 'skipped', 'broken', 'blocked', 'invalid', 'muted'])
 
 /**
  * Statistical summary of test run results.
@@ -32,11 +32,6 @@ const HistoricalRunStatsSchema = z.object({
   skipped: z.number(),
 
   /**
-   * Number of broken tests (optional)
-   */
-  broken: z.number().optional(),
-
-  /**
    * Number of blocked tests (optional)
    */
   blocked: z.number().optional(),
@@ -45,6 +40,11 @@ const HistoricalRunStatsSchema = z.object({
    * Number of invalid tests (optional)
    */
   invalid: z.number().optional(),
+
+  /**
+   * Number of muted tests (optional)
+   */
+  muted: z.number().optional(),
 })
 
 /**

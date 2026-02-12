@@ -12,6 +12,7 @@ import {
 } from 'recharts'
 import { useRootStore } from '../../store'
 import type { TrendDataPoint } from '../../store/AnalyticsStore'
+import { HelpTooltip } from './HelpTooltip'
 
 // Get computed RGB color for Recharts (SVG doesn't support CSS vars or oklch)
 const useThemeColor = (cssVar: string, fallback: string) => {
@@ -46,10 +47,10 @@ const useThemeColor = (cssVar: string, fallback: string) => {
 }
 
 /**
- * Custom tooltip component for trend charts.
+ * Custom tooltip component for pass rate trend chart.
  * Displays detailed run information on hover.
  */
-const CustomTooltip = ({ active, payload }: any) => {
+const PassRateTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null
 
   const data: TrendDataPoint = payload[0].payload
@@ -71,13 +72,44 @@ const CustomTooltip = ({ active, payload }: any) => {
           Skipped: {data.skipped}
         </p>
       )}
-      {data.broken > 0 && (
-        <p className="text-sm text-muted-foreground">
-          Broken: {data.broken}
+      {data.blocked > 0 && (
+        <p className="text-sm text-blue-500">
+          Blocked: {data.blocked}
         </p>
       )}
       <p className="text-sm mt-1">
         Duration: {(data.duration / 1000).toFixed(1)}s
+      </p>
+    </div>
+  )
+}
+
+/**
+ * Custom tooltip component for duration trend chart.
+ */
+const DurationTooltip = ({ active, payload }: any) => {
+  if (!active || !payload?.length) return null
+
+  const data: TrendDataPoint = payload[0].payload
+
+  // Format duration nicely
+  const formatDuration = (ms: number): string => {
+    const seconds = Math.floor(ms / 1000)
+    const minutes = Math.floor(seconds / 60)
+    if (minutes > 0) {
+      const remainingSeconds = seconds % 60
+      return `${minutes}m ${remainingSeconds}s`
+    }
+    return `${seconds}s`
+  }
+
+  return (
+    <div className="bg-card rounded-lg border shadow-sm p-3">
+      <p className="text-sm font-bold mb-1">
+        {data.date}
+      </p>
+      <p className="text-sm">
+        Duration: {formatDuration(data.duration)}
       </p>
     </div>
   )
@@ -109,9 +141,10 @@ export const TrendsChart = observer(() => {
       {/* Pass Rate Trend Chart */}
       <div className="bg-card rounded-lg border shadow-sm mb-6">
         <div className="p-4">
-          <h6 className="text-lg font-semibold mb-4">
-            Pass Rate Trend
-          </h6>
+          <div className="flex items-center justify-between mb-4">
+            <h6 className="text-lg font-semibold">Pass Rate Trend</h6>
+            <HelpTooltip content="Shows how test pass rate changes over time. Hover over points to see detailed run statistics including passed, failed, skipped counts." />
+          </div>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart
               data={passRateTrend}
@@ -120,7 +153,7 @@ export const TrendsChart = observer(() => {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis domain={[0, 100]} unit="%" />
-              <Tooltip content={<CustomTooltip />} />
+              <Tooltip content={<PassRateTooltip />} />
               <Legend />
               <Line
                 type="monotone"
@@ -139,9 +172,10 @@ export const TrendsChart = observer(() => {
       {/* Duration Trend Chart */}
       <div className="bg-card rounded-lg border shadow-sm">
         <div className="p-4">
-          <h6 className="text-lg font-semibold mb-4">
-            Duration Trend
-          </h6>
+          <div className="flex items-center justify-between mb-4">
+            <h6 className="text-lg font-semibold">Duration Trend</h6>
+            <HelpTooltip content="Shows how total test execution time changes over time. Helps identify performance regressions or improvements in test suite." />
+          </div>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart
               data={durationTrend}
@@ -152,10 +186,7 @@ export const TrendsChart = observer(() => {
               <YAxis
                 tickFormatter={(value) => `${(value / 1000).toFixed(1)}s`}
               />
-              <Tooltip
-                formatter={(value: number) => `${(value / 1000).toFixed(1)}s`}
-                labelFormatter={(label) => `Date: ${label}`}
-              />
+              <Tooltip content={<DurationTooltip />} />
               <Legend />
               <Line
                 type="monotone"

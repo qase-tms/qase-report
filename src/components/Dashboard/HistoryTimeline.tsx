@@ -2,16 +2,17 @@ import { observer } from 'mobx-react-lite'
 import { CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
 import { useRootStore } from '../../store'
 import type { HistoricalRun } from '../../schemas/QaseHistory.schema'
+import { HelpTooltip } from './HelpTooltip'
 
 /**
  * Determines status color based on run statistics.
- * Failed tests = error (red), skipped/broken = warning (yellow), all passed = success (green)
+ * Failed tests = error (red), skipped/blocked = warning (yellow), all passed = success (green)
  */
 const getRunStatusColor = (
   run: HistoricalRun
 ): string => {
   if (run.stats.failed > 0) return 'text-red-500'
-  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return 'text-yellow-500'
+  if (run.stats.skipped > 0 || (run.stats.blocked ?? 0) > 0) return 'text-yellow-500'
   return 'text-green-500'
 }
 
@@ -21,7 +22,7 @@ const getRunStatusColor = (
 const getRunStatusIcon = (run: HistoricalRun) => {
   const colorClass = getRunStatusColor(run)
   if (run.stats.failed > 0) return <XCircle className={`w-6 h-6 ${colorClass}`} />
-  if (run.stats.skipped > 0 || (run.stats.broken ?? 0) > 0) return <AlertTriangle className={`w-6 h-6 ${colorClass}`} />
+  if (run.stats.skipped > 0 || (run.stats.blocked ?? 0) > 0) return <AlertTriangle className={`w-6 h-6 ${colorClass}`} />
   return <CheckCircle className={`w-6 h-6 ${colorClass}`} />
 }
 
@@ -50,7 +51,10 @@ export const HistoryTimeline = observer(() => {
 
   return (
     <div className="bg-card rounded-lg border shadow-sm p-4">
-      <h6 className="text-lg font-semibold mb-4">Recent Runs</h6>
+      <div className="flex items-center justify-between mb-4">
+        <h6 className="text-lg font-semibold">Recent Runs</h6>
+        <HelpTooltip content="Timeline of recent test runs. Green = all passed, Yellow = has skipped/blocked, Red = has failures. Shows passed/failed/skipped counts and duration." />
+      </div>
 
       {/* Horizontal scrollable container */}
       <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">

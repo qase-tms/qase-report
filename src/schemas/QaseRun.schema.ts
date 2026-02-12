@@ -27,7 +27,6 @@ const RunExecutionSchema = z.object({
 
 /**
  * Statistical summary of test run results.
- * Supports both old format (broken) and new format (blocked, invalid).
  */
 const RunStatsSchema = z.object({
   /**
@@ -51,17 +50,12 @@ const RunStatsSchema = z.object({
   skipped: z.number(),
 
   /**
-   * Number of broken tests (old format)
-   */
-  broken: z.number().optional(),
-
-  /**
-   * Number of blocked tests (new format)
+   * Number of blocked tests
    */
   blocked: z.number().optional(),
 
   /**
-   * Number of invalid tests (new format)
+   * Number of invalid tests
    */
   invalid: z.number().optional(),
 

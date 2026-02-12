@@ -61,6 +61,9 @@ export const ImageViewer = ({
         maxZoomPixelRatio: 3,
         scrollToZoom: true,
       }}
+      styles={{
+        container: { zIndex: 100 },
+      }}
     />
   )
 }

@@ -75,6 +75,11 @@ export const Dashboard = observer(() => {
           <AttentionRequiredCard onTestClick={handleTestClick} />
         </DashboardCard>
 
+        {/* Quick Insights - full width horizontal */}
+        <DashboardCard colSpan={2}>
+          <QuickInsightsCard onTestClick={handleTestClick} />
+        </DashboardCard>
+
         {/* Test health widget */}
         {historyStore.isHistoryLoaded && (
           <DashboardCard>
@@ -88,11 +93,6 @@ export const Dashboard = observer(() => {
             <SuiteHealthCard />
           </DashboardCard>
         )}
-
-        {/* Quick Insights */}
-        <DashboardCard>
-          <QuickInsightsCard onTestClick={handleTestClick} />
-        </DashboardCard>
 
         {/* Trend visualization - full width */}
         {analyticsStore.hasTrendData && (

@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { observer } from 'mobx-react-lite'
+import { Layers } from 'lucide-react'
 import { useRootStore } from '../../store'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ClusterGroup } from './ClusterGroup'
@@ -44,10 +45,12 @@ export const FailureClusters = observer(() => {
   if (clusters.length === 0) {
     return (
       <div className="p-6">
-        <h5 className="text-xl font-semibold mb-4">
-          Failure Clusters
-        </h5>
-        <div className="bg-card rounded-lg border shadow-sm p-6 text-center">
+        <div className="flex items-center gap-2 mb-4">
+          <Layers className="h-6 w-6 text-primary" />
+          <h5 className="text-xl font-semibold">Failure Clusters</h5>
+        </div>
+        <div className="bg-card rounded-lg border shadow-sm p-8 text-center">
+          <Layers className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
           <p className="text-muted-foreground">
             No failure clusters found. Tests with similar error messages will appear here when 2 or more tests fail with the same error pattern.
           </p>
@@ -62,9 +65,10 @@ export const FailureClusters = observer(() => {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h5 className="text-xl font-semibold mb-2">
-          Failure Clusters
-        </h5>
+        <div className="flex items-center gap-2 mb-1">
+          <Layers className="h-6 w-6 text-primary" />
+          <h5 className="text-xl font-semibold">Failure Clusters</h5>
+        </div>
         <p className="text-sm text-muted-foreground">
           {clusters.length} cluster{clusters.length !== 1 ? 's' : ''} grouping {totalTests} failed test{totalTests !== 1 ? 's' : ''} by similar error messages
         </p>
