@@ -51,13 +51,18 @@ export function registerOpenCommand(program: Command): void {
         process.exit(1)
       }
 
+      // Determine history path
+      const historyPath = options.history
+        ? resolve(options.history)
+        : join(resolvedPath, 'qase-report-history.json')
+
       // Dynamic import to avoid bundling issues
       const { createServer, startServer, setupGracefulShutdown } = await import(
         '../server.js'
       )
 
       // Create and start server
-      const app = createServer({ reportPath: resolvedPath, port })
+      const app = createServer({ reportPath: resolvedPath, port, historyPath })
 
       console.log(`Serving report from ${resolvedPath}`)
 
@@ -72,9 +77,6 @@ export function registerOpenCommand(program: Command): void {
 
         // Save run to history
         try {
-          const historyPath =
-            options.history || join(resolvedPath, 'qase-report-history.json')
-
           // Read run.json
           const runData = JSON.parse(
             readFileSync(runJsonPath, 'utf-8')
