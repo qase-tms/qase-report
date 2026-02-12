@@ -171,9 +171,9 @@ export const createColumns = (
         )
       }
 
-      // Test: just duration
+      // Test: show duration
       const duration = row.original.testData?.execution.duration
-      if (!duration) return null
+      if (duration === undefined || duration === null) return null
 
       return (
         <div className="flex items-center gap-1 text-muted-foreground">
