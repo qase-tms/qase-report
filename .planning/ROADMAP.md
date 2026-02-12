@@ -8,7 +8,7 @@
 - **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
 - **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
 - **v1.5 Qase TMS Style** - Phases 30-36 (shipped 2026-02-11)
-- **v1.6 Qase TMS Design Polish** - Phases 37-40 (shipped 2026-02-12)
+- **v1.6 Qase TMS Design Polish** - Phases 37-40 (shipped 2026-02-12) [archived: .planning/milestones/v1.6-*]
 
 ## Phases
 
@@ -489,7 +489,8 @@ Plans:
 
 </details>
 
-### v1.6 Qase TMS Design Polish (In Progress)
+<details>
+<summary>v1.6 Qase TMS Design Polish (Phases 37-40) - SHIPPED 2026-02-12</summary>
 
 **Milestone Goal:** Приблизить дизайн к Qase TMS — новая структура колонок, тонкие progress bars, обновлённый sidebar, Timeline view.
 
@@ -554,6 +555,8 @@ Plans:
 
 Plans:
 - [x] 40-01-PLAN.md — Timeline component with thread-based swimlanes and click-to-details
+
+</details>
 
 ## Progress
 

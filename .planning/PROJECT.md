@@ -8,34 +8,24 @@ Open-source инструмент для визуализации отчётов 
 
 Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
-## Current Milestone: v1.5 Qase TMS Style
-
-**Goal:** Переделать UI под стиль Qase TMS с миграцией на shadcn/ui — tabs navigation, right sidebar, drawer для test details, table-style test list.
-
-**Target features:**
-- Миграция с MUI на shadcn/ui (Tailwind CSS + Radix primitives)
-- Tab-based navigation (Test cases, Overview, Failure Clusters, Gallery, Comparison)
-- Right sidebar с completion rate ring и run metadata (всегда видимый)
-- Test details в drawer справа (вместо modal)
-- Table-style test list с колонками (ID, Status, Title, Duration)
-- Suite progress bars (pass/fail сегменты + duration)
-
 ## Current State
 
-**v1.4 Layout Simplification shipped:** 2026-02-11
+**v1.6 Qase TMS Design Polish shipped:** 2026-02-12
 
-- ~7,570 LOC TypeScript/TSX
-- Tech stack: React 18, TypeScript 5.9, Vite, MUI 5, MobX, Zod v4, Recharts, react-window
+- ~9,700 LOC TypeScript/TSX
+- Tech stack: React 18, TypeScript 5.9, Vite 5, shadcn/ui, Tailwind CSS v4, MobX, Zod v4, Recharts, TanStack Table, TanStack Virtual
 - Full Qase Report Format support
 - History analytics: trends, flakiness detection, regression alerts, stability scoring
-- Dark theme by default, Playwright-style design
-- Command palette search (⌘K), Failure Clusters, Gallery, Comparison views
-- Virtual scrolling for 500+ tests, microinteractions
+- Dark theme by default (CSS variables, FOUC prevention)
+- Command palette search (⌘K) with fuzzy matching
+- Tab navigation (Test cases, Overview, Failure Clusters, Gallery, Comparison)
+- Right sidebar with completion rate ring and run metadata
+- Test details drawer (Sheet component with 4 tabs)
+- TanStack Table with sorting and virtual scrolling (500+ tests)
+- Suite hierarchy with expandable rows and multi-segment progress bars
+- Loading skeletons in all views
+- 300ms animations standardized
 - Static HTML works with file:// protocol
-- Hamburger menu navigation (6 views)
-- Persistent StatusBarPill (pass rate ring + quick stats)
-- Modal test details (no layout shift)
-- No sidebar — full width content
 
 ## Shipped Milestones
 
@@ -44,6 +34,8 @@ Open-source инструмент для визуализации отчётов 
 - **v1.2 Design Refresh** — Modern UI, virtual scrolling (shipped 2026-02-10)
 - **v1.3 Design Overhaul** — Playwright-style, new features (shipped 2026-02-11)
 - **v1.4 Layout Simplification** — Hamburger menu, modal details (shipped 2026-02-11)
+- **v1.5 Qase TMS Style** — shadcn/ui migration, TanStack Table, suite hierarchy (shipped 2026-02-11)
+- **v1.6 Qase TMS Design Polish** — Column redesign, progress bars, sidebar, Timeline view (shipped 2026-02-12)
 
 ## Requirements
 
@@ -93,15 +85,25 @@ Open-source инструмент для визуализации отчётов 
 - ✓ Test details как modal/dialog — v1.4
 - ✓ Фильтры в test list view — v1.4
 
-### Active
-
 **v1.5 Qase TMS Style:**
-- [ ] Миграция с MUI на shadcn/ui (Tailwind + Radix)
-- [ ] Tab-based navigation (replacing hamburger menu)
-- [ ] Right sidebar с completion rate ring и run info
-- [ ] Test details drawer (replacing modal)
-- [ ] Table-style test list с колонками
-- [ ] Suite progress bars
+- ✓ Миграция с MUI на shadcn/ui (Tailwind CSS v4 + Radix) — v1.5
+- ✓ lucide-react icons (replaced @mui/icons-material) — v1.5
+- ✓ Tab-based navigation (5 tabs) — v1.5
+- ✓ Right sidebar с completion rate ring и run metadata — v1.5
+- ✓ Test details drawer (Sheet with 4 tabs) — v1.5
+- ✓ TanStack Table с сортировкой и virtual scrolling — v1.5
+- ✓ Command palette (Cmd+K) с fuzzy search — v1.5
+- ✓ Suite hierarchy с expandable rows — v1.5
+- ✓ Multi-segment progress bars для suites — v1.5
+- ✓ Loading skeletons во всех views — v1.5
+- ✓ 300ms animations standardized — v1.5
+- ✓ Static HTML export verified — v1.5
+
+**v1.6 Qase TMS Design Polish:**
+- ✓ Новая структура колонок test list (ID, STATUS, TITLE, DURATION) — v1.6
+- ✓ Тонкие horizontal progress bars для suites — v1.6
+- ✓ Обновлённый sidebar (Started at, Total Time, Elapsed Time, Finished at, Status) — v1.6
+- ✓ Timeline tab для визуализации execution timeline — v1.6
 
 ### Out of Scope
 
@@ -132,7 +134,7 @@ Open-source инструмент для визуализации отчётов 
 
 ## Constraints
 
-- **Tech stack**: React 18 + TypeScript 5.9 + Vite + MUI 5 + MobX + Zod v4 + Recharts
+- **Tech stack**: React 18 + TypeScript 5.9 + Vite 5 + shadcn/ui + Tailwind CSS v4 + MobX + Zod v4 + Recharts + TanStack Table
 - **Format**: Dev server + Static HTML — оба варианта работают
 - **Input**: Qase Report Format JSON — фиксированная структура
 
@@ -141,7 +143,7 @@ Open-source инструмент для визуализации отчётов 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
 | MobX для state | Уже в проекте, хорошо работает с React | ✓ Good |
-| MUI для UI | Уже в проекте, богатая библиотека компонентов | ✓ Good |
+| shadcn/ui + Tailwind v4 | Replaced MUI in v1.5, better customization, smaller bundle | ✓ Good |
 | Zod v4 для валидации | Runtime validation + TypeScript types | ✓ Good |
 | Map для test results | O(1) lookup по ID | ✓ Good |
 | yet-another-react-lightbox | TypeScript-native, zoom/download | ✓ Good |
@@ -151,6 +153,10 @@ Open-source инструмент для визуализации отчётов 
 | Recharts for visualization | React-native, simpler than D3 | ✓ Good |
 | 2-sigma regression detection | Balances false positives and catching regressions | ✓ Good |
 | Weighted stability formula | Balances pass rate, flakiness, and variance | ✓ Good |
+| TanStack Table + Virtual | Replaced react-window, better API, active maintenance | ✓ Good |
+| Dark theme as default | CSS variables with :root = dark, .light override | ✓ Good |
+| TreeNode discriminated union | Type-safe suite vs test row handling | ✓ Good |
+| sessionStorage for expand state | Session-scoped persistence, cleaner UX | ✓ Good |
 
 ---
-*Last updated: 2026-02-11 after v1.5 milestone start*
+*Last updated: 2026-02-12 after v1.6 milestone start*

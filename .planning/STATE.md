@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-02-12)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** v1.6 Milestone Complete - All phases executed
+**Current focus:** v1.6 Shipped - Ready for next milestone
 
 ## Current Position
 
-Phase: 40 of 40 (Timeline View)
-Plan: 1 of 1 complete
-Status: Phase 40 complete - v1.6 milestone complete
-Last activity: 2026-02-12 — Phase 40 completed
+Phase: v1.6 shipped
+Plan: N/A
+Status: v1.6 milestone archived - ready for v1.7
+Last activity: 2026-02-12 — v1.6 milestone shipped and archived
 
-Progress: [██████████████████████] 100% (40 of 40 phases complete)
+Progress: [██████████████████████] 100% (40 of 40 phases complete through v1.6)
 
 ## Performance Metrics
 
@@ -249,6 +249,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Phase 40 complete - v1.6 milestone complete (all 40 phases executed)
+Stopped at: v1.6 milestone shipped and archived
 Resume file: None
-Next action: v1.6 milestone complete - ready for future milestones
+Next action: Run `/gsd:new-milestone` to start v1.7 planning
