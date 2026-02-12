@@ -23,10 +23,10 @@ Requirements for v1.8 CLI & NPM Package. CLI utility for launching and generatin
 
 ### History Management
 
-- [ ] **HIST-01**: History auto-saves when opening a new test run
-- [ ] **HIST-02**: User can specify history file path via `--history <file>`
-- [ ] **HIST-03**: Default history location is `./qase-report-history.json`
-- [ ] **HIST-04**: History respects `maxHistoryRuns` limit (default: 30)
+- [x] **HIST-01**: History auto-saves when opening a new test run
+- [x] **HIST-02**: User can specify history file path via `--history <file>`
+- [x] **HIST-03**: Default history location is `./qase-report-history.json`
+- [x] **HIST-04**: History respects `maxHistoryRuns` limit (default: 30)
 
 ### NPM Package
 
@@ -79,10 +79,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SERV-02 | Phase 45 | ✓ Complete |
 | SERV-03 | Phase 45 | ✓ Complete |
 | SERV-04 | Phase 45 | ✓ Complete |
-| HIST-01 | Phase 46 | Pending |
-| HIST-02 | Phase 46 | Pending |
-| HIST-03 | Phase 46 | Pending |
-| HIST-04 | Phase 46 | Pending |
+| HIST-01 | Phase 46 | ✓ Complete |
+| HIST-02 | Phase 46 | ✓ Complete |
+| HIST-03 | Phase 46 | ✓ Complete |
+| HIST-04 | Phase 46 | ✓ Complete |
 | NPM-01 | Phase 48 | Pending |
 | NPM-02 | Phase 48 | Pending |
 | NPM-03 | Phase 48 | Pending |

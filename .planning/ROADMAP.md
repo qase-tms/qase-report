@@ -623,7 +623,7 @@ Plans:
 
 - [x] **Phase 44: CLI Foundation** - Entry point with argument parsing, help, and version
 - [x] **Phase 45: Local Server** - Serve React app with data API and browser integration
-- [ ] **Phase 46: History Management** - Auto-save and history file options
+- [x] **Phase 46: History Management** - Auto-save and history file options
 - [ ] **Phase 47: Generate Command** - Static HTML generation with embedded data
 - [ ] **Phase 48: NPM Package** - Packaging for global installation and npx usage
 
@@ -672,8 +672,10 @@ Plans:
 **Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 46-01-PLAN.md — History manager module and CLI --history option (Wave 1)
-- [ ] 46-02-PLAN.md — Server history API and React auto-loading (Wave 2)
+- [x] 46-01-PLAN.md — History manager module and CLI --history option (Wave 1)
+- [x] 46-02-PLAN.md — Server history API and React auto-loading (Wave 2)
+
+**Completed:** 2026-02-12
 
 #### Phase 47: Generate Command
 **Goal**: User can generate self-contained static HTML reports
@@ -733,14 +735,14 @@ Plans:
 | 43. Analytics Cleanup | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 44. CLI Foundation | v1.8 | 1/1 | Complete | 2026-02-12 |
 | 45. Local Server | v1.8 | 2/2 | Complete | 2026-02-12 |
-| 46. History Management | v1.8 | 0/2 | Not started | - |
+| 46. History Management | v1.8 | 2/2 | Complete | 2026-02-12 |
 | 47. Generate Command | v1.8 | 0/TBD | Not started | - |
 | 48. NPM Package | v1.8 | 0/TBD | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
-**Total v1.8:** 3/5 plans (60% of phases)
+**Total v1.8:** 5/7 plans (71% of phases)
 
 ---
 *Roadmap created: 2026-02-10*
