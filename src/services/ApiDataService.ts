@@ -82,6 +82,19 @@ export function isServerMode(): boolean {
 }
 
 /**
+ * Detects if the app is running in static mode (generated HTML report).
+ *
+ * Static mode is detected by the global flag `window.__QASE_STATIC_MODE__`
+ * set during HTML generation.
+ *
+ * @returns true if running from generated HTML, false otherwise
+ */
+export function isStaticMode(): boolean {
+  if (typeof window === 'undefined') return false
+  return (window as Window & { __QASE_STATIC_MODE__?: boolean }).__QASE_STATIC_MODE__ === true
+}
+
+/**
  * Fetches history data from the server API.
  * Returns null if history is empty or unavailable.
  */

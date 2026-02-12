@@ -11,6 +11,7 @@ import { ApiDataService, fetchHistory } from '../services/ApiDataService'
 import { QaseRunSchema } from '../schemas/QaseRun.schema'
 import { TestResultSchema } from '../schemas/QaseTestResult.schema'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
+import type { QaseHistory } from '../schemas/QaseHistory.schema'
 
 export class RootStore {
   reportStore: ReportStore
@@ -110,6 +111,52 @@ export class RootStore {
         this.reportStore.runData,
         this.testResultsStore.testResults
       )
+    }
+  }
+
+  /**
+   * Loads report data from embedded window globals.
+   * Used when running from generated static HTML report.
+   */
+  loadFromEmbedded = async (): Promise<void> => {
+    const win = window as Window & {
+      __QASE_RUN_DATA__?: unknown
+      __QASE_RESULTS_DATA__?: unknown[]
+      __QASE_HISTORY_DATA__?: unknown
+    }
+
+    // Validate run data
+    const validatedRun = QaseRunSchema.parse(win.__QASE_RUN_DATA__)
+
+    // Validate results
+    const validatedResults: QaseTestResult[] = []
+    for (const result of win.__QASE_RESULTS_DATA__ || []) {
+      try {
+        validatedResults.push(TestResultSchema.parse(result))
+      } catch (e) {
+        console.warn('Failed to validate test result:', e)
+      }
+    }
+
+    runInAction(() => {
+      this.reportStore.runData = validatedRun
+      this.testResultsStore.testResults.clear()
+      for (const result of validatedResults) {
+        this.testResultsStore.testResults.set(result.id, result)
+      }
+    })
+
+    // Load history if embedded
+    if (win.__QASE_HISTORY_DATA__) {
+      try {
+        const history = win.__QASE_HISTORY_DATA__ as QaseHistory
+        runInAction(() => {
+          this.historyStore.history = history
+          this.historyStore.isHistoryLoaded = true
+        })
+      } catch (e) {
+        console.warn('Failed to load embedded history:', e)
+      }
     }
   }
 

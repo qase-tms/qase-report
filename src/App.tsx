@@ -10,16 +10,22 @@ import { RunInfoSidebar } from './components/RunInfoSidebar'
 import { LoadReportButton } from './components/LoadReportButton'
 import { useRootStore } from './store'
 import { observer } from 'mobx-react-lite'
-import { isServerMode } from './services/ApiDataService'
+import { isServerMode, isStaticMode } from './services/ApiDataService'
 
 const App = observer(() => {
   const [isSearchOpen, setSearchOpen] = useState(false)
   const rootStore = useRootStore()
   const { reportStore, isApiLoading, apiError } = rootStore
 
-  // Auto-load data when running in server mode (via CLI)
+  // Auto-load data when running in server or static mode (via CLI)
   useEffect(() => {
-    if (isServerMode() && !reportStore.runData && !isApiLoading) {
+    if (reportStore.runData || isApiLoading) return
+
+    if (isStaticMode()) {
+      rootStore.loadFromEmbedded().catch((error) => {
+        console.error('Failed to load embedded report:', error)
+      })
+    } else if (isServerMode()) {
       rootStore.loadFromApi().catch((error) => {
         console.error('Failed to load report from API:', error)
       })
