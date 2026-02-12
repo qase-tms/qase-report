@@ -1,7 +1,10 @@
 import { Command } from 'commander'
-import { existsSync, accessSync, constants } from 'fs'
+import { existsSync, accessSync, constants, readFileSync, readdirSync } from 'fs'
 import { join, resolve } from 'path'
 import open from 'open'
+import { addRunToHistory } from '../history.js'
+import type { QaseRun } from '../../schemas/QaseRun.schema.js'
+import type { QaseTestResult } from '../../schemas/QaseTestResult.schema.js'
 
 /**
  * Registers the 'open' command for serving reports in browser.
@@ -14,7 +17,15 @@ export function registerOpenCommand(program: Command): void {
     .description('Serve report in browser')
     .option('-p, --port <number>', 'Port number', '3000')
     .option('--no-open', 'Disable automatic browser opening')
-    .action(async (path: string, options: { port: string; open: boolean }) => {
+    .option(
+      '-H, --history <path>',
+      'History file path (default: ./qase-report-history.json in results folder)'
+    )
+    .action(
+      async (
+        path: string,
+        options: { port: string; open: boolean; history?: string }
+      ) => {
       const resolvedPath = resolve(path)
       const runJsonPath = join(resolvedPath, 'run.json')
 
@@ -59,6 +70,45 @@ export function registerOpenCommand(program: Command): void {
         // Setup graceful shutdown
         setupGracefulShutdown(server)
 
+        // Save run to history
+        try {
+          const historyPath =
+            options.history || join(resolvedPath, 'qase-report-history.json')
+
+          // Read run.json
+          const runData = JSON.parse(
+            readFileSync(runJsonPath, 'utf-8')
+          ) as QaseRun
+
+          // Read all results from results/ directory
+          const resultsDir = join(resolvedPath, 'results')
+          const results: QaseTestResult[] = []
+
+          if (existsSync(resultsDir)) {
+            const resultFiles = readdirSync(resultsDir).filter((file) =>
+              file.endsWith('.json')
+            )
+
+            for (const file of resultFiles) {
+              const resultPath = join(resultsDir, file)
+              const resultData = JSON.parse(
+                readFileSync(resultPath, 'utf-8')
+              ) as QaseTestResult
+              results.push(resultData)
+            }
+          }
+
+          // Add to history
+          addRunToHistory({ historyPath, run: runData, results })
+
+          console.log(`History saved to ${historyPath}`)
+        } catch (error) {
+          console.warn(
+            'Warning: Failed to save history:',
+            error instanceof Error ? error.message : error
+          )
+        }
+
         // Open browser if --no-open was not specified
         if (options.open) {
           await open(url)
@@ -74,5 +124,6 @@ export function registerOpenCommand(program: Command): void {
         }
         process.exit(1)
       }
-    })
+    }
+    )
 }
