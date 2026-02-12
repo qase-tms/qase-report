@@ -21,7 +21,7 @@ export interface GalleryAttachment {
   /** Test title for display */
   testTitle: string
   /** Test execution status */
-  testStatus: 'passed' | 'failed' | 'skipped' | 'broken'
+  testStatus: 'passed' | 'failed' | 'skipped' | 'broken' | 'blocked' | 'invalid' | 'muted'
   /** Source location: test-level or step-level */
   source: 'test' | 'step'
   /** Step ID if attachment is from a step (optional) */

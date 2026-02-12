@@ -107,8 +107,8 @@ export const Gallery = observer(() => {
         case 'test':
           return a.testTitle.localeCompare(b.testTitle)
         case 'status':
-          const statusOrder = { failed: 0, passed: 1, skipped: 2, broken: 3 }
-          return (statusOrder[a.testStatus] ?? 4) - (statusOrder[b.testStatus] ?? 4)
+          const statusOrder: Record<string, number> = { failed: 0, broken: 1, blocked: 2, invalid: 3, passed: 4, skipped: 5, muted: 6 }
+          return (statusOrder[a.testStatus] ?? 7) - (statusOrder[b.testStatus] ?? 7)
         default:
           return 0
       }

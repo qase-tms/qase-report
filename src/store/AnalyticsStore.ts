@@ -509,7 +509,7 @@ export class AnalyticsStore {
     steps: Step[],
     testId: string,
     testTitle: string,
-    testStatus: 'passed' | 'failed' | 'skipped' | 'broken',
+    testStatus: 'passed' | 'failed' | 'skipped' | 'broken' | 'blocked' | 'invalid' | 'muted',
     collector: GalleryAttachment[]
   ): void {
     for (const step of steps) {
