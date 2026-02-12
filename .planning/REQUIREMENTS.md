@@ -9,17 +9,17 @@ Requirements for v1.8 CLI & NPM Package. CLI utility for launching and generatin
 
 ### CLI Core
 
-- [ ] **CLI-01**: User can run `qase-report open <path>` to serve report from results folder
+- [x] **CLI-01**: User can run `qase-report open <path>` to serve report from results folder
 - [ ] **CLI-02**: User can run `qase-report generate <path>` to create static HTML report
 - [x] **CLI-03**: User sees help with `qase-report --help`
 - [x] **CLI-04**: User sees version with `qase-report --version`
 
 ### Server & Browser
 
-- [ ] **SERV-01**: Server starts on port 3000 by default (configurable via `--port`)
-- [ ] **SERV-02**: Browser opens automatically (disable via `--no-open`)
-- [ ] **SERV-03**: Server serves React app + data from results folder via API
-- [ ] **SERV-04**: Server gracefully shuts down on Ctrl+C
+- [x] **SERV-01**: Server starts on port 3000 by default (configurable via `--port`)
+- [x] **SERV-02**: Browser opens automatically (disable via `--no-open`)
+- [x] **SERV-03**: Server serves React app + data from results folder via API
+- [x] **SERV-04**: Server gracefully shuts down on Ctrl+C
 
 ### History Management
 
@@ -71,14 +71,14 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | Phase 45 | Pending |
+| CLI-01 | Phase 45 | ✓ Complete |
 | CLI-02 | Phase 47 | Pending |
 | CLI-03 | Phase 44 | ✓ Complete |
 | CLI-04 | Phase 44 | ✓ Complete |
-| SERV-01 | Phase 45 | Pending |
-| SERV-02 | Phase 45 | Pending |
-| SERV-03 | Phase 45 | Pending |
-| SERV-04 | Phase 45 | Pending |
+| SERV-01 | Phase 45 | ✓ Complete |
+| SERV-02 | Phase 45 | ✓ Complete |
+| SERV-03 | Phase 45 | ✓ Complete |
+| SERV-04 | Phase 45 | ✓ Complete |
 | HIST-01 | Phase 46 | Pending |
 | HIST-02 | Phase 46 | Pending |
 | HIST-03 | Phase 46 | Pending |
