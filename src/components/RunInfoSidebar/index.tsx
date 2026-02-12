@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { CheckCircle, XCircle, Calendar, Clock } from 'lucide-react'
 import { useRootStore } from '../../store'
 
 export const RunInfoSidebar = observer(() => {
@@ -14,6 +15,8 @@ export const RunInfoSidebar = observer(() => {
   const { stats } = reportStore.runData
   const passRate = reportStore.passRate
   const flakyCount = analyticsStore.flakyTestCount
+  const passedCount = stats.passed
+  const totalCount = stats.total
 
   // Color logic for pass rate ring (from StatusBarPill)
   const getColor = (rate: number): string => {
@@ -24,12 +27,20 @@ export const RunInfoSidebar = observer(() => {
 
   const ringColor = getColor(passRate)
 
-  // Format run date
+  // Run status determination
+  const runStatus = stats.failed > 0 ? 'failed' : 'passed'
+  const StatusIcon = runStatus === 'passed' ? CheckCircle : XCircle
+  const statusColor = runStatus === 'passed' ? 'text-green-500' : 'text-red-500'
+
+  // Format run timestamps
   const startTime = reportStore.runData.execution.start_time
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
+  const endTime = reportStore.runData.execution.end_time
+  const dateFormatter = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium',
     timeStyle: 'short',
-  }).format(new Date(startTime))
+  })
+  const formattedDate = dateFormatter.format(new Date(startTime))
+  const formattedEndTime = dateFormatter.format(new Date(endTime))
 
   // Calculate SVG strokeDasharray for completion ring
   // Circumference = 2 * PI * radius = 2 * PI * 40 = 251.2
@@ -74,7 +85,12 @@ export const RunInfoSidebar = observer(() => {
             </span>
           </div>
         </div>
-        <p className="text-sm text-muted-foreground">Pass Rate</p>
+        <div className="text-center">
+          <p className="text-sm text-muted-foreground">Pass Rate</p>
+          <p className="text-xs text-muted-foreground">
+            {passedCount} of {totalCount} tests
+          </p>
+        </div>
       </div>
 
       {/* Statistics section */}
@@ -101,20 +117,52 @@ export const RunInfoSidebar = observer(() => {
         )}
       </div>
 
-      {/* Metadata section with border separator */}
-      <div className="pt-4 border-t space-y-2">
-        <div>
-          <p className="text-xs text-muted-foreground">Date</p>
-          <p className="text-sm">{formattedDate}</p>
+      {/* Run information section with icons */}
+      <div className="pt-4 border-t space-y-3">
+        {/* Status field */}
+        <div className="flex items-center gap-2">
+          <StatusIcon className={`w-4 h-4 ${statusColor}`} />
+          <span className="text-xs text-muted-foreground">Status</span>
+          <span className={`ml-auto font-medium ${statusColor}`}>
+            {runStatus === 'passed' ? 'Passed' : 'Failed'}
+          </span>
         </div>
-        <div>
-          <p className="text-xs text-muted-foreground">Duration</p>
-          <p className="text-sm">{reportStore.formattedDuration}</p>
+
+        {/* Started at field */}
+        <div className="flex items-start gap-2">
+          <Calendar className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground">Started at</p>
+            <p className="text-sm">{formattedDate}</p>
+          </div>
         </div>
+
+        {/* Total Time field */}
+        <div className="flex items-start gap-2">
+          <Clock className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground">Total Time</p>
+            <p className="text-sm">{reportStore.formattedDuration}</p>
+          </div>
+        </div>
+
+        {/* Finished at field */}
+        <div className="flex items-start gap-2">
+          <Calendar className="w-4 h-4 text-muted-foreground mt-0.5" />
+          <div className="flex-1">
+            <p className="text-xs text-muted-foreground">Finished at</p>
+            <p className="text-sm">{formattedEndTime}</p>
+          </div>
+        </div>
+
+        {/* Environment (conditional, keep existing logic) */}
         {reportStore.runData.environment && (
-          <div>
-            <p className="text-xs text-muted-foreground">Environment</p>
-            <p className="text-sm">{reportStore.runData.environment}</p>
+          <div className="flex items-start gap-2">
+            <div className="w-4" /> {/* Spacer for alignment */}
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">Environment</p>
+              <p className="text-sm">{reportStore.runData.environment}</p>
+            </div>
           </div>
         )}
       </div>
