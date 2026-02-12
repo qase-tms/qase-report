@@ -18,12 +18,18 @@ interface MultiSegmentProgressProps {
   segments: ProgressSegment[]
   duration: number
   className?: string
+  /** Render thin 4px bar instead of default 12px */
+  thin?: boolean
+  /** Show duration in tooltip (default true) */
+  showDurationInTooltip?: boolean
 }
 
 export function MultiSegmentProgress({
   segments,
   duration,
   className,
+  thin = false,
+  showDurationInTooltip = true,
 }: MultiSegmentProgressProps) {
   // Sort segments by value ascending for correct z-index stacking
   const sortedSegments = [...segments]
@@ -45,7 +51,12 @@ export function MultiSegmentProgress({
             role="progressbar"
             aria-label="Suite progress"
           >
-            <ProgressPrimitive.Root className="relative h-3 w-full overflow-hidden rounded-full bg-secondary">
+            <ProgressPrimitive.Root
+              className={cn(
+                'relative w-full overflow-hidden rounded-full bg-secondary',
+                thin ? 'h-1' : 'h-3'
+              )}
+            >
               {sortedSegments.map((segment, index) => (
                 <ProgressPrimitive.Indicator
                   key={index}
@@ -64,10 +75,15 @@ export function MultiSegmentProgress({
         </TooltipTrigger>
         <TooltipContent side="top" className="text-xs">
           <div className="space-y-1">
-            <div className="font-medium">
-              Duration: {formatDuration(duration)}
-            </div>
-            <div className="border-t border-border pt-1 mt-1 space-y-0.5">
+            {showDurationInTooltip && (
+              <div className="font-medium">
+                Duration: {formatDuration(duration)}
+              </div>
+            )}
+            <div className={cn(
+              'space-y-0.5',
+              showDurationInTooltip && 'border-t border-border pt-1 mt-1'
+            )}>
               {segments.map((seg, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className={cn('w-2 h-2 rounded-full', seg.color)} />
