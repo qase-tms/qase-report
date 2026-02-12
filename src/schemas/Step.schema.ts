@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { AttachmentSchema } from './Attachment.schema'
+import { AttachmentSchema } from './Attachment.schema.js'
 
 /**
  * Step type - flexible to handle various step types from different reporters.

@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { AttachmentSchema } from './Attachment.schema'
-import { StepSchema } from './Step.schema'
+import { AttachmentSchema } from './Attachment.schema.js'
+import { StepSchema } from './Step.schema.js'
 
 /**
  * Enum for test execution status.
