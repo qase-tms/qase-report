@@ -97,12 +97,71 @@
 
 **Archive:** `.planning/milestones/v1.3-ROADMAP.md`, `.planning/milestones/v1.3-REQUIREMENTS.md`
 
-## v1.4 Layout Simplification (Shipped: 2026-02-11)
+## v1.4 Layout Simplification
 
-**Phases completed:** 29 phases, 46 plans, 19 tasks
+**Shipped:** 2026-02-11
+**Phases:** 25-29 (5 phases, 5 plans)
+
+**Delivered:** Simplified layout by replacing permanent sidebar with hamburger menu navigation, adding persistent status bar, converting test details to modal, and removing duplicate statistics.
 
 **Key accomplishments:**
-- (none recorded)
+1. Hamburger navigation menu with MUI Menu dropdown
+2. Persistent status bar with pass rate donut and quick stats
+3. Modal test details dialog with scrollbar-gutter CSS fix
+4. Sidebar removal and layout cleanup
+5. Statistics deduplication in dashboard
 
----
+**Archive:** `.planning/milestones/v1.4-ROADMAP.md`, `.planning/milestones/v1.4-REQUIREMENTS.md`
+
+## v1.5 Qase TMS Style
+
+**Shipped:** 2026-02-11
+**Phases:** 30-36 (7 phases, 23 plans)
+
+**Delivered:** Complete migration from MUI to shadcn/ui with Qase TMS visual style — tab navigation, right sidebar with completion ring, Sheet test details drawer, TanStack Table with virtual scrolling.
+
+**Key accomplishments:**
+1. Tailwind CSS v4 + shadcn/ui foundation (replaced MUI)
+2. lucide-react icons (replaced @mui/icons-material)
+3. Tab-based navigation with 5 tabs
+4. Right sidebar with completion rate ring and run metadata
+5. Test details drawer (Sheet component with 4 tabs)
+6. TanStack Table with sorting and virtual scrolling
+7. Command palette (Cmd+K) with fuzzy search
+8. Suite hierarchy with expandable rows and multi-segment progress bars
+
+**Archive:** `.planning/milestones/v1.5-ROADMAP.md`, `.planning/milestones/v1.5-REQUIREMENTS.md`
+
+## v1.6 Qase TMS Design Polish
+
+**Shipped:** 2026-02-12
+**Phases:** 37-40 (4 phases, 4 plans)
+
+**Delivered:** Design polish matching Qase TMS — new column structure, thin progress bars, enhanced sidebar with timestamps, and Timeline view.
+
+**Key accomplishments:**
+1. Test list column redesign (ID, STATUS, TITLE, DURATION)
+2. Thin horizontal progress bars for suites
+3. Enhanced sidebar with Started at, Total Time, Finished at fields
+4. Timeline view with thread-based swimlanes
+
+**Archive:** `.planning/milestones/v1.6-ROADMAP.md`, `.planning/milestones/v1.6-REQUIREMENTS.md`
+
+## v1.7 Layout & Analytics Cleanup
+
+**Shipped:** 2026-02-12
+**Phases:** 41-43 (3 phases, 3 plans)
+
+**Delivered:** Tab reordering with Test cases as default, Analytics view cleanup with 2-column grid, and Run/Host information moved to sidebar.
+
+**Key accomplishments:**
+1. Test cases as default (first) tab
+2. Overview renamed to Analytics
+3. 2-column grid layout in Analytics view
+4. Run Information section in sidebar
+5. Host Information section in sidebar
+6. Horizontal scrollable Recent Runs
+7. Removed duplicate metadata widgets from Analytics
+
+**Archive:** `.planning/milestones/v1.7-ROADMAP.md`, `.planning/milestones/v1.7-REQUIREMENTS.md`
 

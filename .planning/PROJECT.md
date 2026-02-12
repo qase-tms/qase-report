@@ -8,31 +8,23 @@ Open-source инструмент для визуализации отчётов 
 
 Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
-## Current Milestone: v1.7 Layout & Analytics Cleanup
-
-**Goal:** Реорганизация табов и Analytics view — Test cases первый таб, Overview → Analytics с 2-колоночным layout, Run/Host info в сайдбар.
-
-**Target features:**
-- Test cases как основной (первый) таб
-- Overview → Analytics с 2-колоночным layout и дедупликацией виджетов
-- Recent Runs горизонтально со скроллом
-- Run Information и Host Information в правом сайдбаре
-
 ## Current State
 
-**v1.6 Qase TMS Design Polish shipped:** 2026-02-12
+**v1.7 Layout & Analytics Cleanup shipped:** 2026-02-12
 
-- ~9,700 LOC TypeScript/TSX
+- ~10,000 LOC TypeScript/TSX
 - Tech stack: React 18, TypeScript 5.9, Vite 5, shadcn/ui, Tailwind CSS v4, MobX, Zod v4, Recharts, TanStack Table, TanStack Virtual
 - Full Qase Report Format support
 - History analytics: trends, flakiness detection, regression alerts, stability scoring
 - Dark theme by default (CSS variables, FOUC prevention)
 - Command palette search (⌘K) with fuzzy matching
-- Tab navigation (Test cases, Overview, Failure Clusters, Gallery, Comparison)
-- Right sidebar with completion rate ring and run metadata
+- Tab navigation (Test cases, Analytics, Timeline, Failure Clusters, Gallery, Comparison)
+- Test cases as default (first) tab
+- Right sidebar with completion rate ring, run metadata, Run Info, Host Info
 - Test details drawer (Sheet component with 4 tabs)
 - TanStack Table with sorting and virtual scrolling (500+ tests)
 - Suite hierarchy with expandable rows and multi-segment progress bars
+- Analytics view with 2-column grid and horizontal Recent Runs
 - Loading skeletons in all views
 - 300ms animations standardized
 - Static HTML works with file:// protocol
@@ -46,6 +38,7 @@ Open-source инструмент для визуализации отчётов 
 - **v1.4 Layout Simplification** — Hamburger menu, modal details (shipped 2026-02-11)
 - **v1.5 Qase TMS Style** — shadcn/ui migration, TanStack Table, suite hierarchy (shipped 2026-02-11)
 - **v1.6 Qase TMS Design Polish** — Column redesign, progress bars, sidebar, Timeline view (shipped 2026-02-12)
+- **v1.7 Layout & Analytics Cleanup** — Tab reorder, Analytics cleanup, sidebar enhancement (shipped 2026-02-12)
 
 ## Requirements
 
@@ -115,6 +108,15 @@ Open-source инструмент для визуализации отчётов 
 - ✓ Обновлённый sidebar (Started at, Total Time, Elapsed Time, Finished at, Status) — v1.6
 - ✓ Timeline tab для визуализации execution timeline — v1.6
 
+**v1.7 Layout & Analytics Cleanup:**
+- ✓ Test cases как первый (default) таб — v1.7
+- ✓ Overview переименован в Analytics — v1.7
+- ✓ Analytics с 2-колоночным grid layout — v1.7
+- ✓ Recent Runs горизонтально со скроллом — v1.7
+- ✓ Run Information в правом sidebar — v1.7
+- ✓ Host Information в правом sidebar — v1.7
+- ✓ Удалены дублирующиеся виджеты из Analytics — v1.7
+
 ### Out of Scope
 
 - AI-анализ ошибок — требует интеграции с Claude/OpenAI
@@ -169,4 +171,4 @@ Open-source инструмент для визуализации отчётов 
 | sessionStorage for expand state | Session-scoped persistence, cleaner UX | ✓ Good |
 
 ---
-*Last updated: 2026-02-12 after v1.6 milestone start*
+*Last updated: 2026-02-12 after v1.7 milestone completion*
