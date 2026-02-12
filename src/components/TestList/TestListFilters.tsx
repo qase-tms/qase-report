@@ -15,24 +15,22 @@ export const TestListFilters = observer(() => {
   const { statusFilters, toggleStatusFilter } = testResultsStore
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex items-center gap-2 flex-wrap">
       {/* Status filters */}
-      <div className="flex gap-2 flex-wrap">
-        {statuses.map((status) => (
-          <button
-            key={status.value}
-            onClick={() => toggleStatusFilter(status.value)}
-            className={cn(
-              'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border transition-colors',
-              statusFilters.has(status.value)
-                ? status.activeClass
-                : 'bg-transparent text-foreground border-border hover:bg-accent'
-            )}
-          >
-            {status.label}
-          </button>
-        ))}
-      </div>
+      {statuses.map((status) => (
+        <button
+          key={status.value}
+          onClick={() => toggleStatusFilter(status.value)}
+          className={cn(
+            'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border transition-colors',
+            statusFilters.has(status.value)
+              ? status.activeClass
+              : 'bg-transparent text-foreground border-border hover:bg-accent'
+          )}
+        >
+          {status.label}
+        </button>
+      ))}
 
       {/* Grade filters */}
       <StabilityGradeFilter />

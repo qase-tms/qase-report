@@ -71,8 +71,8 @@ export const TestList = observer(() => {
     <div className="bg-card rounded-lg border shadow-sm p-4">
       <h6 className="text-lg font-semibold mb-4">Tests</h6>
 
-      {/* Filters and search */}
-      <div className="mb-4 flex flex-col gap-4">
+      {/* Search and filters on same line */}
+      <div className="mb-4 flex items-center gap-4 flex-wrap">
         <TestListSearch />
         <TestListFilters />
       </div>
