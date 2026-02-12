@@ -1,6 +1,6 @@
 # Qase Report
 
-Open-source CLI tool for visualizing test reports in [Qase Report Format](https://github.com/qase-tms/qase-report-format). Interactive HTML report with dashboard, test list, step timeline, attachments viewer, and history analytics.
+Open-source CLI tool for visualizing test reports in [Qase Report Format](https://github.com/qase-tms/specs/tree/master/report). Interactive HTML report with dashboard, test list, step timeline, attachments viewer, and history analytics.
 
 ## Features
 
@@ -211,7 +211,59 @@ Individual test result with steps, attachments, and metadata:
 | `passed` | Test completed successfully |
 | `failed` | Test failed with assertion errors |
 | `skipped` | Test was skipped |
-| `broken` | Test encountered errors preventing execution |
+| `broken` | Test encountered unexpected errors preventing execution |
+| `blocked` | Test was blocked by external dependency |
+| `invalid` | Test configuration or data is invalid |
+| `muted` | Test failures are muted/ignored |
+
+### qase-report-history.json
+
+History file for tracking test results across multiple runs. Enables trend analysis, flakiness detection, and stability scoring.
+
+```json
+{
+  "schema_version": "1.0.0",
+  "runs": [
+    {
+      "run_id": "1707700000000",
+      "title": "Test Run",
+      "environment": "production",
+      "start_time": 1707700000000,
+      "end_time": 1707700060000,
+      "duration": 60000,
+      "stats": {
+        "total": 100,
+        "passed": 95,
+        "failed": 3,
+        "skipped": 2
+      }
+    }
+  ],
+  "tests": [
+    {
+      "signature": "auth.login.valid_credentials",
+      "title": "User can login with valid credentials",
+      "runs": [
+        {
+          "run_id": "1707700000000",
+          "status": "passed",
+          "duration": 150,
+          "start_time": 1707700000000,
+          "error_message": null
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Key fields:**
+
+- `schema_version` — Format version for future migrations
+- `runs` — Array of run summaries with stats
+- `tests` — Array of per-test history grouped by `signature`
+- `signature` — Stable test identifier (not UUID) for tracking across runs
+- `error_message` — First line of error, used for flakiness detection
 
 ## Tech Stack
 
