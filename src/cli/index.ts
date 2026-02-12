@@ -3,6 +3,7 @@ import { program } from 'commander'
 import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { registerOpenCommand } from './commands/open.js'
 
 // Get version from package.json dynamically
 const __filename = fileURLToPath(import.meta.url)
@@ -16,12 +17,8 @@ program
   .version(packageJson.version, '-v, --version', 'Output the current version')
   .showHelpAfterError()
 
-program
-  .command('open <path>')
-  .description('Open test results in browser (coming soon)')
-  .action((path: string) => {
-    console.log(`Command 'open' coming soon. Path provided: ${path}`)
-  })
+// Register commands
+registerOpenCommand(program)
 
 program
   .command('generate <path>')
