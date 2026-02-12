@@ -44,16 +44,34 @@ export const Timeline = observer(() => {
   }
 
   const tests = Array.from(testResultsStore.testResults.values())
+  const runStartTime = reportStore.runData.execution.start_time
 
-  // Filter tests that have timing data (check for number type, not falsy)
-  const testsWithTiming = tests.filter(
-    (test) =>
-      typeof test.execution.start_time === 'number' &&
-      typeof test.execution.end_time === 'number'
-  )
+  // Transform tests: use run start_time as fallback, calculate end_time from duration if needed
+  const testsWithTiming = tests.map((test) => {
+    const startTime = typeof test.execution.start_time === 'number'
+      ? test.execution.start_time
+      : runStartTime
+    const endTime = typeof test.execution.end_time === 'number'
+      ? test.execution.end_time
+      : startTime + (test.execution.duration || 0)
 
-  // Empty state: No tests with timing data
-  if (testsWithTiming.length === 0) {
+    return {
+      ...test,
+      execution: {
+        ...test.execution,
+        start_time: startTime,
+        end_time: endTime,
+      },
+    }
+  })
+
+  // Calculate timeline bounds
+  const minTime = Math.min(...testsWithTiming.map((t) => t.execution.start_time))
+  const maxTime = Math.max(...testsWithTiming.map((t) => t.execution.end_time))
+  const totalDuration = maxTime - minTime
+
+  // Empty state: No duration (all tests instant)
+  if (totalDuration === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-[50vh] text-muted-foreground">
         <Clock className="w-16 h-16 mb-4 opacity-50" />
@@ -61,11 +79,6 @@ export const Timeline = observer(() => {
       </div>
     )
   }
-
-  // Calculate timeline bounds
-  const minTime = Math.min(...testsWithTiming.map((t) => t.execution.start_time))
-  const maxTime = Math.max(...testsWithTiming.map((t) => t.execution.end_time))
-  const totalDuration = maxTime - minTime
 
   // Group tests by thread
   const groupedByThread = testsWithTiming.reduce<Record<string, QaseTestResult[]>>(
