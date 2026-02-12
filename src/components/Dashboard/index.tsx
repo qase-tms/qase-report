@@ -70,7 +70,12 @@ export const Dashboard = observer(() => {
           </DashboardCard>
         )}
 
-        {/* Test health widget - prominent position */}
+        {/* Attention Required - prominent position */}
+        <DashboardCard colSpan={1}>
+          <AttentionRequiredCard onTestClick={handleTestClick} />
+        </DashboardCard>
+
+        {/* Test health widget */}
         {historyStore.isHistoryLoaded && (
           <DashboardCard colSpan={1} rowSpan={2}>
             <TestHealthWidget />
@@ -83,11 +88,6 @@ export const Dashboard = observer(() => {
             <SuiteHealthCard />
           </DashboardCard>
         )}
-
-        {/* Attention Required - 1x1 wide list */}
-        <DashboardCard colSpan={1}>
-          <AttentionRequiredCard onTestClick={handleTestClick} />
-        </DashboardCard>
 
         {/* Quick Insights - 1x2 for two sections */}
         <DashboardCard colSpan={1} rowSpan={2}>
