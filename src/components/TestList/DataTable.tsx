@@ -83,13 +83,19 @@ export function DataTable<TData, TValue>({
       className="rounded-md border overflow-auto"
       style={{ height: `${height}px` }}
     >
-      <Table>
+      <Table className="table-fixed">
         <TableHeader className="sticky top-0 bg-background z-10">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                // Title column expands to fill space, others use fixed width
+                const isFlexColumn = header.id === 'title'
                 return (
-                  <TableHead key={header.id} style={{ width: header.getSize() }}>
+                  <TableHead
+                    key={header.id}
+                    style={isFlexColumn ? undefined : { width: `${header.getSize()}px` }}
+                    className={isFlexColumn ? 'w-full' : ''}
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -124,11 +130,18 @@ export function DataTable<TData, TValue>({
                     height: '40px', // Compact row height
                   }}
                 >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
+                  {row.getVisibleCells().map((cell) => {
+                    const isFlexColumn = cell.column.id === 'title'
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        style={isFlexColumn ? undefined : { width: `${cell.column.getSize()}px` }}
+                        className={isFlexColumn ? 'w-full' : ''}
+                      >
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </TableCell>
+                    )
+                  })}
                 </TableRow>
               )
             })
