@@ -114,10 +114,19 @@ export function createServer(options: ServerOptions): Application {
   app.use(express.static(distPath))
 
   // SPA fallback: serve index.html for all non-API routes
+  // Injects server mode flag for React app detection
   app.get('*', (req: Request, res: Response) => {
     const indexPath = join(distPath, 'index.html')
     if (existsSync(indexPath)) {
-      res.sendFile(indexPath)
+      // Read index.html and inject server mode flag
+      let html = readFileSync(indexPath, 'utf-8')
+      const serverModeScript =
+        '<script>window.__QASE_SERVER_MODE__=true;</script>'
+
+      // Inject before closing head tag
+      html = html.replace('</head>', `${serverModeScript}</head>`)
+
+      res.type('html').send(html)
     } else {
       res.status(404).json({
         error: 'React app not found',

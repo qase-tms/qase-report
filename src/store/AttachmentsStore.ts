@@ -1,12 +1,19 @@
 import { makeAutoObservable } from 'mobx'
 import type { RootStore } from './index'
+import { ApiDataService } from '../services/ApiDataService'
 
 /**
  * MobX store for managing attachment blob URLs with reactive state.
  * CRITICAL: Call cleanup() to prevent memory leaks from blob URLs.
+ *
+ * Supports two modes:
+ * - File mode: Uses browser blob URLs from File API
+ * - Server mode: Uses API URLs from CLI server
  */
 export class AttachmentsStore {
   private attachmentUrls = new Map<string, string>()
+  // Maps attachment ID to filename for server mode
+  private attachmentFilenames = new Map<string, string>()
 
   constructor(public root: RootStore) {
     makeAutoObservable(this)
@@ -32,12 +39,36 @@ export class AttachmentsStore {
   }
 
   /**
-   * Gets blob URL for an attachment by its ID.
+   * Registers an attachment filename for server mode.
+   * In server mode, attachments are served via API instead of blob URLs.
    *
    * @param id - Attachment UUID
-   * @returns Blob URL or undefined if not registered
+   * @param filename - Filename on the server (from file_path)
+   */
+  registerAttachmentFilename(id: string, filename: string): void {
+    this.attachmentFilenames.set(id, filename)
+  }
+
+  /**
+   * Gets URL for an attachment by its ID.
+   * In server mode (attachmentsBasePath set), returns API URL.
+   * In file mode, returns blob URL from File API.
+   *
+   * @param id - Attachment UUID
+   * @returns URL or undefined if not registered
    */
   getAttachmentUrl(id: string): string | undefined {
+    // Server mode: use API URLs
+    if (this.root.attachmentsBasePath) {
+      const filename = this.attachmentFilenames.get(id)
+      if (filename) {
+        const apiService = new ApiDataService()
+        return apiService.getAttachmentUrl(filename)
+      }
+      return undefined
+    }
+
+    // File mode: use blob URLs
     return this.attachmentUrls.get(id)
   }
 
@@ -51,5 +82,6 @@ export class AttachmentsStore {
       URL.revokeObjectURL(url)
     }
     this.attachmentUrls.clear()
+    this.attachmentFilenames.clear()
   }
 }

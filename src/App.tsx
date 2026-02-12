@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Search as SearchIcon } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Search as SearchIcon, Loader2 } from 'lucide-react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { MainLayout } from './layout/MainLayout'
 import { ThemeProvider } from './components/ThemeProvider'
@@ -10,10 +10,21 @@ import { RunInfoSidebar } from './components/RunInfoSidebar'
 import { LoadReportButton } from './components/LoadReportButton'
 import { useRootStore } from './store'
 import { observer } from 'mobx-react-lite'
+import { isServerMode } from './services/ApiDataService'
 
 const App = observer(() => {
   const [isSearchOpen, setSearchOpen] = useState(false)
-  const { reportStore } = useRootStore()
+  const rootStore = useRootStore()
+  const { reportStore, isApiLoading, apiError } = rootStore
+
+  // Auto-load data when running in server mode (via CLI)
+  useEffect(() => {
+    if (isServerMode() && !reportStore.runData && !isApiLoading) {
+      rootStore.loadFromApi().catch((error) => {
+        console.error('Failed to load report from API:', error)
+      })
+    }
+  }, [rootStore, reportStore.runData, isApiLoading])
 
   useHotkeys(
     'mod+k',
@@ -26,6 +37,34 @@ const App = observer(() => {
       preventDefault: true,
     }
   )
+
+  // Show loading state when loading from API
+  if (isApiLoading) {
+    return (
+      <ThemeProvider>
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <div className="text-center">
+            <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-muted-foreground" />
+            <p className="text-muted-foreground">Loading report...</p>
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
+
+  // Show error state if API loading failed
+  if (apiError) {
+    return (
+      <ThemeProvider>
+        <div className="min-h-screen flex items-center justify-center bg-background">
+          <div className="text-center max-w-md p-6">
+            <p className="text-destructive mb-4">Failed to load report</p>
+            <p className="text-muted-foreground text-sm">{apiError}</p>
+          </div>
+        </div>
+      </ThemeProvider>
+    )
+  }
 
   return (
     <ThemeProvider>

@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx'
+import { makeAutoObservable, runInAction } from 'mobx'
 import { createContext, FC, PropsWithChildren, useContext } from 'react'
 import { ReportStore } from './ReportStore'
 import { TestResultsStore } from './TestResultsStore'
@@ -7,6 +7,9 @@ import { AttachmentViewerStore } from './AttachmentViewerStore'
 import { HistoryStore } from './HistoryStore'
 import { AnalyticsStore } from './AnalyticsStore'
 import { FileLoaderService } from '../services/FileLoaderService'
+import { ApiDataService } from '../services/ApiDataService'
+import { QaseRunSchema } from '../schemas/QaseRun.schema'
+import { TestResultSchema } from '../schemas/QaseTestResult.schema'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema'
 
 export class RootStore {
@@ -21,6 +24,11 @@ export class RootStore {
 
   // Navigation state
   activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' = 'tests'
+
+  // Server mode state
+  attachmentsBasePath: string | null = null
+  isApiLoading = false
+  apiError: string | null = null
 
   constructor() {
     this.reportStore = new ReportStore(this)
@@ -102,6 +110,87 @@ export class RootStore {
         this.reportStore.runData,
         this.testResultsStore.testResults
       )
+    }
+  }
+
+  /**
+   * Loads report data from the server API.
+   * Used when running via `qase-report open` command.
+   */
+  loadFromApi = async (): Promise<void> => {
+    this.isApiLoading = true
+    this.apiError = null
+
+    try {
+      const apiService = new ApiDataService()
+      const response = await apiService.fetchReport()
+
+      // Validate run data with schema
+      const validatedRun = QaseRunSchema.parse(response.run)
+
+      // Validate each test result
+      const validatedResults: QaseTestResult[] = []
+      for (const result of response.results) {
+        try {
+          const validatedResult = TestResultSchema.parse(result)
+          validatedResults.push(validatedResult)
+        } catch (error) {
+          console.warn('Failed to validate test result:', error)
+        }
+      }
+
+      runInAction(() => {
+        // Populate report store
+        this.reportStore.runData = validatedRun
+
+        // Populate test results store
+        this.testResultsStore.testResults.clear()
+        for (const result of validatedResults) {
+          this.testResultsStore.testResults.set(result.id, result)
+
+          // Register attachment filenames for server mode
+          for (const attachment of result.attachments) {
+            // Extract filename from file_path (e.g., "./attachments/abc-123.png" -> "abc-123.png")
+            const filename = attachment.file_path.split('/').pop() || attachment.id
+            this.attachmentsStore.registerAttachmentFilename(attachment.id, filename)
+          }
+
+          // Also register attachments from steps
+          const registerStepAttachments = (
+            steps: typeof result.steps
+          ): void => {
+            for (const step of steps) {
+              if (step.attachments) {
+                for (const attachment of step.attachments) {
+                  const filename =
+                    attachment.file_path.split('/').pop() || attachment.id
+                  this.attachmentsStore.registerAttachmentFilename(
+                    attachment.id,
+                    filename
+                  )
+                }
+              }
+              if (step.steps) {
+                registerStepAttachments(step.steps)
+              }
+            }
+          }
+          registerStepAttachments(result.steps)
+        }
+
+        // Store attachments base path for API URLs
+        this.attachmentsBasePath = response.attachmentsPath
+      })
+    } catch (error) {
+      runInAction(() => {
+        this.apiError =
+          error instanceof Error ? error.message : 'Failed to load report from API'
+      })
+      throw error
+    } finally {
+      runInAction(() => {
+        this.isApiLoading = false
+      })
     }
   }
 }
