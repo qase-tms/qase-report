@@ -1,0 +1,1 @@
+SELECT id, name, email FROM users WHERE status = 'active' LIMIT 10

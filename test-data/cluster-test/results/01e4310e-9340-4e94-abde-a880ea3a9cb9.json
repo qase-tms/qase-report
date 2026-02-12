@@ -1,0 +1,44 @@
+{
+    "attachments": [
+        {
+            "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+            "file_name": "api_response.json",
+            "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+            "id": "a62ebda2-80dc-4db3-8c98-e6a46e516425",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 1340,
+        "end_time": 1770879605601,
+        "stacktrace": null,
+        "start_time": 1770879604261,
+        "status": "passed",
+        "thread": "worker-1"
+    },
+    "fields": {},
+    "id": "01e4310e-9340-4e94-abde-a880ea3a9cb9",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_attach_json_data",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_attach_json_data"
+}

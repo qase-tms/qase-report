@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 1240,
+        "end_time": 1770879608473,
+        "stacktrace": null,
+        "start_time": 1770879607233,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {},
+    "id": "085d6555-c342-4098-b492-2aef142ab007",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "1::tests::test_basic.py::test_user_login_with_valid_credentials",
+    "steps": [],
+    "testops_ids": [
+        1
+    ],
+    "title": "test_user_login_with_valid_credentials"
+}

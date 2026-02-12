@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 1890,
+        "end_time": 1770879622440,
+        "stacktrace": null,
+        "start_time": 1770879620550,
+        "status": "muted",
+        "thread": "worker-2"
+    },
+    "fields": {
+        "severity": "normal"
+    },
+    "id": "29a47de7-825d-4792-8ee3-1af6fb3ebad7",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_pagination",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_pagination"
+}

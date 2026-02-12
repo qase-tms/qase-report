@@ -1,0 +1,211 @@
+{
+    "attachments": [
+        {
+            "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+            "file_name": "payment_gateway_response.json",
+            "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+            "id": "attach-payment-response",
+            "mime_type": "application/json",
+            "temporary": false
+        },
+        {
+            "content": "WzIwMjYtMDItMTIgMTQ6MDA6MDAuMDAwXSBJTkZPICBTdGFydGluZyB0ZXN0IGV4ZWN1dGlvbgpbMjAyNi0wMi0xMiAxNDowMDowMC4wMTVdIElORk8gIEVudmlyb25tZW50OiBzdGFnaW5nClsyMDI2LTAyLTEyIDE0OjAwOjAwLjAyMF0gSU5GTyAgV29ya2VyczogMyAod29ya2VyLTEsIHdvcmtlci0yLCB3b3JrZXItMykKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMDI1XSBERUJVRyBJbml0aWFsaXppbmcgdGVzdCBkYXRhYmFzZSBjb25uZWN0aW9uLi4uClsyMDI2LTAyLTEyIDE0OjAwOjAwLjE1Nl0gSU5GTyAgRGF0YWJhc2UgY29ubmVjdGlvbiBlc3RhYmxpc2hlZDogcG9zdGdyZXM6Ly9sb2NhbGhvc3Q6NTQzMi90ZXN0ZGIKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMjAwXSBJTkZPICBMb2FkaW5nIHRlc3QgZml4dHVyZXMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNDUwXSBJTkZPICBGaXh0dXJlcyBsb2FkZWQ6IDEyNyByZWNvcmRzClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwMF0gSU5GTyAgPT09PT0gVGVzdCBTZXNzaW9uIFN0YXJ0ZWQgPT09PT0KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNTA1XSBJTkZPICBQbGF0Zm9ybTogRGFyd2luIDI1LjIuMApbMjAyNi0wMi0xMiAxNDowMDowMS41MDZdIElORk8gIFB5dGhvbjogMy4xMi4zClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwN10gSU5GTyAgUHl0ZXN0OiA4LjMuNApbMjAyNi0wMi0xMiAxNDowMDowMS41MTBdIElORk8gIENvbGxlY3RpbmcgdGVzdHMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDIuODkwXSBJTkZPICBDb2xsZWN0ZWQgNDQgdGVzdHMgZnJvbSAxMSB0ZXN0IGZpbGVzClsyMDI2LTAyLTEyIDE0OjAwOjAyLjkwMF0gSU5GTyAgRGlzdHJpYnV0aW9uOiB3b3JrZXItMT0xNSwgd29ya2VyLTI9MTUsIHdvcmtlci0zPTE0ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMF0gSU5GTyAgW3dvcmtlci0xXSBTdGFydGluZzogdGVzdHMvdGVzdF9teXNxbF9wcm9maWxlci5weTo6dGVzdF9teXNxbF9wcm9maWxlcgpbMjAyNi0wMi0xMiAxNDowMDowMy4wMDFdIElORk8gIFt3b3JrZXItMl0gU3RhcnRpbmc6IHRlc3RzL3Rlc3RfYmFzaWMucHk6OnRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMl0gSU5GTyAgW3dvcmtlci0zXSBTdGFydGluZzogdGVzdHMvdGVzdF9zdGVwcy5weTo6dGVzdF9lMmVfdXNlcl9tYW5hZ2VtZW50ClsyMDI2LTAyLTEyIDE0OjAwOjA2LjI1MF0gU0tJUCAgW3dvcmtlci0xXSB0ZXN0X215c3FsX3Byb2ZpbGVyIFNLSVBQRUQgKDMuMjVzKSAtIE15U1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MDQuODUxXSBQQVNTICBbd29ya2VyLTJdIHRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5IFBBU1NFRCAoMS44NXMpClsyMDI2LTAyLTEyIDE0OjAwOjA3LjUyMl0gUEFTUyAgW3dvcmtlci0zXSB0ZXN0X2UyZV91c2VyX21hbmFnZW1lbnQgUEFTU0VEICg0LjUycykKWzIwMjYtMDItMTIgMTQ6MDA6MTAuMTI1XSBQQVNTICBbd29ya2VyLTFdIHRlc3Rfb2F1dGhfdG9rZW5fZXhwaXJhdGlvbiBQQVNTRUQgKDAuOThzKQpbMjAyNi0wMi0xMiAxNDowMDoxMi40NTBdIFNLSVAgIFt3b3JrZXItMl0gdGVzdF9wb3N0Z3Jlc19wcm9maWxlciBTS0lQUEVEICgyLjg5cykgLSBQb3N0Z3JlU1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYwXSBGQUlMICBbd29ya2VyLTNdIHRlc3RfY2FydF90b3RhbCBGQUlMRUQgKDEuNTZzKQpbMjAyNi0wMi0xMiAxNDowMDoxNC41NjFdIEVSUk9SICAgQXNzZXJ0aW9uRXJyb3I6IENhcnQgdG90YWwgbWlzbWF0Y2gKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYyXSBFUlJPUiAgIEV4cGVjdGVkOiAkMTI1Ljk3ClsyMDI2LTAyLTEyIDE0OjAwOjE0LjU2M10gRVJST1IgICBBY3R1YWw6ICQxMTUuOTcKWzIwMjYtMDItMTIgMTQ6MDA6MjMuMjAwXSBQQVNTICBbd29ya2VyLTJdIHRlc3RfY29tcGxldGVfY2hlY2tvdXRfZmxvdyBQQVNTRUQgKDguNzVzKQpbMjAyNi0wMi0xMiAxNDowMDo1NS4yMDBdIEJST0tFIFt3b3JrZXItMV0gdGVzdF9tb25nb2RiX3Byb2ZpbGVyIEJST0tFTiAoNDUuMnMpClsyMDI2LTAyLTEyIDE0OjAwOjU1LjIwMV0gRVJST1IgICBweW1vbmdvLmVycm9ycy5TZXJ2ZXJTZWxlY3Rpb25UaW1lb3V0RXJyb3I6IGxvY2FsaG9zdDoyNzAxNzogQ29ubmVjdGlvbiByZWZ1c2VkClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMF0gRkFJTCAgW3dvcmtlci0yXSB0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdyBGQUlMRUQgKDMuMnMpClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMV0gRVJST1IgICBIVFRQRXJyb3I6IDQwOSBDb25mbGljdApbMjAyNi0wMi0xMiAxNDowMToyNS40MDJdIEVSUk9SICAgUmVzcG9uc2U6IHsiZXJyb3IiOiAiQ09OQ1VSUkVOVF9NT0RJRklDQVRJT04ifQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDBdIElORk8gID09PT09IFRlc3QgU2Vzc2lvbiBGaW5pc2hlZCA9PT09PQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDFdIElORk8gIER1cmF0aW9uOiAzbSAxMi41cyAoY3VtdWxhdGl2ZTogM20gNS40MnMpClsyMDI2LTAyLTEyIDE0OjAzOjEyLjAwMl0gSU5GTyAgUmVzdWx0czogMzggcGFzc2VkLCAyIGZhaWxlZCwgMSBicm9rZW4sIDMgc2tpcHBlZApbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDNdIFdBUk4gIEZsYWt5IHRlc3RzIGRldGVjdGVkOiAxICh0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdykKWzIwMjYtMDItMTIgMTQ6MDM6MTIuMTAwXSBJTkZPICBHZW5lcmF0aW5nIFFhc2UgcmVwb3J0Li4uClsyMDI2LTAyLTEyIDE0OjAzOjEyLjUwMF0gSU5GTyAgUmVwb3J0IHNhdmVkOiAuL2J1aWxkL3Fhc2UtcmVwb3J0LwpbMjAyNi0wMi0xMiAxNDowMzoxMi41MDFdIElORk8gIERvbmUuCg==",
+            "file_name": "transaction_log.txt",
+            "file_path": "./build/qase-report/attachments/1548104f-9e67-46bd-bef5-e07f45a19cbe-test_execution.log",
+            "id": "attach-transaction-log",
+            "mime_type": "text/plain",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 6200,
+        "end_time": 1770879663572,
+        "stacktrace": null,
+        "start_time": 1770879657372,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {
+        "severity": "blocker",
+        "priority": "critical",
+        "component": "Payments",
+        "layer": "integration",
+        "pci_compliant": "true"
+    },
+    "id": "ee83b01d-d2cb-4707-ab3a-ea25121350eb",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {
+        "payment_provider": "stripe",
+        "test_mode": "true",
+        "currency": "USD"
+    },
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_payments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_payments.py::test_payment_processing",
+    "steps": [
+        {
+            "data": {
+                "action": "Initialize Stripe SDK in test mode",
+                "expected_result": "SDK configured with test API key",
+                "input_data": "API Key: sk_test_***"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 234,
+                "end_time": 1770881230234,
+                "start_time": 1770881230000,
+                "status": "passed"
+            },
+            "id": "step-init-stripe",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Create payment method with test card",
+                "expected_result": "Payment method ID returned",
+                "input_data": "Card: 4242424242424242, Exp: 12/28, CVC: 123"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 1450,
+                "end_time": 1770881231684,
+                "start_time": 1770881230234,
+                "status": "passed"
+            },
+            "id": "step-create-pm",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Create payment intent",
+                "expected_result": "Payment intent created with 'requires_confirmation' status",
+                "input_data": "Amount: $99.99, Currency: USD, Customer: cus_test123"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+                        "file_name": "payment_intent_create.json",
+                        "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+                        "id": "attach-pi-create",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 1890,
+                "end_time": 1770881233574,
+                "start_time": 1770881231684,
+                "status": "passed"
+            },
+            "id": "step-create-intent",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Confirm payment intent",
+                "expected_result": "Payment intent status changes to 'succeeded'",
+                "input_data": "Payment Intent: pi_test_xxx, Payment Method: pm_test_xxx"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 1670,
+                "end_time": 1770881235244,
+                "start_time": 1770881233574,
+                "status": "passed"
+            },
+            "id": "step-confirm-intent",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": [
+                {
+                    "data": {
+                        "action": "Send confirmation request to Stripe",
+                        "expected_result": "HTTP 200 response",
+                        "input_data": "POST /v1/payment_intents/{id}/confirm"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 1230,
+                        "end_time": 1770881234804,
+                        "start_time": 1770881233574,
+                        "status": "passed"
+                    },
+                    "id": "step-send-confirm",
+                    "parent_id": "step-confirm-intent",
+                    "step_type": "text",
+                    "steps": []
+                },
+                {
+                    "data": {
+                        "action": "Verify 3D Secure not required (test card)",
+                        "expected_result": "No additional authentication needed",
+                        "input_data": "next_action: null"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 440,
+                        "end_time": 1770881235244,
+                        "start_time": 1770881234804,
+                        "status": "passed"
+                    },
+                    "id": "step-verify-3ds",
+                    "parent_id": "step-confirm-intent",
+                    "step_type": "text",
+                    "steps": []
+                }
+            ]
+        },
+        {
+            "data": {
+                "action": "Verify payment succeeded",
+                "expected_result": "Charge created, funds captured",
+                "input_data": "GET /v1/payment_intents/{id}"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+                        "file_name": "payment_success_response.json",
+                        "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+                        "id": "attach-payment-success",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 956,
+                "end_time": 1770881236200,
+                "start_time": 1770881235244,
+                "status": "passed"
+            },
+            "id": "step-verify-payment",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        4001,
+        4002
+    ],
+    "title": "test_payment_processing"
+}

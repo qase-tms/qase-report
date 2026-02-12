@@ -1,0 +1,202 @@
+{
+    "attachments": [
+        {
+            "content": "WzIwMjYtMDItMTIgMTQ6MDA6MDAuMDAwXSBJTkZPICBTdGFydGluZyB0ZXN0IGV4ZWN1dGlvbgpbMjAyNi0wMi0xMiAxNDowMDowMC4wMTVdIElORk8gIEVudmlyb25tZW50OiBzdGFnaW5nClsyMDI2LTAyLTEyIDE0OjAwOjAwLjAyMF0gSU5GTyAgV29ya2VyczogMyAod29ya2VyLTEsIHdvcmtlci0yLCB3b3JrZXItMykKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMDI1XSBERUJVRyBJbml0aWFsaXppbmcgdGVzdCBkYXRhYmFzZSBjb25uZWN0aW9uLi4uClsyMDI2LTAyLTEyIDE0OjAwOjAwLjE1Nl0gSU5GTyAgRGF0YWJhc2UgY29ubmVjdGlvbiBlc3RhYmxpc2hlZDogcG9zdGdyZXM6Ly9sb2NhbGhvc3Q6NTQzMi90ZXN0ZGIKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMjAwXSBJTkZPICBMb2FkaW5nIHRlc3QgZml4dHVyZXMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNDUwXSBJTkZPICBGaXh0dXJlcyBsb2FkZWQ6IDEyNyByZWNvcmRzClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwMF0gSU5GTyAgPT09PT0gVGVzdCBTZXNzaW9uIFN0YXJ0ZWQgPT09PT0KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNTA1XSBJTkZPICBQbGF0Zm9ybTogRGFyd2luIDI1LjIuMApbMjAyNi0wMi0xMiAxNDowMDowMS41MDZdIElORk8gIFB5dGhvbjogMy4xMi4zClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwN10gSU5GTyAgUHl0ZXN0OiA4LjMuNApbMjAyNi0wMi0xMiAxNDowMDowMS41MTBdIElORk8gIENvbGxlY3RpbmcgdGVzdHMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDIuODkwXSBJTkZPICBDb2xsZWN0ZWQgNDQgdGVzdHMgZnJvbSAxMSB0ZXN0IGZpbGVzClsyMDI2LTAyLTEyIDE0OjAwOjAyLjkwMF0gSU5GTyAgRGlzdHJpYnV0aW9uOiB3b3JrZXItMT0xNSwgd29ya2VyLTI9MTUsIHdvcmtlci0zPTE0ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMF0gSU5GTyAgW3dvcmtlci0xXSBTdGFydGluZzogdGVzdHMvdGVzdF9teXNxbF9wcm9maWxlci5weTo6dGVzdF9teXNxbF9wcm9maWxlcgpbMjAyNi0wMi0xMiAxNDowMDowMy4wMDFdIElORk8gIFt3b3JrZXItMl0gU3RhcnRpbmc6IHRlc3RzL3Rlc3RfYmFzaWMucHk6OnRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMl0gSU5GTyAgW3dvcmtlci0zXSBTdGFydGluZzogdGVzdHMvdGVzdF9zdGVwcy5weTo6dGVzdF9lMmVfdXNlcl9tYW5hZ2VtZW50ClsyMDI2LTAyLTEyIDE0OjAwOjA2LjI1MF0gU0tJUCAgW3dvcmtlci0xXSB0ZXN0X215c3FsX3Byb2ZpbGVyIFNLSVBQRUQgKDMuMjVzKSAtIE15U1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MDQuODUxXSBQQVNTICBbd29ya2VyLTJdIHRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5IFBBU1NFRCAoMS44NXMpClsyMDI2LTAyLTEyIDE0OjAwOjA3LjUyMl0gUEFTUyAgW3dvcmtlci0zXSB0ZXN0X2UyZV91c2VyX21hbmFnZW1lbnQgUEFTU0VEICg0LjUycykKWzIwMjYtMDItMTIgMTQ6MDA6MTAuMTI1XSBQQVNTICBbd29ya2VyLTFdIHRlc3Rfb2F1dGhfdG9rZW5fZXhwaXJhdGlvbiBQQVNTRUQgKDAuOThzKQpbMjAyNi0wMi0xMiAxNDowMDoxMi40NTBdIFNLSVAgIFt3b3JrZXItMl0gdGVzdF9wb3N0Z3Jlc19wcm9maWxlciBTS0lQUEVEICgyLjg5cykgLSBQb3N0Z3JlU1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYwXSBGQUlMICBbd29ya2VyLTNdIHRlc3RfY2FydF90b3RhbCBGQUlMRUQgKDEuNTZzKQpbMjAyNi0wMi0xMiAxNDowMDoxNC41NjFdIEVSUk9SICAgQXNzZXJ0aW9uRXJyb3I6IENhcnQgdG90YWwgbWlzbWF0Y2gKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYyXSBFUlJPUiAgIEV4cGVjdGVkOiAkMTI1Ljk3ClsyMDI2LTAyLTEyIDE0OjAwOjE0LjU2M10gRVJST1IgICBBY3R1YWw6ICQxMTUuOTcKWzIwMjYtMDItMTIgMTQ6MDA6MjMuMjAwXSBQQVNTICBbd29ya2VyLTJdIHRlc3RfY29tcGxldGVfY2hlY2tvdXRfZmxvdyBQQVNTRUQgKDguNzVzKQpbMjAyNi0wMi0xMiAxNDowMDo1NS4yMDBdIEJST0tFIFt3b3JrZXItMV0gdGVzdF9tb25nb2RiX3Byb2ZpbGVyIEJST0tFTiAoNDUuMnMpClsyMDI2LTAyLTEyIDE0OjAwOjU1LjIwMV0gRVJST1IgICBweW1vbmdvLmVycm9ycy5TZXJ2ZXJTZWxlY3Rpb25UaW1lb3V0RXJyb3I6IGxvY2FsaG9zdDoyNzAxNzogQ29ubmVjdGlvbiByZWZ1c2VkClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMF0gRkFJTCAgW3dvcmtlci0yXSB0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdyBGQUlMRUQgKDMuMnMpClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMV0gRVJST1IgICBIVFRQRXJyb3I6IDQwOSBDb25mbGljdApbMjAyNi0wMi0xMiAxNDowMToyNS40MDJdIEVSUk9SICAgUmVzcG9uc2U6IHsiZXJyb3IiOiAiQ09OQ1VSUkVOVF9NT0RJRklDQVRJT04ifQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDBdIElORk8gID09PT09IFRlc3QgU2Vzc2lvbiBGaW5pc2hlZCA9PT09PQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDFdIElORk8gIER1cmF0aW9uOiAzbSAxMi41cyAoY3VtdWxhdGl2ZTogM20gNS40MnMpClsyMDI2LTAyLTEyIDE0OjAzOjEyLjAwMl0gSU5GTyAgUmVzdWx0czogMzggcGFzc2VkLCAyIGZhaWxlZCwgMSBicm9rZW4sIDMgc2tpcHBlZApbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDNdIFdBUk4gIEZsYWt5IHRlc3RzIGRldGVjdGVkOiAxICh0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdykKWzIwMjYtMDItMTIgMTQ6MDM6MTIuMTAwXSBJTkZPICBHZW5lcmF0aW5nIFFhc2UgcmVwb3J0Li4uClsyMDI2LTAyLTEyIDE0OjAzOjEyLjUwMF0gSU5GTyAgUmVwb3J0IHNhdmVkOiAuL2J1aWxkL3Fhc2UtcmVwb3J0LwpbMjAyNi0wMi0xMiAxNDowMzoxMi41MDFdIElORk8gIERvbmUuCg==",
+            "file_name": "mongodb_connection_log.txt",
+            "file_path": "./build/qase-report/attachments/1548104f-9e67-46bd-bef5-e07f45a19cbe-test_execution.log",
+            "id": "attach-mongo-log",
+            "mime_type": "text/plain",
+            "temporary": false
+        },
+        {
+            "content": "ewogICJ0ZXN0X2Vudmlyb25tZW50IjogInN0YWdpbmciLAogICJiYXNlX3VybCI6ICJodHRwczovL3N0YWdpbmcuZXhhbXBsZS5jb20iLAogICJhcGlfdmVyc2lvbiI6ICJ2MiIsCiAgImRhdGFiYXNlIjogewogICAgInBvc3RncmVzIjogewogICAgICAiaG9zdCI6ICJsb2NhbGhvc3QiLAogICAgICAicG9ydCI6IDU0MzIsCiAgICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgICAidXNlciI6ICJ0ZXN0X3J1bm5lciIsCiAgICAgICJzc2wiOiBmYWxzZSwKICAgICAgInBvb2xfc2l6ZSI6IDEwCiAgICB9LAogICAgIm1vbmdvZGIiOiB7CiAgICAgICJob3N0IjogImxvY2FsaG9zdCIsCiAgICAgICJwb3J0IjogMjcwMTcsCiAgICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgICAidGltZW91dF9tcyI6IDMwMDAwCiAgICB9LAogICAgInJlZGlzIjogewogICAgICAiaG9zdCI6ICJsb2NhbGhvc3QiLAogICAgICAicG9ydCI6IDYzNzksCiAgICAgICJkYiI6IDEKICAgIH0KICB9LAogICJhdXRoIjogewogICAgIm9hdXRoX3Byb3ZpZGVycyI6IFsiZ29vZ2xlIiwgImdpdGh1YiIsICJtaWNyb3NvZnQiXSwKICAgICJqd3Rfc2VjcmV0IjogIioqKlJFREFDVEVEKioqIiwKICAgICJ0b2tlbl9leHBpcnlfaG91cnMiOiAyNCwKICAgICJyZWZyZXNoX3Rva2VuX2RheXMiOiAzMAogIH0sCiAgImZlYXR1cmVfZmxhZ3MiOiB7CiAgICAibmV3X2NoZWNrb3V0X2Zsb3ciOiB0cnVlLAogICAgImRhcmtfbW9kZSI6IHRydWUsCiAgICAiYW5hbHl0aWNzX3YyIjogZmFsc2UsCiAgICAiYmV0YV9mZWF0dXJlcyI6IGZhbHNlCiAgfSwKICAidGltZW91dHMiOiB7CiAgICAiYXBpX3JlcXVlc3RfbXMiOiA1MDAwLAogICAgInBhZ2VfbG9hZF9tcyI6IDEwMDAwLAogICAgImVsZW1lbnRfd2FpdF9tcyI6IDMwMDAsCiAgICAiZGJfY29ubmVjdGlvbl9tcyI6IDEwMDAwCiAgfSwKICAicGFyYWxsZWxfd29ya2VycyI6IDMsCiAgInJldHJ5X2ZhaWxlZF90ZXN0cyI6IHRydWUsCiAgIm1heF9yZXRyaWVzIjogMgp9Cg==",
+            "file_name": "server_config.json",
+            "file_path": "./build/qase-report/attachments/c1cfb8b2-a2ed-4e66-a725-9f450902e928-test_config.json",
+            "id": "attach-server-config",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 45200,
+        "end_time": 1770879684560,
+        "stacktrace": "RuntimeError: Infrastructure failure\n  at connect_to_service (/lib/connections.py:67)\n  at setup_test_env (/tests/fixtures.py:34)\n  at TestCase.setUp (/tests/base.py:12)",
+        "start_time": 1770879639360,
+        "status": "broken",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "description": "Comprehensive MongoDB database profiler test - verifies connection, CRUD operations, and query profiling",
+        "priority": "high",
+        "severity": "blocker",
+        "component": "Database",
+        "layer": "Infrastructure"
+    },
+    "id": "f24ead52-1ecb-497e-9f8b-92e293890dcf",
+    "message": "RuntimeError: Test infrastructure failure - unable to complete execution",
+    "muted": false,
+    "param_groups": [],
+    "params": {
+        "db_host": "localhost",
+        "db_port": "27017",
+        "db_name": "testdb",
+        "timeout_ms": "30000"
+    },
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_mongodb_profiler"
+                }
+            ]
+        }
+    },
+    "signature": "203::tests::test_mongodb_profiler.py::test_mongodb_profiler",
+    "steps": [
+        {
+            "data": {
+                "action": "Initialize MongoDB client with connection settings",
+                "expected_result": "MongoClient instance created",
+                "input_data": "mongodb://localhost:27017/?serverSelectionTimeoutMS=30000"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 125,
+                "end_time": 1770880220125,
+                "start_time": 1770880220000,
+                "status": "passed"
+            },
+            "id": "step-init-client",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Establish connection to MongoDB server",
+                "expected_result": "Connection established, server info retrieved",
+                "input_data": "Host: localhost:27017, Timeout: 30s"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "WzIwMjYtMDItMTIgMTQ6MDA6MDAuMDAwXSBJTkZPICBTdGFydGluZyB0ZXN0IGV4ZWN1dGlvbgpbMjAyNi0wMi0xMiAxNDowMDowMC4wMTVdIElORk8gIEVudmlyb25tZW50OiBzdGFnaW5nClsyMDI2LTAyLTEyIDE0OjAwOjAwLjAyMF0gSU5GTyAgV29ya2VyczogMyAod29ya2VyLTEsIHdvcmtlci0yLCB3b3JrZXItMykKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMDI1XSBERUJVRyBJbml0aWFsaXppbmcgdGVzdCBkYXRhYmFzZSBjb25uZWN0aW9uLi4uClsyMDI2LTAyLTEyIDE0OjAwOjAwLjE1Nl0gSU5GTyAgRGF0YWJhc2UgY29ubmVjdGlvbiBlc3RhYmxpc2hlZDogcG9zdGdyZXM6Ly9sb2NhbGhvc3Q6NTQzMi90ZXN0ZGIKWzIwMjYtMDItMTIgMTQ6MDA6MDAuMjAwXSBJTkZPICBMb2FkaW5nIHRlc3QgZml4dHVyZXMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNDUwXSBJTkZPICBGaXh0dXJlcyBsb2FkZWQ6IDEyNyByZWNvcmRzClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwMF0gSU5GTyAgPT09PT0gVGVzdCBTZXNzaW9uIFN0YXJ0ZWQgPT09PT0KWzIwMjYtMDItMTIgMTQ6MDA6MDEuNTA1XSBJTkZPICBQbGF0Zm9ybTogRGFyd2luIDI1LjIuMApbMjAyNi0wMi0xMiAxNDowMDowMS41MDZdIElORk8gIFB5dGhvbjogMy4xMi4zClsyMDI2LTAyLTEyIDE0OjAwOjAxLjUwN10gSU5GTyAgUHl0ZXN0OiA4LjMuNApbMjAyNi0wMi0xMiAxNDowMDowMS41MTBdIElORk8gIENvbGxlY3RpbmcgdGVzdHMuLi4KWzIwMjYtMDItMTIgMTQ6MDA6MDIuODkwXSBJTkZPICBDb2xsZWN0ZWQgNDQgdGVzdHMgZnJvbSAxMSB0ZXN0IGZpbGVzClsyMDI2LTAyLTEyIDE0OjAwOjAyLjkwMF0gSU5GTyAgRGlzdHJpYnV0aW9uOiB3b3JrZXItMT0xNSwgd29ya2VyLTI9MTUsIHdvcmtlci0zPTE0ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMF0gSU5GTyAgW3dvcmtlci0xXSBTdGFydGluZzogdGVzdHMvdGVzdF9teXNxbF9wcm9maWxlci5weTo6dGVzdF9teXNxbF9wcm9maWxlcgpbMjAyNi0wMi0xMiAxNDowMDowMy4wMDFdIElORk8gIFt3b3JrZXItMl0gU3RhcnRpbmc6IHRlc3RzL3Rlc3RfYmFzaWMucHk6OnRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5ClsyMDI2LTAyLTEyIDE0OjAwOjAzLjAwMl0gSU5GTyAgW3dvcmtlci0zXSBTdGFydGluZzogdGVzdHMvdGVzdF9zdGVwcy5weTo6dGVzdF9lMmVfdXNlcl9tYW5hZ2VtZW50ClsyMDI2LTAyLTEyIDE0OjAwOjA2LjI1MF0gU0tJUCAgW3dvcmtlci0xXSB0ZXN0X215c3FsX3Byb2ZpbGVyIFNLSVBQRUQgKDMuMjVzKSAtIE15U1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MDQuODUxXSBQQVNTICBbd29ya2VyLTJdIHRlc3Rfbm90aWZpY2F0aW9uX2RlbGl2ZXJ5IFBBU1NFRCAoMS44NXMpClsyMDI2LTAyLTEyIDE0OjAwOjA3LjUyMl0gUEFTUyAgW3dvcmtlci0zXSB0ZXN0X2UyZV91c2VyX21hbmFnZW1lbnQgUEFTU0VEICg0LjUycykKWzIwMjYtMDItMTIgMTQ6MDA6MTAuMTI1XSBQQVNTICBbd29ya2VyLTFdIHRlc3Rfb2F1dGhfdG9rZW5fZXhwaXJhdGlvbiBQQVNTRUQgKDAuOThzKQpbMjAyNi0wMi0xMiAxNDowMDoxMi40NTBdIFNLSVAgIFt3b3JrZXItMl0gdGVzdF9wb3N0Z3Jlc19wcm9maWxlciBTS0lQUEVEICgyLjg5cykgLSBQb3N0Z3JlU1FMIG5vdCBhdmFpbGFibGUKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYwXSBGQUlMICBbd29ya2VyLTNdIHRlc3RfY2FydF90b3RhbCBGQUlMRUQgKDEuNTZzKQpbMjAyNi0wMi0xMiAxNDowMDoxNC41NjFdIEVSUk9SICAgQXNzZXJ0aW9uRXJyb3I6IENhcnQgdG90YWwgbWlzbWF0Y2gKWzIwMjYtMDItMTIgMTQ6MDA6MTQuNTYyXSBFUlJPUiAgIEV4cGVjdGVkOiAkMTI1Ljk3ClsyMDI2LTAyLTEyIDE0OjAwOjE0LjU2M10gRVJST1IgICBBY3R1YWw6ICQxMTUuOTcKWzIwMjYtMDItMTIgMTQ6MDA6MjMuMjAwXSBQQVNTICBbd29ya2VyLTJdIHRlc3RfY29tcGxldGVfY2hlY2tvdXRfZmxvdyBQQVNTRUQgKDguNzVzKQpbMjAyNi0wMi0xMiAxNDowMDo1NS4yMDBdIEJST0tFIFt3b3JrZXItMV0gdGVzdF9tb25nb2RiX3Byb2ZpbGVyIEJST0tFTiAoNDUuMnMpClsyMDI2LTAyLTEyIDE0OjAwOjU1LjIwMV0gRVJST1IgICBweW1vbmdvLmVycm9ycy5TZXJ2ZXJTZWxlY3Rpb25UaW1lb3V0RXJyb3I6IGxvY2FsaG9zdDoyNzAxNzogQ29ubmVjdGlvbiByZWZ1c2VkClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMF0gRkFJTCAgW3dvcmtlci0yXSB0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdyBGQUlMRUQgKDMuMnMpClsyMDI2LTAyLTEyIDE0OjAxOjI1LjQwMV0gRVJST1IgICBIVFRQRXJyb3I6IDQwOSBDb25mbGljdApbMjAyNi0wMi0xMiAxNDowMToyNS40MDJdIEVSUk9SICAgUmVzcG9uc2U6IHsiZXJyb3IiOiAiQ09OQ1VSUkVOVF9NT0RJRklDQVRJT04ifQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDBdIElORk8gID09PT09IFRlc3QgU2Vzc2lvbiBGaW5pc2hlZCA9PT09PQpbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDFdIElORk8gIER1cmF0aW9uOiAzbSAxMi41cyAoY3VtdWxhdGl2ZTogM20gNS40MnMpClsyMDI2LTAyLTEyIDE0OjAzOjEyLjAwMl0gSU5GTyAgUmVzdWx0czogMzggcGFzc2VkLCAyIGZhaWxlZCwgMSBicm9rZW4sIDMgc2tpcHBlZApbMjAyNi0wMi0xMiAxNDowMzoxMi4wMDNdIFdBUk4gIEZsYWt5IHRlc3RzIGRldGVjdGVkOiAxICh0ZXN0X3VzZXJfcHJvZmlsZV91cGRhdGVfZmxvdykKWzIwMjYtMDItMTIgMTQ6MDM6MTIuMTAwXSBJTkZPICBHZW5lcmF0aW5nIFFhc2UgcmVwb3J0Li4uClsyMDI2LTAyLTEyIDE0OjAzOjEyLjUwMF0gSU5GTyAgUmVwb3J0IHNhdmVkOiAuL2J1aWxkL3Fhc2UtcmVwb3J0LwpbMjAyNi0wMi0xMiAxNDowMzoxMi41MDFdIElORk8gIERvbmUuCg==",
+                        "file_name": "connection_attempt_log.txt",
+                        "file_path": "./build/qase-report/attachments/1548104f-9e67-46bd-bef5-e07f45a19cbe-test_execution.log",
+                        "id": "attach-conn-log",
+                        "mime_type": "text/plain",
+                        "temporary": false
+                    }
+                ],
+                "duration": 30245,
+                "end_time": 1770880250370,
+                "start_time": 1770880220125,
+                "status": "broken"
+            },
+            "id": "step-connect",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": [
+                {
+                    "data": {
+                        "action": "Attempt TCP connection to MongoDB port",
+                        "expected_result": "TCP handshake successful",
+                        "input_data": "TCP connect to 127.0.0.1:27017"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 30100,
+                        "end_time": 1770880250225,
+                        "start_time": 1770880220125,
+                        "status": "broken"
+                    },
+                    "id": "step-tcp-connect",
+                    "parent_id": "step-connect",
+                    "step_type": "text",
+                    "steps": []
+                },
+                {
+                    "data": {
+                        "action": "Authenticate with MongoDB",
+                        "expected_result": "Authentication successful",
+                        "input_data": "Auth mechanism: SCRAM-SHA-256"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 145,
+                        "end_time": 1770880250370,
+                        "start_time": 1770880250225,
+                        "status": "skipped"
+                    },
+                    "id": "step-auth",
+                    "parent_id": "step-connect",
+                    "step_type": "text",
+                    "steps": []
+                }
+            ]
+        },
+        {
+            "data": {
+                "action": "Insert test documents into users collection",
+                "expected_result": "3 documents inserted successfully",
+                "input_data": "Collection: testdb.users, Documents: [{name: 'John'}, {name: 'Jane'}, {name: 'Bob'}]"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 14830,
+                "end_time": 1770880265200,
+                "start_time": 1770880250370,
+                "status": "skipped"
+            },
+            "id": "step-insert",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Query users collection with profiling enabled",
+                "expected_result": "Query results returned, profiling data captured",
+                "input_data": "db.users.find({name: {$regex: 'J.*'}})"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 0,
+                "end_time": 1770880265200,
+                "start_time": 1770880265200,
+                "status": "skipped"
+            },
+            "id": "step-query",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Verify profiler captured query execution details",
+                "expected_result": "Profiler data contains query plan, execution time, and index usage",
+                "input_data": "db.system.profile.find().sort({ts: -1}).limit(1)"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 0,
+                "end_time": 1770880265200,
+                "start_time": 1770880265200,
+                "status": "skipped"
+            },
+            "id": "step-verify-profiler",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        203
+    ],
+    "title": "MongoDB Database Profiler Test"
+}

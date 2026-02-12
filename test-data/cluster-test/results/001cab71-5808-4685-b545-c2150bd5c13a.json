@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 320,
+        "end_time": 1770879605096,
+        "stacktrace": null,
+        "start_time": 1770879604776,
+        "status": "passed",
+        "thread": "worker-3"
+    },
+    "fields": {
+        "layer": "unit"
+    },
+    "id": "001cab71-5808-4685-b545-c2150bd5c13a",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_string_formatter",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_string_formatter"
+}

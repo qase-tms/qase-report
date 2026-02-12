@@ -1,0 +1,35 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 3400,
+        "end_time": 1770879604667,
+        "stacktrace": null,
+        "start_time": 1770879601267,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {},
+    "id": "0632fab4-3f1d-48c8-a1d2-6bcd893581b0",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_attach_error_screenshot_simulation",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_attach_error_screenshot_simulation"
+}

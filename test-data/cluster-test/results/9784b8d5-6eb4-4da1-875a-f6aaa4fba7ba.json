@@ -1,0 +1,60 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 2890,
+        "end_time": 1770879616490,
+        "stacktrace": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_postgres_profiler.py', 102, 'Skipped: PostgreSQL not available: connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\\n\\tIs the server running on that host and accepting TCP/IP connections?\\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\\n\\tIs the server running on that host and accepting TCP/IP connections?')",
+        "start_time": 1770879613600,
+        "status": "skipped",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "description": "Simple test to verify PostgreSQL database profiler functionality",
+        "priority": "high",
+        "severity": "normal"
+    },
+    "id": "9784b8d5-6eb4-4da1-875a-f6aaa4fba7ba",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_postgres_profiler"
+                }
+            ]
+        }
+    },
+    "signature": "200::tests::test_postgres_profiler.py::test_postgres_profiler",
+    "steps": [
+        {
+            "data": {
+                "action": "Connect to PostgreSQL database",
+                "expected_result": null,
+                "input_data": null
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 2,
+                "end_time": 1770879613602,
+                "start_time": 1770879613600,
+                "status": "failed"
+            },
+            "id": "f3c5e03d-8c52-4700-8033-5781f88f2b4c",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        200
+    ],
+    "title": "PostgreSQL Database Profiler Test"
+}

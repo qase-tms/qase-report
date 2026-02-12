@@ -1,0 +1,44 @@
+{
+    "attachments": [
+        {
+            "content": "bnVsbA==",
+            "file_name": "file.txt",
+            "file_path": "./build/qase-report/attachments/2eb36a56-b0e6-4a0c-9fcc-3d666cc29bcb-file.txt",
+            "id": "2eb36a56-b0e6-4a0c-9fcc-3d666cc29bcb",
+            "mime_type": "text/plain",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 1670,
+        "end_time": 1770879644761,
+        "stacktrace": "InvalidTestError: Test configuration error\n  at validate_config (/lib/config.py:23)\n  at TestCase.load_params (/tests/base.py:67)",
+        "start_time": 1770879643091,
+        "status": "invalid",
+        "thread": "worker-3"
+    },
+    "fields": {},
+    "id": "f56749e0-11e2-4aab-b852-94ecf703df9a",
+    "message": "InvalidTestError: Test configuration is invalid or malformed",
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_attach_file_with_mime_type",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_attach_file_with_mime_type"
+}

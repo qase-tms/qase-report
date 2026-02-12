@@ -1,0 +1,45 @@
+test_id,test_name,status,duration_ms,worker,suite,priority,component
+bf8bc690-ef31-4c6f-8ef8-38b871a12749,MySQL Database Profiler Test,skipped,3250,worker-1,test_mysql_profiler,high,Database
+075d8672-b337-47be-865c-8b4476794aad,test_notification_delivery,passed,1850,worker-2,test_basic,medium,Notifications
+fc7bc9cc-b528-4ea7-b543-1ed745137b5d,Complete E2E user management flow,passed,4520,worker-1,test_steps,critical,User Management
+569210da-1975-446f-9965-3338001fddd3,test_api_flow_with_step_attachments,passed,2340,worker-3,test_attachments,high,API
+1a07824c-6410-4634-911e-f34cbe9c952f,test_oauth_token_expiration,passed,980,worker-2,Authentication,high,OAuth
+9784b8d5-6eb4-4da1-875a-f6aaa4fba7ba,PostgreSQL Database Profiler Test,skipped,2890,worker-1,test_postgres_profiler,high,Database
+ca7ee0af-6bef-436f-9adf-cdf594b84e49,Verify shopping cart total calculation,failed,1560,worker-3,test_cart,critical,E-Commerce
+bf7fae94-d9e9-4f35-902d-a46b80599994,test_complete_checkout_flow,passed,8750,worker-2,test_checkout,critical,E-Commerce
+f24ead52-1ecb-497e-9f8b-92e293890dcf,MongoDB Database Profiler Test,broken,45200,worker-1,test_mongodb_profiler,high,Database
+001cab71-5808-4685-b545-c2150bd5c13a,test_string_formatter,passed,320,worker-3,test_basic,low,Utils
+126de46f-a511-4d37-8c1e-b569fea6b67a,test_attach_html_report,passed,1890,worker-2,test_attachments,medium,Attachments
+816106ee-4677-4d0e-ac64-749c850d7f2f,test_attach_generated_file,passed,2100,worker-1,test_attachments,medium,Attachments
+816160d1-850e-4f3f-81a2-4ad4309afa62,test_google_oauth_login,passed,3450,worker-3,Authentication,high,OAuth
+5df2f75a-d980-4b89-99be-4d18dc291c6c,test_successful_login_flow,passed,2780,worker-2,test_login,critical,Authentication
+2cc9e508-7273-44a6-871b-061a28a72c91,test_user_data_encryption,passed,4200,worker-1,test_security,blocker,Security
+74a3b479-9bdd-4582-a14b-b6af28d41ee4,test_checkout_flow_with_context_manager,passed,6890,worker-3,test_checkout,high,E-Commerce
+085d6555-c342-4098-b492-2aef142ab007,test_user_login_with_valid_credentials,passed,1240,worker-2,test_auth,critical,Authentication
+252daba3-7b5c-485a-8d46-c3266345c8c6,test_api_response_structure,passed,890,worker-1,test_api,medium,API
+822c24de-61e7-4efd-99a8-592724296e63,test_attach_text_content,passed,1560,worker-3,test_attachments,medium,Attachments
+c8a5c03a-1a61-4e9e-8deb-671596fb6c1a,test_user_profile_update_flow,failed,3200,worker-2,test_profile,high,User Management
+f55fc262-5632-4a99-9dae-783300a39a4f,test_attach_csv_report,passed,980,worker-1,test_attachments,medium,Attachments
+2cd5086a-2f01-46ec-9687-fc5ee4568f59,test_login_with_remember_me,passed,1450,worker-3,test_auth,medium,Authentication
+eb415d62-5cfa-44ce-acfa-574e03121318,test_attach_performance_metrics,passed,2340,worker-2,test_attachments,high,Attachments
+31e0a8eb-cd58-4d22-8696-01a0e4d2fef0,test_user_permissions_check,passed,1120,worker-1,test_auth,high,Authorization
+f110984a-7e3a-46cc-b514-26ee10115926,test_search_functionality,passed,2890,worker-3,test_search,medium,Search
+bbb56cff-9217-4d46-8ba0-bfb2ebdd15dc,Configuration validation with config attachment,passed,1780,worker-2,test_config,high,Configuration
+375dfeeb-f6a2-47af-880d-d9dbd9085308,test_ui_theme_switching,passed,2100,worker-1,test_ui,low,UI
+857f8c7f-4be9-43eb-a58d-6c58ba9db603,test_tooltip_display,passed,560,worker-3,test_ui,low,UI
+0632fab4-3f1d-48c8-a1d2-6bcd893581b0,test_attach_error_screenshot_simulation,passed,3400,worker-2,test_attachments,high,Attachments
+2be33190-e0fc-48b1-a30a-d6fe0985fcba,test_attach_multiple_files,passed,4560,worker-1,test_attachments,medium,Attachments
+6b1dc5ba-7687-44d5-8386-b26017686029,test_analytics_tracking,passed,1890,worker-3,test_analytics,medium,Analytics
+15ddf9c1-3f2e-4918-a9cc-c0125cc4a34e,test_registration_with_nested_steps,passed,7800,worker-2,test_registration,high,Authentication
+3cf70f35-7f42-47fe-bbf0-b07884ef719b,Database query execution with result attachment,passed,2450,worker-1,test_database,high,Database
+6ffcd95e-8151-48fb-9dac-056c1c683f7d,test_attach_single_file,passed,5200,worker-3,test_attachments,medium,Attachments
+51a604d6-817d-4f61-879e-ea73b35db17d,test_password_validation,passed,780,worker-2,test_auth,high,Authentication
+1c92a0ef-dea2-46da-9d85-279df0ed25eb,Redis Database Profiler Test,skipped,3100,worker-1,test_redis_profiler,high,Database
+f56749e0-11e2-4aab-b852-94ecf703df9a,test_attach_file_with_mime_type,passed,1670,worker-3,test_attachments,medium,Attachments
+723af793-401a-4625-b943-04329aa7d5e1,SQLite Database Profiler Test,passed,12400,worker-2,test_sqlite_profiler,high,Database
+01e4310e-9340-4e94-abde-a880ea3a9cb9,test_attach_json_data,passed,1340,worker-1,test_attachments,medium,Attachments
+5e505c12-cbe1-4c45-9c3c-046947aaac76,test_user_registration_flow,passed,4890,worker-3,test_registration,critical,Authentication
+ee83b01d-d2cb-4707-ab3a-ea25121350eb,test_payment_processing,passed,6200,worker-2,test_payments,blocker,Payments
+a75f6eed-80e4-4bce-9906-627ef7a44955,test_login_flow_with_step_decorator,passed,3560,worker-1,test_auth,high,Authentication
+e269f0be-c2ec-4acb-b79b-54296fcc6be2,test_authentication_service,passed,2100,worker-3,test_auth,critical,Authentication
+29a47de7-825d-4792-8ee3-1af6fb3ebad7,test_pagination,passed,1890,worker-2,test_api,medium,API

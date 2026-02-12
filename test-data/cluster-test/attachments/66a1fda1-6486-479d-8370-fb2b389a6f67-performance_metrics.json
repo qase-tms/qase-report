@@ -1,0 +1,54 @@
+{
+  "test_run": "Nightly Build #247",
+  "timestamp": "2026-02-12T15:00:00Z",
+  "metrics": {
+    "total_tests": 44,
+    "passed": 38,
+    "failed": 2,
+    "broken": 1,
+    "skipped": 3,
+    "pass_rate": 86.36,
+    "execution_time_ms": 185420,
+    "parallel_workers": 3
+  },
+  "performance": {
+    "avg_test_duration_ms": 4214,
+    "max_test_duration_ms": 45200,
+    "min_test_duration_ms": 320,
+    "p50_duration_ms": 2100,
+    "p90_duration_ms": 7800,
+    "p95_duration_ms": 8750,
+    "p99_duration_ms": 45200
+  },
+  "api_response_times": {
+    "iterations": 500,
+    "min_ms": 12,
+    "max_ms": 1890,
+    "avg_ms": 245,
+    "p50_ms": 180,
+    "p90_ms": 580,
+    "p99_ms": 1450,
+    "threshold_ms": 500,
+    "passed_threshold": true
+  },
+  "coverage": {
+    "lines": 87.4,
+    "branches": 72.1,
+    "functions": 91.2,
+    "statements": 86.8
+  },
+  "flaky_tests": [
+    {
+      "name": "test_user_profile_update_flow",
+      "failures_last_10_runs": 3,
+      "flakiness_rate": 0.30
+    }
+  ],
+  "slowest_tests": [
+    { "name": "MongoDB Database Profiler Test", "duration_ms": 45200 },
+    { "name": "SQLite Database Profiler Test", "duration_ms": 12400 },
+    { "name": "test_complete_checkout_flow", "duration_ms": 8750 },
+    { "name": "test_registration_with_nested_steps", "duration_ms": 7800 },
+    { "name": "test_checkout_flow_with_context_manager", "duration_ms": 6890 }
+  ]
+}

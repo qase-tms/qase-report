@@ -1,0 +1,44 @@
+{
+    "attachments": [
+        {
+            "content": "bnVsbA==",
+            "file_name": "tmpqmgb1xjs.txt",
+            "file_path": "./build/qase-report/attachments/4a98311e-2f11-425e-a84d-3add15465817-tmpqmgb1xjs.txt",
+            "id": "4a98311e-2f11-425e-a84d-3add15465817",
+            "mime_type": "text/plain",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 2100,
+        "end_time": 1770879628675,
+        "stacktrace": null,
+        "start_time": 1770879626575,
+        "status": "passed",
+        "thread": "worker-1"
+    },
+    "fields": {},
+    "id": "816106ee-4677-4d0e-ac64-749c850d7f2f",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_attach_generated_file",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_attach_generated_file"
+}

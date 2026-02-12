@@ -1,0 +1,38 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 1120,
+        "end_time": 1770879620968,
+        "stacktrace": "RuntimeError: Infrastructure failure\n  at connect_to_service (/lib/connections.py:67)\n  at setup_test_env (/tests/fixtures.py:34)\n  at TestCase.setUp (/tests/base.py:12)",
+        "start_time": 1770879619848,
+        "status": "broken",
+        "thread": "worker-1"
+    },
+    "fields": {},
+    "id": "31e0a8eb-cd58-4d22-8696-01a0e4d2fef0",
+    "message": "RuntimeError: Test infrastructure failure - unable to complete execution",
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "2-3::tests::test_basic.py::test_user_permissions_check",
+    "steps": [],
+    "testops_ids": [
+        2,
+        3
+    ],
+    "title": "test_user_permissions_check"
+}

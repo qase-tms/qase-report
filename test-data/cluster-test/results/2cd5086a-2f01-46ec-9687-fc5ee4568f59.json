@@ -1,0 +1,33 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 1450,
+        "end_time": 1770879606674,
+        "stacktrace": null,
+        "start_time": 1770879605224,
+        "status": "passed",
+        "thread": "worker-3"
+    },
+    "fields": {
+        "suite": null
+    },
+    "id": "2cd5086a-2f01-46ec-9687-fc5ee4568f59",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "Authentication"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_login_with_remember_me",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_login_with_remember_me"
+}

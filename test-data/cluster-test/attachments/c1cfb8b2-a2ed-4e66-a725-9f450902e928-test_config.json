@@ -1,0 +1,47 @@
+{
+  "test_environment": "staging",
+  "base_url": "https://staging.example.com",
+  "api_version": "v2",
+  "database": {
+    "postgres": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "testdb",
+      "user": "test_runner",
+      "ssl": false,
+      "pool_size": 10
+    },
+    "mongodb": {
+      "host": "localhost",
+      "port": 27017,
+      "database": "testdb",
+      "timeout_ms": 30000
+    },
+    "redis": {
+      "host": "localhost",
+      "port": 6379,
+      "db": 1
+    }
+  },
+  "auth": {
+    "oauth_providers": ["google", "github", "microsoft"],
+    "jwt_secret": "***REDACTED***",
+    "token_expiry_hours": 24,
+    "refresh_token_days": 30
+  },
+  "feature_flags": {
+    "new_checkout_flow": true,
+    "dark_mode": true,
+    "analytics_v2": false,
+    "beta_features": false
+  },
+  "timeouts": {
+    "api_request_ms": 5000,
+    "page_load_ms": 10000,
+    "element_wait_ms": 3000,
+    "db_connection_ms": 10000
+  },
+  "parallel_workers": 3,
+  "retry_failed_tests": true,
+  "max_retries": 2
+}
