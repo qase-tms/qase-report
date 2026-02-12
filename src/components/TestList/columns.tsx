@@ -112,13 +112,9 @@ export const createColumns = (
         )
       }
 
-      // Test: testops_id or "-"
+      // Test: testops_id or "-" (no indent - columns align with header)
       const testopsId = row.original.testData?.testops_ids?.[0]
-      return (
-        <div style={{ paddingLeft: `${row.depth * 1.5 + 1.5}rem` }}>
-          <span className="text-muted-foreground">{testopsId || '-'}</span>
-        </div>
-      )
+      return <span className="text-muted-foreground">{testopsId || '-'}</span>
     },
     size: 100,
   },
