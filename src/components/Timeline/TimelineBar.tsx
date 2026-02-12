@@ -41,7 +41,7 @@ export const TimelineBar = observer(({ test, minTime, totalDuration }: TimelineB
 
   return (
     <div
-      className={`absolute h-5 top-0.5 rounded cursor-pointer transition-colors ${colorClass}`}
+      className={`absolute h-5 top-0.5 rounded cursor-pointer transition-colors ring-1 ring-background ${colorClass}`}
       style={{ left: `${startOffset}%`, width: `${width}%` }}
       onClick={() => selectTest(test.id)}
       title={`${test.title} (${formattedDuration})`}
