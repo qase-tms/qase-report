@@ -669,10 +669,11 @@ Plans:
   2. User can specify history file with `--history ./my-history.json`
   3. Default history saves to `./qase-report-history.json` in results folder
   4. History respects 30-run limit, removing oldest runs when exceeded
-**Plans**: TBD
+**Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 46-01: TBD
+- [ ] 46-01-PLAN.md — History manager module and CLI --history option (Wave 1)
+- [ ] 46-02-PLAN.md — Server history API and React auto-loading (Wave 2)
 
 #### Phase 47: Generate Command
 **Goal**: User can generate self-contained static HTML reports
@@ -732,14 +733,14 @@ Plans:
 | 43. Analytics Cleanup | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 44. CLI Foundation | v1.8 | 1/1 | Complete | 2026-02-12 |
 | 45. Local Server | v1.8 | 2/2 | Complete | 2026-02-12 |
-| 46. History Management | v1.8 | 0/TBD | Not started | - |
+| 46. History Management | v1.8 | 0/2 | Not started | - |
 | 47. Generate Command | v1.8 | 0/TBD | Not started | - |
 | 48. NPM Package | v1.8 | 0/TBD | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
-**Total v1.8:** 3/3 plans (40% of phases)
+**Total v1.8:** 3/5 plans (60% of phases)
 
 ---
 *Roadmap created: 2026-02-10*
