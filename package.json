@@ -3,9 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "bin": {
+    "qase-report": "./dist/cli/index.js"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run build:cli",
+    "build:cli": "tsc -p tsconfig.cli.json",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -16,6 +20,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "commander": "^14.0.3",
     "lucide-react": "^0.563.0",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
