@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-02-11)
 
 ## Current Position
 
-Phase: 35 of 36 (Suite Hierarchy & Progress)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-11 — Completed 35-03 (Suite Hierarchy Integration)
+Phase: 36 of 36 (Views Migration Polish)
+Plan: 4 of 6 in current phase
+Status: In progress
+Last activity: 2026-02-11 — Completed 36-03 (Static HTML Export Verification)
 
-Progress: [████████████████████████████████████] 100% (63/63 total plans)
+Progress: [████████████████████████████████████] 100% (64/69 total plans)
 
 ## Performance Metrics
 
@@ -56,7 +56,9 @@ Progress: [███████████████████████
 | Phase 35 P01 | 250 | 3 tasks | 4 files |
 | 35 | 02 | ~2 min | 2 | 3 | 2026-02-11 |
 | 35 | 03 | ~2 min | 2 | 1 | 2026-02-11 |
+| 36 | 01 | ~2.3 min | 2 | 4 | 2026-02-11 |
 | Phase 36 P02 | 117 | 2 tasks | 7 files |
+| Phase 36 P03 | 2 | 2 tasks | 0 files |
 
 ## Accumulated Context
 
@@ -198,6 +200,12 @@ Key decisions preserved for future reference:
 - Controlled expansion state pattern with expanded/onExpandedChange props to DataTable
 - Phase 35 (Suite Hierarchy & Progress) complete - all 3 plans executed
 
+**Phase 36-01 (Loading Skeleton States):**
+- Dashboard skeleton uses 9-item grid matching BentoGrid structure to prevent layout shift
+- Gallery skeleton shows 8 placeholder items with responsive grid (2/3/4 columns)
+- FailureClusters skeleton displays title + 3 cluster placeholders matching typical data
+- Comparison skeleton uses 4 stacked sections matching UI hierarchy
+
 **Previous milestones:**
 - MobX computed properties for reactive trend data caching
 - react-window virtual scrolling (~6KB)
@@ -211,6 +219,7 @@ Key decisions preserved for future reference:
 - [Phase 31]: CVA variant extension: Extended existing Badge variants rather than creating separate component
 - [Phase 34-01]: TanStack Virtual instead of react-window for more responsive performance and active maintenance
 - [Phase 34-04]: Command palette with fuzzy search using rankItem from @tanstack/match-sorter-utils
+- [Phase 36-03]: Static HTML export with file:// protocol verified working after Tailwind v4 + Vite 5 migration
 
 ### Pending Todos
 
@@ -231,7 +240,8 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-02-11T20:38:27Z
-Stopped at: Completed 36-02-PLAN.md
+Last session: 2026-02-11T20:40:37Z
+Stopped at: Completed 36-01-PLAN.md
 Resume file: None
+Next action: Continue to 36-02-PLAN.md (/gsd:execute-phase 36)
 Next action: Continue with Phase 36 remaining plans

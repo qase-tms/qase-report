@@ -7,7 +7,8 @@
 - **v1.2 Design Refresh** - Phases 13-17 (shipped 2026-02-10)
 - **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
 - **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
-- **v1.5 Qase TMS Style** - Phases 30-36 (in progress)
+- **v1.5 Qase TMS Style** - Phases 30-36 (shipped 2026-02-11)
+- **v1.6 Qase TMS Design Polish** - Phases 37-40 (in progress)
 
 ## Phases
 
@@ -353,11 +354,12 @@ Plans:
 
 </details>
 
-### v1.5 Qase TMS Style (In Progress)
+<details>
+<summary>v1.5 Qase TMS Style (Phases 30-36) - SHIPPED 2026-02-11</summary>
 
 **Milestone Goal:** Migrate to shadcn/ui with Qase TMS visual style — tabs navigation, right sidebar, drawer test details, table-style test list.
 
-#### Phase 30: Foundation Setup
+### Phase 30: Foundation Setup
 
 **Goal**: Tailwind CSS v4 and shadcn/ui installed, dark theme configured, MUI completely removed
 **Depends on**: Phase 29 (v1.4 complete)
@@ -377,7 +379,7 @@ Plans:
 - [x] 30-04-PLAN.md — Remove MUI and Emotion dependencies (Wave 3)
 - [x] 30-05-PLAN.md — Migrate icons to lucide-react (Wave 3)
 
-#### Phase 31: Core UI Components
+### Phase 31: Core UI Components
 
 **Goal**: Base shadcn/ui components installed and ready for use
 **Depends on**: Phase 30
@@ -394,7 +396,7 @@ Plans:
 - [x] 31-01-PLAN.md — Install Card, Badge, Skeleton components via CLI (Wave 1)
 - [x] 31-02-PLAN.md — Extend Badge with status variants and create StatusBadge component (Wave 2)
 
-#### Phase 32: Layout Restructure
+### Phase 32: Layout Restructure
 
 **Goal**: Tab navigation, right sidebar, top bar work with new layout
 **Depends on**: Phase 31
@@ -412,7 +414,7 @@ Plans:
 - [x] 32-02-PLAN.md — Create RunInfoSidebar with pass rate ring and metadata (Wave 1)
 - [x] 32-03-PLAN.md — Integrate CSS Grid layout with tabs and sidebar (Wave 2)
 
-#### Phase 33: Test Details Drawer
+### Phase 33: Test Details Drawer
 
 **Goal**: Test details open in Sheet drawer on the right with nested tabs
 **Depends on**: Phase 32
@@ -430,7 +432,7 @@ Plans:
 - [x] 33-02-PLAN.md — Implement drawer content tabs (ExecutionTab, InfoTab, RunHistoryTab, RetriesTab) (Wave 2)
 - [x] 33-03-PLAN.md — Integrate drawer into MainLayout and remove TestDetailsModal (Wave 3)
 
-#### Phase 34: TanStack Table Migration
+### Phase 34: TanStack Table Migration
 
 **Goal**: Test list works as Data Table with sorting and columns
 **Depends on**: Phase 33
@@ -449,7 +451,7 @@ Plans:
 - [x] 34-03-PLAN.md — Integrate virtual scrolling with @tanstack/react-virtual (Wave 3)
 - [x] 34-04-PLAN.md — Add command palette with fuzzy search (Wave 4)
 
-#### Phase 35: Suite Hierarchy & Progress
+### Phase 35: Suite Hierarchy & Progress
 
 **Goal**: Suite hierarchy with expandable rows and progress bars works
 **Depends on**: Phase 34
@@ -463,11 +465,11 @@ Plans:
 **Plans**: 3 plans (3 waves)
 
 Plans:
-- [ ] 35-01-PLAN.md — Tree transformation utility and DataTable expanding support (Wave 1)
-- [ ] 35-02-PLAN.md — MultiSegmentProgress component with Tooltip (Wave 2)
-- [ ] 35-03-PLAN.md — Integrate tree data and expand state persistence (Wave 3)
+- [x] 35-01-PLAN.md — Tree transformation utility and DataTable expanding support (Wave 1)
+- [x] 35-02-PLAN.md — MultiSegmentProgress component with Tooltip (Wave 2)
+- [x] 35-03-PLAN.md — Integrate tree data and expand state persistence (Wave 3)
 
-#### Phase 36: Views Migration & Polish
+### Phase 36: Views Migration & Polish
 
 **Goal**: All views migrated to shadcn/ui, Recharts integrated, static HTML works
 **Depends on**: Phase 35
@@ -478,13 +480,82 @@ Plans:
   3. Static HTML export works with file:// protocol (CSS inline, assets embedded)
   4. All view transitions smooth with consistent animation duration (300ms)
   5. Loading skeletons show when loading data in all views
+**Plans**: 3 plans (2 waves)
+
+Plans:
+- [x] 36-01-PLAN.md — Add loading skeletons to all main views (Wave 1)
+- [x] 36-02-PLAN.md — Standardize animations to 300ms duration (Wave 1)
+- [x] 36-03-PLAN.md — Verify static HTML export with file:// protocol (Wave 2)
+
+</details>
+
+### v1.6 Qase TMS Design Polish (In Progress)
+
+**Milestone Goal:** Приблизить дизайн к Qase TMS — новая структура колонок, тонкие progress bars, обновлённый sidebar, Timeline view.
+
+#### Phase 37: Test List Column Redesign
+
+**Goal**: Test list displays new column structure matching Qase TMS style
+**Depends on**: Phase 36 (v1.5 complete)
+**Requirements**: LIST-01, LIST-02, LIST-03, LIST-04, LIST-05
+**Success Criteria** (what must be TRUE):
+  1. User sees ID column with gear icon prefix for each test
+  2. User sees STATUS column with colored badge (Passed/Failed/Skipped/Broken)
+  3. User sees TITLE column with test name as primary content
+  4. User sees DURATION column with clock icon and formatted time
+  5. User sees column headers (ID, STATUS, TITLE, DURATION) in suite rows
+**Plans**: 1 plan
+
+Plans:
+- [ ] 37-01-PLAN.md — Restructure columns to ID/STATUS/TITLE/DURATION with icons and badges
+
+#### Phase 38: Progress Bar Redesign
+
+**Goal**: Suite rows display thin horizontal progress bars with duration
+**Depends on**: Phase 37
+**Requirements**: PROG-01, PROG-02, PROG-03, PROG-04
+**Success Criteria** (what must be TRUE):
+  1. User sees thin horizontal progress bar on each suite row (not thick bar)
+  2. Progress bar shows green segment proportional to passed tests
+  3. Progress bar shows red segment proportional to failed tests
+  4. User sees duration with clock icon displayed left of progress bar
 **Plans**: TBD
 
 Plans:
-- [ ] 36-01: Migrate remaining views to shadcn/ui
-- [ ] 36-02: Integrate Recharts with Tailwind theme
-- [ ] 36-03: Verify static HTML export
-- [ ] 36-04: Polish animations and loading states
+- [ ] 38-01: TBD
+
+#### Phase 39: Sidebar Enhancement
+
+**Goal**: Right sidebar displays enhanced run information and larger completion ring
+**Depends on**: Phase 38
+**Requirements**: SIDE-01, SIDE-02, SIDE-03, SIDE-04, SIDE-05
+**Success Criteria** (what must be TRUE):
+  1. User sees Status field with icon showing overall run status (Passed/Failed)
+  2. User sees Started at field with calendar icon and formatted datetime
+  3. User sees Total Time field with clock icon showing total run duration
+  4. User sees Finished at field with calendar icon and formatted datetime
+  5. User sees larger completion ring with percentage text and "X of Y tests" count
+**Plans**: TBD
+
+Plans:
+- [ ] 39-01: TBD
+- [ ] 39-02: TBD
+
+#### Phase 40: Timeline View
+
+**Goal**: Users can view test execution timeline in new Timeline tab
+**Depends on**: Phase 39
+**Requirements**: TIME-01, TIME-02
+**Success Criteria** (what must be TRUE):
+  1. User can access Timeline tab from main navigation tabs
+  2. Timeline view displays test execution sequence over time
+  3. Timeline shows which tests ran in parallel vs sequentially
+  4. Timeline visualization makes execution flow clear at a glance
+**Plans**: TBD
+
+Plans:
+- [ ] 40-01: TBD
+- [ ] 40-02: TBD
 
 ## Progress
 
@@ -504,7 +575,12 @@ Plans:
 | 32. Layout Restructure | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 33. Test Details Drawer | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 34. TanStack Table | v1.5 | 4/4 | Complete | 2026-02-11 |
-| 35. Suite Hierarchy | v1.5 | 0/3 | Planned | - |
-| 36. Views & Polish | v1.5 | 0/4 | Not started | - |
+| 35. Suite Hierarchy | v1.5 | 3/3 | Complete | 2026-02-11 |
+| 36. Views & Polish | v1.5 | 3/3 | Complete | 2026-02-11 |
+| 37. Column Redesign | v1.6 | 0/1 | Planned | - |
+| 38. Progress Bars | v1.6 | 0/? | Not started | - |
+| 39. Sidebar Enhancement | v1.6 | 0/? | Not started | - |
+| 40. Timeline View | v1.6 | 0/? | Not started | - |
 
-**Total v1.5:** 17/24 plans complete (71%)
+**Total v1.5:** 23/23 plans complete (100%)
+**Total v1.6:** 0/? plans complete (0%)
