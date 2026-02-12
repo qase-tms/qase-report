@@ -564,7 +564,7 @@ Plans:
 **Milestone Goal:** Реорганизация табов и Analytics view — Test cases первый таб, Overview переименован в Analytics с 2-колоночным layout, Run/Host info в сайдбар.
 
 - [x] **Phase 41: Tab Navigation** - Reorder tabs and rename Overview to Analytics
-- [ ] **Phase 42: Sidebar Enhancement** - Add Run and Host Information sections to sidebar
+- [x] **Phase 42: Sidebar Enhancement** - Add Run and Host Information sections to sidebar
 - [ ] **Phase 43: Analytics Cleanup** - 2-column layout, deduplicate widgets, horizontal Recent Runs
 
 #### Phase 41: Tab Navigation
@@ -595,7 +595,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 42-01-PLAN.md — Add Run Information and Host Information sections to RunInfoSidebar
+- [x] 42-01-PLAN.md — Add Run Information and Host Information sections to RunInfoSidebar
 
 #### Phase 43: Analytics Cleanup
 
@@ -638,9 +638,9 @@ Plans:
 | 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 41. Tab Navigation | v1.7 | 1/1 | Complete | 2026-02-12 |
-| 42. Sidebar Enhancement | v1.7 | 0/1 | Not started | - |
+| 42. Sidebar Enhancement | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 43. Analytics Cleanup | v1.7 | 0/? | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
-**Total v1.7:** 1/3+ plans complete (33%)
+**Total v1.7:** 2/3+ plans complete (67%)

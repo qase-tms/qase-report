@@ -20,8 +20,8 @@ Requirements for v1.7 Layout & Analytics Cleanup. Реорганизация т�
 
 ### Sidebar Enhancement
 
-- [ ] **SIDE-01**: User sees Run Information section in right sidebar
-- [ ] **SIDE-02**: User sees Host Information section in right sidebar
+- [x] **SIDE-01**: User sees Run Information section in right sidebar
+- [x] **SIDE-02**: User sees Host Information section in right sidebar
 
 ## Future Requirements
 
@@ -59,8 +59,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ANLYT-01 | Phase 43 | Pending |
 | ANLYT-02 | Phase 43 | Pending |
 | ANLYT-03 | Phase 43 | Pending |
-| SIDE-01 | Phase 42 | Pending |
-| SIDE-02 | Phase 42 | Pending |
+| SIDE-01 | Phase 42 | ✓ Done |
+| SIDE-02 | Phase 42 | ✓ Done |
 
 **Coverage:**
 - v1.7 requirements: 7 total
