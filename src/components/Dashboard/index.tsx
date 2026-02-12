@@ -72,7 +72,7 @@ export const Dashboard = observer(() => {
             title="Pass Rate Trend"
             data={analyticsStore.passRateTrend.map(d => ({ value: d.passRate, label: d.date }))}
             currentValue={`${reportStore.passRate.toFixed(0)}%`}
-            colSpan={2}
+            colSpan={1}
             rowSpan={1}
           />
         )}
@@ -84,52 +84,52 @@ export const Dashboard = observer(() => {
           <SparklineCard
             title="Duration Trend"
             data={analyticsStore.durationTrend.map(d => ({ value: d.duration / 1000, label: d.date }))}
-            colSpan={2}
+            colSpan={1}
             rowSpan={1}
           />
         )}
 
-        {/* Suite Health - 2x2 for proper list display */}
+        {/* Suite Health - 1x2 for proper list display */}
         {reportStore.suitePassRates.length > 0 && (
-          <DashboardCard colSpan={2} rowSpan={2}>
+          <DashboardCard colSpan={1} rowSpan={2}>
             <SuiteHealthCard />
           </DashboardCard>
         )}
 
-        {/* Attention Required - 3x1 wide list */}
-        <DashboardCard colSpan={3}>
+        {/* Attention Required - 1x1 wide list */}
+        <DashboardCard colSpan={1}>
           <AttentionRequiredCard onTestClick={handleTestClick} />
         </DashboardCard>
 
-        {/* Quick Insights - 2x2 for two sections */}
-        <DashboardCard colSpan={2} rowSpan={2}>
+        {/* Quick Insights - 1x2 for two sections */}
+        <DashboardCard colSpan={1} rowSpan={2}>
           <QuickInsightsCard onTestClick={handleTestClick} />
         </DashboardCard>
 
-        {/* Alerts panel - 3x1 wide alert list */}
+        {/* Alerts panel - 1x1 alert list */}
         {analyticsStore.hasAlerts && (
-          <DashboardCard colSpan={3}>
+          <DashboardCard colSpan={1}>
             <AlertsPanel onAlertClick={handleAlertClick} />
           </DashboardCard>
         )}
 
-        {/* Trend visualization - 4x2 large chart prominence */}
+        {/* Trend visualization - 2x2 full width chart */}
         {analyticsStore.hasTrendData && (
-          <DashboardCard colSpan={4} rowSpan={2}>
+          <DashboardCard colSpan={2} rowSpan={2}>
             <TrendsChart />
           </DashboardCard>
         )}
 
-        {/* Test health widget - 2x2 visual importance */}
+        {/* Test health widget - 1x2 visual importance */}
         {historyStore.isHistoryLoaded && (
-          <DashboardCard colSpan={2} rowSpan={2}>
+          <DashboardCard colSpan={1} rowSpan={2}>
             <TestHealthWidget />
           </DashboardCard>
         )}
 
-        {/* History timeline - 2x2 vertical timeline */}
+        {/* History timeline - 1x2 vertical timeline */}
         {historyStore.recentRuns.length > 0 && (
-          <DashboardCard colSpan={2} rowSpan={2}>
+          <DashboardCard colSpan={1} rowSpan={2}>
             <HistoryTimeline />
           </DashboardCard>
         )}
