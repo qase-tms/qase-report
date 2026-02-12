@@ -18,14 +18,14 @@ const badgeVariants = cva(
           "border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
-        // Custom test status variants
-        passed: "border-transparent bg-green-500/10 text-green-600 dark:text-green-400",
-        failed: "border-transparent bg-red-500/10 text-red-600 dark:text-red-400",
-        skipped: "border-transparent bg-gray-500/10 text-gray-600 dark:text-gray-400",
-        broken: "border-transparent bg-yellow-500/10 text-yellow-700 dark:text-yellow-400",
-        blocked: "border-transparent bg-blue-500/10 text-blue-600 dark:text-blue-400",
-        invalid: "border-transparent bg-orange-500/10 text-orange-600 dark:text-orange-400",
-        muted: "border-transparent bg-purple-500/10 text-purple-600 dark:text-purple-400",
+        // Custom test status variants (Qase TMS colors)
+        passed: "border-transparent bg-status-passed-bg text-status-passed",
+        failed: "border-transparent bg-status-failed-bg text-status-failed",
+        skipped: "border-transparent bg-status-skipped-bg text-status-skipped",
+        broken: "border-transparent bg-status-broken-bg text-status-broken",
+        blocked: "border-transparent bg-[var(--palette-qase-blue-10)] text-[var(--palette-qase-blue-60)] dark:bg-[var(--palette-qase-blue-80)] dark:text-[var(--palette-qase-blue-40)]",
+        invalid: "border-transparent bg-[var(--palette-mustard-10)] text-[var(--palette-mustard-80)] dark:bg-[var(--palette-mustard-100)] dark:text-[var(--palette-mustard-40)]",
+        muted: "border-transparent bg-[var(--palette-charcoal-20)] text-[var(--palette-charcoal-70)] dark:bg-[var(--palette-charcoal-90)] dark:text-[var(--palette-charcoal-50)]",
       },
     },
     defaultVariants: {

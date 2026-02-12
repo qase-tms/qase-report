@@ -4,12 +4,12 @@ import { cn } from '../../lib/utils'
 import type { StabilityGrade } from '../../types/stability'
 
 const gradeOptions: { value: StabilityGrade; activeClass: string }[] = [
-  { value: 'A+', activeClass: 'bg-green-500 text-white border-green-500' },
-  { value: 'A', activeClass: 'bg-green-500 text-white border-green-500' },
-  { value: 'B', activeClass: 'bg-blue-500 text-white border-blue-500' },
-  { value: 'C', activeClass: 'bg-yellow-500 text-white border-yellow-500' },
-  { value: 'D', activeClass: 'bg-yellow-500 text-white border-yellow-500' },
-  { value: 'F', activeClass: 'bg-red-500 text-white border-red-500' },
+  { value: 'A+', activeClass: 'bg-passed text-white border-passed' },
+  { value: 'A', activeClass: 'bg-passed text-white border-passed' },
+  { value: 'B', activeClass: 'bg-brand text-white border-brand' },
+  { value: 'C', activeClass: 'bg-broken text-white border-broken' },
+  { value: 'D', activeClass: 'bg-broken text-white border-broken' },
+  { value: 'F', activeClass: 'bg-failed text-white border-failed' },
 ]
 
 export const StabilityGradeFilter = observer(() => {

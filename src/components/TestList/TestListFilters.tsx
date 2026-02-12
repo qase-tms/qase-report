@@ -3,13 +3,13 @@ import { useRootStore } from '../../store'
 import { cn } from '../../lib/utils'
 
 const statuses = [
-  { value: 'passed', label: 'Passed', activeClass: 'bg-green-500 text-white border-green-500' },
-  { value: 'failed', label: 'Failed', activeClass: 'bg-red-500 text-white border-red-500' },
-  { value: 'broken', label: 'Broken', activeClass: 'bg-yellow-500 text-white border-yellow-500' },
-  { value: 'skipped', label: 'Skipped', activeClass: 'bg-muted text-muted-foreground border-muted' },
-  { value: 'blocked', label: 'Blocked', activeClass: 'bg-blue-500 text-white border-blue-500' },
-  { value: 'invalid', label: 'Invalid', activeClass: 'bg-orange-500 text-white border-orange-500' },
-  { value: 'muted', label: 'Muted', activeClass: 'bg-purple-500 text-white border-purple-500' },
+  { value: 'passed', label: 'Passed', activeClass: 'bg-passed text-white border-passed' },
+  { value: 'failed', label: 'Failed', activeClass: 'bg-failed text-white border-failed' },
+  { value: 'broken', label: 'Broken', activeClass: 'bg-broken text-white border-broken' },
+  { value: 'skipped', label: 'Skipped', activeClass: 'bg-skipped text-white border-skipped' },
+  { value: 'blocked', label: 'Blocked', activeClass: 'bg-brand text-white border-brand' },
+  { value: 'invalid', label: 'Invalid', activeClass: 'bg-warning text-white border-warning' },
+  { value: 'muted', label: 'Muted', activeClass: 'bg-[var(--palette-charcoal-50)] text-white border-[var(--palette-charcoal-50)]' },
 ]
 
 export const TestListFilters = observer(() => {

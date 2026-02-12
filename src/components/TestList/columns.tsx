@@ -26,7 +26,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (passed / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-green-500',
+      color: 'bg-passed',
       label: `Passed: ${passed}`,
       count: passed,
     })
@@ -35,7 +35,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (failed / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-red-500',
+      color: 'bg-failed',
       label: `Failed: ${failed}`,
       count: failed,
     })
@@ -44,7 +44,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (broken / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-yellow-500',
+      color: 'bg-broken',
       label: `Broken: ${broken}`,
       count: broken,
     })
@@ -53,7 +53,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (skipped / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-gray-500',
+      color: 'bg-skipped',
       label: `Skipped: ${skipped}`,
       count: skipped,
     })
@@ -62,7 +62,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (blocked / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-blue-500',
+      color: 'bg-brand',
       label: `Blocked: ${blocked}`,
       count: blocked,
     })
@@ -71,7 +71,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (invalid / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-orange-500',
+      color: 'bg-warning',
       label: `Invalid: ${invalid}`,
       count: invalid,
     })
@@ -80,7 +80,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (muted / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-purple-500',
+      color: 'bg-[var(--palette-charcoal-50)]',
       label: `Muted: ${muted}`,
       count: muted,
     })

@@ -25,11 +25,11 @@ export const RunInfoSidebar = observer(() => {
   const passedCount = stats.passed
   const totalCount = stats.total
 
-  // Color logic for pass rate ring (from StatusBarPill)
+  // Color logic for pass rate ring (Qase TMS colors)
   const getColor = (rate: number): string => {
-    if (rate >= 80) return 'text-green-500'
-    if (rate >= 50) return 'text-yellow-500'
-    return 'text-red-500'
+    if (rate >= 80) return 'text-passed'
+    if (rate >= 50) return 'text-broken'
+    return 'text-failed'
   }
 
   const ringColor = getColor(passRate)
@@ -37,7 +37,7 @@ export const RunInfoSidebar = observer(() => {
   // Run status determination
   const runStatus = stats.failed > 0 ? 'failed' : 'passed'
   const StatusIcon = runStatus === 'passed' ? CheckCircle : XCircle
-  const statusColor = runStatus === 'passed' ? 'text-green-500' : 'text-red-500'
+  const statusColor = runStatus === 'passed' ? 'text-passed' : 'text-failed'
 
   // Format run timestamps
   const startTime = reportStore.runData.execution.start_time
@@ -124,32 +124,32 @@ export const RunInfoSidebar = observer(() => {
       <div className="space-y-3">
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Passed</span>
-          <span className="font-medium text-green-500">{stats.passed}</span>
+          <span className="font-medium text-passed">{stats.passed}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Failed</span>
-          <span className="font-medium text-red-500">{stats.failed}</span>
+          <span className="font-medium text-failed">{stats.failed}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Skipped</span>
-          <span className="font-medium text-gray-500">{stats.skipped}</span>
+          <span className="font-medium text-skipped">{stats.skipped}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Blocked</span>
-          <span className="font-medium text-blue-500">{stats.blocked ?? 0}</span>
+          <span className="font-medium text-brand">{stats.blocked ?? 0}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Invalid</span>
-          <span className="font-medium text-orange-500">{stats.invalid ?? 0}</span>
+          <span className="font-medium text-warning">{stats.invalid ?? 0}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Muted</span>
-          <span className="font-medium text-purple-500">{stats.muted ?? 0}</span>
+          <span className="font-medium text-[var(--palette-charcoal-50)]">{stats.muted ?? 0}</span>
         </div>
         {flakyCount > 0 && (
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Flaky</span>
-            <span className="font-medium text-yellow-500">~{flakyCount}</span>
+            <span className="font-medium text-broken">~{flakyCount}</span>
           </div>
         )}
       </div>

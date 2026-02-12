@@ -13,11 +13,11 @@ export const StatusBarPill = observer(() => {
   const passRate = reportStore.passRate
   const flakyCount = analyticsStore.flakyTestCount
 
-  // Color logic for pass rate ring
+  // Color logic for pass rate ring (Qase TMS colors)
   const getColor = (rate: number): string => {
-    if (rate >= 80) return 'text-green-500'
-    if (rate >= 50) return 'text-yellow-500'
-    return 'text-red-500'
+    if (rate >= 80) return 'text-passed'
+    if (rate >= 50) return 'text-broken'
+    return 'text-failed'
   }
 
   // Format run date
@@ -68,17 +68,17 @@ export const StatusBarPill = observer(() => {
 
       {/* Quick stats section - hidden on mobile */}
       <div className="hidden sm:flex items-center gap-2">
-        <p className="text-sm text-green-500 font-medium">
+        <p className="text-sm text-passed font-medium">
           {stats.passed} passed
         </p>
         <p className="text-sm text-muted-foreground">•</p>
-        <p className="text-sm text-red-500 font-medium">
+        <p className="text-sm text-failed font-medium">
           {stats.failed} failed
         </p>
         {stats.skipped > 0 && (
           <>
             <p className="text-sm text-muted-foreground">•</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-skipped">
               {stats.skipped} skipped
             </p>
           </>
@@ -86,7 +86,7 @@ export const StatusBarPill = observer(() => {
         {flakyCount > 0 && (
           <>
             <p className="text-sm text-muted-foreground">•</p>
-            <p className="text-sm text-yellow-500 font-medium">
+            <p className="text-sm text-broken font-medium">
               ~{flakyCount} flaky
             </p>
           </>
