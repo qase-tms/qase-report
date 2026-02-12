@@ -14,9 +14,9 @@ Requirements for v1.7 Layout & Analytics Cleanup. Реорганизация т�
 
 ### Analytics View
 
-- [ ] **ANLYT-01**: Analytics displays widgets in 2-column grid layout
-- [ ] **ANLYT-02**: Analytics removes duplicate Run/Host information (moved to sidebar)
-- [ ] **ANLYT-03**: Recent Runs displays horizontally with scroll capability
+- [x] **ANLYT-01**: Analytics displays widgets in 2-column grid layout
+- [x] **ANLYT-02**: Analytics removes duplicate Run/Host information (moved to sidebar)
+- [x] **ANLYT-03**: Recent Runs displays horizontally with scroll capability
 
 ### Sidebar Enhancement
 
@@ -56,9 +56,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | TAB-01 | Phase 41 | ✓ Done |
 | TAB-02 | Phase 41 | ✓ Done |
-| ANLYT-01 | Phase 43 | Pending |
-| ANLYT-02 | Phase 43 | Pending |
-| ANLYT-03 | Phase 43 | Pending |
+| ANLYT-01 | Phase 43 | ✓ Done |
+| ANLYT-02 | Phase 43 | ✓ Done |
+| ANLYT-03 | Phase 43 | ✓ Done |
 | SIDE-01 | Phase 42 | ✓ Done |
 | SIDE-02 | Phase 42 | ✓ Done |
 
