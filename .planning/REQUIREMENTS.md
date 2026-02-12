@@ -76,11 +76,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PROG-02 | Phase 38 | ✓ Done |
 | PROG-03 | Phase 38 | ✓ Done |
 | PROG-04 | Phase 38 | ✓ Done |
-| SIDE-01 | Phase 39 | Pending |
-| SIDE-02 | Phase 39 | Pending |
-| SIDE-03 | Phase 39 | Pending |
-| SIDE-04 | Phase 39 | Pending |
-| SIDE-05 | Phase 39 | Pending |
+| SIDE-01 | Phase 39 | ✓ Done |
+| SIDE-02 | Phase 39 | ✓ Done |
+| SIDE-03 | Phase 39 | ✓ Done |
+| SIDE-04 | Phase 39 | ✓ Done |
+| SIDE-05 | Phase 39 | ✓ Done |
 | TIME-01 | Phase 40 | Pending |
 | TIME-02 | Phase 40 | Pending |
 

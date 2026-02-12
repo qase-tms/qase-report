@@ -538,7 +538,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 39-01-PLAN.md — Add status/timestamp fields with icons and enhance completion ring with test count
+- [x] 39-01-PLAN.md — Add status/timestamp fields with icons and enhance completion ring with test count
 
 #### Phase 40: Timeline View
 
@@ -578,7 +578,7 @@ Plans:
 | 36. Views & Polish | v1.5 | 3/3 | Complete | 2026-02-11 |
 | 37. Column Redesign | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
-| 39. Sidebar Enhancement | v1.6 | 0/1 | Not started | - |
+| 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 40. Timeline View | v1.6 | 0/? | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
