@@ -608,10 +608,10 @@ Plans:
   3. Host Information widget is removed from Analytics (now in sidebar)
   4. Recent Runs section displays horizontally with scroll capability
   5. Analytics layout feels cleaner with fewer redundant widgets
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 43-01: TBD
+- [ ] 43-01-PLAN.md — Remove duplicate widgets, simplify to 2-column grid, horizontal Recent Runs
 
 ## Progress
 
@@ -639,8 +639,8 @@ Plans:
 | 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 41. Tab Navigation | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 42. Sidebar Enhancement | v1.7 | 1/1 | Complete | 2026-02-12 |
-| 43. Analytics Cleanup | v1.7 | 0/? | Not started | - |
+| 43. Analytics Cleanup | v1.7 | 0/1 | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
-**Total v1.7:** 2/3+ plans complete (67%)
+**Total v1.7:** 2/3 plans complete (67%)
