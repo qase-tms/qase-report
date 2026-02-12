@@ -1,16 +1,45 @@
 {
   "name": "qase-report",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "1.0.0",
   "type": "module",
+  "description": "CLI tool for visualizing Qase TMS test reports with interactive UI",
+  "keywords": [
+    "qase",
+    "testing",
+    "test-report",
+    "visualization",
+    "tms",
+    "cli",
+    "reporter"
+  ],
+  "author": "Qase TMS",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qase-tms/qase-report.git"
+  },
+  "homepage": "https://github.com/qase-tms/qase-report#readme",
+  "bugs": {
+    "url": "https://github.com/qase-tms/qase-report/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "bin": {
     "qase-report": "./dist/cli/index.js"
   },
+  "files": [
+    "dist/cli/",
+    "dist/schemas/",
+    "dist/index.html"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run build:cli",
     "build:cli": "tsc -p tsconfig.cli.json",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
