@@ -8,6 +8,16 @@ Open-source инструмент для визуализации отчётов 
 
 Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
+## Current Milestone: v1.7 Layout & Analytics Cleanup
+
+**Goal:** Реорганизация табов и Analytics view — Test cases первый таб, Overview → Analytics с 2-колоночным layout, Run/Host info в сайдбар.
+
+**Target features:**
+- Test cases как основной (первый) таб
+- Overview → Analytics с 2-колоночным layout и дедупликацией виджетов
+- Recent Runs горизонтально со скроллом
+- Run Information и Host Information в правом сайдбаре
+
 ## Current State
 
 **v1.6 Qase TMS Design Polish shipped:** 2026-02-12

@@ -9,6 +9,7 @@
 - **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
 - **v1.5 Qase TMS Style** - Phases 30-36 (shipped 2026-02-11)
 - **v1.6 Qase TMS Design Polish** - Phases 37-40 (shipped 2026-02-12) [archived: .planning/milestones/v1.6-*]
+- **v1.7 Layout & Analytics Cleanup** - Phases 41-43 (in progress)
 
 ## Phases
 
@@ -558,6 +559,60 @@ Plans:
 
 </details>
 
+### v1.7 Layout & Analytics Cleanup (In Progress)
+
+**Milestone Goal:** Реорганизация табов и Analytics view — Test cases первый таб, Overview переименован в Analytics с 2-колоночным layout, Run/Host info в сайдбар.
+
+- [ ] **Phase 41: Tab Navigation** - Reorder tabs and rename Overview to Analytics
+- [ ] **Phase 42: Sidebar Enhancement** - Add Run and Host Information sections to sidebar
+- [ ] **Phase 43: Analytics Cleanup** - 2-column layout, deduplicate widgets, horizontal Recent Runs
+
+#### Phase 41: Tab Navigation
+
+**Goal**: User sees Test cases as the default view with Analytics tab replacing Overview
+**Depends on**: Phase 40 (v1.6 complete)
+**Requirements**: TAB-01, TAB-02
+**Success Criteria** (what must be TRUE):
+  1. User lands on Test cases tab when opening the report
+  2. Tab order shows Test cases first in the tab bar
+  3. User sees "Analytics" label instead of "Overview" in tab navigation
+  4. Analytics tab content remains the same (only label changes)
+**Plans**: TBD
+
+Plans:
+- [ ] 41-01: TBD
+
+#### Phase 42: Sidebar Enhancement
+
+**Goal**: User sees Run and Host Information in the right sidebar
+**Depends on**: Phase 41
+**Requirements**: SIDE-01, SIDE-02
+**Success Criteria** (what must be TRUE):
+  1. User sees Run Information section in right sidebar (below existing content)
+  2. Run Information displays run metadata (environment, title, description)
+  3. User sees Host Information section in right sidebar
+  4. Host Information displays host details (OS, browser, framework if available)
+**Plans**: TBD
+
+Plans:
+- [ ] 42-01: TBD
+
+#### Phase 43: Analytics Cleanup
+
+**Goal**: Analytics view displays widgets efficiently in 2-column grid without duplicating sidebar info
+**Depends on**: Phase 42 (Run/Host info must be in sidebar first)
+**Requirements**: ANLYT-01, ANLYT-02, ANLYT-03
+**Success Criteria** (what must be TRUE):
+  1. Analytics displays widgets in a 2-column grid layout
+  2. Run Information widget is removed from Analytics (now in sidebar)
+  3. Host Information widget is removed from Analytics (now in sidebar)
+  4. Recent Runs section displays horizontally with scroll capability
+  5. Analytics layout feels cleaner with fewer redundant widgets
+**Plans**: TBD
+
+Plans:
+- [ ] 43-01: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -582,6 +637,10 @@ Plans:
 | 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
+| 41. Tab Navigation | v1.7 | 0/? | Not started | - |
+| 42. Sidebar Enhancement | v1.7 | 0/? | Not started | - |
+| 43. Analytics Cleanup | v1.7 | 0/? | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
+**Total v1.7:** 0/? plans complete (0%)

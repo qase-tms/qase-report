@@ -1,39 +1,27 @@
-# Requirements: Qase Report v1.6
+# Requirements: Qase Report v1.7
 
 **Defined:** 2026-02-12
 **Core Value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
 
-## v1.6 Requirements
+## v1.7 Requirements
 
-Requirements for v1.6 Qase TMS Design Polish. Приближение дизайна к Qase TMS.
+Requirements for v1.7 Layout & Analytics Cleanup. Реорганизация табов и Analytics view.
 
-### Test List Columns
+### Tab Navigation
 
-- [ ] **LIST-01**: User sees test ID column with gear icon prefix
-- [ ] **LIST-02**: User sees STATUS column with colored badge (Passed/Failed/Skipped/Broken)
-- [ ] **LIST-03**: User sees TITLE column with test name
-- [ ] **LIST-04**: User sees DURATION column with clock icon and time
-- [ ] **LIST-05**: User sees column headers (ID, STATUS, TITLE, DURATION) in suite rows
+- [ ] **TAB-01**: User sees Test cases as the first (default) tab
+- [ ] **TAB-02**: User sees "Analytics" tab instead of "Overview"
 
-### Progress Bars
+### Analytics View
 
-- [ ] **PROG-01**: User sees thin horizontal progress bar on suite rows
-- [ ] **PROG-02**: Progress bar shows green segment for passed tests
-- [ ] **PROG-03**: Progress bar shows red segment for failed tests
-- [ ] **PROG-04**: Duration displays left of progress bar with clock icon
+- [ ] **ANLYT-01**: Analytics displays widgets in 2-column grid layout
+- [ ] **ANLYT-02**: Analytics removes duplicate Run/Host information (moved to sidebar)
+- [ ] **ANLYT-03**: Recent Runs displays horizontally with scroll capability
 
-### Sidebar
+### Sidebar Enhancement
 
-- [ ] **SIDE-01**: User sees "Status" field with icon (Passed/Failed)
-- [ ] **SIDE-02**: User sees "Started at" field with calendar icon and datetime
-- [ ] **SIDE-03**: User sees "Total Time" field with clock icon
-- [ ] **SIDE-04**: User sees "Finished at" field with calendar icon and datetime
-- [ ] **SIDE-05**: User sees larger completion ring with percentage and "X of Y" text
-
-### Timeline View
-
-- [ ] **TIME-01**: User can access Timeline tab in navigation
-- [ ] **TIME-02**: Timeline shows test execution over time (visualization TBD)
+- [ ] **SIDE-01**: User sees Run Information section in right sidebar
+- [ ] **SIDE-02**: User sees Host Information section in right sidebar
 
 ## Future Requirements
 
@@ -56,10 +44,9 @@ Explicitly excluded. Documented to prevent scope creep.
 
 | Feature | Reason |
 |---------|--------|
-| Checkboxes + bulk actions | Not prioritized for v1.6, focus on visual style |
-| MEMBER column | Qase Report Format doesn't have user assignment data |
-| AI error analysis | Requires external API integration |
-| Real-time reporting | Low priority, complex implementation |
+| New analytics widgets | Focus on cleanup, not new features |
+| Chart redesign | Charts work fine, just layout changes |
+| Export features | Deferred to future milestone |
 
 ## Traceability
 
@@ -67,27 +54,18 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LIST-01 | Phase 37 | ✓ Done |
-| LIST-02 | Phase 37 | ✓ Done |
-| LIST-03 | Phase 37 | ✓ Done |
-| LIST-04 | Phase 37 | ✓ Done |
-| LIST-05 | Phase 37 | ✓ Done |
-| PROG-01 | Phase 38 | ✓ Done |
-| PROG-02 | Phase 38 | ✓ Done |
-| PROG-03 | Phase 38 | ✓ Done |
-| PROG-04 | Phase 38 | ✓ Done |
-| SIDE-01 | Phase 39 | ✓ Done |
-| SIDE-02 | Phase 39 | ✓ Done |
-| SIDE-03 | Phase 39 | ✓ Done |
-| SIDE-04 | Phase 39 | ✓ Done |
-| SIDE-05 | Phase 39 | ✓ Done |
-| TIME-01 | Phase 40 | ✓ Done |
-| TIME-02 | Phase 40 | ✓ Done |
+| TAB-01 | Phase 41 | Pending |
+| TAB-02 | Phase 41 | Pending |
+| ANLYT-01 | Phase 43 | Pending |
+| ANLYT-02 | Phase 43 | Pending |
+| ANLYT-03 | Phase 43 | Pending |
+| SIDE-01 | Phase 42 | Pending |
+| SIDE-02 | Phase 42 | Pending |
 
 **Coverage:**
-- v1.6 requirements: 16 total
-- Mapped to phases: 16
-- Unmapped: 0 (100% coverage)
+- v1.7 requirements: 7 total
+- Mapped to phases: 7
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-12*
