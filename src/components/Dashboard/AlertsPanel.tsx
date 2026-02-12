@@ -48,7 +48,7 @@ export const AlertsPanel = observer(({ onAlertClick }: AlertsPanelProps) => {
   const hasErrors = alerts.some(a => a.severity === 'error')
 
   return (
-    <div className="bg-card rounded-lg border shadow-sm">
+    <div className="bg-card rounded-lg border shadow-sm h-full">
       <div className="p-4 pb-0">
         <div className="flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-yellow-500" />

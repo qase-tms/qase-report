@@ -63,45 +63,45 @@ export const Dashboard = observer(() => {
       }}
     >
       <BentoGrid>
-        {/* Alerts panel - first for visibility */}
+        {/* Alerts panel */}
         {analyticsStore.hasAlerts && (
-          <DashboardCard colSpan={1}>
+          <DashboardCard>
             <AlertsPanel onAlertClick={handleAlertClick} />
           </DashboardCard>
         )}
 
-        {/* Attention Required - prominent position */}
-        <DashboardCard colSpan={1}>
+        {/* Attention Required */}
+        <DashboardCard>
           <AttentionRequiredCard onTestClick={handleTestClick} />
         </DashboardCard>
 
         {/* Test health widget */}
         {historyStore.isHistoryLoaded && (
-          <DashboardCard colSpan={1} rowSpan={2}>
+          <DashboardCard>
             <TestHealthWidget />
           </DashboardCard>
         )}
 
-        {/* Suite Health - 1x2 for proper list display */}
+        {/* Suite Health */}
         {reportStore.suitePassRates.length > 0 && (
-          <DashboardCard colSpan={1} rowSpan={2}>
+          <DashboardCard>
             <SuiteHealthCard />
           </DashboardCard>
         )}
 
-        {/* Quick Insights - 1x2 for two sections */}
-        <DashboardCard colSpan={1} rowSpan={2}>
+        {/* Quick Insights */}
+        <DashboardCard>
           <QuickInsightsCard onTestClick={handleTestClick} />
         </DashboardCard>
 
-        {/* Trend visualization - 2x2 full width chart */}
+        {/* Trend visualization - full width */}
         {analyticsStore.hasTrendData && (
-          <DashboardCard colSpan={2} rowSpan={2}>
+          <DashboardCard colSpan={2}>
             <TrendsChart />
           </DashboardCard>
         )}
 
-        {/* History timeline - horizontal scroll */}
+        {/* History timeline - full width */}
         {historyStore.recentRuns.length > 0 && (
           <DashboardCard colSpan={2}>
             <HistoryTimeline />

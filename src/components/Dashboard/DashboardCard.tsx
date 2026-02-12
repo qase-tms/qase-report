@@ -25,6 +25,7 @@ export const DashboardCard = ({
       className={`
         col-span-1
         row-span-1
+        h-full
         transition-all
         duration-300
         hover:-translate-y-0.5
