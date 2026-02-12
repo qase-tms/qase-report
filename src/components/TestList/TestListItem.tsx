@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
-import { getStatusIcon } from './statusIcon'
+import { Badge } from '../ui/badge'
 import { useRootStore } from '../../store'
 import { StabilityBadge } from './StabilityBadge'
 import { cn } from '../../lib/utils'
@@ -53,9 +53,9 @@ export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => 
       onClick={handleClick}
       className="w-full flex items-center px-4 py-3 hover:bg-accent transition-all hover:translate-x-1 text-left"
     >
-      <div className="flex-shrink-0 mr-3">
-        {getStatusIcon(test.execution.status)}
-      </div>
+      <Badge variant={test.execution.status} className="capitalize shrink-0 mr-3">
+        {test.execution.status}
+      </Badge>
       <div className="flex-1 min-w-0">
         <div className="text-sm truncate">{test.title}</div>
         <div className="text-xs text-muted-foreground">{durationText}</div>

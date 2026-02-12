@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { ChevronDown, ChevronRight } from 'lucide-react'
-import { getStatusIcon } from '../TestList/statusIcon'
+import { Badge } from '../ui/badge'
 import { formatDuration } from '../../utils/formatDuration'
 import type { Step } from '../../schemas/Step.schema'
 import type { Attachment } from '../../schemas/Attachment.schema'
@@ -44,8 +44,10 @@ export const TestStep = observer(({ step, depth }: TestStepProps) => {
           <div className="w-6" />
         )}
 
-        {/* Status icon */}
-        {getStatusIcon(step.execution.status)}
+        {/* Status badge */}
+        <Badge variant={step.execution.status} className="capitalize shrink-0">
+          {step.execution.status}
+        </Badge>
 
         {/* Step action/title */}
         <span className="text-sm flex-1">

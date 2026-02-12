@@ -9,7 +9,7 @@ import {
   CommandEmpty,
   CommandItem,
 } from '@/components/ui/command'
-import { getStatusIcon } from '@/components/TestList/statusIcon'
+import { Badge } from '@/components/ui/badge'
 
 interface CommandPaletteProps {
   open: boolean
@@ -64,7 +64,9 @@ export const CommandPalette = observer(({ open, onOpenChange }: CommandPalettePr
             onSelect={() => handleSelect(test.id)}
             className="flex items-center gap-2 cursor-pointer"
           >
-            {getStatusIcon(test.execution.status)}
+            <Badge variant={test.execution.status} className="capitalize">
+              {test.execution.status}
+            </Badge>
             <span className="flex-1 truncate">{test.title}</span>
             <span className="text-xs text-muted-foreground">
               {test.execution.duration >= 1000

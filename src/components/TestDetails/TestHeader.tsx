@@ -1,4 +1,4 @@
-import { getStatusIcon } from '../TestList/statusIcon'
+import { Badge } from '../ui/badge'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 
 interface TestHeaderProps {
@@ -14,12 +14,9 @@ export const TestHeader = ({ test }: TestHeaderProps) => {
 
   return (
     <div className="flex items-center gap-4 flex-wrap">
-      <div className="flex items-center gap-1">
-        {getStatusIcon(test.execution.status)}
-        <span className="text-sm text-muted-foreground">
-          {test.execution.status}
-        </span>
-      </div>
+      <Badge variant={test.execution.status} className="capitalize">
+        {test.execution.status}
+      </Badge>
       <span className="text-sm text-muted-foreground">
         Duration: {formattedDuration}
       </span>

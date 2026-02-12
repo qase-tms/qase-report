@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
-import { getStatusIcon } from '../TestList/statusIcon'
+import { Badge } from '../ui/badge'
 
 export const RunHistoryTab = observer(() => {
   const { historyStore, selectedTest } = useRootStore()
@@ -55,12 +55,11 @@ export const RunHistoryTab = observer(() => {
           key={`${run.run_id}-${index}`}
           className="flex items-center gap-3 p-3 rounded-md bg-muted/50"
         >
-          <div className="flex items-center gap-1">
-            {getStatusIcon(run.status)}
-          </div>
+          <Badge variant={run.status} className="capitalize shrink-0">
+            {run.status}
+          </Badge>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium capitalize">{run.status}</span>
               <span className="text-xs text-muted-foreground">
                 {formatDuration(run.duration)}
               </span>
