@@ -13,7 +13,6 @@ import {
   TabsContent,
 } from '@/components/ui/tabs'
 import { ExecutionTab } from './ExecutionTab'
-import { InfoTab } from './InfoTab'
 import { RunHistoryTab } from './RunHistoryTab'
 import { RetriesTab } from './RetriesTab'
 import { useResizable } from '@/hooks/useResizable'
@@ -56,28 +55,22 @@ export const TestDetailsDrawer = observer(() => {
           </SheetHeader>
 
           <Tabs defaultValue="execution" className="flex-1 flex flex-col min-h-0 mt-4">
-            <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent shrink-0 px-4">
+            <TabsList variant="line" className="relative w-full justify-start h-auto p-0 shrink-0 px-4 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-border">
               <TabsTrigger
                 value="execution"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="border-none data-[state=active]:border-none"
               >
                 Execution
               </TabsTrigger>
               <TabsTrigger
-                value="info"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-              >
-                Info
-              </TabsTrigger>
-              <TabsTrigger
                 value="history"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="border-none data-[state=active]:border-none"
               >
                 Run History
               </TabsTrigger>
               <TabsTrigger
                 value="retries"
-                className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+                className="border-none data-[state=active]:border-none"
               >
                 Retries
               </TabsTrigger>
@@ -87,10 +80,6 @@ export const TestDetailsDrawer = observer(() => {
             <div className="flex-1 min-h-0 relative">
               <TabsContent value="execution" className="absolute inset-0 overflow-y-auto p-4 m-0 data-[state=inactive]:hidden">
                 <ExecutionTab />
-              </TabsContent>
-
-              <TabsContent value="info" className="absolute inset-0 overflow-y-auto p-4 m-0 data-[state=inactive]:hidden">
-                <InfoTab />
               </TabsContent>
 
               <TabsContent value="history" className="absolute inset-0 overflow-y-auto p-4 m-0 data-[state=inactive]:hidden">

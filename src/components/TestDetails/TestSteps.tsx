@@ -12,7 +12,12 @@ export const TestSteps = ({ steps }: TestStepsProps) => {
         Steps
       </h6>
       {steps.map((step, index) => (
-        <TestStep key={step.id} step={step} depth={0} stepNumber={`${index + 1}`} />
+        <TestStep
+          key={step.id}
+          step={step}
+          depth={0}
+          stepNumber={`${index + 1}`}
+        />
       ))}
     </div>
   )

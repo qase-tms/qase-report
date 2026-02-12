@@ -43,12 +43,12 @@ export const TabNavigation = observer(() => {
       }
       className="w-full"
     >
-      <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
+      <TabsList variant="line" className="relative w-full justify-start h-auto p-0 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-px after:bg-border">
         {tabs.map(({ value, label, icon: Icon }) => (
           <TabsTrigger
             key={value}
             value={value}
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
+            className="border-none data-[state=active]:border-none"
           >
             <Icon className="w-4 h-4" />
             <span className="ml-2 hidden sm:inline">{label}</span>

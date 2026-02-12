@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils'
 
 interface DownloadButtonProps {
   attachment: Attachment
-  variant?: 'text' | 'outlined' | 'contained'
+  variant?: 'text' | 'outlined' | 'contained' | 'icon'
 }
 
 /**
@@ -56,22 +56,26 @@ export const DownloadButton = ({
   if (!downloadUrl) return null
 
   const variantClasses = {
-    text: 'hover:bg-accent',
-    outlined: 'border hover:bg-accent',
-    contained: 'bg-primary text-primary-foreground hover:bg-primary/90',
+    text: 'hover:bg-accent px-3 py-1.5',
+    outlined: 'border hover:bg-accent px-3 py-1.5',
+    contained: 'bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1.5',
+    icon: 'hover:bg-accent p-1.5 rounded-full',
   }
+
+  const isIconOnly = variant === 'icon'
 
   return (
     <a
       href={downloadUrl}
       download={attachment.file_name}
+      title="Download"
       className={cn(
-        'inline-flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md transition-colors',
+        'inline-flex items-center gap-1.5 text-sm rounded-md transition-colors text-muted-foreground hover:text-foreground',
         variantClasses[variant]
       )}
     >
-      <Download className="h-4 w-4" />
-      Download
+      <Download className={isIconOnly ? 'h-3.5 w-3.5' : 'h-4 w-4'} />
+      {!isIconOnly && 'Download'}
     </a>
   )
 }

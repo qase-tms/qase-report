@@ -13,18 +13,22 @@ export const TestHeader = ({ test }: TestHeaderProps) => {
       : `${duration}ms`
 
   return (
-    <div className="flex items-center gap-4 flex-wrap">
-      <Badge variant={test.execution.status} className="capitalize">
-        {test.execution.status}
-      </Badge>
-      <span className="text-sm text-muted-foreground">
-        Duration: {formattedDuration}
-      </span>
-      {test.muted && (
-        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground">
-          Muted
-        </span>
-      )}
+    <div className="space-y-2">
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-muted-foreground">Status:</span>
+        <Badge variant={test.execution.status} className="capitalize">
+          {test.execution.status}
+        </Badge>
+        {test.muted && (
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground">
+            Muted
+          </span>
+        )}
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-muted-foreground">Duration:</span>
+        <span className="text-sm">{formattedDuration}</span>
+      </div>
     </div>
   )
 }
