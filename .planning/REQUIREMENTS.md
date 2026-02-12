@@ -9,8 +9,8 @@ Requirements for v1.7 Layout & Analytics Cleanup. Реорганизация т�
 
 ### Tab Navigation
 
-- [ ] **TAB-01**: User sees Test cases as the first (default) tab
-- [ ] **TAB-02**: User sees "Analytics" tab instead of "Overview"
+- [x] **TAB-01**: User sees Test cases as the first (default) tab
+- [x] **TAB-02**: User sees "Analytics" tab instead of "Overview"
 
 ### Analytics View
 
@@ -54,8 +54,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| TAB-01 | Phase 41 | Pending |
-| TAB-02 | Phase 41 | Pending |
+| TAB-01 | Phase 41 | ✓ Done |
+| TAB-02 | Phase 41 | ✓ Done |
 | ANLYT-01 | Phase 43 | Pending |
 | ANLYT-02 | Phase 43 | Pending |
 | ANLYT-03 | Phase 43 | Pending |

@@ -580,7 +580,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 41-01-PLAN.md — Update default activeView to tests, reorder tabs, rename Overview to Analytics
+- [x] 41-01-PLAN.md — Update default activeView to tests, reorder tabs, rename Overview to Analytics
 
 #### Phase 42: Sidebar Enhancement
 
@@ -637,7 +637,7 @@ Plans:
 | 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
-| 41. Tab Navigation | v1.7 | 0/1 | In progress | - |
+| 41. Tab Navigation | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 42. Sidebar Enhancement | v1.7 | 0/? | Not started | - |
 | 43. Analytics Cleanup | v1.7 | 0/? | Not started | - |
 
