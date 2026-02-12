@@ -73,16 +73,17 @@ const formatDuration = (ms: number): string => {
 export const createColumns = (
   onSelectTest: (id: string) => void
 ): ColumnDef<TreeNode>[] => [
+  // Column 1: ID (testops_id or "-")
   {
-    id: 'name',
-    header: 'Name',
+    id: 'id',
+    header: 'ID',
     cell: ({ row }) => {
-      const canExpand = row.getCanExpand()
-      const isExpanded = row.getIsExpanded()
       const isSuite = row.original.type === 'suite'
 
       if (isSuite) {
-        // Suite row: expand + folder + title
+        // Suite: expand button + folder icon + name
+        const canExpand = row.getCanExpand()
+        const isExpanded = row.getIsExpanded()
         return (
           <div
             className="flex items-center"
@@ -111,33 +112,43 @@ export const createColumns = (
         )
       }
 
-      // Test row: indentation + status badge + title
-      const status = row.original.testData?.execution.status
+      // Test: testops_id or "-"
+      const testopsId = row.original.testData?.testops_ids?.[0]
       return (
-        <div
-          className="flex items-center gap-2"
-          style={{ paddingLeft: `${row.depth * 1.5 + 1.5}rem` }}
-        >
-          {status && <Badge variant={status} className="capitalize">{status}</Badge>}
-          <span>{row.original.testData?.title}</span>
+        <div style={{ paddingLeft: `${row.depth * 1.5 + 1.5}rem` }}>
+          <span className="text-muted-foreground">{testopsId || '-'}</span>
         </div>
       )
     },
+    size: 100,
   },
+  // Column 2: Status
   {
-    id: 'testops_id',
-    header: 'ID',
+    id: 'status',
+    header: 'Status',
     cell: ({ row }) => {
       const isSuite = row.original.type === 'suite'
       if (isSuite) return null
 
-      const testopsId = row.original.testData?.testops_ids?.[0]
-      if (!testopsId) return null
+      const status = row.original.testData?.execution.status
+      if (!status) return null
 
-      return <span className="text-xs text-muted-foreground">{testopsId}</span>
+      return <Badge variant={status} className="capitalize">{status}</Badge>
     },
-    size: 80,
+    size: 90,
   },
+  // Column 3: Title (flexible width)
+  {
+    id: 'title',
+    header: 'Title',
+    cell: ({ row }) => {
+      const isSuite = row.original.type === 'suite'
+      if (isSuite) return null
+
+      return <span>{row.original.testData?.title}</span>
+    },
+  },
+  // Column 4: Duration (right side)
   {
     id: 'duration',
     header: 'Duration',
