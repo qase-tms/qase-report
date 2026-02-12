@@ -157,8 +157,8 @@ export const createColumns = (
         return (
           <div className="flex items-center justify-end gap-2">
             <div className="flex items-center gap-1 text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              <span className="text-xs">{formatDuration(duration)}</span>
+              <Clock className="h-3 w-3 flex-shrink-0" />
+              <span className="text-xs w-12 text-right">{formatDuration(duration)}</span>
             </div>
             <MultiSegmentProgress
               segments={buildProgressSegments(row.original)}
@@ -171,14 +171,14 @@ export const createColumns = (
         )
       }
 
-      // Test: show duration (right-aligned)
+      // Test: show duration (right-aligned, fixed width for alignment)
       const duration = row.original.testData?.execution.duration
       if (duration === undefined || duration === null) return null
 
       return (
         <div className="flex items-center justify-end gap-1 text-muted-foreground">
-          <Clock className="h-3 w-3" />
-          <span className="text-xs">{formatDuration(duration)}</span>
+          <Clock className="h-3 w-3 flex-shrink-0" />
+          <span className="text-xs w-12 text-right">{formatDuration(duration)}</span>
         </div>
       )
     },
