@@ -110,12 +110,16 @@ export function createServer(options: ServerOptions): Application {
     }
   )
 
-  // Static file serving for React app
-  app.use(express.static(distPath))
+  // Static file serving for React app (exclude index.html - handled separately)
+  app.use(
+    express.static(distPath, {
+      index: false, // Don't serve index.html automatically
+    })
+  )
 
-  // SPA fallback: serve index.html for all non-API routes
-  // Injects server mode flag for React app detection
-  app.get('*', (req: Request, res: Response) => {
+  // Serve index.html with server mode flag injection
+  // Handles both root path and SPA fallback for client-side routing
+  const serveIndex = (req: Request, res: Response) => {
     const indexPath = join(distPath, 'index.html')
     if (existsSync(indexPath)) {
       // Read index.html and inject server mode flag
@@ -133,7 +137,14 @@ export function createServer(options: ServerOptions): Application {
         message: 'Run `npm run build` first to build the React application',
       })
     }
-  })
+  }
+
+  // Root path
+  app.get('/', serveIndex)
+
+  // SPA fallback: serve index.html for all non-API routes
+  // Express 5 requires named catch-all parameter instead of '*'
+  app.get('/{*splat}', serveIndex)
 
   return app
 }
