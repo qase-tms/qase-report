@@ -8,7 +8,7 @@
 - **v1.3 Design Overhaul** - Phases 18-24 (shipped 2026-02-11)
 - **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
 - **v1.5 Qase TMS Style** - Phases 30-36 (shipped 2026-02-11)
-- **v1.6 Qase TMS Design Polish** - Phases 37-40 (in progress)
+- **v1.6 Qase TMS Design Polish** - Phases 37-40 (shipped 2026-02-12)
 
 ## Phases
 
@@ -550,11 +550,10 @@ Plans:
   2. Timeline view displays test execution sequence over time
   3. Timeline shows which tests ran in parallel vs sequentially
   4. Timeline visualization makes execution flow clear at a glance
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 40-01: TBD
-- [ ] 40-02: TBD
+- [x] 40-01-PLAN.md — Timeline component with thread-based swimlanes and click-to-details
 
 ## Progress
 
@@ -579,7 +578,7 @@ Plans:
 | 37. Column Redesign | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
-| 40. Timeline View | v1.6 | 0/? | Not started | - |
+| 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
 
 **Total v1.5:** 23/23 plans complete (100%)
-**Total v1.6:** 2/? plans complete
+**Total v1.6:** 4/4 plans complete (100%)

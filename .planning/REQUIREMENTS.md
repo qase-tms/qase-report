@@ -81,8 +81,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SIDE-03 | Phase 39 | ✓ Done |
 | SIDE-04 | Phase 39 | ✓ Done |
 | SIDE-05 | Phase 39 | ✓ Done |
-| TIME-01 | Phase 40 | Pending |
-| TIME-02 | Phase 40 | Pending |
+| TIME-01 | Phase 40 | ✓ Done |
+| TIME-02 | Phase 40 | ✓ Done |
 
 **Coverage:**
 - v1.6 requirements: 16 total
