@@ -686,10 +686,11 @@ Plans:
   2. User can specify output path with `-o report.html`
   3. Generated HTML works offline without server (file:// protocol)
   4. Generated HTML includes embedded history data if available
-**Plans**: TBD
+**Plans**: 2 plans (2 waves)
 
 Plans:
-- [ ] 47-01: TBD
+- [ ] 47-01-PLAN.md — Configure vite-plugin-singlefile and create HTML generator module (Wave 1)
+- [ ] 47-02-PLAN.md — Implement generate command and React static mode loading (Wave 2)
 
 #### Phase 48: NPM Package
 **Goal**: User can install and use qase-report globally via NPM
@@ -736,7 +737,7 @@ Plans:
 | 44. CLI Foundation | v1.8 | 1/1 | Complete | 2026-02-12 |
 | 45. Local Server | v1.8 | 2/2 | Complete | 2026-02-12 |
 | 46. History Management | v1.8 | 2/2 | Complete | 2026-02-12 |
-| 47. Generate Command | v1.8 | 0/TBD | Not started | - |
+| 47. Generate Command | v1.8 | 0/2 | Planned | - |
 | 48. NPM Package | v1.8 | 0/TBD | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
