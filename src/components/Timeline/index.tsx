@@ -77,42 +77,45 @@ export const Timeline = observer(() => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Clock className="w-5 h-5" />
-          Test Execution Timeline
-        </CardTitle>
-        <CardDescription>
-          {testsWithTiming.length} tests across {threadCount} thread{threadCount !== 1 ? 's' : ''} • Total duration: {formattedTotalDuration}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {/* Legend */}
-        <div className="flex gap-2 flex-wrap">
-          <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20">
-            Passed
-          </Badge>
-          <Badge variant="outline" className="bg-red-500/10 text-red-500 border-red-500/20">
-            Failed
-          </Badge>
-          <Badge variant="outline" className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20">
-            Broken
-          </Badge>
-          <Badge variant="outline" className="bg-gray-500/10 text-gray-500 border-gray-500/20">
-            Skipped
-          </Badge>
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Clock className="w-5 h-5" />
+              Test Execution Timeline
+            </CardTitle>
+            <CardDescription>
+              {testsWithTiming.length} tests across {threadCount} thread{threadCount !== 1 ? 's' : ''} • Total duration: {formattedTotalDuration}
+            </CardDescription>
+          </div>
+          {/* Legend - top right */}
+          <div className="flex gap-1.5 flex-wrap">
+            <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 text-xs">
+              Passed
+            </Badge>
+            <Badge variant="outline" className="bg-red-500/10 text-red-500 border-red-500/20 text-xs">
+              Failed
+            </Badge>
+            <Badge variant="outline" className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20 text-xs">
+              Broken
+            </Badge>
+            <Badge variant="outline" className="bg-gray-500/10 text-gray-500 border-gray-500/20 text-xs">
+              Skipped
+            </Badge>
+          </div>
         </div>
-
+      </CardHeader>
+      <CardContent className="space-y-4">
         {/* Time Axis */}
         <TimelineAxis minTime={minTime} maxTime={maxTime} />
 
         {/* Swimlanes */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {Object.entries(groupedByThread).map(([thread, threadTests]) => (
-            <div key={thread} className="border-l-2 border-muted pl-4">
-              <div className="text-sm font-medium text-muted-foreground mb-2">
+            <div key={thread} className="border-l-2 border-muted pl-3">
+              <div className="text-xs font-medium text-muted-foreground mb-1">
                 Thread: {thread}
               </div>
-              <div className="relative h-12 bg-muted/20 rounded overflow-hidden">
+              <div className="relative h-6 bg-muted/20 rounded overflow-hidden">
                 {threadTests.map((test) => (
                   <TimelineBar
                     key={test.id}
