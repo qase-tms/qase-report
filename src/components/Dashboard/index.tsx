@@ -8,7 +8,6 @@ import { TrendsChart } from './TrendsChart'
 import { HistoryTimeline } from './HistoryTimeline'
 import { AlertsPanel } from './AlertsPanel'
 import { TestHealthWidget } from './TestHealthWidget'
-import { SparklineCard } from './SparklineCard'
 import { SuiteHealthCard } from './SuiteHealthCard'
 import { AttentionRequiredCard } from './AttentionRequiredCard'
 import { QuickInsightsCard } from './QuickInsightsCard'
@@ -21,18 +20,16 @@ export const Dashboard = observer(() => {
     return (
       <div className="p-6">
         <div className="grid grid-cols-2 gap-4 auto-rows-[minmax(100px,auto)]">
-          {/* SparklineCard placeholder - 1 col */}
+          {/* Alerts placeholder - 1 col */}
           <Skeleton className="h-32 col-span-1" />
-          {/* Duration trend placeholder - 1 col */}
-          <Skeleton className="h-32 col-span-1" />
-          {/* SuiteHealthCard placeholder - 1x2 */}
+          {/* TestHealth placeholder - 1x2 */}
+          <Skeleton className="h-64 col-span-1 row-span-2" />
+          {/* SuiteHealth placeholder - 1x2 */}
           <Skeleton className="h-64 col-span-1 row-span-2" />
           {/* AttentionRequired placeholder - 1 col */}
           <Skeleton className="h-32 col-span-1" />
           {/* QuickInsights placeholder - 1x2 */}
           <Skeleton className="h-64 col-span-1 row-span-2" />
-          {/* TrendsChart placeholder - 2x2 */}
-          <Skeleton className="h-64 col-span-2 row-span-2" />
         </div>
       </div>
     )
@@ -66,27 +63,18 @@ export const Dashboard = observer(() => {
       }}
     >
       <BentoGrid>
-        {/* Pass rate trend sparkline - only when trend data available */}
-        {analyticsStore.hasTrendData && (
-          <SparklineCard
-            title="Pass Rate Trend"
-            data={analyticsStore.passRateTrend.map(d => ({ value: d.passRate, label: d.date }))}
-            currentValue={`${reportStore.passRate.toFixed(0)}%`}
-            colSpan={1}
-            rowSpan={1}
-          />
+        {/* Alerts panel - first for visibility */}
+        {analyticsStore.hasAlerts && (
+          <DashboardCard colSpan={1}>
+            <AlertsPanel onAlertClick={handleAlertClick} />
+          </DashboardCard>
         )}
 
-        {/* Run/Host info removed - now in sidebar */}
-
-        {/* Duration trend sparkline - only when trend data available */}
-        {analyticsStore.hasTrendData && (
-          <SparklineCard
-            title="Duration Trend"
-            data={analyticsStore.durationTrend.map(d => ({ value: d.duration / 1000, label: d.date }))}
-            colSpan={1}
-            rowSpan={1}
-          />
+        {/* Test health widget - prominent position */}
+        {historyStore.isHistoryLoaded && (
+          <DashboardCard colSpan={1} rowSpan={2}>
+            <TestHealthWidget />
+          </DashboardCard>
         )}
 
         {/* Suite Health - 1x2 for proper list display */}
@@ -106,13 +94,6 @@ export const Dashboard = observer(() => {
           <QuickInsightsCard onTestClick={handleTestClick} />
         </DashboardCard>
 
-        {/* Alerts panel - 1x1 alert list */}
-        {analyticsStore.hasAlerts && (
-          <DashboardCard colSpan={1}>
-            <AlertsPanel onAlertClick={handleAlertClick} />
-          </DashboardCard>
-        )}
-
         {/* Trend visualization - 2x2 full width chart */}
         {analyticsStore.hasTrendData && (
           <DashboardCard colSpan={2} rowSpan={2}>
@@ -120,16 +101,9 @@ export const Dashboard = observer(() => {
           </DashboardCard>
         )}
 
-        {/* Test health widget - 1x2 visual importance */}
-        {historyStore.isHistoryLoaded && (
-          <DashboardCard colSpan={1} rowSpan={2}>
-            <TestHealthWidget />
-          </DashboardCard>
-        )}
-
-        {/* History timeline - 1x2 vertical timeline */}
+        {/* History timeline - horizontal scroll */}
         {historyStore.recentRuns.length > 0 && (
-          <DashboardCard colSpan={1} rowSpan={2}>
+          <DashboardCard colSpan={2}>
             <HistoryTimeline />
           </DashboardCard>
         )}
