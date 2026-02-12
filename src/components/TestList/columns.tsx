@@ -144,10 +144,10 @@ export const createColumns = (
       return <span>{row.original.testData?.title}</span>
     },
   },
-  // Column 4: Duration (right side)
+  // Column 4: Duration (right-aligned)
   {
     id: 'duration',
-    header: 'Duration',
+    header: () => <div className="text-right">Duration</div>,
     cell: ({ row }) => {
       const isSuite = row.original.type === 'suite'
 
@@ -155,7 +155,7 @@ export const createColumns = (
         // Suite: duration + progress bar
         const duration = row.original.totalDuration || 0
         return (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2">
             <div className="flex items-center gap-1 text-muted-foreground">
               <Clock className="h-3 w-3" />
               <span className="text-xs">{formatDuration(duration)}</span>
@@ -171,12 +171,12 @@ export const createColumns = (
         )
       }
 
-      // Test: show duration
+      // Test: show duration (right-aligned)
       const duration = row.original.testData?.execution.duration
       if (duration === undefined || duration === null) return null
 
       return (
-        <div className="flex items-center gap-1 text-muted-foreground">
+        <div className="flex items-center justify-end gap-1 text-muted-foreground">
           <Clock className="h-3 w-3" />
           <span className="text-xs">{formatDuration(duration)}</span>
         </div>
