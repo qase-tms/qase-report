@@ -577,10 +577,10 @@ Plans:
   2. Tab order shows Test cases first in the tab bar
   3. User sees "Analytics" label instead of "Overview" in tab navigation
   4. Analytics tab content remains the same (only label changes)
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 41-01: TBD
+- [ ] 41-01-PLAN.md — Update default activeView to tests, reorder tabs, rename Overview to Analytics
 
 #### Phase 42: Sidebar Enhancement
 
@@ -637,10 +637,10 @@ Plans:
 | 38. Progress Bars | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 39. Sidebar Enhancement | v1.6 | 1/1 | Complete | 2026-02-12 |
 | 40. Timeline View | v1.6 | 1/1 | Complete | 2026-02-12 |
-| 41. Tab Navigation | v1.7 | 0/? | Not started | - |
+| 41. Tab Navigation | v1.7 | 0/1 | In progress | - |
 | 42. Sidebar Enhancement | v1.7 | 0/? | Not started | - |
 | 43. Analytics Cleanup | v1.7 | 0/? | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
-**Total v1.7:** 0/? plans complete (0%)
+**Total v1.7:** 0/3+ plans complete (0%)
