@@ -1,11 +1,16 @@
 import { observer } from 'mobx-react-lite'
 import { useRef } from 'react'
-import { AlertCircle, CheckCircle, AlertTriangle } from 'lucide-react'
+import { AlertCircle, CheckCircle, AlertTriangle, FolderOpen } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { useRootStore } from '../../store'
 
-export const LoadReportButton = observer(() => {
+interface LoadReportButtonProps {
+  /** Render variant: 'default' shows full layout, 'header' shows compact inline */
+  variant?: 'default' | 'header'
+}
+
+export const LoadReportButton = observer(({ variant = 'default' }: LoadReportButtonProps) => {
   const { reportStore, testResultsStore, historyStore, loadReport } = useRootStore()
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -44,6 +49,45 @@ export const LoadReportButton = observer(() => {
     return 'Load Report Directory'
   }
 
+  // Header variant: compact inline display
+  if (variant === 'header') {
+    return (
+      <div className="flex items-center gap-2">
+        <input
+          ref={inputRef}
+          type="file"
+          // @ts-expect-error webkitdirectory is not standard but widely supported
+          webkitdirectory="true"
+          multiple
+          style={{ display: 'none' }}
+          onChange={handleFileSelect}
+        />
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => inputRef.current?.click()}
+          disabled={isLoading}
+        >
+          <FolderOpen className="h-4 w-4 mr-2" />
+          {isLoading ? 'Loading...' : 'Load'}
+        </Button>
+        {historyStore.isHistoryLoaded && (
+          <span className="text-xs text-muted-foreground flex items-center gap-1">
+            <CheckCircle className="h-3 w-3 text-green-500" />
+            {historyStore.totalRuns} runs
+          </span>
+        )}
+        {error && (
+          <span className="text-xs text-destructive flex items-center gap-1">
+            <AlertCircle className="h-3 w-3" />
+            Error
+          </span>
+        )}
+      </div>
+    )
+  }
+
+  // Default variant: full layout with alerts
   return (
     <div>
       <input

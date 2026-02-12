@@ -7,6 +7,7 @@ import { ThemeToggle } from './components/ThemeToggle'
 import { SearchModal } from './components/SearchModal'
 import { ExportButton } from './components/ExportButton'
 import { RunInfoSidebar } from './components/RunInfoSidebar'
+import { LoadReportButton } from './components/LoadReportButton'
 import { useRootStore } from './store'
 import { observer } from 'mobx-react-lite'
 
@@ -41,6 +42,7 @@ const App = observer(() => {
 
             {/* Right: Actions */}
             <div className="flex items-center gap-2 ml-auto">
+              <LoadReportButton variant="header" />
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Search tests (Cmd+K)"

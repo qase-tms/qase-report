@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useRootStore } from '../../store'
-import { LoadReportButton } from '../../components/LoadReportButton'
 import { Dashboard } from '../../components/Dashboard'
 import { TestList } from '../../components/TestList'
 import { AttachmentViewer } from '../../components/AttachmentViewer'
@@ -63,9 +62,6 @@ export const MainLayout = observer(() => {
       <div className="flex flex-col h-full">
         <TabNavigation />
         <div className="flex-1 overflow-y-auto p-4">
-          <div className="flex gap-4 mb-4">
-            <LoadReportButton />
-          </div>
           {renderView()}
         </div>
       </div>
