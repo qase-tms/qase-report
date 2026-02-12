@@ -34,6 +34,20 @@ export const TestList = observer(() => {
     }
   }, [expanded])
 
+  // Transform flat test array to tree structure with suites
+  // MobX observer ensures re-render when filteredResults changes
+  // NOTE: Must be called before any early returns to comply with Rules of Hooks
+  const data = useMemo(
+    () => buildSuiteTree(filteredResults),
+    [filteredResults]
+  )
+
+  // Memoize columns with selectTest callback
+  const columns = useMemo(
+    () => createColumns(selectTest),
+    [selectTest]
+  )
+
   // Early return if no tests loaded
   if (resultsList.length === 0) {
     return (
@@ -46,19 +60,6 @@ export const TestList = observer(() => {
   // Calculate table height: viewport - header - filters - search - padding
   // This ensures table fills available space without causing page scrollbar
   const tableHeight = window.innerHeight - 300
-
-  // Transform flat test array to tree structure with suites
-  // MobX observer ensures re-render when filteredResults changes
-  const data = useMemo(
-    () => buildSuiteTree(filteredResults),
-    [filteredResults]
-  )
-
-  // Memoize columns with selectTest callback
-  const columns = useMemo(
-    () => createColumns(selectTest),
-    [selectTest]
-  )
 
   // Calculate total tests in tree for accurate summary
   const totalTestsInTree = data.reduce(
