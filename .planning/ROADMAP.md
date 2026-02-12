@@ -635,10 +635,10 @@ Plans:
   1. User runs `qase-report --help` and sees usage information with available commands
   2. User runs `qase-report --version` and sees the current version number
   3. User runs `qase-report` without arguments and sees help output
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 44-01: TBD
+- [ ] 44-01-PLAN.md — CLI entry point with Commander.js, help/version commands, build infrastructure
 
 #### Phase 45: Local Server
 **Goal**: User can serve and view reports via local development server
@@ -725,7 +725,7 @@ Plans:
 | 41. Tab Navigation | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 42. Sidebar Enhancement | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 43. Analytics Cleanup | v1.7 | 1/1 | Complete | 2026-02-12 |
-| 44. CLI Foundation | v1.8 | 0/TBD | Not started | - |
+| 44. CLI Foundation | v1.8 | 0/1 | Not started | - |
 | 45. Local Server | v1.8 | 0/TBD | Not started | - |
 | 46. History Management | v1.8 | 0/TBD | Not started | - |
 | 47. Generate Command | v1.8 | 0/TBD | Not started | - |
@@ -734,7 +734,7 @@ Plans:
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
-**Total v1.8:** 0/TBD plans (0%)
+**Total v1.8:** 0/1 plans (0%)
 
 ---
 *Roadmap created: 2026-02-10*
