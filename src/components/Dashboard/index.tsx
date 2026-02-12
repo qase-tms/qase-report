@@ -4,8 +4,6 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { Skeleton } from '@/components/ui/skeleton'
 import { BentoGrid } from './BentoGrid'
 import { DashboardCard } from './DashboardCard'
-import { RunInfoCard } from './RunInfoCard'
-import { HostInfoCard } from './HostInfoCard'
 import { TrendsChart } from './TrendsChart'
 import { HistoryTimeline } from './HistoryTimeline'
 import { AlertsPanel } from './AlertsPanel'
@@ -22,23 +20,19 @@ export const Dashboard = observer(() => {
   if (!reportStore.runData) {
     return (
       <div className="p-6">
-        <div className="grid grid-cols-4 gap-4 auto-rows-[minmax(100px,auto)]">
-          {/* SparklineCard placeholder - 2 cols */}
-          <Skeleton className="h-32 col-span-2" />
-          {/* RunInfoCard placeholder - 2 cols */}
-          <Skeleton className="h-32 col-span-2" />
-          {/* HostInfoCard placeholder - 2 cols */}
-          <Skeleton className="h-32 col-span-2" />
-          {/* Duration trend placeholder - 2 cols */}
-          <Skeleton className="h-32 col-span-2" />
-          {/* SuiteHealthCard placeholder - 2x2 */}
+        <div className="grid grid-cols-2 gap-4 auto-rows-[minmax(100px,auto)]">
+          {/* SparklineCard placeholder - 1 col */}
+          <Skeleton className="h-32 col-span-1" />
+          {/* Duration trend placeholder - 1 col */}
+          <Skeleton className="h-32 col-span-1" />
+          {/* SuiteHealthCard placeholder - 1x2 */}
+          <Skeleton className="h-64 col-span-1 row-span-2" />
+          {/* AttentionRequired placeholder - 1 col */}
+          <Skeleton className="h-32 col-span-1" />
+          {/* QuickInsights placeholder - 1x2 */}
+          <Skeleton className="h-64 col-span-1 row-span-2" />
+          {/* TrendsChart placeholder - 2x2 */}
           <Skeleton className="h-64 col-span-2 row-span-2" />
-          {/* AttentionRequired placeholder - 3 cols */}
-          <Skeleton className="h-32 col-span-3" />
-          {/* QuickInsights placeholder - 2x2 */}
-          <Skeleton className="h-64 col-span-2 row-span-2" />
-          {/* TrendsChart placeholder - 4x2 */}
-          <Skeleton className="h-64 col-span-4 row-span-2" />
         </div>
       </div>
     )
@@ -83,13 +77,7 @@ export const Dashboard = observer(() => {
           />
         )}
 
-        {/* Metadata cards - 2x1 horizontal layout */}
-        <DashboardCard colSpan={2}>
-          <RunInfoCard />
-        </DashboardCard>
-        <DashboardCard colSpan={2}>
-          <HostInfoCard />
-        </DashboardCard>
+        {/* Run/Host info removed - now in sidebar */}
 
         {/* Duration trend sparkline - only when trend data available */}
         {analyticsStore.hasTrendData && (
