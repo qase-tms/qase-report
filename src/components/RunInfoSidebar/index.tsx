@@ -191,6 +191,53 @@ export const RunInfoSidebar = observer(() => {
           </div>
         </div>
       </div>
+
+      {/* Host Information section (conditional) */}
+      {reportStore.runData?.host_data && (
+        <div className="pt-4 border-t space-y-3">
+          <h3 className="text-sm font-semibold">Host Information</h3>
+
+          {/* System field */}
+          <div className="flex items-start gap-2">
+            <Monitor className="w-4 h-4 text-muted-foreground mt-0.5" />
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">System</p>
+              <p className="text-sm">{reportStore.runData.host_data.system}</p>
+            </div>
+          </div>
+
+          {/* Machine field */}
+          <div className="flex items-start gap-2">
+            <Cpu className="w-4 h-4 text-muted-foreground mt-0.5" />
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">Machine</p>
+              <p className="text-sm">{reportStore.runData.host_data.machine}</p>
+            </div>
+          </div>
+
+          {/* Node field */}
+          <div className="flex items-start gap-2">
+            <Box className="w-4 h-4 text-muted-foreground mt-0.5" />
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">Node</p>
+              <p className="text-sm">{reportStore.runData.host_data.node}</p>
+            </div>
+          </div>
+
+          {/* Python field (conditional) */}
+          {reportStore.runData.host_data.python && (
+            <div className="flex items-start gap-2">
+              <Code className="w-4 h-4 text-muted-foreground mt-0.5" />
+              <div className="flex-1">
+                <p className="text-xs text-muted-foreground">Python</p>
+                <p className="text-sm">
+                  {reportStore.runData.host_data.python}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 })
