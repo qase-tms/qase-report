@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-02-12)
 ## Current Position
 
 Phase: 46 of 48 (History Management)
-Plan: 46-01, 46-02 (2 plans, 2 waves)
-Status: Ready to execute
-Last activity: 2026-02-12 — Phase 46 planned
+Plan: 46-02 (2 of 2 plans)
+Status: In progress
+Last activity: 2026-02-12 — Completed plan 46-01
 
 Progress: [====......] 40% (v1.8)
 
@@ -38,6 +38,7 @@ Progress: [====......] 40% (v1.8)
 |------|----------|-------|-------|
 | 45-01 | 86s | 2 | 2 |
 | 45-02 | ~5min | 4 | 7 |
+| Phase 46 P01 | 61 | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,12 @@ Key decisions preserved for future reference:
 - Server mode detection via window.__QASE_SERVER_MODE__ flag
 - Dual attachment URL strategy: blob URLs for file mode, API URLs for server mode
 
+**Phase 46 (History Management):**
+- Use start_time timestamp as run_id for stable identification across executions
+- History saves automatically after server starts (non-blocking, logs warnings on failure)
+- Default history location: ./qase-report-history.json in results folder
+- Fixed ESM imports with .js extensions for NodeNext module resolution
+
 ### Pending Todos
 
 None.
@@ -74,6 +81,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-12
-Stopped at: Phase 46 planned
+Stopped at: Completed 46-01-PLAN.md
 Resume file: None
-Next action: Execute Phase 46 (History Management)
+Next action: Execute plan 46-02 (History Viewing Command)

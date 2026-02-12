@@ -12,6 +12,7 @@ const packageRoot = resolve(__dirname, '..', '..')
 export interface ServerOptions {
   reportPath: string
   port?: number
+  historyPath?: string
 }
 
 export interface ReportData {
@@ -24,7 +25,7 @@ export interface ReportData {
  * Create Express application configured to serve the React app and report API
  */
 export function createServer(options: ServerOptions): Application {
-  const { reportPath, port = 3000 } = options
+  const { reportPath, port = 3000, historyPath } = options
   const resolvedReportPath = resolve(reportPath)
   const distPath = join(packageRoot, 'dist')
 
@@ -32,6 +33,9 @@ export function createServer(options: ServerOptions): Application {
 
   // Store port for later use
   app.set('port', port)
+
+  // Store history path for API endpoint
+  app.set('historyPath', historyPath)
 
   // API endpoint: GET /api/report
   app.get('/api/report', (req: Request, res: Response, next: NextFunction) => {
@@ -80,6 +84,34 @@ export function createServer(options: ServerOptions): Application {
       res.status(500).json({
         error: 'Internal server error',
         message: err instanceof Error ? err.message : 'Unknown error',
+      })
+    }
+  })
+
+  // API endpoint: GET /api/history
+  app.get('/api/history', (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const historyPath = app.get('historyPath') as string | undefined
+
+      if (!historyPath || !existsSync(historyPath)) {
+        // Return empty history structure if no history file
+        res.json({
+          schema_version: '1.0.0',
+          runs: [],
+          tests: [],
+        })
+        return
+      }
+
+      const historyData = JSON.parse(readFileSync(historyPath, 'utf-8'))
+      res.json(historyData)
+    } catch (err) {
+      console.error('Error reading history:', err)
+      // Return empty history on error (non-critical)
+      res.json({
+        schema_version: '1.0.0',
+        runs: [],
+        tests: [],
       })
     }
   })
