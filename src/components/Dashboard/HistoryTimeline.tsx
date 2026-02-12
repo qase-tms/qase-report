@@ -36,9 +36,9 @@ const formatDuration = (ms: number): string => {
 }
 
 /**
- * Timeline visualization of recent test runs.
+ * Horizontal scrollable visualization of recent test runs.
  * Shows chronological history with status indicators, statistics, and duration.
- * Most recent runs appear at the top.
+ * Runs display as compact cards with horizontal scroll capability.
  */
 export const HistoryTimeline = observer(() => {
   const { historyStore } = useRootStore()
@@ -52,54 +52,53 @@ export const HistoryTimeline = observer(() => {
     <div className="bg-card rounded-lg border shadow-sm p-4">
       <h6 className="text-lg font-semibold mb-4">Recent Runs</h6>
 
-      {/* Custom Timeline */}
-      <div className="space-y-4">
-        {historyStore.recentRuns.map((run, index) => (
-          <div key={run.run_id} className="flex gap-4">
-            {/* Left: Date/Time */}
-            <div className="flex-shrink-0 w-32 text-right">
-              <p className="text-sm text-muted-foreground">
-                {new Date(run.start_time).toLocaleDateString()}
-              </p>
-              <span className="text-xs text-muted-foreground">
-                {new Date(run.start_time).toLocaleTimeString()}
-              </span>
+      {/* Horizontal scrollable container */}
+      <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">
+        {historyStore.recentRuns.map((run) => (
+          <div
+            key={run.run_id}
+            className="min-w-[200px] max-w-[220px] flex-shrink-0 bg-muted/50 rounded-lg p-3 border"
+          >
+            {/* Status icon centered at top */}
+            <div className="flex justify-center mb-2">
+              {getRunStatusIcon(run)}
             </div>
 
-            {/* Center: Icon + Connector */}
-            <div className="flex flex-col items-center">
-              <div className="flex-shrink-0">
-                {getRunStatusIcon(run)}
-              </div>
-              {index < historyStore.recentRuns.length - 1 && (
-                <div className="flex-grow w-px bg-border min-h-[40px] my-2" />
+            {/* Title */}
+            <p className="text-sm font-medium mb-1 truncate text-center">
+              {run.title || `Run ${run.run_id}`}
+            </p>
+
+            {/* Date/Time */}
+            <p className="text-xs text-muted-foreground text-center mb-2">
+              {new Date(run.start_time).toLocaleDateString()}{' '}
+              {new Date(run.start_time).toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
+
+            {/* Stats badges */}
+            <div className="flex flex-wrap gap-1 justify-center mb-1">
+              <span className="px-2 py-0.5 rounded-full text-xs bg-green-500/20 text-green-500">
+                {run.stats.passed}
+              </span>
+              {run.stats.failed > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-xs bg-red-500/20 text-red-500">
+                  {run.stats.failed}
+                </span>
+              )}
+              {run.stats.skipped > 0 && (
+                <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500/20 text-yellow-500">
+                  {run.stats.skipped}
+                </span>
               )}
             </div>
 
-            {/* Right: Content */}
-            <div className="flex-grow pb-4">
-              <p className="text-sm font-medium mb-1">
-                {run.title || `Run ${run.run_id}`}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-1">
-                <span className="px-2 py-0.5 rounded-full text-xs bg-green-500/20 text-green-500">
-                  {run.stats.passed} passed
-                </span>
-                {run.stats.failed > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-red-500/20 text-red-500">
-                    {run.stats.failed} failed
-                  </span>
-                )}
-                {run.stats.skipped > 0 && (
-                  <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500/20 text-yellow-500">
-                    {run.stats.skipped} skipped
-                  </span>
-                )}
-              </div>
-              <span className="text-xs text-muted-foreground">
-                {formatDuration(run.duration)}
-              </span>
-            </div>
+            {/* Duration */}
+            <p className="text-xs text-muted-foreground text-center">
+              {formatDuration(run.duration)}
+            </p>
           </div>
         ))}
       </div>
