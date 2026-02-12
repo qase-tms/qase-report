@@ -9,7 +9,8 @@
 - **v1.4 Layout Simplification** - Phases 25-29 (shipped 2026-02-11)
 - **v1.5 Qase TMS Style** - Phases 30-36 (shipped 2026-02-11)
 - **v1.6 Qase TMS Design Polish** - Phases 37-40 (shipped 2026-02-12) [archived: .planning/milestones/v1.6-*]
-- ✅ **v1.7 Layout & Analytics Cleanup** - Phases 41-43 (shipped 2026-02-12) [archived: .planning/milestones/v1.7-*]
+- **v1.7 Layout & Analytics Cleanup** - Phases 41-43 (shipped 2026-02-12) [archived: .planning/milestones/v1.7-*]
+- **v1.8 CLI & NPM Package** - Phases 44-48 (in progress)
 
 ## Phases
 
@@ -559,7 +560,8 @@ Plans:
 
 </details>
 
-### v1.7 Layout & Analytics Cleanup (In Progress)
+<details>
+<summary>v1.7 Layout & Analytics Cleanup (Phases 41-43) - SHIPPED 2026-02-12</summary>
 
 **Milestone Goal:** Реорганизация табов и Analytics view — Test cases первый таб, Overview переименован в Analytics с 2-колоночным layout, Run/Host info в сайдбар.
 
@@ -613,7 +615,90 @@ Plans:
 Plans:
 - [x] 43-01-PLAN.md — Remove duplicate widgets, simplify to 2-column grid, horizontal Recent Runs
 
+</details>
+
+### v1.8 CLI & NPM Package (In Progress)
+
+**Milestone Goal:** CLI utility for launching and generating reports, published to NPM.
+
+- [ ] **Phase 44: CLI Foundation** - Entry point with argument parsing, help, and version
+- [ ] **Phase 45: Local Server** - Serve React app with data API and browser integration
+- [ ] **Phase 46: History Management** - Auto-save and history file options
+- [ ] **Phase 47: Generate Command** - Static HTML generation with embedded data
+- [ ] **Phase 48: NPM Package** - Packaging for global installation and npx usage
+
+#### Phase 44: CLI Foundation
+**Goal**: User can invoke the CLI with help and version commands
+**Depends on**: Phase 43 (v1.7 complete)
+**Requirements**: CLI-03, CLI-04
+**Success Criteria** (what must be TRUE):
+  1. User runs `qase-report --help` and sees usage information with available commands
+  2. User runs `qase-report --version` and sees the current version number
+  3. User runs `qase-report` without arguments and sees help output
+**Plans**: TBD
+
+Plans:
+- [ ] 44-01: TBD
+
+#### Phase 45: Local Server
+**Goal**: User can serve and view reports via local development server
+**Depends on**: Phase 44
+**Requirements**: CLI-01, SERV-01, SERV-02, SERV-03, SERV-04
+**Success Criteria** (what must be TRUE):
+  1. User runs `qase-report open ./results` and server starts on port 3000
+  2. Browser opens automatically showing the React app with report data
+  3. User can specify custom port with `--port 8080`
+  4. User can disable auto-open with `--no-open`
+  5. Server shuts down cleanly on Ctrl+C with exit message
+**Plans**: TBD
+
+Plans:
+- [ ] 45-01: TBD
+
+#### Phase 46: History Management
+**Goal**: User can persist and configure test run history for analytics
+**Depends on**: Phase 45
+**Requirements**: HIST-01, HIST-02, HIST-03, HIST-04
+**Success Criteria** (what must be TRUE):
+  1. Opening a test run automatically saves it to history file
+  2. User can specify history file with `--history ./my-history.json`
+  3. Default history saves to `./qase-report-history.json` in results folder
+  4. History respects 30-run limit, removing oldest runs when exceeded
+**Plans**: TBD
+
+Plans:
+- [ ] 46-01: TBD
+
+#### Phase 47: Generate Command
+**Goal**: User can generate self-contained static HTML reports
+**Depends on**: Phase 46
+**Requirements**: CLI-02, GEN-01, GEN-02, GEN-03
+**Success Criteria** (what must be TRUE):
+  1. User runs `qase-report generate ./results` and gets standalone HTML file
+  2. User can specify output path with `-o report.html`
+  3. Generated HTML works offline without server (file:// protocol)
+  4. Generated HTML includes embedded history data if available
+**Plans**: TBD
+
+Plans:
+- [ ] 47-01: TBD
+
+#### Phase 48: NPM Package
+**Goal**: User can install and use qase-report globally via NPM
+**Depends on**: Phase 47
+**Requirements**: NPM-01, NPM-02, NPM-03
+**Success Criteria** (what must be TRUE):
+  1. User runs `npm install -g qase-report` and command becomes available globally
+  2. User runs `npx qase-report open ./results` without prior installation
+  3. Package includes pre-built React app (no build step required after install)
+**Plans**: TBD
+
+Plans:
+- [ ] 48-01: TBD
+
 ## Progress
+
+**Execution Order:** 44 -> 45 -> 46 -> 47 -> 48
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -640,7 +725,17 @@ Plans:
 | 41. Tab Navigation | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 42. Sidebar Enhancement | v1.7 | 1/1 | Complete | 2026-02-12 |
 | 43. Analytics Cleanup | v1.7 | 1/1 | Complete | 2026-02-12 |
+| 44. CLI Foundation | v1.8 | 0/TBD | Not started | - |
+| 45. Local Server | v1.8 | 0/TBD | Not started | - |
+| 46. History Management | v1.8 | 0/TBD | Not started | - |
+| 47. Generate Command | v1.8 | 0/TBD | Not started | - |
+| 48. NPM Package | v1.8 | 0/TBD | Not started | - |
 
 **Total v1.5:** 23/23 plans complete (100%)
 **Total v1.6:** 4/4 plans complete (100%)
 **Total v1.7:** 3/3 plans complete (100%)
+**Total v1.8:** 0/TBD plans (0%)
+
+---
+*Roadmap created: 2026-02-10*
+*Last updated: 2026-02-12 for v1.8 CLI & NPM Package*

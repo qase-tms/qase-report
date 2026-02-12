@@ -71,30 +71,30 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | TBD | Pending |
-| CLI-02 | TBD | Pending |
-| CLI-03 | TBD | Pending |
-| CLI-04 | TBD | Pending |
-| SERV-01 | TBD | Pending |
-| SERV-02 | TBD | Pending |
-| SERV-03 | TBD | Pending |
-| SERV-04 | TBD | Pending |
-| HIST-01 | TBD | Pending |
-| HIST-02 | TBD | Pending |
-| HIST-03 | TBD | Pending |
-| HIST-04 | TBD | Pending |
-| NPM-01 | TBD | Pending |
-| NPM-02 | TBD | Pending |
-| NPM-03 | TBD | Pending |
-| GEN-01 | TBD | Pending |
-| GEN-02 | TBD | Pending |
-| GEN-03 | TBD | Pending |
+| CLI-01 | Phase 45 | Pending |
+| CLI-02 | Phase 47 | Pending |
+| CLI-03 | Phase 44 | Pending |
+| CLI-04 | Phase 44 | Pending |
+| SERV-01 | Phase 45 | Pending |
+| SERV-02 | Phase 45 | Pending |
+| SERV-03 | Phase 45 | Pending |
+| SERV-04 | Phase 45 | Pending |
+| HIST-01 | Phase 46 | Pending |
+| HIST-02 | Phase 46 | Pending |
+| HIST-03 | Phase 46 | Pending |
+| HIST-04 | Phase 46 | Pending |
+| NPM-01 | Phase 48 | Pending |
+| NPM-02 | Phase 48 | Pending |
+| NPM-03 | Phase 48 | Pending |
+| GEN-01 | Phase 47 | Pending |
+| GEN-02 | Phase 47 | Pending |
+| GEN-03 | Phase 47 | Pending |
 
 **Coverage:**
 - v1.8 requirements: 18 total
-- Mapped to phases: 0
-- Unmapped: 18 ⚠️
+- Mapped to phases: 18
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-02-12*
-*Last updated: 2026-02-12 after initial definition*
+*Last updated: 2026-02-12 after roadmap creation*
