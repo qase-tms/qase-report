@@ -75,7 +75,7 @@ export const HistoricalRunSchema = z.object({
   /**
    * Unix timestamp when run ended (milliseconds)
    */
-  end_time: z.number(),
+  end_time: z.number().nullable(),
 
   /**
    * Total duration of the run in milliseconds

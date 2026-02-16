@@ -207,8 +207,8 @@ export class RootStore {
             steps: typeof result.steps
           ): void => {
             for (const step of steps) {
-              if (step.attachments) {
-                for (const attachment of step.attachments) {
+              if (step.execution?.attachments) {
+                for (const attachment of step.execution.attachments) {
                   const filename =
                     attachment.file_path.split('/').pop() || attachment.id
                   this.attachmentsStore.registerAttachmentFilename(

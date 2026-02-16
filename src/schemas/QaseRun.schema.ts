@@ -12,7 +12,7 @@ const RunExecutionSchema = z.object({
   /**
    * Unix timestamp when run ended (milliseconds)
    */
-  end_time: z.number(),
+  end_time: z.number().nullable(),
 
   /**
    * Total duration of the run in milliseconds
@@ -102,43 +102,27 @@ const ResultSummarySchema = z.object({
 
 /**
  * Host system information where tests were executed.
+ * Fields vary depending on the reporter (Python vs JavaScript).
  */
-const HostDataSchema = z.object({
-  /**
-   * Node.js/platform version
-   */
-  node: z.string(),
-
-  /**
-   * Operating system name
-   */
-  system: z.string(),
-
-  /**
-   * OS release version
-   */
-  release: z.string(),
-
-  /**
-   * OS version string
-   */
-  version: z.string(),
-
-  /**
-   * Machine architecture (e.g., "x86_64", "arm64")
-   */
-  machine: z.string(),
-
-  /**
-   * Python version if applicable (optional)
-   */
-  python: z.string().optional(),
-
-  /**
-   * pip version if applicable (optional)
-   */
-  pip: z.string().optional(),
-})
+const HostDataSchema = z
+  .object({
+    node: z.string().optional(),
+    system: z.string().optional(),
+    release: z.string().optional(),
+    version: z.string().optional(),
+    machine: z.string().optional(),
+    arch: z.string().optional(),
+    machineName: z.string().optional(),
+    python: z.string().optional(),
+    pip: z.string().optional(),
+    npm: z.string().optional(),
+    framework: z.string().optional(),
+    reporter: z.string().optional(),
+    commons: z.string().optional(),
+    apiClientV1: z.string().optional(),
+    apiClientV2: z.string().optional(),
+  })
+  .passthrough()
 
 /**
  * Schema for run.json file.

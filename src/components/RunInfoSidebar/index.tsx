@@ -60,10 +60,12 @@ export const RunInfoSidebar = observer(() => {
     timeStyle: 'short',
   })
   const formattedDate = dateFormatter.format(new Date(startTime))
-  const formattedEndTime = dateFormatter.format(new Date(endTime))
+  const formattedEndTime = endTime
+    ? dateFormatter.format(new Date(endTime))
+    : null
 
   // Calculate and format elapsed time (wall clock time)
-  const elapsedMs = endTime - startTime
+  const elapsedMs = endTime ? endTime - startTime : null
   const formatElapsed = (ms: number): string => {
     const seconds = Math.floor(ms / 1000)
     const minutes = Math.floor(seconds / 60)
@@ -80,7 +82,7 @@ export const RunInfoSidebar = observer(() => {
     }
     return `${seconds}s`
   }
-  const formattedElapsed = formatElapsed(elapsedMs)
+  const formattedElapsed = elapsedMs !== null ? formatElapsed(elapsedMs) : null
 
   // Build donut segments data
   const segments = [
@@ -222,22 +224,26 @@ export const RunInfoSidebar = observer(() => {
         </div>
 
         {/* Finished at field */}
-        <div className="flex items-start gap-2">
-          <Calendar className="w-4 h-4 text-muted-foreground mt-0.5" />
-          <div className="flex-1">
-            <p className="text-xs text-muted-foreground">Finished at</p>
-            <p className="text-sm">{formattedEndTime}</p>
+        {formattedEndTime && (
+          <div className="flex items-start gap-2">
+            <Calendar className="w-4 h-4 text-muted-foreground mt-0.5" />
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">Finished at</p>
+              <p className="text-sm">{formattedEndTime}</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Elapsed Time field */}
-        <div className="flex items-start gap-2">
-          <Timer className="w-4 h-4 text-muted-foreground mt-0.5" />
-          <div className="flex-1">
-            <p className="text-xs text-muted-foreground">Elapsed Time</p>
-            <p className="text-sm">{formattedElapsed}</p>
+        {formattedElapsed && (
+          <div className="flex items-start gap-2">
+            <Timer className="w-4 h-4 text-muted-foreground mt-0.5" />
+            <div className="flex-1">
+              <p className="text-xs text-muted-foreground">Elapsed Time</p>
+              <p className="text-sm">{formattedElapsed}</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Environment (conditional, keep existing logic) */}
         {reportStore.runData.environment && (

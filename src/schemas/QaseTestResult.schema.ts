@@ -31,7 +31,7 @@ const TestExecutionSchema = z.object({
   /**
    * Unix timestamp when test ended (milliseconds)
    */
-  end_time: z.number(),
+  end_time: z.number().nullable(),
 
   /**
    * Duration in milliseconds

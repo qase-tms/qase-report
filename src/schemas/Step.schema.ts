@@ -51,7 +51,7 @@ const StepExecutionSchema = z.object({
   /**
    * Unix timestamp when step ended (milliseconds)
    */
-  end_time: z.number(),
+  end_time: z.number().nullable(),
 
   /**
    * Duration in milliseconds
