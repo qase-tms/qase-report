@@ -9,6 +9,7 @@ import { FailureClusters } from '../../components/FailureClusters'
 import { Gallery } from '../../components/Gallery'
 import { Comparison } from '../../components/Comparison'
 import { Timeline } from '../../components/Timeline'
+import { TracesView } from '../../components/TracesView'
 import { TestDetailsDrawer } from '../../components/TestDetailsDrawer'
 import { TabNavigation } from '../../components/TabNavigation'
 import { CommandPalette } from '../../components/CommandPalette'
@@ -52,6 +53,10 @@ export const MainLayout = observer(() => {
 
     if (activeView === 'timeline') {
       return <Timeline />
+    }
+
+    if (activeView === 'traces') {
+      return <TracesView />
     }
 
     return null

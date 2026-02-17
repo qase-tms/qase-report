@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import { useRootStore } from '../../store'
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
@@ -8,23 +9,33 @@ import {
   Images,
   ArrowLeftRight,
   Clock,
+  FileSearch,
 } from 'lucide-react'
 
 export const TabNavigation = observer(() => {
-  const { activeView, setActiveView } = useRootStore()
+  const { activeView, setActiveView, traceStore } = useRootStore()
 
-  const tabs = [
-    { value: 'tests', label: 'Test cases', icon: List },
-    { value: 'dashboard', label: 'Analytics', icon: LayoutDashboard },
-    {
-      value: 'failure-clusters',
-      label: 'Failure Clusters',
-      icon: AlertCircle,
-    },
-    { value: 'gallery', label: 'Gallery', icon: Images },
-    { value: 'comparison', label: 'Comparison', icon: ArrowLeftRight },
-    { value: 'timeline', label: 'Timeline', icon: Clock },
-  ] as const
+  const tabs = useMemo(() => {
+    const baseTabs = [
+      { value: 'tests', label: 'Test cases', icon: List },
+      { value: 'dashboard', label: 'Analytics', icon: LayoutDashboard },
+      {
+        value: 'failure-clusters',
+        label: 'Failure Clusters',
+        icon: AlertCircle,
+      },
+      { value: 'gallery', label: 'Gallery', icon: Images },
+      { value: 'comparison', label: 'Comparison', icon: ArrowLeftRight },
+      { value: 'timeline', label: 'Timeline', icon: Clock },
+    ]
+
+    // Conditionally add Traces tab only when trace files exist
+    if (traceStore.hasTraces) {
+      baseTabs.push({ value: 'traces', label: 'Traces', icon: FileSearch })
+    }
+
+    return baseTabs
+  }, [traceStore.hasTraces])
 
   return (
     <Tabs
@@ -39,6 +50,7 @@ export const TabNavigation = observer(() => {
             | 'gallery'
             | 'comparison'
             | 'timeline'
+            | 'traces'
         )
       }
       className="w-full"

@@ -113,4 +113,23 @@ export class TraceStore {
   get traceCount(): number {
     return this.traceFiles.length
   }
+
+  /**
+   * Currently selected trace file for viewing.
+   */
+  selectedTrace: TraceFile | null = null
+
+  /**
+   * Selects a trace file for viewing in the trace viewer.
+   */
+  selectTrace = (trace: TraceFile) => {
+    this.selectedTrace = trace
+  }
+
+  /**
+   * Clears the currently selected trace.
+   */
+  clearSelectedTrace = () => {
+    this.selectedTrace = null
+  }
 }
