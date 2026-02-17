@@ -135,6 +135,58 @@ export const TracesView = observer(() => {
     )
   }
 
+  // Static mode trace selection UI
+  if (traceStore.selectedTrace && !isServerMode()) {
+    return (
+      <div className="flex flex-col h-full">
+        {/* Header bar with back button */}
+        <div className="flex items-center gap-3 p-4 border-b bg-card">
+          <button
+            onClick={() => traceStore.clearSelectedTrace()}
+            className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to traces
+          </button>
+          <div className="h-4 w-px bg-border" />
+          <span className="text-sm font-medium truncate">
+            {traceStore.selectedTrace.testTitle}
+          </span>
+          <span className="text-xs text-muted-foreground font-mono">
+            {traceStore.selectedTrace.attachment.file_name}
+          </span>
+        </div>
+        {/* Content area - centered informational panel */}
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center space-y-4 max-w-md">
+            <ExternalLink className="h-12 w-12 text-muted-foreground mx-auto" />
+            <h3 className="text-lg font-semibold">
+              Trace viewing is not available in static mode
+            </h3>
+            <p className="text-muted-foreground">
+              Open the Playwright trace viewer and upload the trace file manually to inspect it.
+            </p>
+            <a
+              href="https://trace.playwright.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-medium"
+            >
+              <ExternalLink className="w-4 h-4" />
+              Open trace.playwright.dev
+            </a>
+            <p className="text-xs text-muted-foreground">
+              The trace file is:{' '}
+              <span className="font-mono">
+                {traceStore.selectedTrace.attachment.file_name}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   // Trace list view (default)
   return (
     <div className="p-6">
