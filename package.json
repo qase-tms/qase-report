@@ -37,7 +37,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && npm run build:cli",
-    "build:cli": "tsc -p tsconfig.cli.json",
+    "build:cli": "tsc -p tsconfig.cli.json && chmod +x dist/cli/index.js",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
