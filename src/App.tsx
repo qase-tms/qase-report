@@ -6,6 +6,7 @@ import { ThemeProvider } from './components/ThemeProvider'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SearchModal } from './components/SearchModal'
 import { DownloadButton } from './components/DownloadButton'
+import { SendToQaseButton } from './components/SendToQaseButton'
 import { RunInfoSidebar } from './components/RunInfoSidebar'
 import { LoadReportButton } from './components/LoadReportButton'
 import { useRootStore } from './store'
@@ -96,6 +97,7 @@ const App = observer(() => {
                 <SearchIcon className="w-5 h-5" />
               </button>
               <DownloadButton />
+              <SendToQaseButton />
               <ThemeToggle />
             </div>
           </div>
