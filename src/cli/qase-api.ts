@@ -221,6 +221,134 @@ export async function completeQaseRun(options: {
 }
 
 /**
+ * Upload attachments to Qase TMS and return a map of attachment id → hash
+ *
+ * Batching: max 20 files per request, max 128 MB per request
+ * Skips files larger than 32 MB
+ */
+export async function uploadAttachments(options: {
+  apiToken: string
+  projectCode: string
+  files: Array<{ id: string; name: string; path: string; mimeType: string }>
+}): Promise<Map<string, string>> {
+  const { apiToken, projectCode, files } = options
+  const url = `https://api.qase.io/v1/attachment/${projectCode}`
+  const idToHash = new Map<string, string>()
+
+  const MAX_FILES_PER_BATCH = 20
+  const MAX_BATCH_SIZE = 128 * 1024 * 1024 // 128 MB
+  const MAX_FILE_SIZE = 32 * 1024 * 1024 // 32 MB
+
+  // Build batches respecting file count and size limits
+  const batches: Array<typeof files> = []
+  let currentBatch: typeof files = []
+  let currentBatchSize = 0
+
+  for (const file of files) {
+    const { readFileSync, statSync } = await import('fs')
+    let fileSize: number
+    try {
+      fileSize = statSync(file.path).size
+    } catch {
+      console.warn(`Skipping attachment ${file.name}: cannot stat file`)
+      continue
+    }
+
+    if (fileSize > MAX_FILE_SIZE) {
+      console.warn(
+        `Skipping attachment ${file.name}: file size ${(fileSize / 1024 / 1024).toFixed(1)} MB exceeds 32 MB limit`
+      )
+      continue
+    }
+
+    if (
+      currentBatch.length >= MAX_FILES_PER_BATCH ||
+      currentBatchSize + fileSize > MAX_BATCH_SIZE
+    ) {
+      if (currentBatch.length > 0) {
+        batches.push(currentBatch)
+      }
+      currentBatch = []
+      currentBatchSize = 0
+    }
+
+    currentBatch.push(file)
+    currentBatchSize += fileSize
+  }
+
+  if (currentBatch.length > 0) {
+    batches.push(currentBatch)
+  }
+
+  // Upload each batch
+  for (const batch of batches) {
+    const { readFileSync } = await import('fs')
+    const formData = new FormData()
+
+    for (const file of batch) {
+      const fileBuffer = readFileSync(file.path)
+      const blob = new Blob([fileBuffer], { type: file.mimeType })
+      formData.append('file[]', blob, file.name)
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Token: apiToken,
+        },
+        body: formData,
+      })
+
+      const responseText = await response.text()
+      let data: Record<string, unknown>
+      try {
+        data = JSON.parse(responseText)
+      } catch {
+        data = { raw: responseText }
+      }
+
+      if (!response.ok) {
+        const errorMessage =
+          data.errorMessage || data.message || response.statusText
+        console.warn(
+          `Warning: Failed to upload attachment batch: ${errorMessage}`
+        )
+        continue
+      }
+
+      // Map uploaded files back to their IDs by matching filenames
+      const resultItems = data.result as Array<{
+        hash: string
+        filename: string
+      }>
+      if (Array.isArray(resultItems)) {
+        // Build a filename→id lookup from current batch
+        const nameToIds = new Map<string, string[]>()
+        for (const file of batch) {
+          const ids = nameToIds.get(file.name) || []
+          ids.push(file.id)
+          nameToIds.set(file.name, ids)
+        }
+
+        for (const item of resultItems) {
+          const ids = nameToIds.get(item.filename)
+          if (ids && ids.length > 0) {
+            const id = ids.shift()!
+            idToHash.set(id, item.hash)
+          }
+        }
+      }
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      console.warn(`Warning: Failed to upload attachment batch: ${message}`)
+    }
+  }
+
+  return idToHash
+}
+
+/**
  * Build URL to view a run in Qase TMS web interface
  */
 export function buildRunUrl(projectCode: string, runId: number): string {

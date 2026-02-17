@@ -6,7 +6,7 @@ import { Server } from 'http'
 import { createRequire } from 'module'
 import archiver from 'archiver'
 import { generateHtmlReport } from './generators/html-generator.js'
-import { createQaseRun, sendQaseResults, completeQaseRun, buildRunUrl, QaseApiError } from './qase-api.js'
+import { createQaseRun, sendQaseResults, completeQaseRun, buildRunUrl, uploadAttachments, QaseApiError } from './qase-api.js'
 import { transformResults } from './qase-transform.js'
 import { TestResultSchema } from '../schemas/QaseTestResult.schema.js'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema.js'
@@ -361,15 +361,78 @@ export function createServer(options: ServerOptions): Application {
         return
       }
 
-      // 3. Transform results to Qase API format
-      const apiResults = transformResults(results as QaseTestResult[])
+      // 3. Collect unique attachments from all results (test-level + step-level)
+      const typedResults = results as QaseTestResult[]
+      const uniqueAttachments = new Map<
+        string,
+        { id: string; name: string; path: string; mimeType: string }
+      >()
 
-      // 4. Read run start_time from run.json
+      function collectAttachmentsFromSteps(steps: QaseTestResult['steps']) {
+        for (const step of steps) {
+          for (const att of step.execution.attachments) {
+            if (!uniqueAttachments.has(att.id)) {
+              const filePath = join(
+                resolvedReportPath,
+                'attachments',
+                `${att.id}-${att.file_name}`
+              )
+              uniqueAttachments.set(att.id, {
+                id: att.id,
+                name: att.file_name,
+                path: filePath,
+                mimeType: att.mime_type,
+              })
+            }
+          }
+          if (step.steps && step.steps.length > 0) {
+            collectAttachmentsFromSteps(step.steps)
+          }
+        }
+      }
+
+      for (const result of typedResults) {
+        for (const att of result.attachments) {
+          if (!uniqueAttachments.has(att.id)) {
+            const filePath = join(
+              resolvedReportPath,
+              'attachments',
+              `${att.id}-${att.file_name}`
+            )
+            uniqueAttachments.set(att.id, {
+              id: att.id,
+              name: att.file_name,
+              path: filePath,
+              mimeType: att.mime_type,
+            })
+          }
+        }
+        collectAttachmentsFromSteps(result.steps)
+      }
+
+      // 4. Filter only existing files and upload
+      const filesToUpload = [...uniqueAttachments.values()].filter(f =>
+        existsSync(f.path)
+      )
+
+      let attachmentMap: Map<string, string> | undefined
+      if (filesToUpload.length > 0) {
+        attachmentMap = await uploadAttachments({
+          apiToken: token,
+          projectCode: project_code,
+          files: filesToUpload,
+        })
+      }
+
+      // 5. Transform results to Qase API format (with attachment hashes)
+      const apiResults = transformResults(typedResults, attachmentMap)
+
+      // 6. Read run start_time from run.json
       const runJsonPath = join(resolvedReportPath, 'run.json')
       const runData = JSON.parse(readFileSync(runJsonPath, 'utf-8'))
       const runStartTimeMs = runData.execution?.start_time as number | undefined
 
-      // 5. Create run with start_time from report data
+      // 7. Create run with start_time from report data
       const runId = await createQaseRun({
         apiToken: token,
         projectCode: project_code,
@@ -377,7 +440,7 @@ export function createServer(options: ServerOptions): Application {
         startTime: runStartTimeMs ? runStartTimeMs / 1000 : undefined,
       })
 
-      // 6. Send results
+      // 8. Send results
       await sendQaseResults({
         apiToken: token,
         projectCode: project_code,
@@ -385,14 +448,14 @@ export function createServer(options: ServerOptions): Application {
         results: apiResults,
       })
 
-      // 7. Complete run
+      // 9. Complete run
       await completeQaseRun({
         apiToken: token,
         projectCode: project_code,
         runId,
       })
 
-      // 8. Return success with run URL
+      // 10. Return success with run URL
       const runUrl = buildRunUrl(project_code, runId)
       res.json({
         success: true,

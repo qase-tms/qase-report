@@ -96,9 +96,28 @@ function mapStepStatus(
 }
 
 /**
+ * Resolve attachment hashes from attachment map
+ */
+function resolveAttachmentHashes(
+  attachments: Array<{ id: string }>,
+  attachmentMap?: Map<string, string>
+): string[] {
+  if (!attachmentMap || attachments.length === 0) return []
+  const hashes: string[] = []
+  for (const att of attachments) {
+    const hash = attachmentMap.get(att.id)
+    if (hash) hashes.push(hash)
+  }
+  return hashes
+}
+
+/**
  * Transform a single step to Qase API v2 format (recursive)
  */
-function transformStep(step: Step): ResultStep {
+function transformStep(
+  step: Step,
+  attachmentMap?: Map<string, string>
+): ResultStep {
   const resultStep: ResultStep = {
     step_type: 'text',
     data: {
@@ -110,13 +129,16 @@ function transformStep(step: Step): ResultStep {
     },
     execution: {
       status: mapStepStatus(step.execution.status),
-      attachments: [], // Attachment upload out of scope
+      attachments: resolveAttachmentHashes(
+        step.execution.attachments,
+        attachmentMap
+      ),
     },
   }
 
   // Add nested steps if they exist
   if (step.steps && step.steps.length > 0) {
-    resultStep.steps = step.steps.map(transformStep)
+    resultStep.steps = step.steps.map((s: Step) => transformStep(s, attachmentMap))
   }
 
   return resultStep
@@ -125,7 +147,10 @@ function transformStep(step: Step): ResultStep {
 /**
  * Transform a single test result to Qase API v2 format
  */
-export function transformResult(result: QaseTestResult): ResultCreate {
+export function transformResult(
+  result: QaseTestResult,
+  attachmentMap?: Map<string, string>
+): ResultCreate {
   return {
     title: result.title,
     execution: {
@@ -146,8 +171,8 @@ export function transformResult(result: QaseTestResult): ResultCreate {
       result.testops_ids !== null && result.testops_ids !== undefined
         ? result.testops_ids
         : undefined,
-    attachments: [], // Attachment upload out of scope
-    steps: result.steps.map(transformStep),
+    attachments: resolveAttachmentHashes(result.attachments, attachmentMap),
+    steps: result.steps.map(s => transformStep(s, attachmentMap)),
     params: result.params,
     param_groups: result.param_groups,
     relations: result.relations ?? {},
@@ -163,6 +188,9 @@ export function transformResult(result: QaseTestResult): ResultCreate {
 /**
  * Transform multiple test results to Qase API v2 format
  */
-export function transformResults(results: QaseTestResult[]): ResultCreate[] {
-  return results.map(transformResult)
+export function transformResults(
+  results: QaseTestResult[],
+  attachmentMap?: Map<string, string>
+): ResultCreate[] {
+  return results.map(r => transformResult(r, attachmentMap))
 }
