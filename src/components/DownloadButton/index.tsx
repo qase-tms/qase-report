@@ -11,15 +11,12 @@ import {
 } from '../ui/dropdown-menu'
 
 /**
- * Triggers a file download by creating a temporary anchor element.
- * This lets the browser handle Content-Disposition attachment headers from the server.
+ * Triggers a file download via window.location.
+ * The server returns Content-Disposition: attachment, so the browser downloads
+ * the file without navigating away from the page.
  */
 const triggerDownload = (url: string) => {
-  const anchor = document.createElement('a')
-  anchor.href = url
-  document.body.appendChild(anchor)
-  anchor.click()
-  document.body.removeChild(anchor)
+  window.location.href = url
 }
 
 export const DownloadButton = observer(() => {
