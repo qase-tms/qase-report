@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 import { dirname, join, resolve } from 'path'
 import { readFileSync, readdirSync, existsSync } from 'fs'
 import { Server } from 'http'
+import { createRequire } from 'module'
 
 // Get package root directory
 const __filename = fileURLToPath(import.meta.url)
@@ -141,6 +142,33 @@ export function createServer(options: ServerOptions): Application {
       res.sendFile(resolvedFilePath)
     }
   )
+
+  // Trace viewer: serve playwright-core trace viewer static files
+  // This enables viewing Playwright traces in an iframe
+  const require = createRequire(import.meta.url)
+  try {
+    const playwrightCorePath = dirname(require.resolve('playwright-core/package.json'))
+    const traceViewerPath = join(playwrightCorePath, 'lib', 'vite', 'traceViewer')
+
+    if (existsSync(traceViewerPath)) {
+      app.use('/trace-viewer', express.static(traceViewerPath))
+    }
+  } catch {
+    // playwright-core not installed - trace viewer endpoint won't be available
+    // This is expected when installed without optional dependencies
+    console.warn('playwright-core not found - trace viewer will not be available')
+  }
+
+  // API endpoint: check if trace viewer is available
+  app.get('/api/trace-viewer-available', (req: Request, res: Response) => {
+    try {
+      const playwrightCorePath = dirname(require.resolve('playwright-core/package.json'))
+      const traceViewerPath = join(playwrightCorePath, 'lib', 'vite', 'traceViewer')
+      res.json({ available: existsSync(traceViewerPath) })
+    } catch {
+      res.json({ available: false })
+    }
+  })
 
   // Static file serving for React app (exclude index.html - handled separately)
   app.use(
