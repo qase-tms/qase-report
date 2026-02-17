@@ -6,6 +6,10 @@ import { Server } from 'http'
 import { createRequire } from 'module'
 import archiver from 'archiver'
 import { generateHtmlReport } from './generators/html-generator.js'
+import { createQaseRun, sendQaseResults, completeQaseRun, buildRunUrl, QaseApiError } from './qase-api.js'
+import { transformResults } from './qase-transform.js'
+import { TestResultSchema } from '../schemas/QaseTestResult.schema.js'
+import type { QaseTestResult } from '../schemas/QaseTestResult.schema.js'
 
 // Get package root directory
 const __filename = fileURLToPath(import.meta.url)
@@ -39,6 +43,9 @@ export function createServer(options: ServerOptions): Application {
 
   // Store history path for API endpoint
   app.set('historyPath', historyPath)
+
+  // Enable JSON body parsing for POST endpoints
+  app.use(express.json())
 
   // API endpoint: GET /api/report
   app.get('/api/report', (req: Request, res: Response, next: NextFunction) => {
@@ -303,6 +310,108 @@ export function createServer(options: ServerOptions): Application {
       }
     }
   )
+
+  // ─── Send to Qase API Endpoint ────────────────────────────────────
+
+  // POST /api/send-to-qase - Send test results to Qase TMS
+  app.post('/api/send-to-qase', async (req: Request, res: Response) => {
+    try {
+      // 1. Validate request body
+      const { project_code, token, title } = req.body as {
+        project_code?: string
+        token?: string
+        title?: string
+      }
+
+      if (!project_code || !token || !title) {
+        res.status(400).json({
+          error: 'Missing required fields',
+          message: 'Request must include project_code, token, and title',
+        })
+        return
+      }
+
+      // 2. Read results from report directory
+      const resultsDir = join(resolvedReportPath, 'results')
+      const results: unknown[] = []
+
+      if (existsSync(resultsDir)) {
+        const resultFiles = readdirSync(resultsDir).filter(f => f.endsWith('.json'))
+        for (const file of resultFiles) {
+          try {
+            const filePath = join(resultsDir, file)
+            const rawData = JSON.parse(readFileSync(filePath, 'utf-8'))
+            const parsed = TestResultSchema.safeParse(rawData)
+            if (parsed.success) {
+              results.push(parsed.data)
+            } else {
+              console.warn(`Warning: Skipping invalid result ${file}`)
+            }
+          } catch (err) {
+            console.warn(`Warning: Failed to parse ${file}:`, err)
+          }
+        }
+      }
+
+      if (results.length === 0) {
+        res.status(400).json({
+          error: 'No test results',
+          message: 'No valid test results found in the report directory',
+        })
+        return
+      }
+
+      // 3. Transform results to Qase API format
+      const apiResults = transformResults(results as QaseTestResult[])
+
+      // 4. Create run
+      const runId = await createQaseRun({
+        apiToken: token,
+        projectCode: project_code,
+        title,
+      })
+
+      // 5. Send results
+      await sendQaseResults({
+        apiToken: token,
+        projectCode: project_code,
+        runId,
+        results: apiResults,
+      })
+
+      // 6. Complete run
+      await completeQaseRun({
+        apiToken: token,
+        projectCode: project_code,
+        runId,
+      })
+
+      // 7. Return success with run URL
+      const runUrl = buildRunUrl(project_code, runId)
+      res.json({
+        success: true,
+        run_id: runId,
+        run_url: runUrl,
+        results_count: apiResults.length,
+      })
+    } catch (err) {
+      if (err instanceof QaseApiError) {
+        // Map QaseApiError to appropriate HTTP status
+        const httpStatus = err.statusCode === 0 ? 502 : err.statusCode
+        res.status(httpStatus).json({
+          error: 'Qase API error',
+          message: err.qaseMessage,
+          status_code: err.statusCode,
+        })
+      } else {
+        console.error('Error in send-to-qase:', err)
+        res.status(500).json({
+          error: 'Internal server error',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  })
 
   // Static file serving for React app (exclude index.html - handled separately)
   app.use(
