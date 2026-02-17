@@ -364,14 +364,20 @@ export function createServer(options: ServerOptions): Application {
       // 3. Transform results to Qase API format
       const apiResults = transformResults(results as QaseTestResult[])
 
-      // 4. Create run
+      // 4. Read run start_time from run.json
+      const runJsonPath = join(resolvedReportPath, 'run.json')
+      const runData = JSON.parse(readFileSync(runJsonPath, 'utf-8'))
+      const runStartTimeMs = runData.execution?.start_time as number | undefined
+
+      // 5. Create run with start_time from report data
       const runId = await createQaseRun({
         apiToken: token,
         projectCode: project_code,
         title,
+        startTime: runStartTimeMs ? runStartTimeMs / 1000 : undefined,
       })
 
-      // 5. Send results
+      // 6. Send results
       await sendQaseResults({
         apiToken: token,
         projectCode: project_code,
@@ -379,14 +385,14 @@ export function createServer(options: ServerOptions): Application {
         results: apiResults,
       })
 
-      // 6. Complete run
+      // 7. Complete run
       await completeQaseRun({
         apiToken: token,
         projectCode: project_code,
         runId,
       })
 
-      // 7. Return success with run URL
+      // 8. Return success with run URL
       const runUrl = buildRunUrl(project_code, runId)
       res.json({
         success: true,

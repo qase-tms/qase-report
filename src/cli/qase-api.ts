@@ -39,9 +39,14 @@ export async function createQaseRun(options: {
   apiToken: string
   projectCode: string
   title: string
+  startTime?: number
 }): Promise<number> {
-  const { apiToken, projectCode, title } = options
-  const url = `https://api.qase.io/v1/project/${projectCode}/run`
+  const { apiToken, projectCode, title, startTime } = options
+  const url = `https://api.qase.io/v1/run/${projectCode}`
+
+  const runStartTime = startTime
+    ? formatDateTime(new Date(startTime * 1000))
+    : formatDateTime(new Date())
 
   try {
     const response = await fetch(url, {
@@ -53,33 +58,39 @@ export async function createQaseRun(options: {
       body: JSON.stringify({
         title,
         is_autotest: true,
-        start_time: formatDateTime(new Date()),
+        start_time: runStartTime,
       }),
     })
 
-    const data = await response.json()
+    const responseText = await response.text()
+    let data: Record<string, unknown>
+    try {
+      data = JSON.parse(responseText)
+    } catch {
+      data = { raw: responseText }
+    }
 
     if (!response.ok) {
       const errorMessage = data.errorMessage || data.message || response.statusText
 
       if (response.status === 401) {
-        throw new QaseApiError('Invalid API token', 401, errorMessage)
+        throw new QaseApiError('Invalid API token', 401, String(errorMessage))
       } else if (response.status === 404) {
         throw new QaseApiError(
           `Project not found: ${projectCode}`,
           404,
-          errorMessage
+          String(errorMessage)
         )
       } else {
         throw new QaseApiError(
           `Qase API error: ${response.statusText}`,
           response.status,
-          errorMessage
+          String(errorMessage)
         )
       }
     }
 
-    if (!data.status || !data.result?.id) {
+    if (!data.status || !(data.result as Record<string, unknown>)?.id) {
       throw new QaseApiError(
         'Invalid response from Qase API',
         response.status,
@@ -87,7 +98,7 @@ export async function createQaseRun(options: {
       )
     }
 
-    return data.result.id
+    return (data.result as Record<string, unknown>).id as number
   } catch (err) {
     if (err instanceof QaseApiError) {
       throw err
@@ -109,7 +120,7 @@ export async function sendQaseResults(options: {
   results: unknown[]
 }): Promise<void> {
   const { apiToken, projectCode, runId, results } = options
-  const url = `https://api.qase.io/v2/project/${projectCode}/run/${runId}/result`
+  const url = `https://api.qase.io/v2/${projectCode}/run/${runId}/results`
 
   try {
     const response = await fetch(url, {
@@ -122,22 +133,28 @@ export async function sendQaseResults(options: {
     })
 
     if (!response.ok) {
-      const data = await response.json()
+      const responseText = await response.text()
+      let data: Record<string, unknown>
+      try {
+        data = JSON.parse(responseText)
+      } catch {
+        data = { raw: responseText }
+      }
       const errorMessage = data.errorMessage || data.message || response.statusText
 
       if (response.status === 401) {
-        throw new QaseApiError('Invalid API token', 401, errorMessage)
+        throw new QaseApiError('Invalid API token', 401, String(errorMessage))
       } else if (response.status === 404) {
         throw new QaseApiError(
           `Run not found: ${runId}`,
           404,
-          errorMessage
+          String(errorMessage)
         )
       } else {
         throw new QaseApiError(
           `Qase API error: ${response.statusText}`,
           response.status,
-          errorMessage
+          String(errorMessage)
         )
       }
     }
@@ -161,7 +178,7 @@ export async function completeQaseRun(options: {
   runId: number
 }): Promise<void> {
   const { apiToken, projectCode, runId } = options
-  const url = `https://api.qase.io/v1/project/${projectCode}/run/${runId}/complete`
+  const url = `https://api.qase.io/v1/run/${projectCode}/${runId}/complete`
 
   try {
     const response = await fetch(url, {
