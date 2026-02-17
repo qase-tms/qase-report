@@ -5,7 +5,7 @@ import { MainLayout } from './layout/MainLayout'
 import { ThemeProvider } from './components/ThemeProvider'
 import { ThemeToggle } from './components/ThemeToggle'
 import { SearchModal } from './components/SearchModal'
-import { ExportButton } from './components/ExportButton'
+import { DownloadButton } from './components/DownloadButton'
 import { RunInfoSidebar } from './components/RunInfoSidebar'
 import { LoadReportButton } from './components/LoadReportButton'
 import { useRootStore } from './store'
@@ -95,7 +95,7 @@ const App = observer(() => {
               >
                 <SearchIcon className="w-5 h-5" />
               </button>
-              <ExportButton />
+              <DownloadButton />
               <ThemeToggle />
             </div>
           </div>
