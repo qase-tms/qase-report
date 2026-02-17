@@ -4,6 +4,8 @@ import { dirname, join, resolve } from 'path'
 import { readFileSync, readdirSync, existsSync } from 'fs'
 import { Server } from 'http'
 import { createRequire } from 'module'
+import archiver from 'archiver'
+import { generateHtmlReport } from './generators/html-generator.js'
 
 // Get package root directory
 const __filename = fileURLToPath(import.meta.url)
@@ -169,6 +171,138 @@ export function createServer(options: ServerOptions): Application {
       res.json({ available: false })
     }
   })
+
+  // ─── Download API Endpoints ───────────────────────────────────────────
+
+  // Download endpoint: GET /api/download/html
+  // Returns self-contained HTML report as file download
+  app.get(
+    '/api/download/html',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const historyPath = app.get('historyPath') as string | undefined
+        const html = generateHtmlReport({
+          reportPath: resolvedReportPath,
+          historyPath,
+        })
+
+        res.setHeader('Content-Type', 'text/html; charset=utf-8')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report.html"'
+        )
+        res.send(html)
+      } catch (err) {
+        console.error('Error generating HTML report:', err)
+        res.status(500).json({
+          error: 'Failed to generate HTML report',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  )
+
+  // Download endpoint: GET /api/download/history
+  // Returns history JSON as file download, or 404 if missing
+  app.get(
+    '/api/download/history',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const storedHistoryPath = app.get('historyPath') as string | undefined
+        const resolvedHistoryPath =
+          storedHistoryPath || join(resolvedReportPath, 'qase-report-history.json')
+
+        if (!existsSync(resolvedHistoryPath)) {
+          res.status(404).json({ error: 'History file not found' })
+          return
+        }
+
+        const historyData = readFileSync(resolvedHistoryPath, 'utf-8')
+        res.setHeader('Content-Type', 'application/json')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report-history.json"'
+        )
+        res.send(historyData)
+      } catch (err) {
+        console.error('Error reading history file:', err)
+        res.status(500).json({
+          error: 'Failed to read history file',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  )
+
+  // Download endpoint: GET /api/download/zip
+  // Returns ZIP archive of the full report directory
+  app.get(
+    '/api/download/zip',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        // Check run.json exists (required for a valid report)
+        const runJsonPath = join(resolvedReportPath, 'run.json')
+        if (!existsSync(runJsonPath)) {
+          res.status(404).json({
+            error: 'Report not found',
+            message: `run.json not found at ${runJsonPath}`,
+          })
+          return
+        }
+
+        res.setHeader('Content-Type', 'application/zip')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report.zip"'
+        )
+
+        const archive = archiver('zip', { zlib: { level: 6 } })
+
+        archive.on('error', (err) => {
+          console.error('Archive error:', err)
+          if (!res.headersSent) {
+            res.status(500).json({
+              error: 'Failed to create ZIP archive',
+              message: err.message,
+            })
+          } else {
+            res.destroy()
+          }
+        })
+
+        archive.on('warning', (err) => {
+          console.warn('Archive warning:', err.message)
+        })
+
+        archive.pipe(res)
+
+        // Add run.json
+        archive.file(runJsonPath, { name: 'run.json' })
+
+        // Add results/ directory if it exists
+        const resultsDir = join(resolvedReportPath, 'results')
+        if (existsSync(resultsDir)) {
+          archive.directory(resultsDir, 'results')
+        }
+
+        // Add attachments/ directory if it exists
+        const attachmentsDir = join(resolvedReportPath, 'attachments')
+        if (existsSync(attachmentsDir)) {
+          archive.directory(attachmentsDir, 'attachments')
+        }
+
+        archive.finalize()
+      } catch (err) {
+        console.error('Error creating ZIP archive:', err)
+        if (!res.headersSent) {
+          res.status(500).json({
+            error: 'Failed to create ZIP archive',
+            message: err instanceof Error ? err.message : 'Unknown error',
+          })
+        }
+      }
+    }
+  )
 
   // Static file serving for React app (exclude index.html - handled separately)
   app.use(
