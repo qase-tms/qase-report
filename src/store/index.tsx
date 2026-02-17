@@ -6,6 +6,7 @@ import { AttachmentsStore } from './AttachmentsStore'
 import { AttachmentViewerStore } from './AttachmentViewerStore'
 import { HistoryStore } from './HistoryStore'
 import { AnalyticsStore } from './AnalyticsStore'
+import { TraceStore } from './TraceStore'
 import { FileLoaderService } from '../services/FileLoaderService'
 import { ApiDataService, fetchHistory } from '../services/ApiDataService'
 import { QaseRunSchema } from '../schemas/QaseRun.schema'
@@ -20,11 +21,12 @@ export class RootStore {
   attachmentViewerStore: AttachmentViewerStore
   historyStore: HistoryStore
   analyticsStore: AnalyticsStore
+  traceStore: TraceStore
 
   selectedTestId: string | null = null
 
   // Navigation state
-  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' = 'tests'
+  activeView: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' | 'traces' = 'tests'
 
   // Server mode state
   attachmentsBasePath: string | null = null
@@ -38,13 +40,14 @@ export class RootStore {
     this.attachmentViewerStore = new AttachmentViewerStore(this)
     this.historyStore = new HistoryStore(this)
     this.analyticsStore = new AnalyticsStore(this)
+    this.traceStore = new TraceStore(this)
     makeAutoObservable(this)
   }
 
   /**
-   * Sets the active view (dashboard, tests, analytics, failure-clusters, gallery, comparison, or timeline).
+   * Sets the active view (dashboard, tests, analytics, failure-clusters, gallery, comparison, timeline, or traces).
    */
-  setActiveView = (view: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline') => {
+  setActiveView = (view: 'dashboard' | 'tests' | 'analytics' | 'failure-clusters' | 'gallery' | 'comparison' | 'timeline' | 'traces') => {
     this.activeView = view
   }
 
