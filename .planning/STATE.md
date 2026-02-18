@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-02-18)
 
 **Core value:** Пользователь может открыть Qase Report JSON и увидеть результаты тестирования в понятном, интерактивном интерфейсе с фильтрацией, детальными шагами, вложениями и аналитикой стабильности.
-**Current focus:** Phase 57 - Design System (v2.2 UI Polish)
+**Current focus:** Phase 58 - Sidebar Polish (v2.2 UI Polish)
 
 ## Current Position
 
 Milestone: v2.2 UI Polish
-Phase: 57 of 60 (Design System)
+Phase: 58 of 60 (Sidebar Polish)
 Plan: 1 of 1
 Status: Plan complete
-Last activity: 2026-02-18 — Completed 57-01-PLAN.md (Unified Status Color System)
+Last activity: 2026-02-18 — Completed 58-01-PLAN.md (Interactive Donut & Status Grid)
 
-Progress: [████████████████████░] 96% (96/99 plans across all milestones)
+Progress: [████████████████████░] 97% (97/99 plans across all milestones)
 
 ## Performance Metrics
 
@@ -35,7 +35,7 @@ Progress: [████████████████████░] 96% 
 | v1.9 Playwright Trace Viewer | 49-52 | 4 | Complete |
 | v2.0 Download Menu | 53-54 | 2 | Complete |
 | v2.1 Send to Qase | 55-56 | 3 | Complete |
-| v2.2 UI Polish | 57-60 | 1/4 | In progress |
+| v2.2 UI Polish | 57-60 | 2/4 | In progress |
 
 **v2.2 Milestone Notes:**
 - Small polish milestone (4 phases, ~4 plans estimated)
@@ -49,6 +49,9 @@ Progress: [████████████████████░] 96% 
 (Cleared at milestone boundary — full log in PROJECT.md Key Decisions)
 
 Recent execution decisions:
+- Phase 58-01: Used custom tooltip implementation (absolute positioning) instead of external library for zero dependencies
+- Phase 58-01: Always show all 8 status cells in grid (including Flaky with value 0) for consistent visual layout
+- Phase 58-01: Applied multiple hover feedback mechanisms (stroke thickness, opacity dimming, transitions) for better UX
 - Phase 57-01: Used `.text-muted-status` / `.bg-muted-status` naming to avoid collision with shadcn's built-in `--muted` tokens
 - Phase 57-01: Kept `.text-brand`, `.bg-brand`, `.text-warning`, `.bg-warning` utilities for backward compatibility (may be used outside status colors)
 - Phase 57-01: Migrated Timeline legend from generic Tailwind colors to Badge status variants for perfect color matching
@@ -69,6 +72,6 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-18
-Stopped at: Completed 57-01-PLAN.md (Unified Status Color System)
+Stopped at: Completed 58-01-PLAN.md (Interactive Donut & Status Grid)
 Resume file: None
-Next action: Plan Phase 58 (Sidebar Enhancements)
+Next action: Plan Phase 59 or 60 (remaining v2.2 UI Polish)
