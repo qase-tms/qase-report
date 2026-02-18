@@ -128,6 +128,20 @@
     --status-invalid-bg: var(--palette-mustard-100);
     --status-muted: var(--palette-charcoal-50);
     --status-muted-bg: var(--palette-charcoal-90);
+
+    /* Grade Colors (Test Health) */
+    --grade-excellent: var(--palette-jungle-60);
+    --grade-excellent-bg: var(--palette-jungle-100);
+    --grade-good: var(--palette-jungle-60);
+    --grade-good-bg: var(--palette-jungle-100);
+    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair-bg: var(--palette-qase-blue-80);
+    --grade-warning: var(--palette-mustard-60);
+    --grade-warning-bg: var(--palette-mustard-100);
+    --grade-poor: var(--palette-mustard-80);
+    --grade-poor-bg: var(--palette-mustard-100);
+    --grade-critical: var(--palette-berry-60);
+    --grade-critical-bg: var(--palette-berry-100);
   }
 
   /* Light theme activated by .light class on html */
@@ -188,6 +202,20 @@
     --status-invalid-bg: var(--palette-mustard-10);
     --status-muted: var(--palette-charcoal-70);
     --status-muted-bg: var(--palette-charcoal-20);
+
+    /* Grade Colors (Test Health) - light */
+    --grade-excellent: var(--palette-jungle-70);
+    --grade-excellent-bg: var(--palette-jungle-10);
+    --grade-good: var(--palette-jungle-70);
+    --grade-good-bg: var(--palette-jungle-10);
+    --grade-fair: var(--palette-qase-blue-60);
+    --grade-fair-bg: var(--palette-qase-blue-10);
+    --grade-warning: var(--palette-mustard-80);
+    --grade-warning-bg: var(--palette-mustard-10);
+    --grade-poor: var(--palette-mustard-80);
+    --grade-poor-bg: var(--palette-mustard-10);
+    --grade-critical: var(--palette-berry-70);
+    --grade-critical-bg: var(--palette-berry-10);
   }
 }
 

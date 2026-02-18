@@ -1,5 +1,4 @@
 import { CheckCircle, RefreshCw, AlertCircle } from 'lucide-react'
-import { cn } from '../../lib/utils'
 import type { FlakinessResult } from '../../types/flakiness'
 
 interface StabilityBadgeProps {
@@ -15,19 +14,19 @@ export const StabilityBadge = ({ result }: StabilityBadgeProps) => {
   // Badge configuration by status
   const badgeConfig = {
     flaky: {
-      colorClass: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20',
+      style: { color: 'var(--grade-warning)', backgroundColor: 'var(--grade-warning-bg)', borderColor: 'var(--grade-warning)' },
       icon: <RefreshCw className="h-3 w-3" />,
       label: 'Flaky',
       tooltip: `Flaky in ${result.statusChanges} of ${result.totalRuns} runs (${result.flakinessPercent}%)`,
     },
     stable: {
-      colorClass: 'bg-green-500/10 text-green-500 border-green-500/20',
+      style: { color: 'var(--grade-excellent)', backgroundColor: 'var(--grade-excellent-bg)', borderColor: 'var(--grade-excellent)' },
       icon: <CheckCircle className="h-3 w-3" />,
       label: 'Stable',
       tooltip: `Stable across ${result.totalRuns} runs`,
     },
     new_failure: {
-      colorClass: 'bg-red-500/10 text-red-500 border-red-500/20',
+      style: { color: 'var(--grade-critical)', backgroundColor: 'var(--grade-critical-bg)', borderColor: 'var(--grade-critical)' },
       icon: <AlertCircle className="h-3 w-3" />,
       label: 'New Failure',
       tooltip: `Started failing after ${result.totalRuns - 1} stable runs`,
@@ -39,10 +38,8 @@ export const StabilityBadge = ({ result }: StabilityBadgeProps) => {
   return (
     <span
       title={config.tooltip}
-      className={cn(
-        'inline-flex items-center gap-1 ml-2 px-2 py-0.5 rounded-full text-xs font-medium border',
-        config.colorClass
-      )}
+      className="inline-flex items-center gap-1 ml-2 px-2 py-0.5 rounded-full text-xs font-medium border"
+      style={config.style}
     >
       {config.icon}
       {config.label}

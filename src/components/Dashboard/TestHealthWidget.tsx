@@ -9,23 +9,14 @@ import { HelpTooltip } from './HelpTooltip'
  */
 const gradeConfig: Record<
   Exclude<StabilityGrade, 'N/A'>,
-  { colorClass: string; label: string }
+  { color: string; bg: string; label: string }
 > = {
-  'A+': { colorClass: 'bg-green-500 text-white', label: 'Excellent' },
-  'A': { colorClass: 'bg-green-500 text-white', label: 'Good' },
-  'B': { colorClass: 'bg-blue-500 text-white', label: 'Fair' },
-  'C': { colorClass: 'bg-yellow-500 text-white', label: 'Needs attention' },
-  'D': { colorClass: 'bg-yellow-600 text-white', label: 'Poor' },
-  'F': { colorClass: 'bg-destructive text-destructive-foreground', label: 'Critical' },
-}
-
-const gradeProgressColors: Record<Exclude<StabilityGrade, 'N/A'>, string> = {
-  'A+': 'bg-green-500',
-  'A': 'bg-green-500',
-  'B': 'bg-blue-500',
-  'C': 'bg-yellow-500',
-  'D': 'bg-yellow-600',
-  'F': 'bg-destructive',
+  'A+': { color: 'var(--grade-excellent)', bg: 'var(--grade-excellent-bg)', label: 'Excellent' },
+  'A': { color: 'var(--grade-good)', bg: 'var(--grade-good-bg)', label: 'Good' },
+  'B': { color: 'var(--grade-fair)', bg: 'var(--grade-fair-bg)', label: 'Fair' },
+  'C': { color: 'var(--grade-warning)', bg: 'var(--grade-warning-bg)', label: 'Needs attention' },
+  'D': { color: 'var(--grade-poor)', bg: 'var(--grade-poor-bg)', label: 'Poor' },
+  'F': { color: 'var(--grade-critical)', bg: 'var(--grade-critical-bg)', label: 'Critical' },
 }
 
 /**
@@ -111,7 +102,10 @@ export const TestHealthWidget = observer(() => {
           <p className="text-sm text-muted-foreground">
             Overall:
           </p>
-          <span className={`px-2 py-1 rounded text-xs ${overallConfig.colorClass}`}>
+          <span
+            className="px-2 py-1 rounded text-xs font-bold"
+            style={{ color: overallConfig.color, backgroundColor: overallConfig.bg }}
+          >
             {overallGrade} ({overallScore})
           </span>
         </div>
@@ -127,19 +121,21 @@ export const TestHealthWidget = observer(() => {
           const count = gradeDistribution[grade]
           const percentage = totalGraded > 0 ? (count / totalGraded) * 100 : 0
           const config = gradeConfig[grade]
-          const progressColor = gradeProgressColors[grade]
 
           return (
             <div key={grade}>
               <div className="flex items-center gap-2 mb-1">
-                <span className={`px-2 py-1 rounded text-xs font-bold min-w-[40px] text-center ${config.colorClass}`}>
+                <span
+                  className="px-2 py-1 rounded text-xs font-bold min-w-[40px] text-center"
+                  style={{ color: config.color, backgroundColor: config.bg }}
+                >
                   {grade}
                 </span>
                 <div className="flex-1">
                   <div className="w-full bg-secondary rounded h-2">
                     <div
-                      className={`h-2 rounded ${progressColor}`}
-                      style={{ width: `${percentage}%` }}
+                      className="h-2 rounded"
+                      style={{ width: `${percentage}%`, backgroundColor: config.color }}
                     />
                   </div>
                 </div>

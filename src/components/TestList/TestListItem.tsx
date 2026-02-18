@@ -3,29 +3,19 @@ import type { QaseTestResult } from '../../schemas/QaseTestResult.schema'
 import { Badge } from '../ui/badge'
 import { useRootStore } from '../../store'
 import { StabilityBadge } from './StabilityBadge'
-import { cn } from '../../lib/utils'
-import type { StabilityGrade } from '../../types/stability'
 
 interface TestListItemProps {
   test: QaseTestResult
   onSelect: (id: string) => void
 }
 
-const getGradeClass = (grade: StabilityGrade): string => {
-  switch (grade) {
-    case 'A+':
-    case 'A':
-      return 'bg-green-500/10 text-green-500 border-green-500/20'
-    case 'B':
-      return 'bg-blue-500/10 text-blue-500 border-blue-500/20'
-    case 'C':
-    case 'D':
-      return 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'
-    case 'F':
-      return 'bg-red-500/10 text-red-500 border-red-500/20'
-    default:
-      return 'bg-muted text-muted-foreground border-border'
-  }
+const gradeStyles: Record<string, { color: string; bg: string; border: string }> = {
+  'A+': { color: 'var(--grade-excellent)', bg: 'var(--grade-excellent-bg)', border: 'var(--grade-excellent)' },
+  'A': { color: 'var(--grade-good)', bg: 'var(--grade-good-bg)', border: 'var(--grade-good)' },
+  'B': { color: 'var(--grade-fair)', bg: 'var(--grade-fair-bg)', border: 'var(--grade-fair)' },
+  'C': { color: 'var(--grade-warning)', bg: 'var(--grade-warning-bg)', border: 'var(--grade-warning)' },
+  'D': { color: 'var(--grade-poor)', bg: 'var(--grade-poor-bg)', border: 'var(--grade-poor)' },
+  'F': { color: 'var(--grade-critical)', bg: 'var(--grade-critical-bg)', border: 'var(--grade-critical)' },
 }
 
 export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => {
@@ -60,17 +50,18 @@ export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => 
         <div className="text-sm truncate">{test.title}</div>
         <div className="text-xs text-muted-foreground">{durationText}</div>
       </div>
-      {stabilityResult && stabilityResult.grade !== 'N/A' && (
-        <span
-          title={`Score: ${Math.round(stabilityResult.score)} (Pass: ${Math.round(stabilityResult.passRate)}%, Flaky: ${Math.round(stabilityResult.flakinessPercent)}%, CV: ${Math.round(stabilityResult.durationCV)}%)`}
-          className={cn(
-            'inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ml-2',
-            getGradeClass(stabilityResult.grade)
-          )}
-        >
-          {stabilityResult.grade}
-        </span>
-      )}
+      {stabilityResult && stabilityResult.grade !== 'N/A' && (() => {
+        const gs = gradeStyles[stabilityResult.grade]
+        return gs ? (
+          <span
+            title={`Score: ${Math.round(stabilityResult.score)} (Pass: ${Math.round(stabilityResult.passRate)}%, Flaky: ${Math.round(stabilityResult.flakinessPercent)}%, CV: ${Math.round(stabilityResult.durationCV)}%)`}
+            className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border ml-2"
+            style={{ color: gs.color, backgroundColor: gs.bg, borderColor: gs.border }}
+          >
+            {stabilityResult.grade}
+          </span>
+        ) : null
+      })()}
       {flakinessResult && <StabilityBadge result={flakinessResult} />}
     </button>
   )
