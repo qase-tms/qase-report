@@ -9,7 +9,7 @@ export type TreeNode = {
   id: string
 
   /** Row type discriminator */
-  type: 'suite' | 'test'
+  type: 'suite' | 'test' | 'header'
 
   // Suite properties (only when type === 'suite')
   /** Array of parent suite titles (e.g., ['API', 'Users', 'Authentication']) */
@@ -119,6 +119,16 @@ export function buildSuiteTree(tests: QaseTestResult[]): TreeNode[] {
       subRows: [],
     }
     suiteNode.subRows!.push(testNode)
+  }
+
+  // Prepend inline header row to each suite's children
+  for (const suiteNode of suiteMap.values()) {
+    const headerNode: TreeNode = {
+      id: `${suiteNode.id}::header`,
+      type: 'header',
+      subRows: [],
+    }
+    suiteNode.subRows!.unshift(headerNode)
   }
 
   return Array.from(suiteMap.values())

@@ -108,9 +108,11 @@ export const createColumns = (
     id: 'id',
     header: () => <span className="pl-8">ID</span>,
     cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
+      if (row.original.type === 'header') {
+        return <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider pl-8">ID</span>
+      }
 
-      if (isSuite) {
+      if (row.original.type === 'suite') {
         // Suite: expand button + folder icon + name
         const canExpand = row.getCanExpand()
         const isExpanded = row.getIsExpanded()
@@ -157,8 +159,10 @@ export const createColumns = (
     id: 'status',
     header: 'Status',
     cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
-      if (isSuite) return null
+      if (row.original.type === 'header') {
+        return <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Status</span>
+      }
+      if (row.original.type === 'suite') return null
 
       const status = row.original.testData?.execution.status
       if (!status) return null
@@ -172,8 +176,10 @@ export const createColumns = (
     id: 'title',
     header: 'Title',
     cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
-      if (isSuite) return null
+      if (row.original.type === 'header') {
+        return <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">Title</span>
+      }
+      if (row.original.type === 'suite') return null
 
       return <span className="truncate">{row.original.testData?.title}</span>
     },
@@ -183,9 +189,11 @@ export const createColumns = (
     id: 'duration',
     header: () => <div className="text-right">Duration</div>,
     cell: ({ row }) => {
-      const isSuite = row.original.type === 'suite'
+      if (row.original.type === 'header') {
+        return <div className="text-[11px] font-medium text-muted-foreground uppercase tracking-wider text-right">Duration</div>
+      }
 
-      if (isSuite) {
+      if (row.original.type === 'suite') {
         // Suite: duration + progress bar
         const duration = row.original.totalDuration || 0
         return (

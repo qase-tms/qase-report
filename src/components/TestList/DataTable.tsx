@@ -14,8 +14,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
-  TableHeader,
   TableRow,
 } from '../ui/table'
 
@@ -71,7 +69,10 @@ export function DataTable<TData, TValue>({
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => tableContainerRef.current,
-    estimateSize: () => 40, // Compact row height
+    estimateSize: (index) => {
+      const row = rows[index]
+      return (row?.original as Record<string, unknown>)?.type === 'header' ? 32 : 40
+    },
     overscan: 2, // Match current overscanCount
   })
 
@@ -84,30 +85,6 @@ export function DataTable<TData, TValue>({
       style={{ height: `${height}px` }}
     >
       <Table className="w-full">
-        <TableHeader className="sticky top-0 bg-background z-10">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                const isFlexColumn = header.id === 'title'
-                const width = header.getSize()
-                return (
-                  <TableHead
-                    key={header.id}
-                    className={isFlexColumn ? 'w-full' : ''}
-                    style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px` }}
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                )
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
         <TableBody
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
@@ -117,17 +94,21 @@ export function DataTable<TData, TValue>({
           {virtualRows.length ? (
             virtualRows.map((virtualRow) => {
               const row = rows[virtualRow.index]
+              const isHeader = (row.original as Record<string, unknown>).type === 'header'
               return (
                 <TableRow
                   key={row.id}
                   data-index={virtualRow.index}
-                  onClick={() => onRowClick?.(row.original)}
-                  className="cursor-pointer hover:bg-accent"
+                  onClick={isHeader ? undefined : () => onRowClick?.(row.original)}
+                  className={isHeader
+                    ? 'border-b border-border/50 bg-muted/30'
+                    : 'cursor-pointer hover:bg-accent'
+                  }
                   style={{
                     position: 'absolute',
                     transform: `translateY(${virtualRow.start}px)`,
                     width: '100%',
-                    height: '40px', // Compact row height
+                    height: isHeader ? '32px' : '40px',
                   }}
                 >
                   {row.getVisibleCells().map((cell) => {
