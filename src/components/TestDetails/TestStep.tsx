@@ -96,9 +96,9 @@ export const TestStep = observer(({ step, depth, stepNumber }: TestStepProps) =>
         </span>
       </div>
 
-      {/* Attachments row - right aligned */}
+      {/* Attachments row - left aligned matching step details indent */}
       {hasAttachments && (
-        <div className="flex justify-end gap-2 pr-2 pb-1">
+        <div className="flex flex-wrap gap-2 ml-[3.25rem] pb-1">
           {step.execution.attachments.map((attachment: Attachment) => (
             <TestStepAttachment key={attachment.id} attachment={attachment} />
           ))}
@@ -110,13 +110,13 @@ export const TestStep = observer(({ step, depth, stepNumber }: TestStepProps) =>
         <div className="ml-[3.25rem] mb-1 text-xs space-y-1">
           {hasInputData && (
             <div className="flex gap-2">
-              <span className="text-muted-foreground shrink-0">Input:</span>
+              <span className="text-muted-foreground shrink-0 min-w-[4.5rem]">Input:</span>
               <span className="text-foreground/80">{step.data.input_data}</span>
             </div>
           )}
           {hasExpectedResult && (
             <div className="flex gap-2">
-              <span className="text-muted-foreground shrink-0">Expected:</span>
+              <span className="text-muted-foreground shrink-0 min-w-[4.5rem]">Expected:</span>
               <span className="text-foreground/80">{step.data.expected_result}</span>
             </div>
           )}
