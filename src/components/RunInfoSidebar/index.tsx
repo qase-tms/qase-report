@@ -107,7 +107,8 @@ export const RunInfoSidebar = observer(() => {
 
     // Add small gap between segments (1 degree)
     const gap = segments.length > 1 ? 1 : 0
-    const adjustedEndAngle = Math.max(startAngle + 1, endAngle - gap)
+    // Cap at 359.9° to prevent SVG arc start/end points from coinciding (renders nothing)
+    const adjustedEndAngle = Math.min(Math.max(startAngle + 1, endAngle - gap), startAngle + 359.9)
 
     return {
       ...segment,
@@ -164,24 +165,27 @@ export const RunInfoSidebar = observer(() => {
               />
             ))}
           </svg>
-          {/* Centered percentage label */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-2xl font-bold">
-              {Math.round(passRate)}%
-            </span>
-          </div>
-          {/* Tooltip */}
-          {hoveredSegment && (
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover border border-border rounded-md px-2.5 py-1 shadow-md flex items-center gap-1.5 whitespace-nowrap z-10 pointer-events-none">
-              <span
-                className="w-2 h-2 rounded-full inline-block"
-                style={{ backgroundColor: hoveredSegment.color }}
-              />
-              <span className="text-xs font-medium">
-                {hoveredSegment.key.charAt(0).toUpperCase() + hoveredSegment.key.slice(1)} : {hoveredSegment.value}
+          {/* Centered label: percentage or hovered segment info */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            {hoveredSegment ? (
+              <>
+                <span
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: hoveredSegment.color }}
+                />
+                <span className="text-sm font-bold leading-tight">
+                  {hoveredSegment.value}
+                </span>
+                <span className="text-[10px] text-muted-foreground leading-tight">
+                  {hoveredSegment.key.charAt(0).toUpperCase() + hoveredSegment.key.slice(1)}
+                </span>
+              </>
+            ) : (
+              <span className="text-2xl font-bold">
+                {Math.round(passRate)}%
               </span>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         <div className="text-center">
           <p className="text-sm text-muted-foreground">Pass Rate</p>
