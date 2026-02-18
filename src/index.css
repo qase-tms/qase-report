@@ -121,6 +121,12 @@
     --status-skipped-bg: var(--palette-charcoal-90);
     --status-broken: var(--palette-mustard-60);
     --status-broken-bg: var(--palette-mustard-100);
+    --status-blocked: var(--palette-qase-blue-40);
+    --status-blocked-bg: var(--palette-qase-blue-80);
+    --status-invalid: var(--palette-mustard-40);
+    --status-invalid-bg: var(--palette-mustard-100);
+    --status-muted: var(--palette-charcoal-50);
+    --status-muted-bg: var(--palette-charcoal-90);
   }
 
   /* Light theme activated by .light class on html */
@@ -175,6 +181,12 @@
     --status-skipped-bg: var(--palette-charcoal-20);
     --status-broken: var(--palette-mustard-80);
     --status-broken-bg: var(--palette-mustard-10);
+    --status-blocked: var(--palette-qase-blue-70);
+    --status-blocked-bg: var(--palette-qase-blue-10);
+    --status-invalid: var(--palette-mustard-80);
+    --status-invalid-bg: var(--palette-mustard-10);
+    --status-muted: var(--palette-charcoal-70);
+    --status-muted-bg: var(--palette-charcoal-20);
   }
 }
 
@@ -230,6 +242,12 @@
   --color-status-skipped-bg: var(--status-skipped-bg);
   --color-status-broken: var(--status-broken);
   --color-status-broken-bg: var(--status-broken-bg);
+  --color-status-blocked: var(--status-blocked);
+  --color-status-blocked-bg: var(--status-blocked-bg);
+  --color-status-invalid: var(--status-invalid);
+  --color-status-invalid-bg: var(--status-invalid-bg);
+  --color-status-muted: var(--status-muted);
+  --color-status-muted-bg: var(--status-muted-bg);
 }
 
 @layer base {
@@ -248,24 +266,36 @@
   .text-failed { color: var(--status-failed); }
   .text-skipped { color: var(--status-skipped); }
   .text-broken { color: var(--status-broken); }
+  .text-blocked { color: var(--status-blocked); }
+  .text-invalid { color: var(--status-invalid); }
+  .text-muted-status { color: var(--status-muted); }
 
   /* Background colors */
   .bg-passed { background-color: var(--status-passed); }
   .bg-failed { background-color: var(--status-failed); }
   .bg-skipped { background-color: var(--status-skipped); }
   .bg-broken { background-color: var(--status-broken); }
+  .bg-blocked { background-color: var(--status-blocked); }
+  .bg-invalid { background-color: var(--status-invalid); }
+  .bg-muted-status { background-color: var(--status-muted); }
 
   /* Background muted */
   .bg-passed-muted { background-color: var(--status-passed-bg); }
   .bg-failed-muted { background-color: var(--status-failed-bg); }
   .bg-skipped-muted { background-color: var(--status-skipped-bg); }
   .bg-broken-muted { background-color: var(--status-broken-bg); }
+  .bg-blocked-muted { background-color: var(--status-blocked-bg); }
+  .bg-invalid-muted { background-color: var(--status-invalid-bg); }
+  .bg-muted-status-muted { background-color: var(--status-muted-bg); }
 
   /* Border colors */
   .border-passed { border-color: var(--status-passed); }
   .border-failed { border-color: var(--status-failed); }
   .border-skipped { border-color: var(--status-skipped); }
   .border-broken { border-color: var(--status-broken); }
+  .border-blocked { border-color: var(--status-blocked); }
+  .border-invalid { border-color: var(--status-invalid); }
+  .border-muted-status { border-color: var(--status-muted); }
 
   /* Brand accent */
   .text-brand { color: var(--palette-qase-blue-50); }
