@@ -37,7 +37,7 @@ const StatusIcon = ({ status }: { status: string }) => {
     case 'skipped':
       return <MinusCircle {...iconProps} className="h-4 w-4 text-skipped" />
     case 'blocked':
-      return <Ban {...iconProps} className="h-4 w-4 text-brand" />
+      return <Ban {...iconProps} className="h-4 w-4 text-blocked" />
     default:
       return <CircleDot {...iconProps} className="h-4 w-4 text-muted-foreground" />
   }

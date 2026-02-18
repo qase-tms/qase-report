@@ -90,9 +90,9 @@ export const RunInfoSidebar = observer(() => {
     { key: 'failed', value: stats.failed, color: 'var(--status-failed)' },
     { key: 'broken', value: stats.broken ?? 0, color: 'var(--status-broken)' },
     { key: 'skipped', value: stats.skipped, color: 'var(--status-skipped)' },
-    { key: 'blocked', value: stats.blocked ?? 0, color: 'var(--palette-qase-blue-50)' },
-    { key: 'invalid', value: stats.invalid ?? 0, color: 'var(--palette-mustard-60)' },
-    { key: 'muted', value: stats.muted ?? 0, color: 'var(--palette-charcoal-50)' },
+    { key: 'blocked', value: stats.blocked ?? 0, color: 'var(--status-blocked)' },
+    { key: 'invalid', value: stats.invalid ?? 0, color: 'var(--status-invalid)' },
+    { key: 'muted', value: stats.muted ?? 0, color: 'var(--status-muted)' },
   ].filter(s => s.value > 0)
 
   // Calculate angles for each segment
@@ -176,15 +176,15 @@ export const RunInfoSidebar = observer(() => {
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Blocked</span>
-          <span className="font-medium text-brand">{stats.blocked ?? 0}</span>
+          <span className="font-medium text-blocked">{stats.blocked ?? 0}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Invalid</span>
-          <span className="font-medium text-warning">{stats.invalid ?? 0}</span>
+          <span className="font-medium text-invalid">{stats.invalid ?? 0}</span>
         </div>
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Muted</span>
-          <span className="font-medium text-[var(--palette-charcoal-50)]">{stats.muted ?? 0}</span>
+          <span className="font-medium text-muted-status">{stats.muted ?? 0}</span>
         </div>
         {flakyCount > 0 && (
           <div className="flex justify-between text-sm">

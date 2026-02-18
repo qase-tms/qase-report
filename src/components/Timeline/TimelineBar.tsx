@@ -34,9 +34,9 @@ export const TimelineBar = observer(({ test, minTime, totalDuration }: TimelineB
     failed: 'bg-failed hover:opacity-80',
     broken: 'bg-broken hover:opacity-80',
     skipped: 'bg-skipped hover:opacity-80',
-    blocked: 'bg-brand hover:opacity-80',
-    invalid: 'bg-warning hover:opacity-80',
-    muted: 'bg-[var(--palette-charcoal-50)] hover:opacity-80',
+    blocked: 'bg-blocked hover:opacity-80',
+    invalid: 'bg-invalid hover:opacity-80',
+    muted: 'bg-muted-status hover:opacity-80',
   }
 
   const colorClass = statusColors[test.execution.status] || 'bg-skipped hover:opacity-80'

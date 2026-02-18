@@ -7,9 +7,9 @@ const statuses = [
   { value: 'failed', label: 'Failed', activeClass: 'bg-failed text-white border-failed' },
   { value: 'broken', label: 'Broken', activeClass: 'bg-broken text-white border-broken' },
   { value: 'skipped', label: 'Skipped', activeClass: 'bg-skipped text-white border-skipped' },
-  { value: 'blocked', label: 'Blocked', activeClass: 'bg-brand text-white border-brand' },
-  { value: 'invalid', label: 'Invalid', activeClass: 'bg-warning text-white border-warning' },
-  { value: 'muted', label: 'Muted', activeClass: 'bg-[var(--palette-charcoal-50)] text-white border-[var(--palette-charcoal-50)]' },
+  { value: 'blocked', label: 'Blocked', activeClass: 'bg-blocked text-white border-blocked' },
+  { value: 'invalid', label: 'Invalid', activeClass: 'bg-invalid text-white border-invalid' },
+  { value: 'muted', label: 'Muted', activeClass: 'bg-muted-status text-white border-muted-status' },
 ]
 
 export const TestListFilters = observer(() => {

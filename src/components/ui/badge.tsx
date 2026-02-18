@@ -23,9 +23,9 @@ const badgeVariants = cva(
         failed: "border-transparent bg-status-failed-bg text-status-failed",
         skipped: "border-transparent bg-status-skipped-bg text-status-skipped",
         broken: "border-transparent bg-status-broken-bg text-status-broken",
-        blocked: "border-transparent bg-[var(--palette-qase-blue-10)] text-[var(--palette-qase-blue-60)] dark:bg-[var(--palette-qase-blue-80)] dark:text-[var(--palette-qase-blue-40)]",
-        invalid: "border-transparent bg-[var(--palette-mustard-10)] text-[var(--palette-mustard-80)] dark:bg-[var(--palette-mustard-100)] dark:text-[var(--palette-mustard-40)]",
-        muted: "border-transparent bg-[var(--palette-charcoal-20)] text-[var(--palette-charcoal-70)] dark:bg-[var(--palette-charcoal-90)] dark:text-[var(--palette-charcoal-50)]",
+        blocked: "border-transparent bg-status-blocked-bg text-status-blocked",
+        invalid: "border-transparent bg-status-invalid-bg text-status-invalid",
+        muted: "border-transparent bg-status-muted-bg text-status-muted",
       },
     },
     defaultVariants: {

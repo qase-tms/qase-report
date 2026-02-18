@@ -62,7 +62,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (blocked / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-brand',
+      color: 'bg-blocked',
       label: `Blocked: ${blocked}`,
       count: blocked,
     })
@@ -71,7 +71,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (invalid / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-warning',
+      color: 'bg-invalid',
       label: `Invalid: ${invalid}`,
       count: invalid,
     })
@@ -80,7 +80,7 @@ function buildProgressSegments(node: TreeNode): ProgressSegment[] {
     cumulative += (muted / total) * 100
     segments.push({
       value: cumulative,
-      color: 'bg-[var(--palette-charcoal-50)]',
+      color: 'bg-muted-status',
       label: `Muted: ${muted}`,
       count: muted,
     })

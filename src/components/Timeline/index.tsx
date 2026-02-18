@@ -112,25 +112,25 @@ export const Timeline = observer(() => {
           {/* Legend and zoom controls - top right */}
           <div className="flex items-center gap-4">
             <div className="flex gap-1.5 flex-wrap">
-              <Badge variant="outline" className="bg-green-500/10 text-green-500 border-green-500/20 text-xs">
+              <Badge variant="passed" className="text-xs">
                 Passed
               </Badge>
-              <Badge variant="outline" className="bg-red-500/10 text-red-500 border-red-500/20 text-xs">
+              <Badge variant="failed" className="text-xs">
                 Failed
               </Badge>
-              <Badge variant="outline" className="bg-yellow-500/10 text-yellow-500 border-yellow-500/20 text-xs">
+              <Badge variant="broken" className="text-xs">
                 Broken
               </Badge>
-              <Badge variant="outline" className="bg-gray-500/10 text-gray-500 border-gray-500/20 text-xs">
+              <Badge variant="skipped" className="text-xs">
                 Skipped
               </Badge>
-              <Badge variant="outline" className="bg-blue-500/10 text-blue-500 border-blue-500/20 text-xs">
+              <Badge variant="blocked" className="text-xs">
                 Blocked
               </Badge>
-              <Badge variant="outline" className="bg-orange-500/10 text-orange-500 border-orange-500/20 text-xs">
+              <Badge variant="invalid" className="text-xs">
                 Invalid
               </Badge>
-              <Badge variant="outline" className="bg-purple-500/10 text-purple-500 border-purple-500/20 text-xs">
+              <Badge variant="muted" className="text-xs">
                 Muted
               </Badge>
             </div>

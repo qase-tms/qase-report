@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 
-export type TestStatus = 'passed' | 'failed' | 'skipped' | 'broken'
+export type TestStatus = 'passed' | 'failed' | 'skipped' | 'broken' | 'blocked' | 'invalid' | 'muted'
 
 interface StatusBadgeProps {
   status: TestStatus
