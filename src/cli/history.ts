@@ -33,7 +33,7 @@ export function loadHistory(historyPath: string): QaseHistory | null {
       return null
     }
 
-    const data = readFileSync(historyPath, 'utf-8')
+    const data = readFileSync(historyPath, 'utf-8').replace(/^\uFEFF/, '')
     const parsed = JSON.parse(data) as QaseHistory
     return parsed
   } catch (error) {

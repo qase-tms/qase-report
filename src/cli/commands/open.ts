@@ -6,6 +6,9 @@ import { addRunToHistory } from '../history.js'
 import type { QaseRun } from '../../schemas/QaseRun.schema.js'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema.js'
 
+// Strip UTF-8 BOM that some tools (e.g. .NET reporters) prepend to JSON files
+const stripBom = (s: string) => s.replace(/^\uFEFF/, '')
+
 /**
  * Registers the 'open' command for serving reports in browser.
  *
@@ -79,7 +82,7 @@ export function registerOpenCommand(program: Command): void {
         try {
           // Read run.json
           const runData = JSON.parse(
-            readFileSync(runJsonPath, 'utf-8')
+            stripBom(readFileSync(runJsonPath, 'utf-8'))
           ) as QaseRun
 
           // Read all results from results/ directory
@@ -94,7 +97,7 @@ export function registerOpenCommand(program: Command): void {
             for (const file of resultFiles) {
               const resultPath = join(resultsDir, file)
               const resultData = JSON.parse(
-                readFileSync(resultPath, 'utf-8')
+                stripBom(readFileSync(resultPath, 'utf-8'))
               ) as QaseTestResult
               results.push(resultData)
             }

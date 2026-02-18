@@ -5,6 +5,9 @@ import type { QaseRun } from '../../schemas/QaseRun.schema.js'
 import type { QaseTestResult } from '../../schemas/QaseTestResult.schema.js'
 import type { QaseHistory } from '../../schemas/QaseHistory.schema.js'
 
+// Strip UTF-8 BOM that some tools (e.g. .NET reporters) prepend to JSON files
+const stripBom = (s: string) => s.replace(/^\uFEFF/, '')
+
 /**
  * Options for generating HTML report
  */
@@ -81,7 +84,7 @@ export function loadReportData(reportPath: string): ReportData {
     throw new Error(`run.json not found at ${runJsonPath}`)
   }
 
-  const run = JSON.parse(readFileSync(runJsonPath, 'utf-8')) as QaseRun
+  const run = JSON.parse(stripBom(readFileSync(runJsonPath, 'utf-8'))) as QaseRun
 
   // Read all *.json files from results/ directory
   const resultsDir = join(reportPath, 'results')
@@ -95,7 +98,7 @@ export function loadReportData(reportPath: string): ReportData {
     for (const file of resultFiles) {
       const resultPath = join(resultsDir, file)
       const resultData = JSON.parse(
-        readFileSync(resultPath, 'utf-8')
+        stripBom(readFileSync(resultPath, 'utf-8'))
       ) as QaseTestResult
       results.push(resultData)
     }
@@ -124,7 +127,7 @@ export function loadHistoryData(
   }
 
   try {
-    return JSON.parse(readFileSync(path, 'utf-8')) as QaseHistory
+    return JSON.parse(stripBom(readFileSync(path, 'utf-8'))) as QaseHistory
   } catch (error) {
     console.warn(
       `Warning: Failed to load history from ${path}:`,

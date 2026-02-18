@@ -11,6 +11,9 @@ import { transformResults } from './qase-transform.js'
 import { TestResultSchema } from '../schemas/QaseTestResult.schema.js'
 import type { QaseTestResult } from '../schemas/QaseTestResult.schema.js'
 
+// Strip UTF-8 BOM that some tools (e.g. .NET reporters) prepend to JSON files
+const stripBom = (s: string) => s.replace(/^\uFEFF/, '')
+
 // Get package root directory
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -60,7 +63,7 @@ export function createServer(options: ServerOptions): Application {
         return
       }
 
-      const runData = JSON.parse(readFileSync(runJsonPath, 'utf-8'))
+      const runData = JSON.parse(stripBom(readFileSync(runJsonPath, 'utf-8')))
 
       // Read all results from results/ directory
       const resultsDir = join(resolvedReportPath, 'results')
@@ -73,7 +76,7 @@ export function createServer(options: ServerOptions): Application {
         for (const file of resultFiles) {
           try {
             const filePath = join(resultsDir, file)
-            const resultData = JSON.parse(readFileSync(filePath, 'utf-8'))
+            const resultData = JSON.parse(stripBom(readFileSync(filePath, 'utf-8')))
             results.push(resultData)
           } catch (err) {
             console.warn(`Warning: Failed to parse ${file}:`, err)
@@ -113,7 +116,7 @@ export function createServer(options: ServerOptions): Application {
         return
       }
 
-      const historyData = JSON.parse(readFileSync(historyPath, 'utf-8'))
+      const historyData = JSON.parse(stripBom(readFileSync(historyPath, 'utf-8')))
       res.json(historyData)
     } catch (err) {
       console.error('Error reading history:', err)
@@ -340,7 +343,7 @@ export function createServer(options: ServerOptions): Application {
         for (const file of resultFiles) {
           try {
             const filePath = join(resultsDir, file)
-            const rawData = JSON.parse(readFileSync(filePath, 'utf-8'))
+            const rawData = JSON.parse(stripBom(readFileSync(filePath, 'utf-8')))
             const parsed = TestResultSchema.safeParse(rawData)
             if (parsed.success) {
               results.push(parsed.data)
@@ -429,7 +432,7 @@ export function createServer(options: ServerOptions): Application {
 
       // 6. Read run start_time from run.json
       const runJsonPath = join(resolvedReportPath, 'run.json')
-      const runData = JSON.parse(readFileSync(runJsonPath, 'utf-8'))
+      const runData = JSON.parse(stripBom(readFileSync(runJsonPath, 'utf-8')))
       const runStartTimeMs = runData.execution?.start_time as number | undefined
 
       // 7. Create run with start_time from report data
