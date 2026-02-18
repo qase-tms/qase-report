@@ -60,6 +60,13 @@ export const ExecutionTab = observer(() => {
       {/* Execution details */}
       <TestHeader test={selectedTest} />
 
+      {selectedTest.message && (
+        <div>
+          <h6 className="text-sm font-semibold">Message</h6>
+          <p className="text-sm text-muted-foreground mt-2">{selectedTest.message}</p>
+        </div>
+      )}
+
       {hasError && <TestError test={selectedTest} />}
 
       {hasAttachments && <TestAttachments attachments={selectedTest.attachments} />}

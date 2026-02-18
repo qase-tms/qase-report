@@ -381,7 +381,7 @@ export function createServer(options: ServerOptions): Application {
                 id: att.id,
                 name: att.file_name,
                 path: filePath,
-                mimeType: att.mime_type,
+                mimeType: att.mime_type ?? 'application/octet-stream',
               })
             }
           }
@@ -403,7 +403,7 @@ export function createServer(options: ServerOptions): Application {
               id: att.id,
               name: att.file_name,
               path: filePath,
-              mimeType: att.mime_type,
+              mimeType: att.mime_type ?? 'application/octet-stream',
             })
           }
         }

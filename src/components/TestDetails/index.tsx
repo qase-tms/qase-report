@@ -22,6 +22,12 @@ export const TestDetails = observer(() => {
         <div className="pt-0">
           <TestHeader test={selectedTest} />
         </div>
+        {selectedTest.message && (
+          <div className="pt-6">
+            <h6 className="text-sm font-semibold">Message</h6>
+            <p className="text-sm text-muted-foreground mt-2">{selectedTest.message}</p>
+          </div>
+        )}
         {selectedTest.execution.stacktrace && (
           <div className="pt-6">
             <TestError test={selectedTest} />

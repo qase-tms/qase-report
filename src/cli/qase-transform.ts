@@ -25,7 +25,7 @@ interface ResultCreate {
   param_groups: string[][]
   relations: {
     suite?: {
-      data: Array<{ public_id: number | null; title: string }>
+      data: Array<{ public_id?: number | null; title: string }>
     }
   }
   message?: string

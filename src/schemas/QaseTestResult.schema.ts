@@ -41,7 +41,7 @@ const TestExecutionSchema = z.object({
   /**
    * Stack trace if test failed (nullable)
    */
-  stacktrace: z.string().nullable(),
+  stacktrace: z.string().nullable().optional(),
 
   /**
    * Thread identifier where test ran (nullable)
@@ -66,7 +66,7 @@ const TestRelationsSchema = z
           /**
            * Public ID from Qase TMS (nullable)
            */
-          public_id: z.number().nullable(),
+          public_id: z.number().nullable().optional(),
         })
       ),
     }),
@@ -107,7 +107,7 @@ export const TestResultSchema = z.object({
   /**
    * Test result message (nullable)
    */
-  message: z.string().nullable(),
+  message: z.string().nullable().optional(),
 
   /**
    * Relations to suite hierarchy (nullable)

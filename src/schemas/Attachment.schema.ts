@@ -25,7 +25,7 @@ export const AttachmentSchema = z.object({
   /**
    * MIME type of the attachment (e.g., "image/png", "video/mp4")
    */
-  mime_type: z.string(),
+  mime_type: z.string().optional(),
 
   /**
    * File size in bytes (optional)

@@ -85,7 +85,7 @@ export const StepSchema: z.ZodType<any> = z.lazy(() =>
     /**
      * ID of parent step (nullable for top-level steps)
      */
-    parent_id: z.string().nullable(),
+    parent_id: z.string().nullable().optional(),
 
     /**
      * Step data (action, expected result, input data)
