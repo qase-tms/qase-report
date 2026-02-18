@@ -158,17 +158,17 @@ export const QaseRunSchema = z.object({
   /**
    * List of threads used for execution
    */
-  threads: z.array(z.string()),
+  threads: z.array(z.string()).optional(),
 
   /**
    * List of test suites in this run
    */
-  suites: z.array(z.string()),
+  suites: z.array(z.string()).optional(),
 
   /**
    * Host system information
    */
-  host_data: HostDataSchema,
+  host_data: HostDataSchema.optional(),
 })
 
 /**
