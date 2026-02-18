@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite'
+import { useState } from 'react'
 import {
   CheckCircle,
   XCircle,
@@ -33,6 +34,7 @@ const createArcPath = (
 
 export const RunInfoSidebar = observer(() => {
   const { reportStore, analyticsStore } = useRootStore()
+  const [hoveredSegment, setHoveredSegment] = useState<{ key: string; value: number; color: string } | null>(null)
 
   // Guard: return early if no report loaded
   if (!reportStore.runData) {
@@ -136,8 +138,15 @@ export const RunInfoSidebar = observer(() => {
                 d={segment.path}
                 fill="none"
                 stroke={segment.color}
-                strokeWidth="8"
+                strokeWidth={hoveredSegment?.key === segment.key ? 10 : 8}
                 strokeLinecap="round"
+                className="cursor-pointer"
+                style={{
+                  transition: 'opacity 0.15s',
+                  opacity: hoveredSegment && hoveredSegment.key !== segment.key ? 0.4 : 1
+                }}
+                onMouseEnter={() => setHoveredSegment(segment)}
+                onMouseLeave={() => setHoveredSegment(null)}
               />
             ))}
           </svg>
@@ -147,6 +156,18 @@ export const RunInfoSidebar = observer(() => {
               {Math.round(passRate)}%
             </span>
           </div>
+          {/* Tooltip */}
+          {hoveredSegment && (
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-popover border border-border rounded-md px-2.5 py-1 shadow-md flex items-center gap-1.5 whitespace-nowrap z-10 pointer-events-none">
+              <span
+                className="w-2 h-2 rounded-full inline-block"
+                style={{ backgroundColor: hoveredSegment.color }}
+              />
+              <span className="text-xs font-medium">
+                {hoveredSegment.key.charAt(0).toUpperCase() + hoveredSegment.key.slice(1)} : {hoveredSegment.value}
+              </span>
+            </div>
+          )}
         </div>
         <div className="text-center">
           <p className="text-sm text-muted-foreground">Pass Rate</p>
