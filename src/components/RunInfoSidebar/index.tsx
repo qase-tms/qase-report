@@ -115,6 +115,20 @@ export const RunInfoSidebar = observer(() => {
     }
   })
 
+  // Status grid data for 4x2 layout
+  const statusGrid = [
+    // Row 1
+    { label: 'Passed', value: stats.passed, colorClass: 'text-passed' },
+    { label: 'Failed', value: stats.failed, colorClass: 'text-failed' },
+    { label: 'Skipped', value: stats.skipped, colorClass: 'text-skipped' },
+    { label: 'Broken', value: stats.broken ?? 0, colorClass: 'text-broken' },
+    // Row 2
+    { label: 'Blocked', value: stats.blocked ?? 0, colorClass: 'text-blocked' },
+    { label: 'Invalid', value: stats.invalid ?? 0, colorClass: 'text-invalid' },
+    { label: 'Muted', value: stats.muted ?? 0, colorClass: 'text-muted-status' },
+    { label: 'Flaky', value: flakyCount, colorClass: 'text-broken', prefix: '~' },
+  ]
+
   return (
     <div className="flex flex-col gap-6">
       {/* Multi-segment donut chart */}
@@ -178,41 +192,15 @@ export const RunInfoSidebar = observer(() => {
       </div>
 
       {/* Statistics section */}
-      <div className="space-y-3">
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Passed</span>
-          <span className="font-medium text-passed">{stats.passed}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Failed</span>
-          <span className="font-medium text-failed">{stats.failed}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Skipped</span>
-          <span className="font-medium text-skipped">{stats.skipped}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Broken</span>
-          <span className="font-medium text-broken">{stats.broken ?? 0}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Blocked</span>
-          <span className="font-medium text-blocked">{stats.blocked ?? 0}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Invalid</span>
-          <span className="font-medium text-invalid">{stats.invalid ?? 0}</span>
-        </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Muted</span>
-          <span className="font-medium text-muted-status">{stats.muted ?? 0}</span>
-        </div>
-        {flakyCount > 0 && (
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Flaky</span>
-            <span className="font-medium text-broken">~{flakyCount}</span>
+      <div className="grid grid-cols-4 gap-x-3 gap-y-4">
+        {statusGrid.map(stat => (
+          <div key={stat.label} className="flex flex-col items-center">
+            <span className="text-[11px] text-muted-foreground leading-tight">{stat.label}</span>
+            <span className={`text-sm font-semibold ${stat.colorClass}`}>
+              {stat.prefix ?? ''}{stat.value}
+            </span>
           </div>
-        )}
+        ))}
       </div>
 
       {/* Run information section with icons */}
