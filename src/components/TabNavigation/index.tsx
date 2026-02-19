@@ -24,7 +24,7 @@ export const TabNavigation = observer(() => {
         label: 'Failure Clusters',
         icon: AlertCircle,
       },
-      { value: 'gallery', label: 'Gallery', icon: Images },
+      { value: 'gallery', label: 'Attachments', icon: Images },
       { value: 'comparison', label: 'Comparison', icon: ArrowLeftRight },
       { value: 'timeline', label: 'Timeline', icon: Clock },
     ]

@@ -47,7 +47,7 @@ export const Gallery = observer(() => {
       <div className="p-6">
         <div className="flex items-center gap-2 mb-4">
           <ImageIcon className="h-6 w-6 text-primary" />
-          <h5 className="text-xl font-semibold">Gallery</h5>
+          <h5 className="text-xl font-semibold">Attachments</h5>
         </div>
         <div className="bg-card rounded-lg border shadow-sm p-8 text-center">
           <ImageIcon className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
@@ -123,7 +123,7 @@ export const Gallery = observer(() => {
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-1">
           <ImageIcon className="h-6 w-6 text-primary" />
-          <h5 className="text-xl font-semibold">Gallery</h5>
+          <h5 className="text-xl font-semibold">Attachments</h5>
         </div>
         <p className="text-sm text-muted-foreground">
           {filteredAttachments.length} of {allAttachments.length} attachment{allAttachments.length !== 1 ? 's' : ''}
