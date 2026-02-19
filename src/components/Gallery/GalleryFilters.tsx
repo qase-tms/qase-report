@@ -68,65 +68,68 @@ export const GalleryFilters = ({
           />
         </div>
 
-        {/* Status filter */}
-        <select
-          value={statusFilter}
-          onChange={(e) => onStatusFilterChange(e.target.value as StatusFilter)}
-          className={selectClassName}
-        >
-          <option value="all">All statuses</option>
-          <option value="passed">Passed only</option>
-          <option value="failed">Failed only</option>
-        </select>
-
-        {/* Sort */}
-        <select
-          value={sortBy}
-          onChange={(e) => onSortChange(e.target.value as SortOption)}
-          className={selectClassName}
-        >
-          <option value="name">Sort: Name</option>
-          <option value="test">Sort: Test</option>
-          <option value="status">Sort: Status</option>
-        </select>
-
-        {/* Size */}
-        <select
-          value={size}
-          onChange={(e) => onSizeChange(e.target.value as SizeOption)}
-          className={selectClassName}
-        >
-          <option value="small">Size: Small</option>
-          <option value="medium">Size: Medium</option>
-          <option value="large">Size: Large</option>
-        </select>
-
-        {/* View mode toggle */}
-        <div className="flex border rounded-md overflow-hidden">
-          <button
-            onClick={() => onViewModeChange('grid')}
-            className={cn(
-              'p-2 transition-colors',
-              viewMode === 'grid'
-                ? 'bg-primary text-primary-foreground'
-                : 'hover:bg-muted'
-            )}
-            aria-label="Grid view"
+        {/* Right-side controls grouped together */}
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* Status filter */}
+          <select
+            value={statusFilter}
+            onChange={(e) => onStatusFilterChange(e.target.value as StatusFilter)}
+            className={selectClassName}
           >
-            <LayoutGrid className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => onViewModeChange('grouped')}
-            className={cn(
-              'p-2 transition-colors',
-              viewMode === 'grouped'
-                ? 'bg-primary text-primary-foreground'
-                : 'hover:bg-muted'
-            )}
-            aria-label="Grouped view"
+            <option value="all">All statuses</option>
+            <option value="passed">Passed only</option>
+            <option value="failed">Failed only</option>
+          </select>
+
+          {/* Sort */}
+          <select
+            value={sortBy}
+            onChange={(e) => onSortChange(e.target.value as SortOption)}
+            className={selectClassName}
           >
-            <List className="h-4 w-4" />
-          </button>
+            <option value="name">Sort: Name</option>
+            <option value="test">Sort: Test</option>
+            <option value="status">Sort: Status</option>
+          </select>
+
+          {/* Size */}
+          <select
+            value={size}
+            onChange={(e) => onSizeChange(e.target.value as SizeOption)}
+            className={selectClassName}
+          >
+            <option value="small">Size: Small</option>
+            <option value="medium">Size: Medium</option>
+            <option value="large">Size: Large</option>
+          </select>
+
+          {/* View mode toggle */}
+          <div className="flex border rounded-md overflow-hidden">
+            <button
+              onClick={() => onViewModeChange('grid')}
+              className={cn(
+                'p-2 transition-colors',
+                viewMode === 'grid'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-muted'
+              )}
+              aria-label="Grid view"
+            >
+              <LayoutGrid className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => onViewModeChange('grouped')}
+              className={cn(
+                'p-2 transition-colors',
+                viewMode === 'grouped'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'hover:bg-muted'
+              )}
+              aria-label="Grouped view"
+            >
+              <List className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </div>
 
