@@ -50,7 +50,7 @@ export const GalleryFilters = ({
     { value: 'other' as const, label: 'Other', count: counts.other },
   ]
 
-  const selectClassName = 'h-9 px-3 rounded-md border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring'
+  const selectClassName = 'h-9 px-3 rounded-md border border-[var(--palette-charcoal-50)] bg-card text-sm focus:outline-none focus:ring-2 focus:ring-ring'
 
   return (
     <div className="space-y-4 mb-6">
@@ -64,7 +64,7 @@ export const GalleryFilters = ({
             placeholder="Search files..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full h-9 pl-9 pr-3 rounded-md border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full h-9 pl-9 pr-3 rounded-md border border-[var(--palette-charcoal-50)] bg-card text-sm focus:outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
 

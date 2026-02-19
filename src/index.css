@@ -114,33 +114,33 @@
     --sidebar-ring: var(--palette-qase-blue-40);
 
     /* Status Colors (Qase TMS semantic) */
-    --status-passed: var(--palette-jungle-40);
+    --status-passed: var(--palette-jungle-50);
     --status-passed-bg: var(--palette-jungle-100);
-    --status-failed: var(--palette-berry-40);
+    --status-failed: var(--palette-berry-50);
     --status-failed-bg: var(--palette-berry-100);
     --status-skipped: var(--palette-charcoal-50);
-    --status-skipped-bg: var(--palette-charcoal-100);
-    --status-broken: var(--palette-mustard-40);
+    --status-skipped-bg: var(--palette-charcoal-90);
+    --status-broken: var(--palette-mustard-50);
     --status-broken-bg: var(--palette-mustard-100);
-    --status-blocked: var(--palette-qase-blue-30);
+    --status-blocked: var(--palette-qase-blue-40);
     --status-blocked-bg: var(--palette-qase-blue-80);
-    --status-invalid: var(--palette-mustard-40);
+    --status-invalid: var(--palette-mustard-50);
     --status-invalid-bg: var(--palette-mustard-100);
-    --status-muted: var(--palette-charcoal-40);
+    --status-muted: var(--palette-charcoal-50);
     --status-muted-bg: var(--palette-charcoal-90);
 
     /* Grade Colors (Test Health) */
-    --grade-excellent: var(--palette-jungle-40);
+    --grade-excellent: var(--palette-jungle-50);
     --grade-excellent-bg: var(--palette-jungle-100);
-    --grade-good: var(--palette-jungle-40);
+    --grade-good: var(--palette-jungle-50);
     --grade-good-bg: var(--palette-jungle-100);
-    --grade-fair: var(--palette-qase-blue-30);
+    --grade-fair: var(--palette-qase-blue-40);
     --grade-fair-bg: var(--palette-qase-blue-80);
-    --grade-warning: var(--palette-mustard-40);
+    --grade-warning: var(--palette-mustard-50);
     --grade-warning-bg: var(--palette-mustard-100);
-    --grade-poor: var(--palette-mustard-50);
+    --grade-poor: var(--palette-mustard-60);
     --grade-poor-bg: var(--palette-mustard-100);
-    --grade-critical: var(--palette-berry-40);
+    --grade-critical: var(--palette-berry-50);
     --grade-critical-bg: var(--palette-berry-100);
   }
 
