@@ -70,7 +70,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
       >
         <div className="mt-0.5">
           {isFaster ? (
-            <ArrowDown className="h-4 w-4 text-green-500" />
+            <ArrowDown className="h-4 w-4 text-passed" />
           ) : (
             <ArrowUp className="h-4 w-4 text-destructive" />
           )}
@@ -110,7 +110,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'fixed' as const,
       label: 'Fixed',
-      icon: <CheckCircle className="h-5 w-5 text-green-500" />,
+      icon: <CheckCircle className="h-5 w-5 text-passed" />,
       count: fixed.length,
       items: fixed,
       render: renderStatusChangeItem,
@@ -118,7 +118,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'added' as const,
       label: 'Added Tests',
-      icon: <Plus className="h-5 w-5 text-blue-500" />,
+      icon: <Plus className="h-5 w-5 text-blocked" />,
       count: diff.added.length,
       items: diff.added,
       render: renderAddedRemovedItem,
@@ -126,7 +126,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'removed' as const,
       label: 'Removed Tests',
-      icon: <Minus className="h-5 w-5 text-yellow-500" />,
+      icon: <Minus className="h-5 w-5 text-broken" />,
       count: diff.removed.length,
       items: diff.removed,
       render: renderAddedRemovedItem,

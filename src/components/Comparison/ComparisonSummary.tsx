@@ -1,4 +1,4 @@
-import { TrendingUp, TrendingDown, Plus, Minus, Gauge } from 'lucide-react'
+import { TrendingUp, CheckCircle, Plus, Minus, Gauge } from 'lucide-react'
 import type { ComparisonResult } from '../../types/comparison'
 
 interface ComparisonSummaryProps {
@@ -26,19 +26,19 @@ export const ComparisonSummary = ({ comparison }: ComparisonSummaryProps) => {
           </span>
         )}
         {summary.fixedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-green-500 text-white">
-            <TrendingDown className="h-3 w-3" />
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-passed-bg text-status-passed">
+            <CheckCircle className="h-3 w-3" />
             {summary.fixedCount} fixed
           </span>
         )}
         {summary.addedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-blue-500 text-white">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-blocked-bg text-status-blocked">
             <Plus className="h-3 w-3" />
             {summary.addedCount} added
           </span>
         )}
         {summary.removedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-yellow-500 text-white">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-broken-bg text-status-broken">
             <Minus className="h-3 w-3" />
             {summary.removedCount} removed
           </span>
