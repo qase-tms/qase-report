@@ -181,7 +181,20 @@ export const createColumns = (
       }
       if (row.original.type === 'suite') return null
 
-      return <span className="truncate">{row.original.testData?.title}</span>
+      const params = row.original.testData?.params
+      const hasParams = params && Object.keys(params).length > 0
+      if (!hasParams) {
+        return <span className="truncate">{row.original.testData?.title}</span>
+      }
+      const paramsText = Object.entries(params)
+        .map(([k, v]) => `${k}: ${v}`)
+        .join(', ')
+      return (
+        <div className="min-w-0">
+          <span className="truncate block">{row.original.testData?.title}</span>
+          <span className="truncate block text-xs text-muted-foreground">{paramsText}</span>
+        </div>
+      )
     },
   },
   // Column 4: Duration (right-aligned)

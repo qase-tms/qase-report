@@ -48,6 +48,13 @@ export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => 
       </Badge>
       <div className="flex-1 min-w-0">
         <div className="text-sm truncate">{test.title}</div>
+        {Object.keys(test.params).length > 0 && (
+          <div className="text-xs text-muted-foreground truncate">
+            {Object.entries(test.params)
+              .map(([k, v]) => `${k}: ${v}`)
+              .join(', ')}
+          </div>
+        )}
         <div className="text-xs text-muted-foreground">{durationText}</div>
       </div>
       {stabilityResult && stabilityResult.grade !== 'N/A' && (() => {

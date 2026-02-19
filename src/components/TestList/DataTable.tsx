@@ -27,6 +27,8 @@ interface DataTableProps<TData, TValue> {
   getRowId?: (originalRow: TData) => string
   expanded?: ExpandedState
   onExpandedChange?: (updater: ExpandedState | ((old: ExpandedState) => ExpandedState)) => void
+  /** Custom row height based on row data. Overrides default 40px for data rows and 32px for headers. */
+  getRowHeight?: (row: TData) => number
 }
 
 export function DataTable<TData, TValue>({
@@ -38,6 +40,7 @@ export function DataTable<TData, TValue>({
   getRowId,
   expanded,
   onExpandedChange,
+  getRowHeight,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [internalExpanded, setInternalExpanded] = useState<ExpandedState>({})
@@ -71,7 +74,9 @@ export function DataTable<TData, TValue>({
     getScrollElement: () => tableContainerRef.current,
     estimateSize: (index) => {
       const row = rows[index]
-      return (row?.original as Record<string, unknown>)?.type === 'header' ? 32 : 40
+      if ((row?.original as Record<string, unknown>)?.type === 'header') return 32
+      if (getRowHeight && row?.original) return getRowHeight(row.original)
+      return 40
     },
     overscan: 2, // Match current overscanCount
   })
@@ -108,7 +113,7 @@ export function DataTable<TData, TValue>({
                     position: 'absolute',
                     transform: `translateY(${virtualRow.start}px)`,
                     width: '100%',
-                    height: isHeader ? '32px' : '40px',
+                    height: isHeader ? '32px' : (getRowHeight ? `${getRowHeight(row.original)}px` : '40px'),
                   }}
                 >
                   {row.getVisibleCells().map((cell) => {
@@ -117,7 +122,7 @@ export function DataTable<TData, TValue>({
                     return (
                       <TableCell
                         key={cell.id}
-                        className={isFlexColumn ? 'w-full' : ''}
+                        className={isFlexColumn ? 'w-full overflow-hidden' : ''}
                         style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px` }}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}

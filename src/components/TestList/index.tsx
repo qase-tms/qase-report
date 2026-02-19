@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useCallback, useState, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
 import { type ExpandedState } from '@tanstack/react-table'
 import { useRootStore } from '../../store'
@@ -6,7 +6,7 @@ import { TestListFilters } from './TestListFilters'
 import { TestListSearch } from './TestListSearch'
 import { DataTable } from './DataTable'
 import { createColumns } from './columns'
-import { buildSuiteTree } from './buildSuiteTree'
+import { buildSuiteTree, type TreeNode } from './buildSuiteTree'
 
 const STORAGE_KEY = 'qase-report-expanded-suites'
 
@@ -47,6 +47,14 @@ export const TestList = observer(() => {
     () => createColumns(selectTest),
     [selectTest]
   )
+
+  // Row height: taller for tests with parameters
+  const getRowHeight = useCallback((row: TreeNode) => {
+    if (row.type === 'test' && row.testData?.params && Object.keys(row.testData.params).length > 0) {
+      return 56
+    }
+    return 40
+  }, [])
 
   // Early return if no tests loaded
   if (resultsList.length === 0) {
@@ -104,6 +112,7 @@ export const TestList = observer(() => {
           getRowId={(row) => row.id}
           expanded={expanded}
           onExpandedChange={setExpanded}
+          getRowHeight={getRowHeight}
         />
       )}
     </div>
