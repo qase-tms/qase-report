@@ -94,10 +94,7 @@ export const TestHealthWidget = observer(() => {
     <div className="bg-card rounded-lg border shadow-sm p-4 h-full">
       {/* Header with overall health */}
       <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-2">
-          <h6 className="text-lg font-semibold">Test Health</h6>
-          <HelpTooltip content={helpText} />
-        </div>
+        <h6 className="text-lg font-semibold">Test Health</h6>
         <div className="flex items-center gap-2">
           <p className="text-sm text-muted-foreground">
             Overall:
@@ -108,6 +105,7 @@ export const TestHealthWidget = observer(() => {
           >
             {overallGrade} ({overallScore})
           </span>
+          <HelpTooltip content={helpText} />
         </div>
       </div>
 
