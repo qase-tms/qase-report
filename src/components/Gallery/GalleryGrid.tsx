@@ -4,6 +4,7 @@ import type { SizeOption, ViewMode } from './GalleryFilters'
 import { cn } from '../../lib/utils'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
+import { Badge } from '@/components/ui/badge'
 
 interface GalleryGridProps {
   attachments: GalleryAttachment[]
@@ -69,14 +70,9 @@ const TestGroupSection = ({
         ) : (
           <ChevronRight className="h-4 w-4 text-muted-foreground" />
         )}
-        <span className={cn(
-          'px-2 py-0.5 rounded-full text-xs font-medium capitalize',
-          group.testStatus === 'passed' && 'bg-green-500/20 text-green-500',
-          group.testStatus === 'failed' && 'bg-destructive/20 text-destructive',
-          group.testStatus === 'skipped' && 'bg-yellow-500/20 text-yellow-500'
-        )}>
+        <Badge variant={group.testStatus as any} className="text-xs capitalize">
           {group.testStatus}
-        </span>
+        </Badge>
         <span className="font-medium flex-1 truncate">{group.testTitle}</span>
         <span className="text-sm text-muted-foreground">
           {group.attachments.length} file{group.attachments.length !== 1 ? 's' : ''}

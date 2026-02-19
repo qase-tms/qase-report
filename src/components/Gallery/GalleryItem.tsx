@@ -56,12 +56,6 @@ export const GalleryItem = ({ item, size }: GalleryItemProps) => {
     selectTest(item.testId)
   }
 
-  // Map test status to badge variant
-  const statusVariant = item.testStatus === 'passed' ? 'passed'
-    : item.testStatus === 'failed' ? 'failed'
-    : item.testStatus === 'skipped' ? 'skipped'
-    : 'default'
-
   return (
     <div
       onClick={handleClick}
@@ -73,7 +67,7 @@ export const GalleryItem = ({ item, size }: GalleryItemProps) => {
     >
       {/* Status badge */}
       <div className="absolute top-2 left-2 z-10">
-        <Badge variant={statusVariant} className="text-xs capitalize">
+        <Badge variant={item.testStatus} className="text-xs capitalize">
           {item.testStatus}
         </Badge>
       </div>
