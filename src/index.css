@@ -114,33 +114,33 @@
     --sidebar-ring: var(--palette-qase-blue-40);
 
     /* Status Colors (Qase TMS semantic) */
-    --status-passed: var(--palette-jungle-60);
+    --status-passed: var(--palette-jungle-40);
     --status-passed-bg: var(--palette-jungle-100);
-    --status-failed: var(--palette-berry-60);
+    --status-failed: var(--palette-berry-40);
     --status-failed-bg: var(--palette-berry-100);
-    --status-skipped: var(--palette-charcoal-60);
-    --status-skipped-bg: var(--palette-charcoal-90);
-    --status-broken: var(--palette-mustard-60);
+    --status-skipped: var(--palette-charcoal-50);
+    --status-skipped-bg: var(--palette-charcoal-100);
+    --status-broken: var(--palette-mustard-40);
     --status-broken-bg: var(--palette-mustard-100);
-    --status-blocked: var(--palette-qase-blue-40);
+    --status-blocked: var(--palette-qase-blue-30);
     --status-blocked-bg: var(--palette-qase-blue-80);
     --status-invalid: var(--palette-mustard-40);
     --status-invalid-bg: var(--palette-mustard-100);
-    --status-muted: var(--palette-charcoal-50);
+    --status-muted: var(--palette-charcoal-40);
     --status-muted-bg: var(--palette-charcoal-90);
 
     /* Grade Colors (Test Health) */
-    --grade-excellent: var(--palette-jungle-60);
+    --grade-excellent: var(--palette-jungle-40);
     --grade-excellent-bg: var(--palette-jungle-100);
-    --grade-good: var(--palette-jungle-60);
+    --grade-good: var(--palette-jungle-40);
     --grade-good-bg: var(--palette-jungle-100);
-    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair: var(--palette-qase-blue-30);
     --grade-fair-bg: var(--palette-qase-blue-80);
-    --grade-warning: var(--palette-mustard-60);
+    --grade-warning: var(--palette-mustard-40);
     --grade-warning-bg: var(--palette-mustard-100);
-    --grade-poor: var(--palette-mustard-80);
+    --grade-poor: var(--palette-mustard-50);
     --grade-poor-bg: var(--palette-mustard-100);
-    --grade-critical: var(--palette-berry-60);
+    --grade-critical: var(--palette-berry-40);
     --grade-critical-bg: var(--palette-berry-100);
   }
 
@@ -192,15 +192,15 @@
     --status-passed-bg: var(--palette-jungle-10);
     --status-failed: var(--palette-berry-70);
     --status-failed-bg: var(--palette-berry-10);
-    --status-skipped: var(--palette-charcoal-70);
+    --status-skipped: var(--palette-charcoal-80);
     --status-skipped-bg: var(--palette-charcoal-20);
-    --status-broken: var(--palette-mustard-80);
+    --status-broken: var(--palette-mustard-100);
     --status-broken-bg: var(--palette-mustard-10);
     --status-blocked: var(--palette-qase-blue-70);
     --status-blocked-bg: var(--palette-qase-blue-10);
-    --status-invalid: var(--palette-mustard-80);
+    --status-invalid: var(--palette-mustard-100);
     --status-invalid-bg: var(--palette-mustard-10);
-    --status-muted: var(--palette-charcoal-70);
+    --status-muted: var(--palette-charcoal-80);
     --status-muted-bg: var(--palette-charcoal-20);
 
     /* Grade Colors (Test Health) - light */
@@ -210,9 +210,9 @@
     --grade-good-bg: var(--palette-jungle-10);
     --grade-fair: var(--palette-qase-blue-60);
     --grade-fair-bg: var(--palette-qase-blue-10);
-    --grade-warning: var(--palette-mustard-80);
+    --grade-warning: var(--palette-mustard-100);
     --grade-warning-bg: var(--palette-mustard-10);
-    --grade-poor: var(--palette-mustard-80);
+    --grade-poor: var(--palette-mustard-100);
     --grade-poor-bg: var(--palette-mustard-10);
     --grade-critical: var(--palette-berry-70);
     --grade-critical-bg: var(--palette-berry-10);
