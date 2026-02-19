@@ -65,9 +65,8 @@ export const TestList = observer(() => {
     )
   }
 
-  // Calculate table height: viewport - header - filters - search - padding
-  // This ensures table fills available space without causing page scrollbar
-  const tableHeight = window.innerHeight - 300
+  // Calculate table height: viewport - tabs - card padding - title - filters - summary - borders
+  const tableHeight = window.innerHeight - 220
 
   // Calculate total tests in tree for accurate summary
   const totalTestsInTree = data.reduce(

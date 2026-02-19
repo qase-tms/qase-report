@@ -82,12 +82,13 @@ export function DataTable<TData, TValue>({
   })
 
   const virtualRows = rowVirtualizer.getVirtualItems()
+  const totalSize = rowVirtualizer.getTotalSize()
 
   return (
     <div
       ref={tableContainerRef}
       className="rounded-md border overflow-auto"
-      style={{ height: `${height}px` }}
+      style={{ height: `${Math.min(height, totalSize + 2)}px` }}
     >
       <Table className="w-full">
         <TableBody
