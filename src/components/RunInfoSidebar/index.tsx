@@ -88,13 +88,13 @@ export const RunInfoSidebar = observer(() => {
 
   // Build donut segments data
   const segments = [
-    { key: 'passed', value: stats.passed, color: 'var(--status-passed-fill)' },
-    { key: 'failed', value: stats.failed, color: 'var(--status-failed-fill)' },
-    { key: 'broken', value: stats.broken ?? 0, color: 'var(--status-broken-fill)' },
-    { key: 'skipped', value: stats.skipped, color: 'var(--status-skipped-fill)' },
-    { key: 'blocked', value: stats.blocked ?? 0, color: 'var(--status-blocked-fill)' },
-    { key: 'invalid', value: stats.invalid ?? 0, color: 'var(--status-invalid-fill)' },
-    { key: 'muted', value: stats.muted ?? 0, color: 'var(--status-muted-fill)' },
+    { key: 'passed', value: stats.passed, color: 'var(--status-passed-fg)' },
+    { key: 'failed', value: stats.failed, color: 'var(--status-failed-fg)' },
+    { key: 'broken', value: stats.broken ?? 0, color: 'var(--status-broken-fg)' },
+    { key: 'skipped', value: stats.skipped, color: 'var(--status-skipped-fg)' },
+    { key: 'blocked', value: stats.blocked ?? 0, color: 'var(--status-blocked-fg)' },
+    { key: 'invalid', value: stats.invalid ?? 0, color: 'var(--status-invalid-fg)' },
+    { key: 'muted', value: stats.muted ?? 0, color: 'var(--status-muted-fg)' },
   ].filter(s => s.value > 0)
 
   // Calculate angles for each segment

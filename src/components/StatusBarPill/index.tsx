@@ -15,9 +15,9 @@ export const StatusBarPill = observer(() => {
 
   // Color logic for pass rate ring (Qase TMS fill colors for SVG)
   const getColor = (rate: number): string => {
-    if (rate >= 80) return 'var(--status-passed-fill)'
-    if (rate >= 50) return 'var(--status-broken-fill)'
-    return 'var(--status-failed-fill)'
+    if (rate >= 80) return 'var(--status-passed-fg)'
+    if (rate >= 50) return 'var(--status-broken-fg)'
+    return 'var(--status-failed-fg)'
   }
 
   // Format run date

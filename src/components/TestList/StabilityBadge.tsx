@@ -14,19 +14,19 @@ export const StabilityBadge = ({ result }: StabilityBadgeProps) => {
   // Badge configuration by status
   const badgeConfig = {
     flaky: {
-      style: { color: 'var(--grade-warning-bg)', backgroundColor: 'var(--grade-warning-fill)', borderColor: 'var(--grade-warning-fill)' },
+      style: { color: 'var(--grade-warning-bg)', backgroundColor: 'var(--grade-warning-fg)', borderColor: 'var(--grade-warning-fg)' },
       icon: <RefreshCw className="h-3 w-3" />,
       label: 'Flaky',
       tooltip: `Flaky in ${result.statusChanges} of ${result.totalRuns} runs (${result.flakinessPercent}%)`,
     },
     stable: {
-      style: { color: 'var(--grade-excellent-bg)', backgroundColor: 'var(--grade-excellent-fill)', borderColor: 'var(--grade-excellent-fill)' },
+      style: { color: 'var(--grade-excellent-bg)', backgroundColor: 'var(--grade-excellent-fg)', borderColor: 'var(--grade-excellent-fg)' },
       icon: <CheckCircle className="h-3 w-3" />,
       label: 'Stable',
       tooltip: `Stable across ${result.totalRuns} runs`,
     },
     new_failure: {
-      style: { color: 'var(--grade-critical-bg)', backgroundColor: 'var(--grade-critical-fill)', borderColor: 'var(--grade-critical-fill)' },
+      style: { color: 'var(--grade-critical-bg)', backgroundColor: 'var(--grade-critical-fg)', borderColor: 'var(--grade-critical-fg)' },
       icon: <AlertCircle className="h-3 w-3" />,
       label: 'New Failure',
       tooltip: `Started failing after ${result.totalRuns - 1} stable runs`,
