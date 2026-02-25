@@ -2,6 +2,8 @@
 
 Open-source CLI tool for visualizing test reports in [Qase Report Format](https://github.com/qase-tms/specs/tree/master/report). Interactive HTML report with dashboard, test list, step timeline, attachments viewer, and history analytics.
 
+![Qase Report](images/main.png)
+
 ## Features
 
 - **Dashboard** — Pass/fail statistics, completion rate ring, run metadata
