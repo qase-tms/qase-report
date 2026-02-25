@@ -571,14 +571,14 @@
   .text-invalid { color: var(--status-invalid); }
   .text-muted-status { color: var(--status-muted); }
 
-  /* Background colors (vibrant fills for bars/charts) */
-  .bg-passed { background-color: var(--status-passed-fg); }
-  .bg-failed { background-color: var(--status-failed-fg); }
-  .bg-skipped { background-color: var(--status-skipped-fg); }
-  .bg-broken { background-color: var(--status-broken-fg); }
-  .bg-blocked { background-color: var(--status-blocked-fg); }
-  .bg-invalid { background-color: var(--status-invalid-fg); }
-  .bg-muted-status { background-color: var(--status-muted-fg); }
+  /* Background colors (solid fills for badges/bars) */
+  .bg-passed { background-color: var(--status-passed-bg); }
+  .bg-failed { background-color: var(--status-failed-bg); }
+  .bg-skipped { background-color: var(--status-skipped-bg); }
+  .bg-broken { background-color: var(--status-broken-bg); }
+  .bg-blocked { background-color: var(--status-blocked-bg); }
+  .bg-invalid { background-color: var(--status-invalid-bg); }
+  .bg-muted-status { background-color: var(--status-muted-bg); }
 
   /* Background muted */
   .bg-passed-muted { background-color: var(--status-passed-bg); }
