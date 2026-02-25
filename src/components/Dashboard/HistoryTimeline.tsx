@@ -11,9 +11,9 @@ import { HelpTooltip } from './HelpTooltip'
 const getRunStatusColor = (
   run: HistoricalRun
 ): string => {
-  if (run.stats.failed > 0) return 'text-red-500'
-  if (run.stats.skipped > 0 || (run.stats.blocked ?? 0) > 0) return 'text-yellow-500'
-  return 'text-green-500'
+  if (run.stats.failed > 0) return 'text-failed'
+  if (run.stats.skipped > 0 || (run.stats.blocked ?? 0) > 0) return 'text-broken'
+  return 'text-passed'
 }
 
 /**
@@ -84,16 +84,16 @@ export const HistoryTimeline = observer(() => {
 
             {/* Stats badges */}
             <div className="flex flex-wrap gap-1 justify-center mb-1">
-              <span className="px-2 py-0.5 rounded-full text-xs bg-green-500/20 text-green-500">
+              <span className="px-2 py-0.5 rounded-full text-xs bg-passed text-white">
                 {run.stats.passed}
               </span>
               {run.stats.failed > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-xs bg-red-500/20 text-red-500">
+                <span className="px-2 py-0.5 rounded-full text-xs bg-failed text-white">
                   {run.stats.failed}
                 </span>
               )}
               {run.stats.skipped > 0 && (
-                <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500/20 text-yellow-500">
+                <span className="px-2 py-0.5 rounded-full text-xs bg-broken text-text-black">
                   {run.stats.skipped}
                 </span>
               )}

@@ -72,7 +72,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
           {isFaster ? (
             <ArrowDown className="h-4 w-4 text-passed" />
           ) : (
-            <ArrowUp className="h-4 w-4 text-destructive" />
+            <ArrowUp className="h-4 w-4 text-failed" />
           )}
         </div>
         <div className="flex-1">
@@ -102,7 +102,7 @@ export const DiffList = ({ comparison }: DiffListProps) => {
     {
       id: 'regressions' as const,
       label: 'Regressions',
-      icon: <AlertCircle className="h-5 w-5 text-destructive" />,
+      icon: <AlertCircle className="h-5 w-5 text-failed" />,
       count: regressions.length,
       items: regressions,
       render: renderStatusChangeItem,

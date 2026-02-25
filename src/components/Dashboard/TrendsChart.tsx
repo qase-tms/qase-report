@@ -61,19 +61,19 @@ const PassRateTooltip = ({ active, payload }: any) => {
         {data.date}
       </p>
       <p className="text-sm">Total: {data.total}</p>
-      <p className="text-sm text-green-500">
+      <p className="text-sm text-passed">
         Passed: {data.passed} ({data.passRate.toFixed(1)}%)
       </p>
-      <p className="text-sm text-destructive">
+      <p className="text-sm text-failed">
         Failed: {data.failed}
       </p>
       {data.skipped > 0 && (
-        <p className="text-sm text-yellow-500">
+        <p className="text-sm text-broken">
           Skipped: {data.skipped}
         </p>
       )}
       {data.blocked > 0 && (
-        <p className="text-sm text-blue-500">
+        <p className="text-sm text-blocked">
           Blocked: {data.blocked}
         </p>
       )}

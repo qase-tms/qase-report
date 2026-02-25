@@ -73,12 +73,12 @@ export const LoadReportButton = observer(({ variant = 'default' }: LoadReportBut
         </Button>
         {historyStore.isHistoryLoaded && (
           <span className="text-xs text-muted-foreground flex items-center gap-1">
-            <CheckCircle className="h-3 w-3 text-green-500" />
+            <CheckCircle className="h-3 w-3 text-passed" />
             {historyStore.totalRuns} runs
           </span>
         )}
         {error && (
-          <span className="text-xs text-destructive flex items-center gap-1">
+          <span className="text-xs text-failed flex items-center gap-1">
             <AlertCircle className="h-3 w-3" />
             Error
           </span>

@@ -53,9 +53,9 @@ export const SuiteHealthCard = observer(() => {
    * Returns color classes based on pass rate threshold
    */
   const getPassRateColor = (passRate: number): string => {
-    if (passRate >= 90) return 'bg-green-500'
-    if (passRate >= 70) return 'bg-yellow-500'
-    return 'bg-destructive'
+    if (passRate >= 90) return 'bg-passed'
+    if (passRate >= 70) return 'bg-broken'
+    return 'bg-failed'
   }
 
   // Show top 5 worst-performing suites (already sorted by passRate ascending)

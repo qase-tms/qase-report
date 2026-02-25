@@ -22,11 +22,11 @@ interface AlertsPanelProps {
 const getAlertIcon = (type: AlertType) => {
   switch (type) {
     case 'performance_regression':
-      return <Gauge className="h-5 w-5 text-destructive" />
+      return <Gauge className="h-5 w-5 text-failed" />
     case 'flaky_warning':
-      return <RefreshCw className="h-5 w-5 text-yellow-500" />
+      return <RefreshCw className="h-5 w-5 text-broken" />
     case 'new_failure':
-      return <AlertCircle className="h-5 w-5 text-destructive" />
+      return <AlertCircle className="h-5 w-5 text-failed" />
   }
 }
 
@@ -36,11 +36,11 @@ const getAlertIcon = (type: AlertType) => {
 const getAlertBadge = (type: AlertType) => {
   switch (type) {
     case 'performance_regression':
-      return { label: 'Regression', color: 'bg-destructive text-destructive-foreground' }
+      return { label: 'Regression', color: 'bg-failed text-white' }
     case 'flaky_warning':
-      return { label: 'Flaky', color: 'bg-yellow-500 text-white' }
+      return { label: 'Flaky', color: 'bg-broken text-text-black' }
     case 'new_failure':
-      return { label: 'New Failure', color: 'bg-destructive text-destructive-foreground' }
+      return { label: 'New Failure', color: 'bg-failed text-white' }
   }
 }
 
@@ -61,9 +61,9 @@ export const AlertsPanel = observer(({ onAlertClick }: AlertsPanelProps) => {
       <div className="p-4 pb-0">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-yellow-500" />
+            <AlertTriangle className="h-5 w-5 text-broken" />
             <h6 className="text-lg font-semibold">Alerts</h6>
-            <span className={`px-2 py-1 rounded-full text-xs ${hasErrors ? 'bg-destructive text-destructive-foreground' : 'bg-yellow-500 text-white'}`}>
+            <span className={`px-2 py-1 rounded-full text-xs ${hasErrors ? 'bg-failed text-white' : 'bg-broken text-text-black'}`}>
               {alerts.length}
             </span>
           </div>
@@ -118,9 +118,9 @@ export const AlertsPanel = observer(({ onAlertClick }: AlertsPanelProps) => {
         <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <AlertTriangle className="h-5 w-5 text-yellow-500" />
+              <AlertTriangle className="h-5 w-5 text-broken" />
               Alerts
-              <span className={`px-2 py-1 rounded-full text-xs ${hasErrors ? 'bg-destructive text-destructive-foreground' : 'bg-yellow-500 text-white'}`}>
+              <span className={`px-2 py-1 rounded-full text-xs ${hasErrors ? 'bg-failed text-white' : 'bg-broken text-text-black'}`}>
                 {alerts.length}
               </span>
             </DialogTitle>

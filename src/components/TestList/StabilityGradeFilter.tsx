@@ -7,8 +7,8 @@ const gradeOptions: { value: StabilityGrade; activeClass: string }[] = [
   { value: 'A+', activeClass: 'bg-passed text-white border-passed' },
   { value: 'A', activeClass: 'bg-passed text-white border-passed' },
   { value: 'B', activeClass: 'bg-brand text-white border-brand' },
-  { value: 'C', activeClass: 'bg-broken text-white border-broken' },
-  { value: 'D', activeClass: 'bg-broken text-white border-broken' },
+  { value: 'C', activeClass: 'bg-broken text-text-black border-broken' },
+  { value: 'D', activeClass: 'bg-broken text-text-black border-broken' },
   { value: 'F', activeClass: 'bg-failed text-white border-failed' },
 ]
 

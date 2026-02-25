@@ -69,7 +69,7 @@ export const RunHistoryTab = observer(() => {
             </p>
           </div>
           {run.error_message && (
-            <p className="text-xs text-red-500 truncate max-w-[200px]" title={run.error_message}>
+            <p className="text-xs text-failed truncate max-w-[200px]" title={run.error_message}>
               {run.error_message}
             </p>
           )}

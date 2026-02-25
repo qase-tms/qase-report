@@ -56,7 +56,7 @@ export const AttentionRequiredCard = observer(
           <div className="p-4">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <AlertCircle className="h-5 w-5 text-green-500" />
+                <AlertCircle className="h-5 w-5 text-passed" />
                 <h6 className="text-lg font-semibold">Attention Required</h6>
               </div>
               <HelpTooltip content={helpText} />
@@ -77,9 +77,9 @@ export const AttentionRequiredCard = observer(
         <div className="p-4 pb-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <AlertCircle className="h-5 w-5 text-destructive" />
+              <AlertCircle className="h-5 w-5 text-failed" />
               <h6 className="text-lg font-semibold">Attention Required</h6>
-              <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+              <span className="px-2 py-1 rounded-full text-xs bg-failed text-white">
                 {testsNeedingAttention.length}
               </span>
             </div>
@@ -98,11 +98,11 @@ export const AttentionRequiredCard = observer(
                     <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap max-w-[300px]">
                       {test.title}
                     </p>
-                    <span className="px-2 py-0.5 rounded-full text-xs bg-destructive text-destructive-foreground">
+                    <span className="px-2 py-0.5 rounded-full text-xs bg-failed text-white">
                       Failed
                     </span>
                     {test.isFlaky && (
-                      <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500 text-white">
+                      <span className="px-2 py-0.5 rounded-full text-xs bg-broken text-text-black">
                         Flaky
                       </span>
                     )}
@@ -127,9 +127,9 @@ export const AttentionRequiredCard = observer(
           <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <AlertCircle className="h-5 w-5 text-destructive" />
+                <AlertCircle className="h-5 w-5 text-failed" />
                 Attention Required
-                <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+                <span className="px-2 py-1 rounded-full text-xs bg-failed text-white">
                   {testsNeedingAttention.length}
                 </span>
               </DialogTitle>
@@ -149,11 +149,11 @@ export const AttentionRequiredCard = observer(
                         <p className="text-sm overflow-hidden text-ellipsis whitespace-nowrap flex-1">
                           {test.title}
                         </p>
-                        <span className="px-2 py-0.5 rounded-full text-xs bg-destructive text-destructive-foreground shrink-0">
+                        <span className="px-2 py-0.5 rounded-full text-xs bg-failed text-white shrink-0">
                           Failed
                         </span>
                         {test.isFlaky && (
-                          <span className="px-2 py-0.5 rounded-full text-xs bg-yellow-500 text-white shrink-0">
+                          <span className="px-2 py-0.5 rounded-full text-xs bg-broken text-text-black shrink-0">
                             Flaky
                           </span>
                         )}

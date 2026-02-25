@@ -13,11 +13,11 @@ export const StatusBarPill = observer(() => {
   const passRate = reportStore.passRate
   const flakyCount = analyticsStore.flakyTestCount
 
-  // Color logic for pass rate ring (Qase TMS colors)
+  // Color logic for pass rate ring (Qase TMS fill colors for SVG)
   const getColor = (rate: number): string => {
-    if (rate >= 80) return 'text-passed'
-    if (rate >= 50) return 'text-broken'
-    return 'text-failed'
+    if (rate >= 80) return 'var(--status-passed-fill)'
+    if (rate >= 50) return 'var(--status-broken-fill)'
+    return 'var(--status-failed-fill)'
   }
 
   // Format run date
@@ -50,12 +50,11 @@ export const StatusBarPill = observer(() => {
             cy="20"
             r="16"
             fill="none"
-            stroke="currentColor"
+            stroke={ringColor}
             strokeWidth="4"
             strokeDasharray={`${(passRate / 100) * 100.53} 100.53`}
             strokeLinecap="round"
             transform="rotate(-90 20 20)"
-            className={ringColor}
           />
         </svg>
         {/* Centered percentage label */}

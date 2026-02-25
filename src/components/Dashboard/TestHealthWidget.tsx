@@ -9,14 +9,14 @@ import { HelpTooltip } from './HelpTooltip'
  */
 const gradeConfig: Record<
   Exclude<StabilityGrade, 'N/A'>,
-  { color: string; bg: string; label: string }
+  { color: string; bg: string; fill: string; label: string }
 > = {
-  'A+': { color: 'var(--grade-excellent)', bg: 'var(--grade-excellent-bg)', label: 'Excellent' },
-  'A': { color: 'var(--grade-good)', bg: 'var(--grade-good-bg)', label: 'Good' },
-  'B': { color: 'var(--grade-fair)', bg: 'var(--grade-fair-bg)', label: 'Fair' },
-  'C': { color: 'var(--grade-warning)', bg: 'var(--grade-warning-bg)', label: 'Needs attention' },
-  'D': { color: 'var(--grade-poor)', bg: 'var(--grade-poor-bg)', label: 'Poor' },
-  'F': { color: 'var(--grade-critical)', bg: 'var(--grade-critical-bg)', label: 'Critical' },
+  'A+': { color: 'var(--grade-excellent)', bg: 'var(--grade-excellent-bg)', fill: 'var(--grade-excellent-fill)', label: 'Excellent' },
+  'A': { color: 'var(--grade-good)', bg: 'var(--grade-good-bg)', fill: 'var(--grade-good-fill)', label: 'Good' },
+  'B': { color: 'var(--grade-fair)', bg: 'var(--grade-fair-bg)', fill: 'var(--grade-fair-fill)', label: 'Fair' },
+  'C': { color: 'var(--grade-warning)', bg: 'var(--grade-warning-bg)', fill: 'var(--grade-warning-fill)', label: 'Needs attention' },
+  'D': { color: 'var(--grade-poor)', bg: 'var(--grade-poor-bg)', fill: 'var(--grade-poor-fill)', label: 'Poor' },
+  'F': { color: 'var(--grade-critical)', bg: 'var(--grade-critical-bg)', fill: 'var(--grade-critical-fill)', label: 'Critical' },
 }
 
 /**
@@ -101,7 +101,7 @@ export const TestHealthWidget = observer(() => {
           </p>
           <span
             className="px-2 py-1 rounded text-xs font-bold"
-            style={{ color: overallConfig.color, backgroundColor: overallConfig.bg }}
+            style={{ color: overallConfig.bg, backgroundColor: overallConfig.fill }}
           >
             {overallGrade} ({overallScore})
           </span>
@@ -125,7 +125,7 @@ export const TestHealthWidget = observer(() => {
               <div className="flex items-center gap-2 mb-1">
                 <span
                   className="px-2 py-1 rounded text-xs font-bold min-w-[40px] text-center"
-                  style={{ color: config.color, backgroundColor: config.bg }}
+                  style={{ color: config.bg, backgroundColor: config.fill }}
                 >
                   {grade}
                 </span>
@@ -133,7 +133,7 @@ export const TestHealthWidget = observer(() => {
                   <div className="w-full bg-secondary rounded h-2">
                     <div
                       className="h-2 rounded"
-                      style={{ width: `${percentage}%`, backgroundColor: config.color }}
+                      style={{ width: `${percentage}%`, backgroundColor: config.fill }}
                     />
                   </div>
                 </div>

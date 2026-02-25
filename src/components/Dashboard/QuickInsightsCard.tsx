@@ -180,9 +180,9 @@ export const QuickInsightsCard = observer(
           <DialogContent className="max-w-lg max-h-[80vh] overflow-hidden flex flex-col">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
-                <XCircle className="h-5 w-5 text-destructive" />
+                <XCircle className="h-5 w-5 text-failed" />
                 Top Failures
-                <span className="px-2 py-1 rounded-full text-xs bg-destructive text-destructive-foreground">
+                <span className="px-2 py-1 rounded-full text-xs bg-failed text-white">
                   {allTopFailures.length}
                 </span>
               </DialogTitle>

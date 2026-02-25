@@ -20,25 +20,25 @@ export const ComparisonSummary = ({ comparison }: ComparisonSummaryProps) => {
 
       <div className="flex flex-wrap gap-2 mt-2">
         {summary.regressionCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-destructive text-destructive-foreground">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-failed text-white">
             <TrendingUp className="h-3 w-3" />
             {summary.regressionCount} regression{summary.regressionCount !== 1 ? 's' : ''}
           </span>
         )}
         {summary.fixedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-passed-bg text-status-passed">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-passed text-white">
             <CheckCircle className="h-3 w-3" />
             {summary.fixedCount} fixed
           </span>
         )}
         {summary.addedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-blocked-bg text-status-blocked">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-blocked text-white">
             <Plus className="h-3 w-3" />
             {summary.addedCount} added
           </span>
         )}
         {summary.removedCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-status-broken-bg text-status-broken">
+          <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs bg-broken text-text-black">
             <Minus className="h-3 w-3" />
             {summary.removedCount} removed
           </span>
