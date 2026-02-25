@@ -10,12 +10,12 @@ interface TestListItemProps {
 }
 
 const gradeStyles: Record<string, { color: string; bg: string; border: string }> = {
-  'A+': { color: 'var(--grade-excellent-bg)', bg: 'var(--grade-excellent-fg)', border: 'var(--grade-excellent-fg)' },
-  'A': { color: 'var(--grade-good-bg)', bg: 'var(--grade-good-fg)', border: 'var(--grade-good-fg)' },
-  'B': { color: 'var(--grade-fair-bg)', bg: 'var(--grade-fair-fg)', border: 'var(--grade-fair-fg)' },
-  'C': { color: 'var(--grade-warning-bg)', bg: 'var(--grade-warning-fg)', border: 'var(--grade-warning-fg)' },
-  'D': { color: 'var(--grade-poor-bg)', bg: 'var(--grade-poor-fg)', border: 'var(--grade-poor-fg)' },
-  'F': { color: 'var(--grade-critical-bg)', bg: 'var(--grade-critical-fg)', border: 'var(--grade-critical-fg)' },
+  'A+': { color: 'var(--text-white)', bg: 'var(--grade-excellent-fg)', border: 'var(--grade-excellent-fg)' },
+  'A': { color: 'var(--text-white)', bg: 'var(--grade-good-fg)', border: 'var(--grade-good-fg)' },
+  'B': { color: 'var(--text-white)', bg: 'var(--grade-fair-fg)', border: 'var(--grade-fair-fg)' },
+  'C': { color: 'var(--text-black)', bg: 'var(--grade-warning-fg)', border: 'var(--grade-warning-fg)' },
+  'D': { color: 'var(--text-white)', bg: 'var(--grade-poor-fg)', border: 'var(--grade-poor-fg)' },
+  'F': { color: 'var(--text-white)', bg: 'var(--grade-critical-fg)', border: 'var(--grade-critical-fg)' },
 }
 
 export const TestListItem = observer(({ test, onSelect }: TestListItemProps) => {

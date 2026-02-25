@@ -270,7 +270,7 @@
     --text-brand-active: var(--palette-qase-blue-80);
     --text-brand-on-brand: var(--palette-qase-blue-60);
     --text-error: var(--palette-berry-70);
-    --text-warning: var(--palette-mustard-90);
+    --text-warning: var(--palette-mustard-40);
     --text-success: var(--palette-jungle-80);
 
     /* Foreground */
