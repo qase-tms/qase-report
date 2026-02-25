@@ -124,7 +124,7 @@ export function DataTable<TData, TValue>({
                       <TableCell
                         key={cell.id}
                         className={isFlexColumn ? 'w-full overflow-hidden' : ''}
-                        style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px` }}
+                        style={isFlexColumn ? undefined : { width: `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px` }}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </TableCell>
