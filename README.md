@@ -15,37 +15,15 @@ Open-source CLI tool for visualizing test reports in [Qase Report Format](https:
 - **Dark Theme** — Dark mode by default with light theme option
 - **Static Export** — Generate standalone HTML file that works offline
 
-## Installation (Development)
-
-### Requirements
-
-- Node.js >= 18.0.0
-- npm
-
-### Setup
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/qase-tms/qase-report.git
-cd qase-report
-
-# Install dependencies
-npm install
-
-# Build the CLI
-npm run build
+npm install -g qase-report
 ```
 
-After building, you can run the CLI directly:
+Verify the installation:
 
 ```bash
-node dist/cli/index.js --help
-```
-
-Or link it globally for easier access:
-
-```bash
-npm link
 qase-report --help
 ```
 
