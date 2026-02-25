@@ -152,7 +152,7 @@ export const createColumns = (
         </span>
       )
     },
-    size: 70,
+    size: 90,
   },
   // Column 2: Status
   {
