@@ -225,14 +225,14 @@
     --status-muted: var(--palette-charcoal-50);
     --status-muted-bg: var(--palette-charcoal-90);
 
-    /* Status fill colors (for timeline bars, charts — vibrant fills) */
-    --status-passed-fill: var(--status-passed);
-    --status-failed-fill: var(--status-failed);
-    --status-skipped-fill: var(--status-skipped);
-    --status-broken-fill: var(--status-broken);
-    --status-blocked-fill: var(--status-blocked);
-    --status-invalid-fill: var(--status-invalid);
-    --status-muted-fill: var(--status-muted);
+    /* Status foreground colors (for donut, progress bars, timeline bars, icons — no text on these) */
+    --status-passed-fg: var(--status-passed);
+    --status-failed-fg: var(--status-failed);
+    --status-skipped-fg: var(--status-skipped);
+    --status-broken-fg: var(--status-broken);
+    --status-blocked-fg: var(--status-blocked);
+    --status-invalid-fg: var(--status-invalid);
+    --status-muted-fg: var(--status-muted);
 
     /* Grade Colors (Test Health) */
     --grade-excellent: var(--palette-jungle-50);
@@ -248,13 +248,13 @@
     --grade-critical: var(--palette-berry-50);
     --grade-critical-bg: var(--palette-berry-100);
 
-    /* Grade fill colors (for bars — same as grade in dark) */
-    --grade-excellent-fill: var(--grade-excellent);
-    --grade-good-fill: var(--grade-good);
-    --grade-fair-fill: var(--grade-fair);
-    --grade-warning-fill: var(--grade-warning);
-    --grade-poor-fill: var(--grade-poor);
-    --grade-critical-fill: var(--grade-critical);
+    /* Grade foreground colors (for bars, visual indicators) */
+    --grade-excellent-fg: var(--grade-excellent);
+    --grade-good-fg: var(--grade-good);
+    --grade-fair-fg: var(--grade-fair);
+    --grade-warning-fg: var(--grade-warning);
+    --grade-poor-fg: var(--grade-poor);
+    --grade-critical-fg: var(--grade-critical);
   }
 
   /* Light theme activated by .light class on html */
@@ -367,14 +367,14 @@
     --status-muted: var(--palette-charcoal-80);
     --status-muted-bg: var(--palette-charcoal-20);
 
-    /* Status fill colors (brighter than text colors for solid fills) */
-    --status-passed-fill: var(--palette-jungle-60);
-    --status-failed-fill: var(--palette-berry-60);
-    --status-skipped-fill: var(--palette-charcoal-70);
-    --status-broken-fill: var(--palette-mustard-60);
-    --status-blocked-fill: var(--palette-qase-blue-50);
-    --status-invalid-fill: var(--palette-mustard-60);
-    --status-muted-fill: var(--palette-charcoal-60);
+    /* Status foreground colors (for donut, progress bars, timeline bars, icons) */
+    --status-passed-fg: var(--palette-jungle-60);
+    --status-failed-fg: var(--palette-berry-60);
+    --status-skipped-fg: var(--palette-charcoal-70);
+    --status-broken-fg: var(--palette-mustard-60);
+    --status-blocked-fg: var(--palette-qase-blue-50);
+    --status-invalid-fg: var(--palette-mustard-60);
+    --status-muted-fg: var(--palette-charcoal-60);
 
     /* Grade Colors (Test Health) */
     --grade-excellent: var(--palette-jungle-70);
@@ -390,13 +390,13 @@
     --grade-critical: var(--palette-berry-70);
     --grade-critical-bg: var(--palette-berry-10);
 
-    /* Grade fill colors (brighter for solid fills) */
-    --grade-excellent-fill: var(--palette-jungle-60);
-    --grade-good-fill: var(--palette-jungle-60);
-    --grade-fair-fill: var(--palette-qase-blue-50);
-    --grade-warning-fill: var(--palette-mustard-60);
-    --grade-poor-fill: var(--palette-mustard-70);
-    --grade-critical-fill: var(--palette-berry-60);
+    /* Grade foreground colors (for bars, visual indicators) */
+    --grade-excellent-fg: var(--palette-jungle-60);
+    --grade-good-fg: var(--palette-jungle-60);
+    --grade-fair-fg: var(--palette-qase-blue-50);
+    --grade-warning-fg: var(--palette-mustard-60);
+    --grade-poor-fg: var(--palette-mustard-70);
+    --grade-critical-fg: var(--palette-berry-60);
   }
 }
 
@@ -459,14 +459,14 @@
   --color-status-muted: var(--status-muted);
   --color-status-muted-bg: var(--status-muted-bg);
 
-  /* Status fill colors for Tailwind utilities */
-  --color-status-passed-fill: var(--status-passed-fill);
-  --color-status-failed-fill: var(--status-failed-fill);
-  --color-status-skipped-fill: var(--status-skipped-fill);
-  --color-status-broken-fill: var(--status-broken-fill);
-  --color-status-blocked-fill: var(--status-blocked-fill);
-  --color-status-invalid-fill: var(--status-invalid-fill);
-  --color-status-muted-fill: var(--status-muted-fill);
+  /* Status foreground colors for Tailwind utilities */
+  --color-status-passed-fg: var(--status-passed-fg);
+  --color-status-failed-fg: var(--status-failed-fg);
+  --color-status-skipped-fg: var(--status-skipped-fg);
+  --color-status-broken-fg: var(--status-broken-fg);
+  --color-status-blocked-fg: var(--status-blocked-fg);
+  --color-status-invalid-fg: var(--status-invalid-fg);
+  --color-status-muted-fg: var(--status-muted-fg);
 
   /* Figma Text tokens */
   --color-text-primary: var(--text-primary);
@@ -572,13 +572,13 @@
   .text-muted-status { color: var(--status-muted); }
 
   /* Background colors (vibrant fills for bars/charts) */
-  .bg-passed { background-color: var(--status-passed-fill); }
-  .bg-failed { background-color: var(--status-failed-fill); }
-  .bg-skipped { background-color: var(--status-skipped-fill); }
-  .bg-broken { background-color: var(--status-broken-fill); }
-  .bg-blocked { background-color: var(--status-blocked-fill); }
-  .bg-invalid { background-color: var(--status-invalid-fill); }
-  .bg-muted-status { background-color: var(--status-muted-fill); }
+  .bg-passed { background-color: var(--status-passed-fg); }
+  .bg-failed { background-color: var(--status-failed-fg); }
+  .bg-skipped { background-color: var(--status-skipped-fg); }
+  .bg-broken { background-color: var(--status-broken-fg); }
+  .bg-blocked { background-color: var(--status-blocked-fg); }
+  .bg-invalid { background-color: var(--status-invalid-fg); }
+  .bg-muted-status { background-color: var(--status-muted-fg); }
 
   /* Background muted */
   .bg-passed-muted { background-color: var(--status-passed-bg); }
@@ -656,30 +656,30 @@ html {
 
 /* Light theme: solid status badges (matching Figma design) */
 .light [data-slot="badge"][data-variant="passed"] {
-  background-color: var(--status-passed-fill);
+  background-color: var(--status-passed-fg);
   color: white;
 }
 .light [data-slot="badge"][data-variant="failed"] {
-  background-color: var(--status-failed-fill);
+  background-color: var(--status-failed-fg);
   color: white;
 }
 .light [data-slot="badge"][data-variant="broken"] {
-  background-color: var(--status-broken-fill);
+  background-color: var(--status-broken-fg);
   color: var(--palette-charcoal-110);
 }
 .light [data-slot="badge"][data-variant="skipped"] {
-  background-color: var(--status-skipped-fill);
+  background-color: var(--status-skipped-fg);
   color: white;
 }
 .light [data-slot="badge"][data-variant="blocked"] {
-  background-color: var(--status-blocked-fill);
+  background-color: var(--status-blocked-fg);
   color: white;
 }
 .light [data-slot="badge"][data-variant="invalid"] {
-  background-color: var(--status-invalid-fill);
+  background-color: var(--status-invalid-fg);
   color: var(--palette-charcoal-110);
 }
 .light [data-slot="badge"][data-variant="muted"] {
-  background-color: var(--status-muted-fill);
+  background-color: var(--status-muted-fg);
   color: white;
 }
