@@ -11,12 +11,12 @@ const gradeConfig: Record<
   Exclude<StabilityGrade, 'N/A'>,
   { color: string; bg: string; fill: string; label: string }
 > = {
-  'A+': { color: 'var(--text-white)', bg: 'var(--grade-excellent-bg)', fill: 'var(--grade-excellent-fg)', label: 'Excellent' },
-  'A': { color: 'var(--text-white)', bg: 'var(--grade-good-bg)', fill: 'var(--grade-good-fg)', label: 'Good' },
-  'B': { color: 'var(--text-white)', bg: 'var(--grade-fair-bg)', fill: 'var(--grade-fair-fg)', label: 'Fair' },
-  'C': { color: 'var(--text-black)', bg: 'var(--grade-warning-bg)', fill: 'var(--grade-warning-fg)', label: 'Needs attention' },
-  'D': { color: 'var(--text-white)', bg: 'var(--grade-poor-bg)', fill: 'var(--grade-poor-fg)', label: 'Poor' },
-  'F': { color: 'var(--text-white)', bg: 'var(--grade-critical-bg)', fill: 'var(--grade-critical-fg)', label: 'Critical' },
+  'A+': { color: 'var(--text-white)', bg: 'var(--text-white)', fill: 'var(--grade-excellent-bg)', label: 'Excellent' },
+  'A': { color: 'var(--text-white)', bg: 'var(--text-white)', fill: 'var(--grade-good-bg)', label: 'Good' },
+  'B': { color: 'var(--text-white)', bg: 'var(--text-white)', fill: 'var(--grade-fair-bg)', label: 'Fair' },
+  'C': { color: 'var(--text-black)', bg: 'var(--text-black)', fill: 'var(--grade-warning-bg)', label: 'Needs attention' },
+  'D': { color: 'var(--text-white)', bg: 'var(--text-white)', fill: 'var(--grade-poor-bg)', label: 'Poor' },
+  'F': { color: 'var(--text-white)', bg: 'var(--text-white)', fill: 'var(--grade-critical-bg)', label: 'Critical' },
 }
 
 /**

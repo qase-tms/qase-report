@@ -210,20 +210,20 @@
     --sidebar-ring: var(--palette-qase-blue-40);
 
     /* Status Colors (Qase TMS semantic) */
-    --status-passed: var(--palette-jungle-100);
+    --status-passed: var(--palette-jungle-50);
     --status-passed-bg: var(--palette-jungle-60);
-    --status-failed: var(--palette-berry-100);
+    --status-failed: var(--palette-berry-50);
     --status-failed-bg: var(--palette-berry-60);
-    --status-skipped: var(--palette-charcoal-120);
-    --status-skipped-bg: var(--palette-charcoal-60);
+    --status-skipped: var(--palette-charcoal-70);
+    --status-skipped-bg: var(--palette-charcoal-70);
     --status-broken: var(--palette-mustard-60);
-    --status-broken-bg: var(--palette-mustard-100);
-    --status-blocked: var(--palette-qase-blue-80);
-    --status-blocked-bg: var(--palette-qase-blue-60);
+    --status-broken-bg: var(--palette-mustard-60);
+    --status-blocked: var(--palette-qase-blue-50);
+    --status-blocked-bg: var(--palette-qase-blue-50);
     --status-invalid: var(--palette-mustard-60);
-    --status-invalid-bg: var(--palette-mustard-100);
-    --status-muted: var(--palette-charcoal-110);
-    --status-muted-bg: var(--palette-charcoal-60);
+    --status-invalid-bg: var(--palette-mustard-60);
+    --status-muted: var(--palette-charcoal-30);
+    --status-muted-bg: var(--palette-charcoal-30);
 
     /* Status foreground colors (for donut, progress bars, timeline bars, icons — no text on these) */
     --status-passed-fg: var(--status-passed);
@@ -235,18 +235,18 @@
     --status-muted-fg: var(--status-muted);
 
     /* Grade Colors (Test Health) */
-    --grade-excellent: var(--palette-jungle-50);
-    --grade-excellent-bg: var(--palette-jungle-100);
+    --grade-excellent: var(--palette-jungle-100);
+    --grade-excellent-bg: var(--palette-jungle-60);
     --grade-good: var(--palette-jungle-50);
-    --grade-good-bg: var(--palette-jungle-100);
-    --grade-fair: var(--palette-qase-blue-40);
-    --grade-fair-bg: var(--palette-qase-blue-80);
+    --grade-good-bg: var(--palette-jungle-60);
+    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair-bg: var(--palette-qase-blue-50);
     --grade-warning: var(--palette-mustard-60);
-    --grade-warning-bg: var(--palette-mustard-100);
+    --grade-warning-bg: var(--palette-mustard-60);
     --grade-poor: var(--palette-mustard-80);
-    --grade-poor-bg: var(--palette-mustard-100);
+    --grade-poor-bg: var(--palette-mustard-80);
     --grade-critical: var(--palette-berry-50);
-    --grade-critical-bg: var(--palette-berry-100);
+    --grade-critical-bg: var(--palette-berry-60);
 
     /* Grade foreground colors (for bars, visual indicators) */
     --grade-excellent-fg: var(--grade-excellent);
@@ -270,7 +270,7 @@
     --text-brand-active: var(--palette-qase-blue-80);
     --text-brand-on-brand: var(--palette-qase-blue-60);
     --text-error: var(--palette-berry-70);
-    --text-warning: var(--palette-mustard-40);
+    --text-warning: var(--palette-mustard-90);
     --text-success: var(--palette-jungle-80);
 
     /* Foreground */
@@ -358,14 +358,14 @@
     --status-failed-bg: var(--palette-berry-60);
     --status-skipped: var(--palette-charcoal-120);
     --status-skipped-bg: var(--palette-charcoal-60);
-    --status-broken: var(--palette-mustard-100);
-    --status-broken-bg: var(--palette-mustard-10);
+    --status-broken: var(--palette-mustard-60);
+    --status-broken-bg: var(--palette-mustard-60);
     --status-blocked: var(--palette-qase-blue-80);
-    --status-blocked-bg: var(--palette-qase-blue-60);
-    --status-invalid: var(--palette-mustard-100);
-    --status-invalid-bg: var(--palette-mustard-10);
+    --status-blocked-bg: var(--palette-qase-blue-50);
+    --status-invalid: var(--palette-mustard-60);
+    --status-invalid-bg: var(--palette-mustard-60);
     --status-muted: var(--palette-charcoal-110);
-    --status-muted-bg: var(--palette-charcoal-60);
+    --status-muted-bg: var(--palette-charcoal-30);
 
     /* Status foreground colors (for donut, progress bars, timeline bars, icons) */
     --status-passed-fg: var(--palette-jungle-60);
@@ -378,17 +378,17 @@
 
     /* Grade Colors (Test Health) */
     --grade-excellent: var(--palette-jungle-70);
-    --grade-excellent-bg: var(--palette-jungle-10);
-    --grade-good: var(--palette-jungle-70);
-    --grade-good-bg: var(--palette-jungle-10);
-    --grade-fair: var(--palette-qase-blue-60);
-    --grade-fair-bg: var(--palette-qase-blue-10);
-    --grade-warning: var(--palette-mustard-100);
-    --grade-warning-bg: var(--palette-mustard-10);
-    --grade-poor: var(--palette-mustard-100);
-    --grade-poor-bg: var(--palette-mustard-10);
-    --grade-critical: var(--palette-berry-70);
-    --grade-critical-bg: var(--palette-berry-10);
+    --grade-excellent-bg: var(--palette-jungle-70);
+    --grade-good: var(--palette-jungle-60);
+    --grade-good-bg: var(--palette-jungle-60);
+    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair-bg: var(--palette-qase-blue-50);
+    --grade-warning: var(--palette-mustard-60);
+    --grade-warning-bg: var(--palette-mustard-60);
+    --grade-poor: var(--palette-mustard-80);
+    --grade-poor-bg: var(--palette-mustard-80);
+    --grade-critical: var(--palette-berry-60);
+    --grade-critical-bg: var(--palette-berry-60);
 
     /* Grade foreground colors (for bars, visual indicators) */
     --grade-excellent-fg: var(--palette-jungle-60);

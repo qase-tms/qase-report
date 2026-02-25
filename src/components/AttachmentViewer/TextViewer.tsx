@@ -4,6 +4,7 @@ import type { Attachment } from '../../schemas/Attachment.schema'
 import { DownloadButton } from './DownloadButton'
 import { detectLanguage } from '../../utils/detectLanguage'
 import { useRootStore } from '../../store'
+import { useTheme } from '../ThemeProvider'
 import {
   Dialog,
   DialogContent,
@@ -26,6 +27,7 @@ interface TextViewerProps {
  */
 export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
   const { attachmentsStore } = useRootStore()
+  const { resolvedTheme } = useTheme()
   const [content, setContent] = useState<string>('')
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export const TextViewer = ({ attachment, open, onClose }: TextViewerProps) => {
 
         {/* Content */}
         <div className="flex-1 overflow-auto min-h-0">
-          <Highlight theme={themes.github} code={content} language={language}>
+          <Highlight theme={resolvedTheme === 'dark' ? themes.vsDark : themes.github} code={content} language={language}>
             {({ style, tokens, getLineProps, getTokenProps }) => (
               <pre
                 style={{
