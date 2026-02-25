@@ -1,0 +1,23 @@
+{
+  "checks": [
+    {
+      "name": "status_code",
+      "expected": 200,
+      "actual": 200,
+      "passed": true
+    },
+    {
+      "name": "has_body",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "name": "has_data",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

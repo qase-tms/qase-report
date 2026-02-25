@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 1850,
+        "end_time": 1770879606690,
+        "stacktrace": null,
+        "start_time": 1770879604840,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {
+        "priority": "medium"
+    },
+    "id": "075d8672-b337-47be-865c-8b4476794aad",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_notification_delivery",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_notification_delivery"
+}

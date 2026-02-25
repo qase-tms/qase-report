@@ -1,0 +1,337 @@
+{
+  "attachments": [],
+  "execution": {
+    "duration": 12400,
+    "end_time": 1770879622400,
+    "stacktrace": null,
+    "start_time": 1770879610000,
+    "status": "passed",
+    "thread": "worker-2"
+  },
+  "fields": {
+    "description": "Simple test to verify SQLite database profiler functionality",
+    "priority": "high",
+    "severity": "normal"
+  },
+  "id": "723af793-401a-4625-b943-04329aa7d5e1",
+  "message": null,
+  "muted": false,
+  "param_groups": [],
+  "params": {},
+  "relations": {
+    "suite": {
+      "data": [
+        {
+          "public_id": null,
+          "title": "tests"
+        },
+        {
+          "public_id": null,
+          "title": "test_sqlite_profiler"
+        }
+      ]
+    }
+  },
+  "signature": "201::tests::test_sqlite_profiler.py::test_sqlite_profiler",
+  "steps": [
+    {
+      "data": {
+        "action": "Connect to SQLite database",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 1,
+        "end_time": 1770879610001,
+        "start_time": 1770879610000,
+        "status": "passed"
+      },
+      "id": "26a9de6a-1632-47b9-b0c4-78e5ca8dddf5",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": []
+    },
+    {
+      "data": {
+        "action": "Create users table",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 2,
+        "end_time": 1770879610003,
+        "start_time": 1770879610001,
+        "status": "passed"
+      },
+      "id": "53870aa6-bbbe-42bb-8e32-9cd9e1fcc22f",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: \n                CREATE TABLE IF NOT EXISTS users (\n                    id INTEGER PRIMARY KEY AUTOINCREMENT,\n                    name TEXT NOT NULL,\n                    email TEXT UNIQUE NOT NULL,\n                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n                )\n            ",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879610103,
+            "start_time": 1770879610003,
+            "status": "passed"
+          },
+          "id": "174d892c-96ac-4023-9300-9fb3c14d49e6",
+          "parent_id": "53870aa6-bbbe-42bb-8e32-9cd9e1fcc22f",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Insert test users",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879610203,
+        "start_time": 1770879610103,
+        "status": "passed"
+      },
+      "id": "60fb4fe2-755e-41f1-ade8-de97ae79126b",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: INSERT INTO users (name, email) VALUES (?, ?)",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879610303,
+            "start_time": 1770879610203,
+            "status": "passed"
+          },
+          "id": "6609dc1c-0a6b-45e9-8b4f-8c34fb5b6f57",
+          "parent_id": "60fb4fe2-755e-41f1-ade8-de97ae79126b",
+          "step_type": "text",
+          "steps": []
+        },
+        {
+          "data": {
+            "action": "SQL: INSERT INTO users (name, email) VALUES (?, ?)",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879610403,
+            "start_time": 1770879610303,
+            "status": "passed"
+          },
+          "id": "3d893582-93fc-40b1-b322-5d6b7fb136fe",
+          "parent_id": "60fb4fe2-755e-41f1-ade8-de97ae79126b",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Query all users",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879610503,
+        "start_time": 1770879610403,
+        "status": "passed"
+      },
+      "id": "a91eb88f-cebb-4856-8466-e0c85b9cae7d",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: SELECT * FROM users ORDER BY id",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879610603,
+            "start_time": 1770879610503,
+            "status": "passed"
+          },
+          "id": "e029fe60-f920-4580-b1c1-d4d148ca47d6",
+          "parent_id": "a91eb88f-cebb-4856-8466-e0c85b9cae7d",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Update user email",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879610703,
+        "start_time": 1770879610603,
+        "status": "passed"
+      },
+      "id": "e181688d-00fc-45c2-97b3-156a5415fec1",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: UPDATE users SET email = ? WHERE name = ?",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879610803,
+            "start_time": 1770879610703,
+            "status": "passed"
+          },
+          "id": "35f4e7e3-78b5-45f7-99ec-b8e0919e62e4",
+          "parent_id": "e181688d-00fc-45c2-97b3-156a5415fec1",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Query updated user",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879610903,
+        "start_time": 1770879610803,
+        "status": "passed"
+      },
+      "id": "b1281d43-58f4-40c3-b19a-0b3f95163927",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: SELECT * FROM users WHERE name = ?",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879611003,
+            "start_time": 1770879610903,
+            "status": "passed"
+          },
+          "id": "bdcc8c89-0a14-48e5-99b8-deba6ec93d29",
+          "parent_id": "b1281d43-58f4-40c3-b19a-0b3f95163927",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Delete user",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879611103,
+        "start_time": 1770879611003,
+        "status": "passed"
+      },
+      "id": "139b1316-abb0-4521-960a-39edc811bb67",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: DELETE FROM users WHERE name = ?",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879611203,
+            "start_time": 1770879611103,
+            "status": "passed"
+          },
+          "id": "468b5120-79ce-4d36-953c-230deb8b22db",
+          "parent_id": "139b1316-abb0-4521-960a-39edc811bb67",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    },
+    {
+      "data": {
+        "action": "Verify final user count",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879611303,
+        "start_time": 1770879611203,
+        "status": "passed"
+      },
+      "id": "a1326976-e29c-4039-9c47-c7bb3f0a0daa",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": [
+        {
+          "data": {
+            "action": "SQL: SELECT COUNT(*) FROM users",
+            "expected_result": null,
+            "input_data": "SQLite"
+          },
+          "execution": {
+            "attachments": [],
+            "duration": 0,
+            "end_time": 1770879611403,
+            "start_time": 1770879611303,
+            "status": "passed"
+          },
+          "id": "53d4633a-5087-41e7-8196-dbac5f3834d2",
+          "parent_id": "a1326976-e29c-4039-9c47-c7bb3f0a0daa",
+          "step_type": "text",
+          "steps": []
+        }
+      ]
+    }
+  ],
+  "testops_ids": [
+    201
+  ],
+  "title": "SQLite Database Profiler Test"
+}

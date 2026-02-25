@@ -1,0 +1,31 @@
+{
+  "status": "success",
+  "code": 200,
+  "data": {
+    "user": {
+      "id": "usr_12345abc",
+      "email": "john.doe@example.com",
+      "display_name": "John Doe",
+      "avatar_url": "https://cdn.example.com/avatars/usr_12345abc.png",
+      "created_at": "2025-06-15T08:30:00Z",
+      "last_login": "2026-02-12T14:30:00Z",
+      "roles": ["user", "premium"],
+      "preferences": {
+        "theme": "dark",
+        "notifications": true,
+        "timezone": "America/Los_Angeles"
+      }
+    },
+    "session": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfMTIzNDVhYmMiLCJpYXQiOjE3NzA4Nzk2MDB9.signature",
+      "expires_at": "2026-02-13T14:30:00Z",
+      "refresh_token": "ref_xyz789..."
+    }
+  },
+  "metadata": {
+    "request_id": "req-f8e92c1a-4b3d-4f2e-9a8c-7d6e5f4a3b2c",
+    "timestamp": "2026-02-12T14:30:00.123Z",
+    "response_time_ms": 42,
+    "server": "api-prod-03.example.com"
+  }
+}

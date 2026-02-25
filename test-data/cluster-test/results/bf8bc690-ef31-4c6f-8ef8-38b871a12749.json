@@ -1,0 +1,60 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 3250,
+        "end_time": 1770879624300,
+        "stacktrace": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_mysql_profiler.py', 102, 'Skipped: MySQL not available: (2003, \"Can\\'t connect to MySQL server on \\'localhost\\' ([Errno 61] Connection refused)\")')",
+        "start_time": 1770879621050,
+        "status": "skipped",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "description": "Simple test to verify MySQL database profiler functionality",
+        "priority": "high",
+        "severity": "normal"
+    },
+    "id": "bf8bc690-ef31-4c6f-8ef8-38b871a12749",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_mysql_profiler"
+                }
+            ]
+        }
+    },
+    "signature": "202::tests::test_mysql_profiler.py::test_mysql_profiler",
+    "steps": [
+        {
+            "data": {
+                "action": "Connect to MySQL database",
+                "expected_result": null,
+                "input_data": null
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 6,
+                "end_time": 1770879621056,
+                "start_time": 1770879621050,
+                "status": "failed"
+            },
+            "id": "300c3a64-6afc-4f04-847a-769e24c71539",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        202
+    ],
+    "title": "MySQL Database Profiler Test"
+}

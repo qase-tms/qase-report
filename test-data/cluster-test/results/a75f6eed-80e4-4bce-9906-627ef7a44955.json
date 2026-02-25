@@ -1,0 +1,108 @@
+{
+  "attachments": [],
+  "execution": {
+    "duration": 3560,
+    "end_time": 1770879620550,
+    "stacktrace": null,
+    "start_time": 1770879616990,
+    "status": "passed",
+    "thread": "worker-1"
+  },
+  "fields": {},
+  "id": "a75f6eed-80e4-4bce-9906-627ef7a44955",
+  "message": null,
+  "muted": false,
+  "param_groups": [],
+  "params": {},
+  "relations": {
+    "suite": {
+      "data": [
+        {
+          "public_id": null,
+          "title": "tests"
+        },
+        {
+          "public_id": null,
+          "title": "test_steps"
+        }
+      ]
+    }
+  },
+  "signature": "tests::test_steps.py::test_login_flow_with_step_decorator",
+  "steps": [
+    {
+      "data": {
+        "action": "Open the application home page",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879617090,
+        "start_time": 1770879616990,
+        "status": "passed"
+      },
+      "id": "b87c1659-ee43-4bb1-babc-920137e9db20",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": []
+    },
+    {
+      "data": {
+        "action": "Enter login credentials",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879617190,
+        "start_time": 1770879617090,
+        "status": "passed"
+      },
+      "id": "0629237d-85e1-4b84-a12a-b6a52ea12b1a",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": []
+    },
+    {
+      "data": {
+        "action": "Click the login button",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879617290,
+        "start_time": 1770879617190,
+        "status": "passed"
+      },
+      "id": "c4534899-c840-491b-bf74-99b06d8b788e",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": []
+    },
+    {
+      "data": {
+        "action": "Verify user dashboard is displayed",
+        "expected_result": null,
+        "input_data": null
+      },
+      "execution": {
+        "attachments": [],
+        "duration": 0,
+        "end_time": 1770879617390,
+        "start_time": 1770879617290,
+        "status": "passed"
+      },
+      "id": "d5e3adfd-318c-47bd-8b52-ffeb046166e0",
+      "parent_id": null,
+      "step_type": "text",
+      "steps": []
+    }
+  ],
+  "testops_ids": null,
+  "title": "test_login_flow_with_step_decorator"
+}

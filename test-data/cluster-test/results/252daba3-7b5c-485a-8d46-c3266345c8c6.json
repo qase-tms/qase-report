@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 890,
+        "end_time": 1770879610168,
+        "stacktrace": "AssertionError: Assertion failed\n  at TestCase.runTest (/tests/runner.py:145)\n  at TestSuite.execute (/tests/suite.py:89)\n  at main (/tests/main.py:23)",
+        "start_time": 1770879609278,
+        "status": "failed",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "layer": "api"
+    },
+    "id": "252daba3-7b5c-485a-8d46-c3266345c8c6",
+    "message": "AssertionError: Expected value did not match actual result",
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_api_response_structure",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_api_response_structure"
+}

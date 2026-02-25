@@ -1,0 +1,98 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 2340,
+        "end_time": 1770879609377,
+        "stacktrace": null,
+        "start_time": 1770879607037,
+        "status": "passed",
+        "thread": "worker-3"
+    },
+    "fields": {
+        "priority": "high",
+        "component": "API"
+    },
+    "id": "569210da-1975-446f-9965-3338001fddd3",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {
+        "endpoint": "/api/users",
+        "method": "GET"
+    },
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_api_flow_with_step_attachments",
+    "steps": [
+        {
+            "data": {
+                "action": "Execute API request and capture response",
+                "expected_result": "Response status code 200 with valid JSON body",
+                "input_data": "GET /api/users?page=1&limit=10"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJlbmRwb2ludCI6ICIvYXBpL3VzZXJzIiwKICAibWV0aG9kIjogIkdFVCIsCiAgInN0YXR1c19jb2RlIjogMjAwLAogICJoZWFkZXJzIjogewogICAgImNvbnRlbnQtdHlwZSI6ICJhcHBsaWNhdGlvbi9qc29uIiwKICAgICJ4LXJlcXVlc3QtaWQiOiAicmVxLTEyMyIKICB9LAogICJib2R5IjogewogICAgImRhdGEiOiBbCiAgICAgIHsKICAgICAgICAiaWQiOiAxCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAiaWQiOiAyCiAgICAgIH0KICAgIF0KICB9Cn0=",
+                        "file_name": "api_response__api_users.json",
+                        "file_path": "./build/qase-report/attachments/fe66967f-49c6-41cf-b7d5-dfb4253a45a6-api_response__api_users.json",
+                        "id": "fe66967f-49c6-41cf-b7d5-dfb4253a45a6",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 1250,
+                "end_time": 1770879611250,
+                "start_time": 1770879610000,
+                "status": "passed"
+            },
+            "id": "6cd96054-ce9a-4efa-9e30-a4b493005a93",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Validate response data",
+                "expected_result": "All required fields present and data types correct",
+                "input_data": "Schema: {id: number, name: string, email: string}"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJjaGVja3MiOiBbCiAgICB7CiAgICAgICJuYW1lIjogInN0YXR1c19jb2RlIiwKICAgICAgImV4cGVjdGVkIjogMjAwLAogICAgICAiYWN0dWFsIjogMjAwLAogICAgICAicGFzc2VkIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgIm5hbWUiOiAiaGFzX2JvZHkiLAogICAgICAiZXhwZWN0ZWQiOiB0cnVlLAogICAgICAiYWN0dWFsIjogdHJ1ZSwKICAgICAgInBhc3NlZCI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJuYW1lIjogImhhc19kYXRhIiwKICAgICAgImV4cGVjdGVkIjogdHJ1ZSwKICAgICAgImFjdHVhbCI6IHRydWUsCiAgICAgICJwYXNzZWQiOiB0cnVlCiAgICB9CiAgXSwKICAiYWxsX3Bhc3NlZCI6IHRydWUKfQ==",
+                        "file_name": "validation_report.json",
+                        "file_path": "./build/qase-report/attachments/085d5048-409e-49ab-b72f-f0cf89e70a52-validation_report.json",
+                        "id": "085d5048-409e-49ab-b72f-f0cf89e70a52",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 890,
+                "end_time": 1770879612140,
+                "start_time": 1770879611250,
+                "status": "passed"
+            },
+            "id": "c76725a5-2380-4844-a8d7-8ecc890b592b",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        1234
+    ],
+    "title": "test_api_flow_with_step_attachments"
+}

@@ -1,0 +1,37 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 4200,
+        "end_time": 1770879619262,
+        "stacktrace": "BlockedError: External dependency unavailable\n  at wait_for_dependency (/lib/sync.py:89)\n  at TestCase.check_preconditions (/tests/base.py:45)",
+        "start_time": 1770879615062,
+        "status": "blocked",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "severity": "critical"
+    },
+    "id": "2cc9e508-7273-44a6-871b-061a28a72c91",
+    "message": "BlockedError: Test blocked by unresolved dependency or environment issue",
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_basic"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_user_data_encryption",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_user_data_encryption"
+}

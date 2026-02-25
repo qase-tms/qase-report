@@ -1,0 +1,576 @@
+import express, { Application, Request, Response, NextFunction } from 'express'
+import { fileURLToPath } from 'url'
+import { dirname, join, resolve } from 'path'
+import { readFileSync, readdirSync, existsSync } from 'fs'
+import { Server } from 'http'
+import { createRequire } from 'module'
+import archiver from 'archiver'
+import { generateHtmlReport } from './generators/html-generator.js'
+import { createQaseRun, sendQaseResults, completeQaseRun, buildRunUrl, uploadAttachments, QaseApiError } from './qase-api.js'
+import { transformResults } from './qase-transform.js'
+import { TestResultSchema } from '../schemas/QaseTestResult.schema.js'
+import type { QaseTestResult } from '../schemas/QaseTestResult.schema.js'
+
+// Strip UTF-8 BOM that some tools (e.g. .NET reporters) prepend to JSON files
+const stripBom = (s: string) => s.replace(/^\uFEFF/, '')
+
+// Get package root directory
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const packageRoot = resolve(__dirname, '..', '..')
+
+export interface ServerOptions {
+  reportPath: string
+  port?: number
+  historyPath?: string
+}
+
+export interface ReportData {
+  run: Record<string, unknown>
+  results: Record<string, unknown>[]
+  attachmentsPath: string
+}
+
+/**
+ * Create Express application configured to serve the React app and report API
+ */
+export function createServer(options: ServerOptions): Application {
+  const { reportPath, port = 3000, historyPath } = options
+  const resolvedReportPath = resolve(reportPath)
+  const distPath = join(packageRoot, 'dist')
+
+  const app = express()
+
+  // Store port for later use
+  app.set('port', port)
+
+  // Store history path for API endpoint
+  app.set('historyPath', historyPath)
+
+  // Enable JSON body parsing for POST endpoints
+  app.use(express.json())
+
+  // API endpoint: GET /api/report
+  app.get('/api/report', (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // Read run.json
+      const runJsonPath = join(resolvedReportPath, 'run.json')
+      if (!existsSync(runJsonPath)) {
+        res.status(404).json({
+          error: 'Report not found',
+          message: `run.json not found at ${runJsonPath}`,
+        })
+        return
+      }
+
+      const runData = JSON.parse(stripBom(readFileSync(runJsonPath, 'utf-8')))
+
+      // Read all results from results/ directory
+      const resultsDir = join(resolvedReportPath, 'results')
+      const results: Record<string, unknown>[] = []
+
+      if (existsSync(resultsDir)) {
+        const resultFiles = readdirSync(resultsDir).filter((f) =>
+          f.endsWith('.json')
+        )
+        for (const file of resultFiles) {
+          try {
+            const filePath = join(resultsDir, file)
+            const resultData = JSON.parse(stripBom(readFileSync(filePath, 'utf-8')))
+            results.push(resultData)
+          } catch (err) {
+            console.warn(`Warning: Failed to parse ${file}:`, err)
+          }
+        }
+      }
+
+      // Return combined report data
+      const response: ReportData = {
+        run: runData,
+        results,
+        attachmentsPath: '/api/attachments',
+      }
+
+      res.json(response)
+    } catch (err) {
+      console.error('Error reading report:', err)
+      res.status(500).json({
+        error: 'Internal server error',
+        message: err instanceof Error ? err.message : 'Unknown error',
+      })
+    }
+  })
+
+  // API endpoint: GET /api/history
+  app.get('/api/history', (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const historyPath = app.get('historyPath') as string | undefined
+
+      if (!historyPath || !existsSync(historyPath)) {
+        // Return empty history structure if no history file
+        res.json({
+          schema_version: '1.0.0',
+          runs: [],
+          tests: [],
+        })
+        return
+      }
+
+      const historyData = JSON.parse(stripBom(readFileSync(historyPath, 'utf-8')))
+      res.json(historyData)
+    } catch (err) {
+      console.error('Error reading history:', err)
+      // Return empty history on error (non-critical)
+      res.json({
+        schema_version: '1.0.0',
+        runs: [],
+        tests: [],
+      })
+    }
+  })
+
+  // Attachments endpoint: GET /api/attachments/:filename
+  app.get(
+    '/api/attachments/:filename',
+    (req: Request<{ filename: string }>, res: Response, next: NextFunction) => {
+      const { filename } = req.params
+      const attachmentsDir = join(resolvedReportPath, 'attachments')
+      const filePath = join(attachmentsDir, filename)
+
+      // Security check: ensure resolved path is within attachments directory
+      const resolvedFilePath = resolve(filePath)
+      const resolvedAttachmentsDir = resolve(attachmentsDir)
+
+      if (!resolvedFilePath.startsWith(resolvedAttachmentsDir)) {
+        res.status(400).json({ error: 'Invalid filename' })
+        return
+      }
+
+      if (!existsSync(resolvedFilePath)) {
+        res.status(404).json({ error: 'Attachment not found' })
+        return
+      }
+
+      res.sendFile(resolvedFilePath)
+    }
+  )
+
+  // Trace viewer: serve playwright-core trace viewer static files
+  // This enables viewing Playwright traces in an iframe
+  const require = createRequire(import.meta.url)
+  try {
+    const playwrightCorePath = dirname(require.resolve('playwright-core/package.json'))
+    const traceViewerPath = join(playwrightCorePath, 'lib', 'vite', 'traceViewer')
+
+    if (existsSync(traceViewerPath)) {
+      app.use('/trace-viewer', express.static(traceViewerPath))
+    }
+  } catch {
+    // playwright-core not installed - trace viewer endpoint won't be available
+    // This is expected when installed without optional dependencies
+    console.warn('playwright-core not found - trace viewer will not be available')
+  }
+
+  // API endpoint: check if trace viewer is available
+  app.get('/api/trace-viewer-available', (req: Request, res: Response) => {
+    try {
+      const playwrightCorePath = dirname(require.resolve('playwright-core/package.json'))
+      const traceViewerPath = join(playwrightCorePath, 'lib', 'vite', 'traceViewer')
+      res.json({ available: existsSync(traceViewerPath) })
+    } catch {
+      res.json({ available: false })
+    }
+  })
+
+  // ─── Download API Endpoints ───────────────────────────────────────────
+
+  // Download endpoint: GET /api/download/html
+  // Returns self-contained HTML report as file download
+  app.get(
+    '/api/download/html',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const historyPath = app.get('historyPath') as string | undefined
+        const html = generateHtmlReport({
+          reportPath: resolvedReportPath,
+          historyPath,
+        })
+
+        res.setHeader('Content-Type', 'text/html; charset=utf-8')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report.html"'
+        )
+        res.send(html)
+      } catch (err) {
+        console.error('Error generating HTML report:', err)
+        res.status(500).json({
+          error: 'Failed to generate HTML report',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  )
+
+  // Download endpoint: GET /api/download/history
+  // Returns history JSON as file download, or 404 if missing
+  app.get(
+    '/api/download/history',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        const storedHistoryPath = app.get('historyPath') as string | undefined
+        const resolvedHistoryPath =
+          storedHistoryPath || join(resolvedReportPath, 'qase-report-history.json')
+
+        if (!existsSync(resolvedHistoryPath)) {
+          res.status(404).json({ error: 'History file not found' })
+          return
+        }
+
+        const historyData = readFileSync(resolvedHistoryPath, 'utf-8')
+        res.setHeader('Content-Type', 'application/json')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report-history.json"'
+        )
+        res.send(historyData)
+      } catch (err) {
+        console.error('Error reading history file:', err)
+        res.status(500).json({
+          error: 'Failed to read history file',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  )
+
+  // Download endpoint: GET /api/download/zip
+  // Returns ZIP archive of the full report directory
+  app.get(
+    '/api/download/zip',
+    (req: Request, res: Response, next: NextFunction) => {
+      try {
+        // Check run.json exists (required for a valid report)
+        const runJsonPath = join(resolvedReportPath, 'run.json')
+        if (!existsSync(runJsonPath)) {
+          res.status(404).json({
+            error: 'Report not found',
+            message: `run.json not found at ${runJsonPath}`,
+          })
+          return
+        }
+
+        res.setHeader('Content-Type', 'application/zip')
+        res.setHeader(
+          'Content-Disposition',
+          'attachment; filename="qase-report.zip"'
+        )
+
+        const archive = archiver('zip', { zlib: { level: 6 } })
+
+        archive.on('error', (err) => {
+          console.error('Archive error:', err)
+          if (!res.headersSent) {
+            res.status(500).json({
+              error: 'Failed to create ZIP archive',
+              message: err.message,
+            })
+          } else {
+            res.destroy()
+          }
+        })
+
+        archive.on('warning', (err) => {
+          console.warn('Archive warning:', err.message)
+        })
+
+        archive.pipe(res)
+
+        // Add run.json
+        archive.file(runJsonPath, { name: 'run.json' })
+
+        // Add results/ directory if it exists
+        const resultsDir = join(resolvedReportPath, 'results')
+        if (existsSync(resultsDir)) {
+          archive.directory(resultsDir, 'results')
+        }
+
+        // Add attachments/ directory if it exists
+        const attachmentsDir = join(resolvedReportPath, 'attachments')
+        if (existsSync(attachmentsDir)) {
+          archive.directory(attachmentsDir, 'attachments')
+        }
+
+        archive.finalize()
+      } catch (err) {
+        console.error('Error creating ZIP archive:', err)
+        if (!res.headersSent) {
+          res.status(500).json({
+            error: 'Failed to create ZIP archive',
+            message: err instanceof Error ? err.message : 'Unknown error',
+          })
+        }
+      }
+    }
+  )
+
+  // ─── Send to Qase API Endpoint ────────────────────────────────────
+
+  // POST /api/send-to-qase - Send test results to Qase TMS
+  app.post('/api/send-to-qase', async (req: Request, res: Response) => {
+    try {
+      // 1. Validate request body
+      const { project_code, token, title } = req.body as {
+        project_code?: string
+        token?: string
+        title?: string
+      }
+
+      if (!project_code || !token || !title) {
+        res.status(400).json({
+          error: 'Missing required fields',
+          message: 'Request must include project_code, token, and title',
+        })
+        return
+      }
+
+      // 2. Read results from report directory
+      const resultsDir = join(resolvedReportPath, 'results')
+      const results: unknown[] = []
+
+      if (existsSync(resultsDir)) {
+        const resultFiles = readdirSync(resultsDir).filter(f => f.endsWith('.json'))
+        for (const file of resultFiles) {
+          try {
+            const filePath = join(resultsDir, file)
+            const rawData = JSON.parse(stripBom(readFileSync(filePath, 'utf-8')))
+            const parsed = TestResultSchema.safeParse(rawData)
+            if (parsed.success) {
+              results.push(parsed.data)
+            } else {
+              console.warn(`Warning: Skipping invalid result ${file}`)
+            }
+          } catch (err) {
+            console.warn(`Warning: Failed to parse ${file}:`, err)
+          }
+        }
+      }
+
+      if (results.length === 0) {
+        res.status(400).json({
+          error: 'No test results',
+          message: 'No valid test results found in the report directory',
+        })
+        return
+      }
+
+      // 3. Collect unique attachments from all results (test-level + step-level)
+      const typedResults = results as QaseTestResult[]
+      const uniqueAttachments = new Map<
+        string,
+        { id: string; name: string; path: string; mimeType: string }
+      >()
+
+      function collectAttachmentsFromSteps(steps: QaseTestResult['steps']) {
+        for (const step of steps) {
+          for (const att of step.execution.attachments) {
+            if (!uniqueAttachments.has(att.id)) {
+              const filePath = join(
+                resolvedReportPath,
+                'attachments',
+                `${att.id}-${att.file_name}`
+              )
+              uniqueAttachments.set(att.id, {
+                id: att.id,
+                name: att.file_name,
+                path: filePath,
+                mimeType: att.mime_type ?? 'application/octet-stream',
+              })
+            }
+          }
+          if (step.steps && step.steps.length > 0) {
+            collectAttachmentsFromSteps(step.steps)
+          }
+        }
+      }
+
+      for (const result of typedResults) {
+        for (const att of result.attachments) {
+          if (!uniqueAttachments.has(att.id)) {
+            const filePath = join(
+              resolvedReportPath,
+              'attachments',
+              `${att.id}-${att.file_name}`
+            )
+            uniqueAttachments.set(att.id, {
+              id: att.id,
+              name: att.file_name,
+              path: filePath,
+              mimeType: att.mime_type ?? 'application/octet-stream',
+            })
+          }
+        }
+        collectAttachmentsFromSteps(result.steps)
+      }
+
+      // 4. Filter only existing files and upload
+      const filesToUpload = [...uniqueAttachments.values()].filter(f =>
+        existsSync(f.path)
+      )
+
+      let attachmentMap: Map<string, string> | undefined
+      if (filesToUpload.length > 0) {
+        attachmentMap = await uploadAttachments({
+          apiToken: token,
+          projectCode: project_code,
+          files: filesToUpload,
+        })
+      }
+
+      // 5. Transform results to Qase API format (with attachment hashes)
+      const apiResults = transformResults(typedResults, attachmentMap)
+
+      // 6. Read run start_time from run.json
+      const runJsonPath = join(resolvedReportPath, 'run.json')
+      const runData = JSON.parse(stripBom(readFileSync(runJsonPath, 'utf-8')))
+      const runStartTimeMs = runData.execution?.start_time as number | undefined
+
+      // 7. Create run with start_time from report data
+      const runId = await createQaseRun({
+        apiToken: token,
+        projectCode: project_code,
+        title,
+        startTime: runStartTimeMs ? runStartTimeMs / 1000 : undefined,
+      })
+
+      // 8. Send results
+      await sendQaseResults({
+        apiToken: token,
+        projectCode: project_code,
+        runId,
+        results: apiResults,
+      })
+
+      // 9. Complete run
+      await completeQaseRun({
+        apiToken: token,
+        projectCode: project_code,
+        runId,
+      })
+
+      // 10. Return success with run URL
+      const runUrl = buildRunUrl(project_code, runId)
+      res.json({
+        success: true,
+        run_id: runId,
+        run_url: runUrl,
+        results_count: apiResults.length,
+      })
+    } catch (err) {
+      if (err instanceof QaseApiError) {
+        // Map QaseApiError to appropriate HTTP status
+        const httpStatus = err.statusCode === 0 ? 502 : err.statusCode
+        res.status(httpStatus).json({
+          error: 'Qase API error',
+          message: err.qaseMessage,
+          status_code: err.statusCode,
+        })
+      } else {
+        console.error('Error in send-to-qase:', err)
+        res.status(500).json({
+          error: 'Internal server error',
+          message: err instanceof Error ? err.message : 'Unknown error',
+        })
+      }
+    }
+  })
+
+  // Static file serving for React app (exclude index.html - handled separately)
+  app.use(
+    express.static(distPath, {
+      index: false, // Don't serve index.html automatically
+    })
+  )
+
+  // Serve index.html with server mode flag injection
+  // Handles both root path and SPA fallback for client-side routing
+  const serveIndex = (req: Request, res: Response) => {
+    const indexPath = join(distPath, 'index.html')
+    if (existsSync(indexPath)) {
+      // Read index.html and inject server mode flag
+      let html = readFileSync(indexPath, 'utf-8')
+      const serverModeScript =
+        '<script>window.__QASE_SERVER_MODE__=true;</script>'
+
+      // Inject before closing head tag
+      html = html.replace('</head>', `${serverModeScript}</head>`)
+
+      res.type('html').send(html)
+    } else {
+      res.status(404).json({
+        error: 'React app not found',
+        message: 'Run `npm run build` first to build the React application',
+      })
+    }
+  }
+
+  // Root path
+  app.get('/', serveIndex)
+
+  // SPA fallback: serve index.html for all non-API routes
+  // Express 5 requires named catch-all parameter instead of '*'
+  app.get('/{*splat}', serveIndex)
+
+  return app
+}
+
+/**
+ * Start the Express server on the specified port
+ * @returns Promise that resolves to the HTTP server instance when listening
+ */
+export function startServer(
+  app: Application,
+  port?: number
+): Promise<{ server: Server; port: number }> {
+  const serverPort = port ?? (app.get('port') as number) ?? 3000
+
+  return new Promise((resolve, reject) => {
+    const server = app.listen(serverPort, () => {
+      console.log(`Server running at http://localhost:${serverPort}`)
+      resolve({ server, port: serverPort })
+    })
+
+    server.on('error', (err: NodeJS.ErrnoException) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Error: Port ${serverPort} is already in use`)
+      }
+      reject(err)
+    })
+  })
+}
+
+/**
+ * Setup graceful shutdown handlers for the server
+ */
+export function setupGracefulShutdown(server: Server): void {
+  const shutdown = (signal: string) => {
+    console.log(`\nReceived ${signal}, shutting down gracefully...`)
+    server.close((err) => {
+      if (err) {
+        console.error('Error during shutdown:', err)
+        process.exit(1)
+      }
+      console.log('Server stopped')
+      process.exit(0)
+    })
+
+    // Force shutdown after 10 seconds
+    setTimeout(() => {
+      console.error('Forced shutdown after timeout')
+      process.exit(1)
+    }, 10000)
+  }
+
+  process.on('SIGINT', () => shutdown('SIGINT'))
+  process.on('SIGTERM', () => shutdown('SIGTERM'))
+}

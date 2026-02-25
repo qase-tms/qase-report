@@ -3,7 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Qase Report</title>
+    <script>
+      // FOUC prevention: Apply theme before first paint
+      (function() {
+        // MUI theme (legacy - will be removed in Phase 30-04)
+        var muiKey = 'mui-mode'
+        var muiMode = localStorage.getItem(muiKey)
+        var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        var mode = muiMode || 'dark'
+        if (mode === 'system') {
+          mode = systemDark ? 'dark' : 'light'
+        }
+        document.documentElement.setAttribute('data-mui-color-scheme', mode)
+
+        // Tailwind theme (new system using same preference)
+        var tailwindKey = 'vite-ui-theme'
+        var theme = localStorage.getItem(tailwindKey) || 'dark'
+        var resolved = theme === 'system'
+          ? (systemDark ? 'dark' : 'light')
+          : theme
+        // Our dark-first system: only add .light for light theme
+        if (resolved === 'light') {
+          document.documentElement.classList.add('light')
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

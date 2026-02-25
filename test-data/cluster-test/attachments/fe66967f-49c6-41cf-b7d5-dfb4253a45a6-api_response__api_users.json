@@ -1,0 +1,19 @@
+{
+  "endpoint": "/api/users",
+  "method": "GET",
+  "status_code": 200,
+  "headers": {
+    "content-type": "application/json",
+    "x-request-id": "req-123"
+  },
+  "body": {
+    "data": [
+      {
+        "id": 1
+      },
+      {
+        "id": 2
+      }
+    ]
+  }
+}

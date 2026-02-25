@@ -1,69 +1,665 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
+@import "tw-animate-css";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/*
+ * Qase TMS Color Palette
+ * Imported from: /app/resources/app/ui-kit/
+ */
+@layer base {
+  :root {
+    /* === Qase TMS Palette === */
+    /* Berry (red/pink) */
+    --palette-berry-10: #fce8ed;
+    --palette-berry-40: #f57a94;
+    --palette-berry-50: #ec486b;
+    --palette-berry-60: #de1846;
+    --palette-berry-70: #bd143c;
+    --palette-berry-80: #9f1132;
+    --palette-berry-100: #640b1f;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    /* Charcoal (gray) */
+    --palette-charcoal-10: #f5f5f7;
+    --palette-charcoal-20: #e9e8ed;
+    --palette-charcoal-30: #d4d3db;
+    --palette-charcoal-40: #bbb9c7;
+    --palette-charcoal-50: #a3a1b2;
+    --palette-charcoal-60: #8d8b9e;
+    --palette-charcoal-70: #6e6b80;
+    --palette-charcoal-80: #5a576d;
+    --palette-charcoal-90: #444152;
+    --palette-charcoal-100: #343141;
+    --palette-charcoal-110: #282733;
+    --palette-charcoal-120: #1f1d26;
+    --palette-charcoal-130: #18181b;
+
+    /* Charcoal (transparent) */
+    --palette-charcoal-clear-10: rgba(24, 24, 27, 0.10);
+    --palette-charcoal-clear-20: rgba(24, 24, 27, 0.20);
+    --palette-charcoal-clear-80: rgba(24, 24, 27, 0.80);
+
+    /* Jungle (green) */
+    --palette-jungle-10: #e6f3ef;
+    --palette-jungle-40: #60b99d;
+    --palette-jungle-50: #2ea47e;
+    --palette-jungle-60: #00875e;
+    --palette-jungle-70: #007350;
+    --palette-jungle-80: #006143;
+    --palette-jungle-100: #003d2a;
+
+    /* Mustard (yellow) */
+    --palette-mustard-10: #fef9eb;
+    --palette-mustard-40: #f9d984;
+    --palette-mustard-50: #f7ce5e;
+    --palette-mustard-60: #f5c33b;
+    --palette-mustard-70: #d2a733;
+    --palette-mustard-80: #ae8a2a;
+    --palette-mustard-90: #8e7123;
+    --palette-mustard-100: #6e581b;
+
+    /* Qase Blue (brand) */
+    --palette-qase-blue-10: #ececfc;
+    --palette-qase-blue-20: #d7d8f9;
+    --palette-qase-blue-30: #b9bbf7;
+    --palette-qase-blue-40: #9196f1;
+    --palette-qase-blue-50: #6568e5;
+    --palette-qase-blue-60: #4040dc;
+    --palette-qase-blue-70: #3636bb;
+    --palette-qase-blue-80: #2d2d9c;
+
+    /* White */
+    --palette-white: #ffffff;
+    --palette-white-40: rgba(255, 255, 255, 0.40);
+    --palette-white-70: rgba(255, 255, 255, 0.70);
+
+    /* === Figma Design Tokens (Dark) === */
+
+    /* Text */
+    --text-primary: var(--palette-charcoal-10);
+    --text-secondary: var(--palette-charcoal-40);
+    --text-placeholder: var(--palette-charcoal-50);
+    --text-disabled: var(--palette-charcoal-60);
+    --text-white: var(--palette-white);
+    --text-black: var(--palette-charcoal-110);
+    --text-brand: var(--palette-qase-blue-40);
+    --text-brand-hover: var(--palette-qase-blue-30);
+    --text-brand-active: var(--palette-qase-blue-40);
+    --text-brand-on-brand: var(--palette-qase-blue-30);
+    --text-error: var(--palette-berry-40);
+    --text-warning: var(--palette-mustard-40);
+    --text-success: var(--palette-jungle-40);
+
+    /* Foreground */
+    --fg-primary: var(--palette-charcoal-10);
+    --fg-secondary: var(--palette-charcoal-40);
+    --fg-white: var(--palette-white);
+    --fg-white-disabled: var(--palette-white-40);
+    --fg-black: var(--palette-charcoal-110);
+    --fg-disabled: var(--palette-charcoal-60);
+    --fg-brand: var(--palette-qase-blue-40);
+    --fg-brand-hover: var(--palette-qase-blue-30);
+    --fg-brand-active: var(--palette-qase-blue-40);
+    --fg-brand-alt: var(--palette-qase-blue-50);
+    --fg-error: var(--palette-berry-40);
+    --fg-warning: var(--palette-mustard-50);
+    --fg-success: var(--palette-jungle-50);
+
+    /* Background */
+    --bg-level1: var(--palette-charcoal-110);
+    --bg-level1-hover: var(--palette-charcoal-100);
+    --bg-level1-active: var(--palette-charcoal-90);
+    --bg-level2: var(--palette-charcoal-100);
+    --bg-level2-hover: var(--palette-charcoal-90);
+    --bg-level2-active: var(--palette-charcoal-80);
+    --bg-base: var(--palette-charcoal-120);
+    --bg-accent-level1: var(--palette-charcoal-100);
+    --bg-accent-level2: var(--palette-charcoal-90);
+    --bg-accent-brand: var(--palette-charcoal-90);
+    --bg-brand: var(--palette-qase-blue-50);
+    --bg-brand-hover: var(--palette-qase-blue-40);
+    --bg-brand-active: var(--palette-qase-blue-30);
+    --bg-brand-alt: var(--palette-qase-blue-50);
+    --bg-disabled: var(--palette-charcoal-90);
+    --bg-disabled-alt: var(--palette-charcoal-70);
+    --bg-control: var(--palette-charcoal-80);
+    --bg-control-hover: var(--palette-charcoal-70);
+    --bg-control-active: var(--palette-charcoal-60);
+    --bg-control-disabled: var(--palette-charcoal-90);
+    --bg-contrast: var(--palette-charcoal-90);
+    --bg-overlay: var(--palette-charcoal-clear-80);
+    --bg-darken-level1: var(--palette-charcoal-clear-10);
+    --bg-darken-level2: var(--palette-charcoal-clear-20);
+    --bg-error: var(--palette-berry-60);
+    --bg-error-hover: var(--palette-berry-50);
+    --bg-error-active: var(--palette-berry-40);
+    --bg-error-alt: var(--palette-berry-100);
+    --bg-warning: var(--palette-mustard-60);
+    --bg-warning-hover: var(--palette-mustard-50);
+    --bg-warning-active: var(--palette-mustard-40);
+    --bg-warning-alt: var(--palette-mustard-100);
+    --bg-success: var(--palette-jungle-60);
+    --bg-success-hover: var(--palette-jungle-50);
+    --bg-success-active: var(--palette-jungle-40);
+    --bg-success-alt: var(--palette-jungle-100);
+
+    /* Border */
+    --border-primary: var(--palette-charcoal-60);
+    --border-secondary: var(--palette-charcoal-70);
+    --border-tertiary: var(--palette-charcoal-80);
+    --border-brand: var(--palette-qase-blue-50);
+    --border-brand-alt: var(--palette-qase-blue-40);
+    --border-disabled: var(--palette-charcoal-70);
+    --border-disabled-subtle: var(--palette-charcoal-80);
+    --border-error: var(--palette-berry-40);
+    --border-warning: var(--palette-mustard-50);
+    --border-success: var(--palette-jungle-50);
+    --border-overlay: var(--palette-charcoal-clear-10);
+    --border-contrast: var(--palette-charcoal-20);
+
+    /* === shadcn/ui Theme Variables (Dark) === */
+    --radius: 0.5rem;
+
+    /* Backgrounds */
+    --background: var(--bg-base);
+    --foreground: var(--text-primary);
+
+    --card: var(--bg-level1);
+    --card-foreground: var(--text-primary);
+
+    --popover: var(--bg-level2);
+    --popover-foreground: var(--text-primary);
+
+    /* Primary = Qase Blue */
+    --primary: var(--bg-brand);
+    --primary-foreground: var(--text-white);
+
+    /* Secondary */
+    --secondary: var(--bg-accent-level2);
+    --secondary-foreground: var(--text-primary);
+
+    /* Muted */
+    --muted: var(--bg-accent-level1);
+    --muted-foreground: var(--text-secondary);
+
+    /* Accent */
+    --accent: var(--bg-accent-level2);
+    --accent-foreground: var(--text-primary);
+
+    /* Destructive = Berry */
+    --destructive: var(--bg-error);
+
+    /* Borders */
+    --border: var(--border-tertiary);
+    --input: var(--border-secondary);
+    --ring: var(--border-brand-alt);
+
+    /* Charts */
+    --chart-1: var(--palette-qase-blue-50);
+    --chart-2: var(--palette-jungle-60);
+    --chart-3: var(--palette-mustard-60);
+    --chart-4: var(--palette-berry-60);
+    --chart-5: var(--palette-charcoal-60);
+
+    /* Sidebar */
+    --sidebar: var(--palette-charcoal-110);
+    --sidebar-foreground: var(--palette-charcoal-10);
+    --sidebar-primary: var(--palette-qase-blue-50);
+    --sidebar-primary-foreground: var(--palette-white);
+    --sidebar-accent: var(--palette-charcoal-90);
+    --sidebar-accent-foreground: var(--palette-charcoal-10);
+    --sidebar-border: var(--palette-charcoal-80);
+    --sidebar-ring: var(--palette-qase-blue-40);
+
+    /* Status Colors (Qase TMS semantic) */
+    --status-passed: var(--palette-jungle-50);
+    --status-passed-bg: var(--palette-jungle-60);
+    --status-failed: var(--palette-berry-50);
+    --status-failed-bg: var(--palette-berry-60);
+    --status-skipped: var(--palette-charcoal-70);
+    --status-skipped-bg: var(--palette-charcoal-70);
+    --status-broken: var(--palette-mustard-60);
+    --status-broken-bg: var(--palette-mustard-60);
+    --status-blocked: var(--palette-qase-blue-50);
+    --status-blocked-bg: var(--palette-qase-blue-50);
+    --status-invalid: var(--palette-mustard-60);
+    --status-invalid-bg: var(--palette-mustard-60);
+    --status-muted: var(--palette-charcoal-30);
+    --status-muted-bg: var(--palette-charcoal-30);
+
+    /* Status foreground colors (for donut, progress bars, timeline bars, icons — no text on these) */
+    --status-passed-fg: var(--status-passed);
+    --status-failed-fg: var(--status-failed);
+    --status-skipped-fg: var(--status-skipped);
+    --status-broken-fg: var(--status-broken);
+    --status-blocked-fg: var(--status-blocked);
+    --status-invalid-fg: var(--status-invalid);
+    --status-muted-fg: var(--status-muted);
+
+    /* Grade Colors (Test Health) */
+    --grade-excellent: var(--palette-jungle-100);
+    --grade-excellent-bg: var(--palette-jungle-60);
+    --grade-good: var(--palette-jungle-50);
+    --grade-good-bg: var(--palette-jungle-60);
+    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair-bg: var(--palette-qase-blue-50);
+    --grade-warning: var(--palette-mustard-60);
+    --grade-warning-bg: var(--palette-mustard-60);
+    --grade-poor: var(--palette-mustard-80);
+    --grade-poor-bg: var(--palette-mustard-80);
+    --grade-critical: var(--palette-berry-50);
+    --grade-critical-bg: var(--palette-berry-60);
+
+    /* Grade foreground colors (for bars, visual indicators) */
+    --grade-excellent-fg: var(--grade-excellent);
+    --grade-good-fg: var(--grade-good);
+    --grade-fair-fg: var(--grade-fair);
+    --grade-warning-fg: var(--grade-warning);
+    --grade-poor-fg: var(--grade-poor);
+    --grade-critical-fg: var(--grade-critical);
+  }
+
+  /* Light theme activated by .light class on html */
+  .light {
+    /* === Figma Design Tokens (Light) === */
+
+    /* Text */
+    --text-primary: var(--palette-charcoal-110);
+    --text-secondary: var(--palette-charcoal-80);
+    --text-placeholder: var(--palette-charcoal-70);
+    --text-brand: var(--palette-qase-blue-60);
+    --text-brand-hover: var(--palette-qase-blue-70);
+    --text-brand-active: var(--palette-qase-blue-80);
+    --text-brand-on-brand: var(--palette-qase-blue-60);
+    --text-error: var(--palette-berry-70);
+    --text-warning: var(--palette-mustard-90);
+    --text-success: var(--palette-jungle-80);
+
+    /* Foreground */
+    --fg-primary: var(--palette-charcoal-110);
+    --fg-secondary: var(--palette-charcoal-80);
+    --fg-white-disabled: var(--palette-white-70);
+    --fg-brand: var(--palette-qase-blue-60);
+    --fg-brand-hover: var(--palette-qase-blue-70);
+    --fg-brand-active: var(--palette-qase-blue-80);
+    --fg-error: var(--palette-berry-70);
+    --fg-warning: var(--palette-mustard-80);
+    --fg-success: var(--palette-jungle-70);
+
+    /* Background */
+    --bg-level1: var(--palette-white);
+    --bg-level1-hover: var(--palette-charcoal-10);
+    --bg-level1-active: var(--palette-charcoal-20);
+    --bg-level2: var(--palette-white);
+    --bg-level2-hover: var(--palette-charcoal-10);
+    --bg-level2-active: var(--palette-charcoal-20);
+    --bg-base: var(--palette-charcoal-10);
+    --bg-accent-level1: var(--palette-charcoal-10);
+    --bg-accent-level2: var(--palette-charcoal-20);
+    --bg-accent-brand: var(--palette-qase-blue-10);
+    --bg-brand: var(--palette-qase-blue-60);
+    --bg-brand-hover: var(--palette-qase-blue-70);
+    --bg-brand-active: var(--palette-qase-blue-80);
+    --bg-disabled: var(--palette-charcoal-10);
+    --bg-disabled-alt: var(--palette-charcoal-40);
+    --bg-control: var(--palette-charcoal-30);
+    --bg-control-hover: var(--palette-charcoal-40);
+    --bg-control-active: var(--palette-charcoal-50);
+    --bg-control-disabled: var(--palette-charcoal-20);
+    --bg-contrast: var(--palette-charcoal-110);
+    --bg-error-hover: var(--palette-berry-70);
+    --bg-error-active: var(--palette-berry-80);
+    --bg-error-alt: var(--palette-berry-10);
+    --bg-warning-hover: var(--palette-mustard-70);
+    --bg-warning-active: var(--palette-mustard-80);
+    --bg-warning-alt: var(--palette-mustard-10);
+    --bg-success-hover: var(--palette-jungle-70);
+    --bg-success-active: var(--palette-jungle-80);
+    --bg-success-alt: var(--palette-jungle-10);
+
+    /* Border */
+    --border-primary: var(--palette-charcoal-40);
+    --border-secondary: var(--palette-charcoal-30);
+    --border-tertiary: var(--palette-charcoal-20);
+    --border-brand: var(--palette-qase-blue-60);
+    --border-brand-alt: var(--palette-qase-blue-50);
+    --border-disabled: var(--palette-charcoal-30);
+    --border-disabled-subtle: var(--palette-charcoal-20);
+    --border-error: var(--palette-berry-70);
+    --border-warning: var(--palette-mustard-80);
+    --border-success: var(--palette-jungle-70);
+    --border-overlay: var(--palette-charcoal-clear-20);
+    --border-contrast: var(--palette-charcoal-110);
+
+    /* === shadcn/ui overrides (WCAG AA deviations from Figma) === */
+    --destructive: var(--palette-berry-70);
+    --border: var(--border-secondary);
+    --input: var(--palette-charcoal-60);
+
+    /* Charts */
+    --chart-1: var(--palette-qase-blue-60);
+    --chart-2: var(--palette-jungle-60);
+    --chart-3: var(--palette-mustard-60);
+    --chart-4: var(--palette-berry-60);
+    --chart-5: var(--palette-charcoal-60);
+
+    /* Sidebar */
+    --sidebar: var(--palette-white);
+    --sidebar-foreground: var(--palette-charcoal-110);
+    --sidebar-primary: var(--palette-qase-blue-60);
+    --sidebar-primary-foreground: var(--palette-white);
+    --sidebar-accent: var(--palette-charcoal-20);
+    --sidebar-accent-foreground: var(--palette-charcoal-110);
+    --sidebar-border: var(--palette-charcoal-30);
+    --sidebar-ring: var(--palette-qase-blue-50);
+
+    /* Status Colors */
+    --status-passed: var(--palette-jungle-100);
+    --status-passed-bg: var(--palette-jungle-60);
+    --status-failed: var(--palette-berry-100);
+    --status-failed-bg: var(--palette-berry-60);
+    --status-skipped: var(--palette-charcoal-120);
+    --status-skipped-bg: var(--palette-charcoal-60);
+    --status-broken: var(--palette-mustard-60);
+    --status-broken-bg: var(--palette-mustard-60);
+    --status-blocked: var(--palette-qase-blue-80);
+    --status-blocked-bg: var(--palette-qase-blue-50);
+    --status-invalid: var(--palette-mustard-60);
+    --status-invalid-bg: var(--palette-mustard-60);
+    --status-muted: var(--palette-charcoal-110);
+    --status-muted-bg: var(--palette-charcoal-30);
+
+    /* Status foreground colors (for donut, progress bars, timeline bars, icons) */
+    --status-passed-fg: var(--palette-jungle-60);
+    --status-failed-fg: var(--palette-berry-60);
+    --status-skipped-fg: var(--palette-charcoal-70);
+    --status-broken-fg: var(--palette-mustard-60);
+    --status-blocked-fg: var(--palette-qase-blue-50);
+    --status-invalid-fg: var(--palette-mustard-60);
+    --status-muted-fg: var(--palette-charcoal-60);
+
+    /* Grade Colors (Test Health) */
+    --grade-excellent: var(--palette-jungle-70);
+    --grade-excellent-bg: var(--palette-jungle-70);
+    --grade-good: var(--palette-jungle-60);
+    --grade-good-bg: var(--palette-jungle-60);
+    --grade-fair: var(--palette-qase-blue-50);
+    --grade-fair-bg: var(--palette-qase-blue-50);
+    --grade-warning: var(--palette-mustard-60);
+    --grade-warning-bg: var(--palette-mustard-60);
+    --grade-poor: var(--palette-mustard-80);
+    --grade-poor-bg: var(--palette-mustard-80);
+    --grade-critical: var(--palette-berry-60);
+    --grade-critical-bg: var(--palette-berry-60);
+
+    /* Grade foreground colors (for bars, visual indicators) */
+    --grade-excellent-fg: var(--palette-jungle-60);
+    --grade-good-fg: var(--palette-jungle-60);
+    --grade-fair-fg: var(--palette-qase-blue-50);
+    --grade-warning-fg: var(--palette-mustard-60);
+    --grade-poor-fg: var(--palette-mustard-70);
+    --grade-critical-fg: var(--palette-berry-60);
+  }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@theme inline {
+  /* Radius (Qase TMS style) */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+
+  /* Colors mapped to Tailwind */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Status colors for Tailwind utilities */
+  --color-status-passed: var(--status-passed);
+  --color-status-passed-bg: var(--status-passed-bg);
+  --color-status-failed: var(--status-failed);
+  --color-status-failed-bg: var(--status-failed-bg);
+  --color-status-skipped: var(--status-skipped);
+  --color-status-skipped-bg: var(--status-skipped-bg);
+  --color-status-broken: var(--status-broken);
+  --color-status-broken-bg: var(--status-broken-bg);
+  --color-status-blocked: var(--status-blocked);
+  --color-status-blocked-bg: var(--status-blocked-bg);
+  --color-status-invalid: var(--status-invalid);
+  --color-status-invalid-bg: var(--status-invalid-bg);
+  --color-status-muted: var(--status-muted);
+  --color-status-muted-bg: var(--status-muted-bg);
+
+  /* Status foreground colors for Tailwind utilities */
+  --color-status-passed-fg: var(--status-passed-fg);
+  --color-status-failed-fg: var(--status-failed-fg);
+  --color-status-skipped-fg: var(--status-skipped-fg);
+  --color-status-broken-fg: var(--status-broken-fg);
+  --color-status-blocked-fg: var(--status-blocked-fg);
+  --color-status-invalid-fg: var(--status-invalid-fg);
+  --color-status-muted-fg: var(--status-muted-fg);
+
+  /* Figma Text tokens */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-placeholder: var(--text-placeholder);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-white: var(--text-white);
+  --color-text-black: var(--text-black);
+  --color-text-brand: var(--text-brand);
+  --color-text-brand-hover: var(--text-brand-hover);
+  --color-text-brand-active: var(--text-brand-active);
+  --color-text-brand-on-brand: var(--text-brand-on-brand);
+  --color-text-error: var(--text-error);
+  --color-text-warning: var(--text-warning);
+  --color-text-success: var(--text-success);
+
+  /* Figma Foreground tokens */
+  --color-fg-primary: var(--fg-primary);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-white: var(--fg-white);
+  --color-fg-white-disabled: var(--fg-white-disabled);
+  --color-fg-black: var(--fg-black);
+  --color-fg-disabled: var(--fg-disabled);
+  --color-fg-brand: var(--fg-brand);
+  --color-fg-brand-hover: var(--fg-brand-hover);
+  --color-fg-brand-active: var(--fg-brand-active);
+  --color-fg-brand-alt: var(--fg-brand-alt);
+  --color-fg-error: var(--fg-error);
+  --color-fg-warning: var(--fg-warning);
+  --color-fg-success: var(--fg-success);
+
+  /* Figma Background tokens */
+  --color-bg-level1: var(--bg-level1);
+  --color-bg-level1-hover: var(--bg-level1-hover);
+  --color-bg-level1-active: var(--bg-level1-active);
+  --color-bg-level2: var(--bg-level2);
+  --color-bg-level2-hover: var(--bg-level2-hover);
+  --color-bg-level2-active: var(--bg-level2-active);
+  --color-bg-base: var(--bg-base);
+  --color-bg-accent-level1: var(--bg-accent-level1);
+  --color-bg-accent-level2: var(--bg-accent-level2);
+  --color-bg-accent-brand: var(--bg-accent-brand);
+  --color-bg-brand: var(--bg-brand);
+  --color-bg-brand-hover: var(--bg-brand-hover);
+  --color-bg-brand-active: var(--bg-brand-active);
+  --color-bg-brand-alt: var(--bg-brand-alt);
+  --color-bg-disabled: var(--bg-disabled);
+  --color-bg-disabled-alt: var(--bg-disabled-alt);
+  --color-bg-control: var(--bg-control);
+  --color-bg-control-hover: var(--bg-control-hover);
+  --color-bg-control-active: var(--bg-control-active);
+  --color-bg-control-disabled: var(--bg-control-disabled);
+  --color-bg-contrast: var(--bg-contrast);
+  --color-bg-overlay: var(--bg-overlay);
+  --color-bg-darken-level1: var(--bg-darken-level1);
+  --color-bg-darken-level2: var(--bg-darken-level2);
+  --color-bg-error: var(--bg-error);
+  --color-bg-error-hover: var(--bg-error-hover);
+  --color-bg-error-active: var(--bg-error-active);
+  --color-bg-error-alt: var(--bg-error-alt);
+  --color-bg-warning: var(--bg-warning);
+  --color-bg-warning-hover: var(--bg-warning-hover);
+  --color-bg-warning-active: var(--bg-warning-active);
+  --color-bg-warning-alt: var(--bg-warning-alt);
+  --color-bg-success: var(--bg-success);
+  --color-bg-success-hover: var(--bg-success-hover);
+  --color-bg-success-active: var(--bg-success-active);
+  --color-bg-success-alt: var(--bg-success-alt);
+
+  /* Figma Border tokens */
+  --color-border-primary: var(--border-primary);
+  --color-border-secondary: var(--border-secondary);
+  --color-border-tertiary: var(--border-tertiary);
+  --color-border-brand: var(--border-brand);
+  --color-border-brand-alt: var(--border-brand-alt);
+  --color-border-disabled: var(--border-disabled);
+  --color-border-disabled-subtle: var(--border-disabled-subtle);
+  --color-border-error: var(--border-error);
+  --color-border-warning: var(--border-warning);
+  --color-border-success: var(--border-success);
+  --color-border-overlay: var(--border-overlay);
+  --color-border-contrast: var(--border-contrast);
 }
 
-body {
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Qase TMS Status Utilities */
+@layer utilities {
+  /* Text colors */
+  .text-passed { color: var(--status-passed); }
+  .text-failed { color: var(--status-failed); }
+  .text-skipped { color: var(--status-skipped); }
+  .text-broken { color: var(--status-broken); }
+  .text-blocked { color: var(--status-blocked); }
+  .text-invalid { color: var(--status-invalid); }
+  .text-muted-status { color: var(--status-muted); }
+
+  /* Background colors (solid fills for badges/bars) */
+  .bg-passed { background-color: var(--status-passed-bg); }
+  .bg-failed { background-color: var(--status-failed-bg); }
+  .bg-skipped { background-color: var(--status-skipped-bg); }
+  .bg-broken { background-color: var(--status-broken-bg); }
+  .bg-blocked { background-color: var(--status-blocked-bg); }
+  .bg-invalid { background-color: var(--status-invalid-bg); }
+  .bg-muted-status { background-color: var(--status-muted-bg); }
+
+  /* Background muted */
+  .bg-passed-muted { background-color: var(--status-passed-bg); }
+  .bg-failed-muted { background-color: var(--status-failed-bg); }
+  .bg-skipped-muted { background-color: var(--status-skipped-bg); }
+  .bg-broken-muted { background-color: var(--status-broken-bg); }
+  .bg-blocked-muted { background-color: var(--status-blocked-bg); }
+  .bg-invalid-muted { background-color: var(--status-invalid-bg); }
+  .bg-muted-status-muted { background-color: var(--status-muted-bg); }
+
+  /* Border colors */
+  .border-passed { border-color: var(--status-passed); }
+  .border-failed { border-color: var(--status-failed); }
+  .border-skipped { border-color: var(--status-skipped); }
+  .border-broken { border-color: var(--status-broken); }
+  .border-blocked { border-color: var(--status-blocked); }
+  .border-invalid { border-color: var(--status-invalid); }
+  .border-muted-status { border-color: var(--status-muted); }
+
+  /* Brand accent */
+  .text-brand { color: var(--fg-brand); }
+  .bg-brand { background-color: var(--bg-brand); }
+  .border-brand { border-color: var(--border-brand); }
+
+  /* Warning (yellow/mustard) */
+  .text-warning { color: var(--text-warning); }
+  .bg-warning { background-color: var(--bg-warning); }
+  .bg-warning-muted { background-color: var(--bg-warning-alt); }
+
+  /* Success (green/jungle) */
+  .text-success { color: var(--text-success); }
+  .bg-success { background-color: var(--bg-success); }
+  .bg-success-muted { background-color: var(--bg-success-alt); }
+
+  /* Error (red/berry) */
+  .text-error { color: var(--text-error); }
+  .bg-error { background-color: var(--bg-error); }
+  .bg-error-muted { background-color: var(--bg-error-alt); }
+}
+
+html,
+body,
+#root {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Yet Another React Lightbox - ensure it's above all other elements */
+.yarl__root {
+  z-index: 99999 !important;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.yarl__portal {
+  z-index: 99999 !important;
+}
+
+.yarl__container {
+  z-index: 99999 !important;
+}
+
+.yarl__toolbar {
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+}
+
+.yarl__button {
+  pointer-events: auto !important;
+}
+
+/* Light theme: solid status badges (matching Figma design) */
+.light [data-slot="badge"][data-variant="broken"] {
+  background-color: var(--status-broken-fg);
+  color: var(--palette-charcoal-110);
+}
+.light [data-slot="badge"][data-variant="invalid"] {
+  background-color: var(--status-invalid-fg);
+  color: var(--palette-charcoal-110);
 }

@@ -1,0 +1,1470 @@
+{
+  "schema_version": "1.0.0",
+  "runs": [
+    {
+      "run_id": "run-238",
+      "title": "Nightly Build #238",
+      "environment": "staging",
+      "start_time": 1770102000000,
+      "end_time": 1770105600000,
+      "duration": 198500,
+      "stats": {
+        "total": 44,
+        "passed": 40,
+        "failed": 3,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-239",
+      "title": "Nightly Build #239",
+      "environment": "staging",
+      "start_time": 1770188400000,
+      "end_time": 1770192000000,
+      "duration": 187200,
+      "stats": {
+        "total": 44,
+        "passed": 42,
+        "failed": 1,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-240",
+      "title": "Nightly Build #240",
+      "environment": "staging",
+      "start_time": 1770274800000,
+      "end_time": 1770278400000,
+      "duration": 210300,
+      "stats": {
+        "total": 44,
+        "passed": 38,
+        "failed": 4,
+        "skipped": 2,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-241",
+      "title": "Nightly Build #241 - Hotfix",
+      "environment": "production",
+      "start_time": 1770361200000,
+      "end_time": 1770364800000,
+      "duration": 175800,
+      "stats": {
+        "total": 44,
+        "passed": 43,
+        "failed": 0,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-242",
+      "title": "Nightly Build #242",
+      "environment": "staging",
+      "start_time": 1770447600000,
+      "end_time": 1770451200000,
+      "duration": 195600,
+      "stats": {
+        "total": 44,
+        "passed": 41,
+        "failed": 2,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-243",
+      "title": "Nightly Build #243",
+      "environment": "staging",
+      "start_time": 1770534000000,
+      "end_time": 1770537600000,
+      "duration": 220100,
+      "stats": {
+        "total": 44,
+        "passed": 39,
+        "failed": 3,
+        "skipped": 1,
+        "broken": 1
+      }
+    },
+    {
+      "run_id": "run-244",
+      "title": "Nightly Build #244",
+      "environment": "staging",
+      "start_time": 1770620400000,
+      "end_time": 1770624000000,
+      "duration": 183400,
+      "stats": {
+        "total": 44,
+        "passed": 42,
+        "failed": 1,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-245",
+      "title": "Nightly Build #245",
+      "environment": "staging",
+      "start_time": 1770706800000,
+      "end_time": 1770710400000,
+      "duration": 201200,
+      "stats": {
+        "total": 44,
+        "passed": 40,
+        "failed": 2,
+        "skipped": 2,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-246",
+      "title": "Nightly Build #246",
+      "environment": "staging",
+      "start_time": 1770793200000,
+      "end_time": 1770796800000,
+      "duration": 189700,
+      "stats": {
+        "total": 44,
+        "passed": 41,
+        "failed": 2,
+        "skipped": 1,
+        "broken": 0
+      }
+    },
+    {
+      "run_id": "run-247",
+      "title": "Nightly Build #247 - Feature Branch",
+      "environment": "staging",
+      "start_time": 1770879600000,
+      "end_time": 1770883200000,
+      "duration": 192500,
+      "stats": {
+        "total": 44,
+        "passed": 38,
+        "failed": 2,
+        "skipped": 3,
+        "broken": 1
+      }
+    },
+    {
+      "run_id": "1770879600000",
+      "title": "Nightly Build #247 - Feature Branch",
+      "environment": "staging",
+      "start_time": 1770879600000,
+      "end_time": 1770883200000,
+      "duration": 192500,
+      "stats": {
+        "total": 44,
+        "passed": 25,
+        "failed": 5,
+        "skipped": 4,
+        "blocked": 3,
+        "invalid": 2,
+        "muted": 1
+      }
+    }
+  ],
+  "tests": [
+    {
+      "signature": "tests::test_basic.py::test_string_formatter",
+      "title": "test_string_formatter",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 285,
+          "start_time": 1770102010000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 312,
+          "start_time": 1770188410000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "failed",
+          "duration": 1580,
+          "start_time": 1770274810000,
+          "error_message": "AssertionError: Expected 'Hello World' but got 'Hello  World'"
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 298,
+          "start_time": 1770361210000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 275,
+          "start_time": 1770447610000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 320,
+          "start_time": 1770534010000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 290,
+          "start_time": 1770620410000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 305,
+          "start_time": 1770706810000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 288,
+          "start_time": 1770793210000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 320,
+          "start_time": 1770879610000,
+          "error_message": null
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 320,
+          "start_time": 1770879604776,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_json_data",
+      "title": "test_attach_json_data",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 1250,
+          "start_time": 1770102020000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 1340,
+          "start_time": 1770188420000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "passed",
+          "duration": 1180,
+          "start_time": 1770274820000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 1290,
+          "start_time": 1770361220000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 1420,
+          "start_time": 1770447620000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 1380,
+          "start_time": 1770534020000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 1310,
+          "start_time": 1770620420000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 1275,
+          "start_time": 1770706820000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 1350,
+          "start_time": 1770793220000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 1340,
+          "start_time": 1770879620000,
+          "error_message": null
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1340,
+          "start_time": 1770879604261,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_notification_delivery",
+      "title": "test_notification_delivery",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 1820,
+          "start_time": 1770102030000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 1750,
+          "start_time": 1770188430000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "failed",
+          "duration": 5200,
+          "start_time": 1770274830000,
+          "error_message": "TimeoutError: Notification service did not respond within 5000ms"
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 1680,
+          "start_time": 1770361230000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "failed",
+          "duration": 5100,
+          "start_time": 1770447630000,
+          "error_message": "TimeoutError: Notification service did not respond within 5000ms"
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 1790,
+          "start_time": 1770534030000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 1850,
+          "start_time": 1770620430000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 1720,
+          "start_time": 1770706830000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 1880,
+          "start_time": 1770793230000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 1850,
+          "start_time": 1770879630000,
+          "error_message": null
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1850,
+          "start_time": 1770879604840,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "1::tests::test_basic.py::test_user_login_with_valid_credentials",
+      "title": "test_user_login_with_valid_credentials",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 1180,
+          "start_time": 1770102040000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 1240,
+          "start_time": 1770188440000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "passed",
+          "duration": 1150,
+          "start_time": 1770274840000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 1210,
+          "start_time": 1770361240000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 1280,
+          "start_time": 1770447640000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 1190,
+          "start_time": 1770534040000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 1260,
+          "start_time": 1770620440000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 1220,
+          "start_time": 1770706840000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 1250,
+          "start_time": 1770793240000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 1240,
+          "start_time": 1770879640000,
+          "error_message": null
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1240,
+          "start_time": 1770879607233,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_steps.py::test_registration_with_nested_steps",
+      "title": "test_registration_with_nested_steps",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 7450,
+          "start_time": 1770102050000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 7820,
+          "start_time": 1770188450000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "failed",
+          "duration": 3200,
+          "start_time": 1770274850000,
+          "error_message": "ValidationError: Email already exists in database"
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 7680,
+          "start_time": 1770361250000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 7550,
+          "start_time": 1770447650000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "broken",
+          "duration": 45200,
+          "start_time": 1770534050000,
+          "error_message": "ConnectionError: Database connection pool exhausted"
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 7720,
+          "start_time": 1770620450000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 7890,
+          "start_time": 1770706850000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 7650,
+          "start_time": 1770793250000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 7800,
+          "start_time": 1770879650000,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_oauth_token_expiration",
+      "title": "test_oauth_token_expiration",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 980,
+          "start_time": 1770102060000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 1020,
+          "start_time": 1770188460000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "passed",
+          "duration": 950,
+          "start_time": 1770274860000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 1010,
+          "start_time": 1770361260000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 990,
+          "start_time": 1770447660000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 1030,
+          "start_time": 1770534060000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 975,
+          "start_time": 1770620460000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 1005,
+          "start_time": 1770706860000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 985,
+          "start_time": 1770793260000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 980,
+          "start_time": 1770879660000,
+          "error_message": null
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "broken",
+          "duration": 980,
+          "start_time": 1770879619238,
+          "error_message": "RuntimeError: Infrastructure failure"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_cart.py::test_shopping_cart_total",
+      "title": "Verify shopping cart total calculation",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 1520,
+          "start_time": 1770102070000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 1480,
+          "start_time": 1770188470000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "failed",
+          "duration": 1650,
+          "start_time": 1770274870000,
+          "error_message": "AssertionError: Cart total $99.97 != expected $99.99 (rounding error)"
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 1510,
+          "start_time": 1770361270000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 1550,
+          "start_time": 1770447670000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "failed",
+          "duration": 1620,
+          "start_time": 1770534070000,
+          "error_message": "AssertionError: Cart total $99.97 != expected $99.99 (rounding error)"
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 1490,
+          "start_time": 1770620470000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "failed",
+          "duration": 1680,
+          "start_time": 1770706870000,
+          "error_message": "AssertionError: Cart total $99.97 != expected $99.99 (rounding error)"
+        },
+        {
+          "run_id": "run-246",
+          "status": "failed",
+          "duration": 1590,
+          "start_time": 1770793270000,
+          "error_message": "AssertionError: Cart total $99.97 != expected $99.99 (rounding error)"
+        },
+        {
+          "run_id": "run-247",
+          "status": "failed",
+          "duration": 1560,
+          "start_time": 1770879670000,
+          "error_message": "AssertionError: Cart total $99.97 != expected $99.99 (rounding error)"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_profile.py::test_user_profile_update_flow",
+      "title": "test_user_profile_update_flow",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "failed",
+          "duration": 3450,
+          "start_time": 1770102080000,
+          "error_message": "IntegrityError: Duplicate key violation on email field"
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 3180,
+          "start_time": 1770188480000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "passed",
+          "duration": 3250,
+          "start_time": 1770274880000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 3120,
+          "start_time": 1770361280000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 3280,
+          "start_time": 1770447680000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 3150,
+          "start_time": 1770534080000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 3220,
+          "start_time": 1770620480000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 3190,
+          "start_time": 1770706880000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 3240,
+          "start_time": 1770793280000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "failed",
+          "duration": 3200,
+          "start_time": 1770879680000,
+          "error_message": "ValidationError: Avatar file size exceeds 5MB limit"
+        },
+        {
+          "run_id": "1770879600000",
+          "status": "failed",
+          "duration": 3200,
+          "start_time": 1770879651324,
+          "error_message": "AssertionError: Assertion failed"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_mongodb_profiler.py::test_mongodb_profiler",
+      "title": "MongoDB Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 42500,
+          "start_time": 1770102090000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 44200,
+          "start_time": 1770188490000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "skipped",
+          "duration": 120,
+          "start_time": 1770274890000,
+          "error_message": "MongoDB server not available"
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 43800,
+          "start_time": 1770361290000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 45100,
+          "start_time": 1770447690000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 44600,
+          "start_time": 1770534090000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 43200,
+          "start_time": 1770620490000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "skipped",
+          "duration": 115,
+          "start_time": 1770706890000,
+          "error_message": "MongoDB server not available"
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 44900,
+          "start_time": 1770793290000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "broken",
+          "duration": 45200,
+          "start_time": 1770879690000,
+          "error_message": "ConnectionError: MongoDB replica set failover in progress"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_checkout.py::test_complete_checkout_flow",
+      "title": "test_complete_checkout_flow",
+      "runs": [
+        {
+          "run_id": "run-238",
+          "status": "passed",
+          "duration": 8450,
+          "start_time": 1770102100000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-239",
+          "status": "passed",
+          "duration": 8720,
+          "start_time": 1770188500000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-240",
+          "status": "passed",
+          "duration": 8380,
+          "start_time": 1770274900000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-241",
+          "status": "passed",
+          "duration": 8550,
+          "start_time": 1770361300000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-242",
+          "status": "passed",
+          "duration": 8680,
+          "start_time": 1770447700000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-243",
+          "status": "passed",
+          "duration": 8420,
+          "start_time": 1770534100000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-244",
+          "status": "passed",
+          "duration": 8790,
+          "start_time": 1770620500000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-245",
+          "status": "passed",
+          "duration": 8510,
+          "start_time": 1770706900000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-246",
+          "status": "passed",
+          "duration": 8650,
+          "start_time": 1770793300000,
+          "error_message": null
+        },
+        {
+          "run_id": "run-247",
+          "status": "passed",
+          "duration": 8750,
+          "start_time": 1770879700000,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_error_screenshot_simulation",
+      "title": "test_attach_error_screenshot_simulation",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 3400,
+          "start_time": 1770879601267,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_html_report",
+      "title": "test_attach_html_report",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "skipped",
+          "duration": 1890,
+          "start_time": 1770879608930,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_registration.py::test_registration_with_nested_steps",
+      "title": "test_registration_with_nested_steps",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 7800,
+          "start_time": 1770879611249,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "204::tests::test_redis_profiler.py::test_redis_profiler",
+      "title": "Redis Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "skipped",
+          "duration": 3100,
+          "start_time": 1770879610000,
+          "error_message": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_redis_profiler.py', 108, 'Skipped: Redis not available: Error 61 connecting to localhost:6379. Connection refused.')"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_api_response_structure",
+      "title": "test_api_response_structure",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "failed",
+          "duration": 890,
+          "start_time": 1770879609278,
+          "error_message": "AssertionError: Assertion failed"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_pagination",
+      "title": "test_pagination",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "muted",
+          "duration": 1890,
+          "start_time": 1770879620550,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_multiple_files",
+      "title": "test_attach_multiple_files",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 4560,
+          "start_time": 1770879610379,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_user_data_encryption",
+      "title": "test_user_data_encryption",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "blocked",
+          "duration": 4200,
+          "start_time": 1770879615062,
+          "error_message": "BlockedError: External dependency unavailable"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_login_with_remember_me",
+      "title": "test_login_with_remember_me",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1450,
+          "start_time": 1770879605224,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "2-3::tests::test_basic.py::test_user_permissions_check",
+      "title": "test_user_permissions_check",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "broken",
+          "duration": 1120,
+          "start_time": 1770879619848,
+          "error_message": "RuntimeError: Infrastructure failure"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_ui_theme_switching",
+      "title": "test_ui_theme_switching",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "blocked",
+          "duration": 2100,
+          "start_time": 1770879621373,
+          "error_message": "BlockedError: External dependency unavailable"
+        }
+      ]
+    },
+    {
+      "signature": "50::tests::test_attachments.py::test_database_query_with_attachment",
+      "title": "Database query execution with result attachment",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2450,
+          "start_time": 1770879623725,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_password_validation",
+      "title": "test_password_validation",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "failed",
+          "duration": 780,
+          "start_time": 1770879622810,
+          "error_message": "AssertionError: Assertion failed"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_api_flow_with_step_attachments",
+      "title": "test_api_flow_with_step_attachments",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2340,
+          "start_time": 1770879607037,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_login.py::test_successful_login_flow",
+      "title": "test_successful_login_flow",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2780,
+          "start_time": 1770879624177,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_user_registration_flow",
+      "title": "test_user_registration_flow",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 4890,
+          "start_time": 1770879609586,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_analytics_tracking",
+      "title": "test_analytics_tracking",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "blocked",
+          "duration": 1890,
+          "start_time": 1770879614607,
+          "error_message": "BlockedError: External dependency unavailable"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_single_file",
+      "title": "test_attach_single_file",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 5200,
+          "start_time": 1770879616744,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "201::tests::test_sqlite_profiler.py::test_sqlite_profiler",
+      "title": "SQLite Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 12400,
+          "start_time": 1770879610000,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_checkout.py::test_checkout_flow_with_context_manager",
+      "title": "test_checkout_flow_with_context_manager",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 6890,
+          "start_time": 1770879622065,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_generated_file",
+      "title": "test_attach_generated_file",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2100,
+          "start_time": 1770879626575,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_oauth.py::test_google_oauth_login",
+      "title": "test_google_oauth_login",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 3450,
+          "start_time": 1770879629094,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_text_content",
+      "title": "test_attach_text_content",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1560,
+          "start_time": 1770879632770,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_tooltip_display",
+      "title": "test_tooltip_display",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "broken",
+          "duration": 560,
+          "start_time": 1770879634635,
+          "error_message": "RuntimeError: Infrastructure failure"
+        }
+      ]
+    },
+    {
+      "signature": "200::tests::test_postgres_profiler.py::test_postgres_profiler",
+      "title": "PostgreSQL Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "skipped",
+          "duration": 2890,
+          "start_time": 1770879613600,
+          "error_message": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_postgres_profiler.py', 102, 'Skipped: PostgreSQL not available: connection to server at \"localhost\" (::1), port 5432 failed: Connection refused\\n\\tIs the server running on that host and accepting TCP/IP connections?\\nconnection to server at \"localhost\" (127.0.0.1), port 5432 failed: Connection refused\\n\\tIs the server running on that host and accepting TCP/IP connections?')"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_steps.py::test_login_flow_with_step_decorator",
+      "title": "test_login_flow_with_step_decorator",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 3560,
+          "start_time": 1770879616990,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "51::tests::test_attachments.py::test_config_validation_with_attachment",
+      "title": "Configuration validation with config attachment",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 1780,
+          "start_time": 1770879640394,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "10::tests::test_checkout.py::test_complete_checkout_flow",
+      "title": "test_complete_checkout_flow",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 8750,
+          "start_time": 1770879642305,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "202::tests::test_mysql_profiler.py::test_mysql_profiler",
+      "title": "MySQL Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "skipped",
+          "duration": 3250,
+          "start_time": 1770879621050,
+          "error_message": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_mysql_profiler.py', 102, 'Skipped: MySQL not available: (2003, \"Can\\'t connect to MySQL server on \\'localhost\\' ([Errno 61] Connection refused)\")')"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_cart.py::test_cart_total_with_discount",
+      "title": "Verify shopping cart total calculation",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "failed",
+          "duration": 1560,
+          "start_time": 1770879635296,
+          "error_message": "AssertionError: Assertion failed"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_authentication_service",
+      "title": "test_authentication_service",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2100,
+          "start_time": 1770879637259,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_performance_metrics",
+      "title": "test_attach_performance_metrics",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 2340,
+          "start_time": 1770879654632,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_payments.py::test_payment_processing",
+      "title": "test_payment_processing",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 6200,
+          "start_time": 1770879657372,
+          "error_message": null
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_basic.py::test_search_functionality",
+      "title": "test_search_functionality",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "failed",
+          "duration": 2890,
+          "start_time": 1770879639746,
+          "error_message": "AssertionError: Assertion failed"
+        }
+      ]
+    },
+    {
+      "signature": "203::tests::test_mongodb_profiler.py::test_mongodb_profiler",
+      "title": "MongoDB Database Profiler Test",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "broken",
+          "duration": 45200,
+          "start_time": 1770879639360,
+          "error_message": "RuntimeError: Infrastructure failure"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_csv_report",
+      "title": "test_attach_csv_report",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "invalid",
+          "duration": 980,
+          "start_time": 1770879684822,
+          "error_message": "InvalidTestError: Test configuration error"
+        }
+      ]
+    },
+    {
+      "signature": "tests::test_attachments.py::test_attach_file_with_mime_type",
+      "title": "test_attach_file_with_mime_type",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "invalid",
+          "duration": 1670,
+          "start_time": 1770879643091,
+          "error_message": "InvalidTestError: Test configuration error"
+        }
+      ]
+    },
+    {
+      "signature": "100::tests::test_user_management.py::test_e2e_user_management",
+      "title": "Complete E2E user management flow",
+      "runs": [
+        {
+          "run_id": "1770879600000",
+          "status": "passed",
+          "duration": 4520,
+          "start_time": 1770879686091,
+          "error_message": null
+        }
+      ]
+    }
+  ]
+}

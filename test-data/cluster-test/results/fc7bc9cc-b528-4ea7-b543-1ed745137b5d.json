@@ -1,0 +1,244 @@
+{
+    "attachments": [
+        {
+            "content": "CiAgICA8IURPQ1RZUEUgaHRtbD4KICAgIDxodG1sPgogICAgPGhlYWQ+PHRpdGxlPlRlc3QgUmVwb3J0PC90aXRsZT48L2hlYWQ+CiAgICA8Ym9keT4KICAgICAgICA8aDE+VGVzdCBFeGVjdXRpb24gU3VtbWFyeTwvaDE+CiAgICAgICAgPHRhYmxlIGJvcmRlcj0iMSI+CiAgICAgICAgICAgIDx0cj48dGg+VGVzdDwvdGg+PHRoPlN0YXR1czwvdGg+PHRoPkR1cmF0aW9uPC90aD48L3RyPgogICAgICAgICAgICA8dHI+PHRkPkxvZ2luIFRlc3Q8L3RkPjx0ZCBzdHlsZT0iY29sb3I6Z3JlZW4iPlBBU1NFRDwvdGQ+PHRkPjEuMnM8L3RkPjwvdHI+CiAgICAgICAgICAgIDx0cj48dGQ+Q2hlY2tvdXQgVGVzdDwvdGQ+PHRkIHN0eWxlPSJjb2xvcjpncmVlbiI+UEFTU0VEPC90ZD48dGQ+My41czwvdGQ+PC90cj4KICAgICAgICAgICAgPHRyPjx0ZD5TZWFyY2ggVGVzdDwvdGQ+PHRkIHN0eWxlPSJjb2xvcjpyZWQiPkZBSUxFRDwvdGQ+PHRkPjIuMXM8L3RkPjwvdHI+CiAgICAgICAgPC90YWJsZT4KICAgICAgICA8cD5Ub3RhbDogMyB0ZXN0cywgMiBwYXNzZWQsIDEgZmFpbGVkPC9wPgogICAgPC9ib2R5PgogICAgPC9odG1sPgogICAg",
+            "file_name": "user_management_report.html",
+            "file_path": "./build/qase-report/attachments/c6fbc624-c52b-481f-b25a-bf4da4b7d534-summary_report.html",
+            "id": "attach-user-report",
+            "mime_type": "text/html",
+            "temporary": false
+        },
+        {
+            "content": "U0VMRUNUIGlkLCBuYW1lLCBlbWFpbCBGUk9NIHVzZXJzIFdIRVJFIHN0YXR1cyA9ICdhY3RpdmUnIExJTUlUIDEw",
+            "file_name": "database_queries.sql",
+            "file_path": "./build/qase-report/attachments/90f48935-4b7c-42bd-b007-7ec529d19f2a-executed_query.sql",
+            "id": "attach-db-queries",
+            "mime_type": "text/plain",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 4520,
+        "end_time": 1770879690611,
+        "stacktrace": null,
+        "start_time": 1770879686091,
+        "status": "passed",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "severity": "critical",
+        "priority": "high",
+        "component": "User Management",
+        "layer": "e2e"
+    },
+    "id": "fc7bc9cc-b528-4ea7-b543-1ed745137b5d",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {
+        "db_type": "postgres",
+        "test_user_prefix": "e2e_test_"
+    },
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_user_management"
+                }
+            ]
+        }
+    },
+    "signature": "100::tests::test_user_management.py::test_e2e_user_management",
+    "steps": [
+        {
+            "data": {
+                "action": "Initialize test database connection",
+                "expected_result": "Connection pool established",
+                "input_data": "PostgreSQL: localhost:5432/testdb"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 345,
+                "end_time": 1770880610345,
+                "start_time": 1770880610000,
+                "status": "passed"
+            },
+            "id": "step-init-db",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Clean up existing test users",
+                "expected_result": "All e2e_test_* users removed",
+                "input_data": "DELETE FROM users WHERE username LIKE 'e2e_test_%'"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 280,
+                "end_time": 1770880610625,
+                "start_time": 1770880610345,
+                "status": "passed"
+            },
+            "id": "step-cleanup-users",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Create test user via API",
+                "expected_result": "User created with ID returned",
+                "input_data": "POST /api/users {username: 'e2e_test_john', email: 'john@test.com'}"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+                        "file_name": "create_user_response.json",
+                        "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+                        "id": "attach-create-user",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 890,
+                "end_time": 1770880611515,
+                "start_time": 1770880610625,
+                "status": "passed"
+            },
+            "id": "step-create-user",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Verify user exists in database",
+                "expected_result": "User record found with correct data",
+                "input_data": "SELECT * FROM users WHERE username = 'e2e_test_john'"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJxdWVyeSI6ICJTRUxFQ1QgKiBGUk9NIHVzZXJzIFdIRVJFIHVzZXJuYW1lID0gJ2UyZV90ZXN0X2pvaG4nIiwKICAiZXhlY3V0aW9uX3RpbWVfbXMiOiAxMiwKICAicm93c19hZmZlY3RlZCI6IDEsCiAgInJlc3VsdHMiOiBbCiAgICB7CiAgICAgICJpZCI6IDQ1Njc4LAogICAgICAidXNlcm5hbWUiOiAiZTJlX3Rlc3Rfam9obiIsCiAgICAgICJlbWFpbCI6ICJqb2huQHRlc3QuY29tIiwKICAgICAgInBhc3N3b3JkX2hhc2giOiAiJDJiJDEyJHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4IiwKICAgICAgImNyZWF0ZWRfYXQiOiAiMjAyNi0wMi0xMlQxNDoxMDoxMC42MjVaIiwKICAgICAgInVwZGF0ZWRfYXQiOiAiMjAyNi0wMi0xMlQxNDoxMDoxMC42MjVaIiwKICAgICAgImxhc3RfbG9naW4iOiBudWxsLAogICAgICAiaXNfYWN0aXZlIjogdHJ1ZSwKICAgICAgImlzX3ZlcmlmaWVkIjogZmFsc2UsCiAgICAgICJyb2xlIjogInVzZXIiLAogICAgICAicHJvZmlsZSI6IHsKICAgICAgICAiZmlyc3RfbmFtZSI6ICJKb2huIiwKICAgICAgICAibGFzdF9uYW1lIjogIlRlc3QiLAogICAgICAgICJhdmF0YXIiOiBudWxsLAogICAgICAgICJiaW8iOiBudWxsLAogICAgICAgICJ0aW1lem9uZSI6ICJVVEMiCiAgICAgIH0sCiAgICAgICJzZXR0aW5ncyI6IHsKICAgICAgICAidGhlbWUiOiAic3lzdGVtIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHsKICAgICAgICAgICJlbWFpbCI6IHRydWUsCiAgICAgICAgICAicHVzaCI6IGZhbHNlCiAgICAgICAgfSwKICAgICAgICAibGFuZ3VhZ2UiOiAiZW4iCiAgICAgIH0KICAgIH0KICBdLAogICJtZXRhZGF0YSI6IHsKICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgInNjaGVtYSI6ICJwdWJsaWMiLAogICAgInRhYmxlIjogInVzZXJzIiwKICAgICJzZXJ2ZXIiOiAibG9jYWxob3N0OjU0MzIiLAogICAgImNvbm5lY3Rpb25faWQiOiAiY29ubi1hYmMxMjMiCiAgfQp9Cg==",
+                        "file_name": "user_query_result.json",
+                        "file_path": "./build/qase-report/attachments/e3e7bf56-8ed2-419e-8bed-ec5817f0d6e7-query_results.json",
+                        "id": "attach-user-query",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 456,
+                "end_time": 1770880611971,
+                "start_time": 1770880611515,
+                "status": "passed"
+            },
+            "id": "step-verify-db",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Test user authentication",
+                "expected_result": "JWT token returned with valid claims",
+                "input_data": "POST /api/auth/login {username: 'e2e_test_john', password: 'testpass123'}"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 1120,
+                "end_time": 1770880613091,
+                "start_time": 1770880611971,
+                "status": "passed"
+            },
+            "id": "step-auth-user",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": [
+                {
+                    "data": {
+                        "action": "Submit login credentials",
+                        "expected_result": "HTTP 200 response",
+                        "input_data": "Content-Type: application/json"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 780,
+                        "end_time": 1770880612751,
+                        "start_time": 1770880611971,
+                        "status": "passed"
+                    },
+                    "id": "step-submit-login",
+                    "parent_id": "step-auth-user",
+                    "step_type": "text",
+                    "steps": []
+                },
+                {
+                    "data": {
+                        "action": "Verify JWT token structure",
+                        "expected_result": "Token has valid header, payload, signature",
+                        "input_data": "Decode and verify JWT claims"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 340,
+                        "end_time": 1770880613091,
+                        "start_time": 1770880612751,
+                        "status": "passed"
+                    },
+                    "id": "step-verify-jwt",
+                    "parent_id": "step-auth-user",
+                    "step_type": "text",
+                    "steps": []
+                }
+            ]
+        },
+        {
+            "data": {
+                "action": "Verify user permissions",
+                "expected_result": "User has default role permissions",
+                "input_data": "GET /api/users/me/permissions with JWT"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 567,
+                "end_time": 1770880613658,
+                "start_time": 1770880613091,
+                "status": "passed"
+            },
+            "id": "step-verify-permissions",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Clean up test data",
+                "expected_result": "Test user removed from database",
+                "input_data": "DELETE FROM users WHERE username = 'e2e_test_john'"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 862,
+                "end_time": 1770880614520,
+                "start_time": 1770880613658,
+                "status": "passed"
+            },
+            "id": "step-cleanup-final",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        100
+    ],
+    "title": "Complete E2E user management flow"
+}

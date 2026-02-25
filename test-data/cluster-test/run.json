@@ -1,0 +1,357 @@
+{
+    "environment": "staging",
+    "execution": {
+        "cumulative_duration": 185420,
+        "duration": 192500,
+        "end_time": 1770883200000,
+        "start_time": 1770879600000
+    },
+    "host_data": {
+        "machine": "arm64",
+        "node": "ci-runner-prod-01.internal",
+        "pip": "24.2",
+        "python": "3.12.3.final.0",
+        "release": "25.2.0",
+        "system": "Darwin",
+        "version": "Darwin Kernel Version 25.2.0"
+    },
+    "results": [
+        {
+            "duration": 3250,
+            "id": "bf8bc690-ef31-4c6f-8ef8-38b871a12749",
+            "status": "skipped",
+            "thread": "worker-1",
+            "title": "MySQL Database Profiler Test"
+        },
+        {
+            "duration": 1850,
+            "id": "075d8672-b337-47be-865c-8b4476794aad",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_notification_delivery"
+        },
+        {
+            "duration": 4520,
+            "id": "fc7bc9cc-b528-4ea7-b543-1ed745137b5d",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "Complete E2E user management flow"
+        },
+        {
+            "duration": 2340,
+            "id": "569210da-1975-446f-9965-3338001fddd3",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_api_flow_with_step_attachments"
+        },
+        {
+            "duration": 980,
+            "id": "1a07824c-6410-4634-911e-f34cbe9c952f",
+            "status": "broken",
+            "thread": "worker-2",
+            "title": "test_oauth_token_expiration"
+        },
+        {
+            "duration": 2890,
+            "id": "9784b8d5-6eb4-4da1-875a-f6aaa4fba7ba",
+            "status": "skipped",
+            "thread": "worker-1",
+            "title": "PostgreSQL Database Profiler Test"
+        },
+        {
+            "duration": 1560,
+            "id": "ca7ee0af-6bef-436f-9adf-cdf594b84e49",
+            "status": "failed",
+            "thread": "worker-3",
+            "title": "Verify shopping cart total calculation"
+        },
+        {
+            "duration": 8750,
+            "id": "bf7fae94-d9e9-4f35-902d-a46b80599994",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_complete_checkout_flow"
+        },
+        {
+            "duration": 45200,
+            "id": "f24ead52-1ecb-497e-9f8b-92e293890dcf",
+            "status": "broken",
+            "thread": "worker-1",
+            "title": "MongoDB Database Profiler Test"
+        },
+        {
+            "duration": 320,
+            "id": "001cab71-5808-4685-b545-c2150bd5c13a",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_string_formatter"
+        },
+        {
+            "duration": 1890,
+            "id": "126de46f-a511-4d37-8c1e-b569fea6b67a",
+            "status": "skipped",
+            "thread": "worker-2",
+            "title": "test_attach_html_report"
+        },
+        {
+            "duration": 2100,
+            "id": "816106ee-4677-4d0e-ac64-749c850d7f2f",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "test_attach_generated_file"
+        },
+        {
+            "duration": 3450,
+            "id": "816160d1-850e-4f3f-81a2-4ad4309afa62",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_google_oauth_login"
+        },
+        {
+            "duration": 2780,
+            "id": "5df2f75a-d980-4b89-99be-4d18dc291c6c",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_successful_login_flow"
+        },
+        {
+            "duration": 4200,
+            "id": "2cc9e508-7273-44a6-871b-061a28a72c91",
+            "status": "blocked",
+            "thread": "worker-1",
+            "title": "test_user_data_encryption"
+        },
+        {
+            "duration": 6890,
+            "id": "74a3b479-9bdd-4582-a14b-b6af28d41ee4",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_checkout_flow_with_context_manager"
+        },
+        {
+            "duration": 1240,
+            "id": "085d6555-c342-4098-b492-2aef142ab007",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_user_login_with_valid_credentials"
+        },
+        {
+            "duration": 890,
+            "id": "252daba3-7b5c-485a-8d46-c3266345c8c6",
+            "status": "failed",
+            "thread": "worker-1",
+            "title": "test_api_response_structure"
+        },
+        {
+            "duration": 1560,
+            "id": "822c24de-61e7-4efd-99a8-592724296e63",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_attach_text_content"
+        },
+        {
+            "duration": 3200,
+            "id": "c8a5c03a-1a61-4e9e-8deb-671596fb6c1a",
+            "status": "failed",
+            "thread": "worker-2",
+            "title": "test_user_profile_update_flow"
+        },
+        {
+            "duration": 980,
+            "id": "f55fc262-5632-4a99-9dae-783300a39a4f",
+            "status": "invalid",
+            "thread": "worker-1",
+            "title": "test_attach_csv_report"
+        },
+        {
+            "duration": 1450,
+            "id": "2cd5086a-2f01-46ec-9687-fc5ee4568f59",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_login_with_remember_me"
+        },
+        {
+            "duration": 2340,
+            "id": "eb415d62-5cfa-44ce-acfa-574e03121318",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_attach_performance_metrics"
+        },
+        {
+            "duration": 1120,
+            "id": "31e0a8eb-cd58-4d22-8696-01a0e4d2fef0",
+            "status": "broken",
+            "thread": "worker-1",
+            "title": "test_user_permissions_check"
+        },
+        {
+            "duration": 2890,
+            "id": "f110984a-7e3a-46cc-b514-26ee10115926",
+            "status": "failed",
+            "thread": "worker-3",
+            "title": "test_search_functionality"
+        },
+        {
+            "duration": 1780,
+            "id": "bbb56cff-9217-4d46-8ba0-bfb2ebdd15dc",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "Configuration validation with config attachment"
+        },
+        {
+            "duration": 2100,
+            "id": "375dfeeb-f6a2-47af-880d-d9dbd9085308",
+            "status": "blocked",
+            "thread": "worker-1",
+            "title": "test_ui_theme_switching"
+        },
+        {
+            "duration": 560,
+            "id": "857f8c7f-4be9-43eb-a58d-6c58ba9db603",
+            "status": "broken",
+            "thread": "worker-3",
+            "title": "test_tooltip_display"
+        },
+        {
+            "duration": 3400,
+            "id": "0632fab4-3f1d-48c8-a1d2-6bcd893581b0",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_attach_error_screenshot_simulation"
+        },
+        {
+            "duration": 4560,
+            "id": "2be33190-e0fc-48b1-a30a-d6fe0985fcba",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "test_attach_multiple_files"
+        },
+        {
+            "duration": 1890,
+            "id": "6b1dc5ba-7687-44d5-8386-b26017686029",
+            "status": "blocked",
+            "thread": "worker-3",
+            "title": "test_analytics_tracking"
+        },
+        {
+            "duration": 7800,
+            "id": "15ddf9c1-3f2e-4918-a9cc-c0125cc4a34e",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_registration_with_nested_steps"
+        },
+        {
+            "duration": 2450,
+            "id": "3cf70f35-7f42-47fe-bbf0-b07884ef719b",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "Database query execution with result attachment"
+        },
+        {
+            "duration": 5200,
+            "id": "6ffcd95e-8151-48fb-9dac-056c1c683f7d",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_attach_single_file"
+        },
+        {
+            "duration": 780,
+            "id": "51a604d6-817d-4f61-879e-ea73b35db17d",
+            "status": "failed",
+            "thread": "worker-2",
+            "title": "test_password_validation"
+        },
+        {
+            "duration": 3100,
+            "id": "1c92a0ef-dea2-46da-9d85-279df0ed25eb",
+            "status": "skipped",
+            "thread": "worker-1",
+            "title": "Redis Database Profiler Test"
+        },
+        {
+            "duration": 1670,
+            "id": "f56749e0-11e2-4aab-b852-94ecf703df9a",
+            "status": "invalid",
+            "thread": "worker-3",
+            "title": "test_attach_file_with_mime_type"
+        },
+        {
+            "duration": 12400,
+            "id": "723af793-401a-4625-b943-04329aa7d5e1",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "SQLite Database Profiler Test"
+        },
+        {
+            "duration": 1340,
+            "id": "01e4310e-9340-4e94-abde-a880ea3a9cb9",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "test_attach_json_data"
+        },
+        {
+            "duration": 4890,
+            "id": "5e505c12-cbe1-4c45-9c3c-046947aaac76",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_user_registration_flow"
+        },
+        {
+            "duration": 6200,
+            "id": "ee83b01d-d2cb-4707-ab3a-ea25121350eb",
+            "status": "passed",
+            "thread": "worker-2",
+            "title": "test_payment_processing"
+        },
+        {
+            "duration": 3560,
+            "id": "a75f6eed-80e4-4bce-9906-627ef7a44955",
+            "status": "passed",
+            "thread": "worker-1",
+            "title": "test_login_flow_with_step_decorator"
+        },
+        {
+            "duration": 2100,
+            "id": "e269f0be-c2ec-4acb-b79b-54296fcc6be2",
+            "status": "passed",
+            "thread": "worker-3",
+            "title": "test_authentication_service"
+        },
+        {
+            "duration": 1890,
+            "id": "29a47de7-825d-4792-8ee3-1af6fb3ebad7",
+            "status": "muted",
+            "thread": "worker-2",
+            "title": "test_pagination"
+        }
+    ],
+    "stats": {
+        "passed": 25,
+        "failed": 5,
+        "broken": 4,
+        "skipped": 4,
+        "blocked": 3,
+        "invalid": 2,
+        "muted": 1,
+        "total": 44
+    },
+    "suites": [
+        "tests/test_mysql_profiler",
+        "tests/test_basic",
+        "tests/test_steps",
+        "tests/test_attachments",
+        "Authentication/OAuth/Error Handling",
+        "tests/test_postgres_profiler",
+        "tests/test_mongodb_profiler",
+        "Authentication/OAuth",
+        "Authentication",
+        "tests/test_redis_profiler",
+        "tests/test_sqlite_profiler"
+    ],
+    "threads": [
+        "worker-1",
+        "worker-2",
+        "worker-3"
+    ],
+    "title": "Nightly Build #247 - Feature Branch"
+}

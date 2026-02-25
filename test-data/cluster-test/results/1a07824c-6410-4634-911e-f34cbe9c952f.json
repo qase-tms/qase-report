@@ -1,0 +1,41 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 980,
+        "end_time": 1770879620218,
+        "stacktrace": "RuntimeError: Infrastructure failure\n  at connect_to_service (/lib/connections.py:67)\n  at setup_test_env (/tests/fixtures.py:34)\n  at TestCase.setUp (/tests/base.py:12)",
+        "start_time": 1770879619238,
+        "status": "broken",
+        "thread": "worker-2"
+    },
+    "fields": {
+        "suite": null
+    },
+    "id": "1a07824c-6410-4634-911e-f34cbe9c952f",
+    "message": "RuntimeError: Test infrastructure failure - unable to complete execution",
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "Authentication"
+                },
+                {
+                    "public_id": null,
+                    "title": "OAuth"
+                },
+                {
+                    "public_id": null,
+                    "title": "Error Handling"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_basic.py::test_oauth_token_expiration",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_oauth_token_expiration"
+}

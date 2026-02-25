@@ -1,0 +1,97 @@
+{
+    "attachments": [],
+    "execution": {
+        "duration": 3100,
+        "end_time": 1770879613100,
+        "stacktrace": "('/Users/gda/Documents/github/qase-tms/qase-python/examples/single/pytest/tests/test_redis_profiler.py', 108, 'Skipped: Redis not available: Error 61 connecting to localhost:6379. Connection refused.')",
+        "start_time": 1770879610000,
+        "status": "skipped",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "description": "Simple test to verify Redis database profiler functionality",
+        "priority": "high",
+        "severity": "normal"
+    },
+    "id": "1c92a0ef-dea2-46da-9d85-279df0ed25eb",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_redis_profiler"
+                }
+            ]
+        }
+    },
+    "signature": "204::tests::test_redis_profiler.py::test_redis_profiler",
+    "steps": [
+        {
+            "data": {
+                "action": "Connect to Redis database",
+                "expected_result": null,
+                "input_data": null
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 1,
+                "end_time": 1770879610001,
+                "start_time": 1770879610000,
+                "status": "failed"
+            },
+            "id": "6cc0e385-fb19-4940-ac9c-8b7f2aff3ef3",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": [
+                {
+                    "data": {
+                        "action": "SQL: PING ",
+                        "expected_result": null,
+                        "input_data": "Redis: localhost:6379"
+                    },
+                    "execution": {
+                        "attachments": [],
+                        "duration": 0,
+                        "end_time": 1770879610101,
+                        "start_time": 1770879610001,
+                        "status": "failed"
+                    },
+                    "id": "bb5b5991-2c9e-4b73-a109-6b432d69256c",
+                    "parent_id": "6cc0e385-fb19-4940-ac9c-8b7f2aff3ef3",
+                    "step_type": "text",
+                    "steps": []
+                }
+            ]
+        },
+        {
+            "data": {
+                "action": "SQL: KEYS test_*",
+                "expected_result": null,
+                "input_data": "Redis: localhost:6379"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 0,
+                "end_time": 1770879610201,
+                "start_time": 1770879610101,
+                "status": "failed"
+            },
+            "id": "c0d78b1e-e353-4625-8bc7-39f5a2a70a90",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        204
+    ],
+    "title": "Redis Database Profiler Test"
+}

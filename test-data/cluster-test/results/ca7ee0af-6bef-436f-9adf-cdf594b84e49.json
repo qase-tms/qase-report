@@ -1,0 +1,171 @@
+{
+    "attachments": [
+        {
+            "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+            "file_name": "cart_state_before_failure.json",
+            "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+            "id": "a62ebda2-80dc-4db3-8c98-e6a46e516425",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 1560,
+        "end_time": 1770879636856,
+        "stacktrace": "AssertionError: Assertion failed\n  at TestCase.runTest (/tests/runner.py:145)\n  at TestSuite.execute (/tests/suite.py:89)\n  at main (/tests/main.py:23)",
+        "start_time": 1770879635296,
+        "status": "failed",
+        "thread": "worker-3"
+    },
+    "fields": {
+        "priority": "critical",
+        "component": "E-Commerce",
+        "severity": "major"
+    },
+    "id": "ca7ee0af-6bef-436f-9adf-cdf594b84e49",
+    "message": "AssertionError: Expected value did not match actual result",
+    "muted": false,
+    "param_groups": [],
+    "params": {
+        "discount_code": "SAVE10",
+        "currency": "USD"
+    },
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_cart"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_cart.py::test_cart_total_with_discount",
+    "steps": [
+        {
+            "data": {
+                "action": "Initialize shopping cart for user",
+                "expected_result": "Empty cart created with user context",
+                "input_data": "user_id: test-user-123"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 120,
+                "end_time": 1770880455120,
+                "start_time": 1770880455000,
+                "status": "passed"
+            },
+            "id": "step-cart-init",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Add first item to cart",
+                "expected_result": "Item added, cart contains 1 item",
+                "input_data": "SKU: WIDGET-001, Price: $39.99, Qty: 1"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 85,
+                "end_time": 1770880455205,
+                "start_time": 1770880455120,
+                "status": "passed"
+            },
+            "id": "step-add-item1",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Add second item to cart",
+                "expected_result": "Item added, cart contains 2 items",
+                "input_data": "SKU: GADGET-002, Price: $49.99, Qty: 1"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 78,
+                "end_time": 1770880455283,
+                "start_time": 1770880455205,
+                "status": "passed"
+            },
+            "id": "step-add-item2",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Add third item to cart",
+                "expected_result": "Item added, cart contains 3 items",
+                "input_data": "SKU: TOOL-003, Price: $35.99, Qty: 1"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 92,
+                "end_time": 1770880455375,
+                "start_time": 1770880455283,
+                "status": "passed"
+            },
+            "id": "step-add-item3",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Apply discount code SAVE10",
+                "expected_result": "10% discount applied to cart total",
+                "input_data": "Discount code: SAVE10 (10% off)"
+            },
+            "execution": {
+                "attachments": [],
+                "duration": 245,
+                "end_time": 1770880455620,
+                "start_time": 1770880455375,
+                "status": "passed"
+            },
+            "id": "step-apply-discount",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        },
+        {
+            "data": {
+                "action": "Verify cart total calculation",
+                "expected_result": "Total = (39.99 + 49.99 + 35.99) * 0.9 = $113.37",
+                "input_data": "Expected total: $113.37 after 10% discount"
+            },
+            "execution": {
+                "attachments": [
+                    {
+                        "content": "ewogICJzdGF0dXMiOiAic3VjY2VzcyIsCiAgImNvZGUiOiAyMDAsCiAgImRhdGEiOiB7CiAgICAidXNlciI6IHsKICAgICAgImlkIjogInVzcl8xMjM0NWFiYyIsCiAgICAgICJlbWFpbCI6ICJqb2huLmRvZUBleGFtcGxlLmNvbSIsCiAgICAgICJkaXNwbGF5X25hbWUiOiAiSm9obiBEb2UiLAogICAgICAiYXZhdGFyX3VybCI6ICJodHRwczovL2Nkbi5leGFtcGxlLmNvbS9hdmF0YXJzL3Vzcl8xMjM0NWFiYy5wbmciLAogICAgICAiY3JlYXRlZF9hdCI6ICIyMDI1LTA2LTE1VDA4OjMwOjAwWiIsCiAgICAgICJsYXN0X2xvZ2luIjogIjIwMjYtMDItMTJUMTQ6MzA6MDBaIiwKICAgICAgInJvbGVzIjogWyJ1c2VyIiwgInByZW1pdW0iXSwKICAgICAgInByZWZlcmVuY2VzIjogewogICAgICAgICJ0aGVtZSI6ICJkYXJrIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHRydWUsCiAgICAgICAgInRpbWV6b25lIjogIkFtZXJpY2EvTG9zX0FuZ2VsZXMiCiAgICAgIH0KICAgIH0sCiAgICAic2Vzc2lvbiI6IHsKICAgICAgInRva2VuIjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp6ZFdJaU9pSjFjM0pmTVRJek5EVmhZbU1pTENKcFlYUWlPakUzTnpBNE56azJNREI5LnNpZ25hdHVyZSIsCiAgICAgICJleHBpcmVzX2F0IjogIjIwMjYtMDItMTNUMTQ6MzA6MDBaIiwKICAgICAgInJlZnJlc2hfdG9rZW4iOiAicmVmX3h5ejc4OS4uLiIKICAgIH0KICB9LAogICJtZXRhZGF0YSI6IHsKICAgICJyZXF1ZXN0X2lkIjogInJlcS1mOGU5MmMxYS00YjNkLTRmMmUtOWE4Yy03ZDZlNWY0YTNiMmMiLAogICAgInRpbWVzdGFtcCI6ICIyMDI2LTAyLTEyVDE0OjMwOjAwLjEyM1oiLAogICAgInJlc3BvbnNlX3RpbWVfbXMiOiA0MiwKICAgICJzZXJ2ZXIiOiAiYXBpLXByb2QtMDMuZXhhbXBsZS5jb20iCiAgfQp9Cg==",
+                        "file_name": "cart_state_at_failure.json",
+                        "file_path": "./build/qase-report/attachments/a62ebda2-80dc-4db3-8c98-e6a46e516425-api_response.json",
+                        "id": "a62ebda2-80dc-4db3-8c98-e6a46e516426",
+                        "mime_type": "application/json",
+                        "temporary": false
+                    }
+                ],
+                "duration": 940,
+                "end_time": 1770880456560,
+                "start_time": 1770880455620,
+                "status": "failed"
+            },
+            "id": "step-verify-total",
+            "parent_id": null,
+            "step_type": "text",
+            "steps": []
+        }
+    ],
+    "testops_ids": [
+        5001
+    ],
+    "title": "Verify shopping cart total calculation"
+}

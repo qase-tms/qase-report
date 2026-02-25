@@ -1,0 +1,44 @@
+{
+    "attachments": [
+        {
+            "content": "ewogICJ0ZXN0X3J1biI6ICJOaWdodGx5IEJ1aWxkICMyNDciLAogICJ0aW1lc3RhbXAiOiAiMjAyNi0wMi0xMlQxNTowMDowMFoiLAogICJtZXRyaWNzIjogewogICAgInRvdGFsX3Rlc3RzIjogNDQsCiAgICAicGFzc2VkIjogMzgsCiAgICAiZmFpbGVkIjogMiwKICAgICJicm9rZW4iOiAxLAogICAgInNraXBwZWQiOiAzLAogICAgInBhc3NfcmF0ZSI6IDg2LjM2LAogICAgImV4ZWN1dGlvbl90aW1lX21zIjogMTg1NDIwLAogICAgInBhcmFsbGVsX3dvcmtlcnMiOiAzCiAgfSwKICAicGVyZm9ybWFuY2UiOiB7CiAgICAiYXZnX3Rlc3RfZHVyYXRpb25fbXMiOiA0MjE0LAogICAgIm1heF90ZXN0X2R1cmF0aW9uX21zIjogNDUyMDAsCiAgICAibWluX3Rlc3RfZHVyYXRpb25fbXMiOiAzMjAsCiAgICAicDUwX2R1cmF0aW9uX21zIjogMjEwMCwKICAgICJwOTBfZHVyYXRpb25fbXMiOiA3ODAwLAogICAgInA5NV9kdXJhdGlvbl9tcyI6IDg3NTAsCiAgICAicDk5X2R1cmF0aW9uX21zIjogNDUyMDAKICB9LAogICJhcGlfcmVzcG9uc2VfdGltZXMiOiB7CiAgICAiaXRlcmF0aW9ucyI6IDUwMCwKICAgICJtaW5fbXMiOiAxMiwKICAgICJtYXhfbXMiOiAxODkwLAogICAgImF2Z19tcyI6IDI0NSwKICAgICJwNTBfbXMiOiAxODAsCiAgICAicDkwX21zIjogNTgwLAogICAgInA5OV9tcyI6IDE0NTAsCiAgICAidGhyZXNob2xkX21zIjogNTAwLAogICAgInBhc3NlZF90aHJlc2hvbGQiOiB0cnVlCiAgfSwKICAiY292ZXJhZ2UiOiB7CiAgICAibGluZXMiOiA4Ny40LAogICAgImJyYW5jaGVzIjogNzIuMSwKICAgICJmdW5jdGlvbnMiOiA5MS4yLAogICAgInN0YXRlbWVudHMiOiA4Ni44CiAgfSwKICAiZmxha3lfdGVzdHMiOiBbCiAgICB7CiAgICAgICJuYW1lIjogInRlc3RfdXNlcl9wcm9maWxlX3VwZGF0ZV9mbG93IiwKICAgICAgImZhaWx1cmVzX2xhc3RfMTBfcnVucyI6IDMsCiAgICAgICJmbGFraW5lc3NfcmF0ZSI6IDAuMzAKICAgIH0KICBdLAogICJzbG93ZXN0X3Rlc3RzIjogWwogICAgeyAibmFtZSI6ICJNb25nb0RCIERhdGFiYXNlIFByb2ZpbGVyIFRlc3QiLCAiZHVyYXRpb25fbXMiOiA0NTIwMCB9LAogICAgeyAibmFtZSI6ICJTUUxpdGUgRGF0YWJhc2UgUHJvZmlsZXIgVGVzdCIsICJkdXJhdGlvbl9tcyI6IDEyNDAwIH0sCiAgICB7ICJuYW1lIjogInRlc3RfY29tcGxldGVfY2hlY2tvdXRfZmxvdyIsICJkdXJhdGlvbl9tcyI6IDg3NTAgfSwKICAgIHsgIm5hbWUiOiAidGVzdF9yZWdpc3RyYXRpb25fd2l0aF9uZXN0ZWRfc3RlcHMiLCAiZHVyYXRpb25fbXMiOiA3ODAwIH0sCiAgICB7ICJuYW1lIjogInRlc3RfY2hlY2tvdXRfZmxvd193aXRoX2NvbnRleHRfbWFuYWdlciIsICJkdXJhdGlvbl9tcyI6IDY4OTAgfQogIF0KfQo=",
+            "file_name": "performance_metrics.json",
+            "file_path": "./build/qase-report/attachments/66a1fda1-6486-479d-8370-fb2b389a6f67-performance_metrics.json",
+            "id": "66a1fda1-6486-479d-8370-fb2b389a6f67",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 2340,
+        "end_time": 1770879656972,
+        "stacktrace": null,
+        "start_time": 1770879654632,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {},
+    "id": "eb415d62-5cfa-44ce-acfa-574e03121318",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "tests::test_attachments.py::test_attach_performance_metrics",
+    "steps": [],
+    "testops_ids": null,
+    "title": "test_attach_performance_metrics"
+}

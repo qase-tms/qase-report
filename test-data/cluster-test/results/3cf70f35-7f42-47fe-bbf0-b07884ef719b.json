@@ -1,0 +1,56 @@
+{
+    "attachments": [
+        {
+            "content": "U0VMRUNUIGlkLCBuYW1lLCBlbWFpbCBGUk9NIHVzZXJzIFdIRVJFIHN0YXR1cyA9ICdhY3RpdmUnIExJTUlUIDEw",
+            "file_name": "executed_query.sql",
+            "file_path": "./build/qase-report/attachments/90f48935-4b7c-42bd-b007-7ec529d19f2a-executed_query.sql",
+            "id": "90f48935-4b7c-42bd-b007-7ec529d19f2a",
+            "mime_type": "text/plain",
+            "temporary": false
+        },
+        {
+            "content": "ewogICJxdWVyeSI6ICJTRUxFQ1QgKiBGUk9NIHVzZXJzIFdIRVJFIHVzZXJuYW1lID0gJ2UyZV90ZXN0X2pvaG4nIiwKICAiZXhlY3V0aW9uX3RpbWVfbXMiOiAxMiwKICAicm93c19hZmZlY3RlZCI6IDEsCiAgInJlc3VsdHMiOiBbCiAgICB7CiAgICAgICJpZCI6IDQ1Njc4LAogICAgICAidXNlcm5hbWUiOiAiZTJlX3Rlc3Rfam9obiIsCiAgICAgICJlbWFpbCI6ICJqb2huQHRlc3QuY29tIiwKICAgICAgInBhc3N3b3JkX2hhc2giOiAiJDJiJDEyJHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4IiwKICAgICAgImNyZWF0ZWRfYXQiOiAiMjAyNi0wMi0xMlQxNDoxMDoxMC42MjVaIiwKICAgICAgInVwZGF0ZWRfYXQiOiAiMjAyNi0wMi0xMlQxNDoxMDoxMC42MjVaIiwKICAgICAgImxhc3RfbG9naW4iOiBudWxsLAogICAgICAiaXNfYWN0aXZlIjogdHJ1ZSwKICAgICAgImlzX3ZlcmlmaWVkIjogZmFsc2UsCiAgICAgICJyb2xlIjogInVzZXIiLAogICAgICAicHJvZmlsZSI6IHsKICAgICAgICAiZmlyc3RfbmFtZSI6ICJKb2huIiwKICAgICAgICAibGFzdF9uYW1lIjogIlRlc3QiLAogICAgICAgICJhdmF0YXIiOiBudWxsLAogICAgICAgICJiaW8iOiBudWxsLAogICAgICAgICJ0aW1lem9uZSI6ICJVVEMiCiAgICAgIH0sCiAgICAgICJzZXR0aW5ncyI6IHsKICAgICAgICAidGhlbWUiOiAic3lzdGVtIiwKICAgICAgICAibm90aWZpY2F0aW9ucyI6IHsKICAgICAgICAgICJlbWFpbCI6IHRydWUsCiAgICAgICAgICAicHVzaCI6IGZhbHNlCiAgICAgICAgfSwKICAgICAgICAibGFuZ3VhZ2UiOiAiZW4iCiAgICAgIH0KICAgIH0KICBdLAogICJtZXRhZGF0YSI6IHsKICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgInNjaGVtYSI6ICJwdWJsaWMiLAogICAgInRhYmxlIjogInVzZXJzIiwKICAgICJzZXJ2ZXIiOiAibG9jYWxob3N0OjU0MzIiLAogICAgImNvbm5lY3Rpb25faWQiOiAiY29ubi1hYmMxMjMiCiAgfQp9Cg==",
+            "file_name": "query_results.json",
+            "file_path": "./build/qase-report/attachments/e3e7bf56-8ed2-419e-8bed-ec5817f0d6e7-query_results.json",
+            "id": "e3e7bf56-8ed2-419e-8bed-ec5817f0d6e7",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 2450,
+        "end_time": 1770879626175,
+        "stacktrace": null,
+        "start_time": 1770879623725,
+        "status": "passed",
+        "thread": "worker-1"
+    },
+    "fields": {
+        "severity": "normal"
+    },
+    "id": "3cf70f35-7f42-47fe-bbf0-b07884ef719b",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "50::tests::test_attachments.py::test_database_query_with_attachment",
+    "steps": [],
+    "testops_ids": [
+        50
+    ],
+    "title": "Database query execution with result attachment"
+}

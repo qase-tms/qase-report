@@ -1,0 +1,46 @@
+{
+    "attachments": [
+        {
+            "content": "ewogICJ0ZXN0X2Vudmlyb25tZW50IjogInN0YWdpbmciLAogICJiYXNlX3VybCI6ICJodHRwczovL3N0YWdpbmcuZXhhbXBsZS5jb20iLAogICJhcGlfdmVyc2lvbiI6ICJ2MiIsCiAgImRhdGFiYXNlIjogewogICAgInBvc3RncmVzIjogewogICAgICAiaG9zdCI6ICJsb2NhbGhvc3QiLAogICAgICAicG9ydCI6IDU0MzIsCiAgICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgICAidXNlciI6ICJ0ZXN0X3J1bm5lciIsCiAgICAgICJzc2wiOiBmYWxzZSwKICAgICAgInBvb2xfc2l6ZSI6IDEwCiAgICB9LAogICAgIm1vbmdvZGIiOiB7CiAgICAgICJob3N0IjogImxvY2FsaG9zdCIsCiAgICAgICJwb3J0IjogMjcwMTcsCiAgICAgICJkYXRhYmFzZSI6ICJ0ZXN0ZGIiLAogICAgICAidGltZW91dF9tcyI6IDMwMDAwCiAgICB9LAogICAgInJlZGlzIjogewogICAgICAiaG9zdCI6ICJsb2NhbGhvc3QiLAogICAgICAicG9ydCI6IDYzNzksCiAgICAgICJkYiI6IDEKICAgIH0KICB9LAogICJhdXRoIjogewogICAgIm9hdXRoX3Byb3ZpZGVycyI6IFsiZ29vZ2xlIiwgImdpdGh1YiIsICJtaWNyb3NvZnQiXSwKICAgICJqd3Rfc2VjcmV0IjogIioqKlJFREFDVEVEKioqIiwKICAgICJ0b2tlbl9leHBpcnlfaG91cnMiOiAyNCwKICAgICJyZWZyZXNoX3Rva2VuX2RheXMiOiAzMAogIH0sCiAgImZlYXR1cmVfZmxhZ3MiOiB7CiAgICAibmV3X2NoZWNrb3V0X2Zsb3ciOiB0cnVlLAogICAgImRhcmtfbW9kZSI6IHRydWUsCiAgICAiYW5hbHl0aWNzX3YyIjogZmFsc2UsCiAgICAiYmV0YV9mZWF0dXJlcyI6IGZhbHNlCiAgfSwKICAidGltZW91dHMiOiB7CiAgICAiYXBpX3JlcXVlc3RfbXMiOiA1MDAwLAogICAgInBhZ2VfbG9hZF9tcyI6IDEwMDAwLAogICAgImVsZW1lbnRfd2FpdF9tcyI6IDMwMDAsCiAgICAiZGJfY29ubmVjdGlvbl9tcyI6IDEwMDAwCiAgfSwKICAicGFyYWxsZWxfd29ya2VycyI6IDMsCiAgInJldHJ5X2ZhaWxlZF90ZXN0cyI6IHRydWUsCiAgIm1heF9yZXRyaWVzIjogMgp9Cg==",
+            "file_name": "test_config.json",
+            "file_path": "./build/qase-report/attachments/c1cfb8b2-a2ed-4e66-a725-9f450902e928-test_config.json",
+            "id": "c1cfb8b2-a2ed-4e66-a725-9f450902e928",
+            "mime_type": "application/json",
+            "temporary": false
+        }
+    ],
+    "execution": {
+        "duration": 1780,
+        "end_time": 1770879642174,
+        "stacktrace": null,
+        "start_time": 1770879640394,
+        "status": "passed",
+        "thread": "worker-2"
+    },
+    "fields": {},
+    "id": "bbb56cff-9217-4d46-8ba0-bfb2ebdd15dc",
+    "message": null,
+    "muted": false,
+    "param_groups": [],
+    "params": {},
+    "relations": {
+        "suite": {
+            "data": [
+                {
+                    "public_id": null,
+                    "title": "tests"
+                },
+                {
+                    "public_id": null,
+                    "title": "test_attachments"
+                }
+            ]
+        }
+    },
+    "signature": "51::tests::test_attachments.py::test_config_validation_with_attachment",
+    "steps": [],
+    "testops_ids": [
+        51
+    ],
+    "title": "Configuration validation with config attachment"
+}
