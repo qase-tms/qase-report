@@ -88,5 +88,8 @@
   },
   "optionalDependencies": {
     "playwright-core": "^1.58.0"
+  },
+  "overrides": {
+    "glob": "^13.0.0"
   }
 }
