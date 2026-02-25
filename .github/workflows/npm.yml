@@ -6,10 +6,6 @@ on:
     branches:
       - 'main'
 
-permissions:
-  id-token: write
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +26,9 @@ jobs:
     needs: build
     if: startsWith(github.event.ref, 'refs/tags')
     name: Publish to npm
+    permissions:
+      id-token: write
+      contents: write
     steps:
     - uses: actions/checkout@v6
     - uses: actions/setup-node@v6
@@ -45,9 +44,7 @@ jobs:
 
     - name: Publish a release version
       if: "!contains(github.event.ref, 'beta')"
-      run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm publish --provenance --access public
 
     - name: Create GitHub Release
       if: "!contains(github.event.ref, 'beta')"
@@ -61,6 +58,4 @@ jobs:
 
     - name: Publish a beta version
       if: contains(github.event.ref, 'beta')
-      run: npm publish --tag beta
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm publish --provenance --access public --tag beta
