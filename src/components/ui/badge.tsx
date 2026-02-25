@@ -25,7 +25,7 @@ const badgeVariants = cva(
         broken: "border-transparent bg-status-broken-bg text-status-broken",
         blocked: "border-transparent bg-status-blocked-bg text-status-blocked",
         invalid: "border-transparent bg-status-invalid-bg text-status-invalid",
-        muted: "border-transparent bg-status-muted-bg text-status-muted",
+        muted: "border-transparent bg-status-muted-bg text-text-black",
       },
     },
     defaultVariants: {
