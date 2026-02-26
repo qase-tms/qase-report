@@ -127,7 +127,7 @@ export const createColumns = (
                   e.stopPropagation()
                   row.toggleExpanded()
                 }}
-                className="mr-1 p-0.5 hover:bg-accent rounded"
+                className="mr-1 p-0.5 hover:bg-accent rounded shrink-0"
               >
                 {isExpanded ? (
                   <ChevronDown className="h-4 w-4" />
@@ -138,7 +138,7 @@ export const createColumns = (
             ) : (
               <span className="mr-1 w-5" />
             )}
-            <Folder className="h-4 w-4 mr-2 text-muted-foreground" />
+            <Folder className="h-4 w-4 mr-2 text-muted-foreground shrink-0" />
             <span className="font-medium">{row.original.suiteTitle}</span>
           </div>
         )
