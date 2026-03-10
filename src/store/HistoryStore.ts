@@ -214,15 +214,16 @@ export class HistoryStore {
       if (!signature) continue
 
       // Find or create test entry
-      let testEntry = this.history.tests.find((t) => t.signature === signature)
-      if (!testEntry) {
-        testEntry = {
+      if (!this.history.tests.find((t) => t.signature === signature)) {
+        this.history.tests.push({
           signature,
           title: testResult.title,
           runs: [],
-        }
-        this.history.tests.push(testEntry)
+        })
       }
+
+      // Re-fetch from observable array to get MobX-proxied reference
+      const testEntry = this.history.tests.find((t) => t.signature === signature)!
 
       // Extract first line of error message for flakiness detection
       let errorMessage: string | null = null
