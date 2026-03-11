@@ -49,7 +49,7 @@ export const CommandPalette = observer(({ open, onOpenChange }: CommandPalettePr
   }
 
   return (
-    <CommandDialog open={open} onOpenChange={onOpenChange}>
+    <CommandDialog open={open} onOpenChange={onOpenChange} shouldFilter={false}>
       <CommandInput
         placeholder="Search tests..."
         value={query}
