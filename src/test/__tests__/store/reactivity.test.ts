@@ -106,7 +106,6 @@ describe('MobX reactivity', () => {
       attachments: [
         {
           id: 'trace-001',
-          title: 'Playwright Trace',
           file_name: 'trace.zip',
           file_path: './attachments/trace.zip',
           mime_type: 'application/zip',

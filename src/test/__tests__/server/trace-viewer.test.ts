@@ -27,10 +27,13 @@ vi.mock('module', async importOriginal => {
       const req = (id: string) => {
         throw new Error(`Cannot find module '${id}'`)
       }
-      req.resolve = (id: string) => {
-        throw new Error(`Cannot find module '${id}'`)
-      }
-      req.resolve.paths = (_id: string) => null
+      const resolve = Object.assign(
+        (id: string) => {
+          throw new Error(`Cannot find module '${id}'`) as never
+        },
+        { paths: (_id: string) => null as string[] | null },
+      )
+      req.resolve = resolve
       req.main = undefined
       req.extensions = {} as NodeJS.RequireExtensions
       req.cache = {} as NodeJS.Dict<NodeJS.Module>
