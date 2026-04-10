@@ -8,11 +8,11 @@ import { makeTestResult } from '../../factories/result.factory'
 
 // jsdom does not implement ResizeObserver — required by cmdk's CommandList
 beforeAll(() => {
-  global.ResizeObserver = vi.fn().mockImplementation(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-  }))
+  global.ResizeObserver = class {
+    observe = vi.fn()
+    unobserve = vi.fn()
+    disconnect = vi.fn()
+  } as unknown as typeof ResizeObserver
 })
 
 describe('CommandPalette', () => {
@@ -25,7 +25,9 @@ describe('CommandPalette', () => {
 
   it('does not render content when open=false', () => {
     renderWithProviders(<CommandPalette open={false} onOpenChange={vi.fn()} />)
-    expect(screen.queryByPlaceholderText('Search tests...')).not.toBeInTheDocument()
+    expect(
+      screen.queryByPlaceholderText('Search tests...')
+    ).not.toBeInTheDocument()
   })
 
   it('shows "No tests found." for empty query results', async () => {

@@ -2,7 +2,10 @@ import { screen, fireEvent, within } from '@testing-library/react'
 import { describe, it, expect, vi, beforeAll } from 'vitest'
 import { renderWithProviders } from '../../utils/render'
 import { DataTable } from '@/components/TestList/DataTable'
-import { buildSuiteTree, type TreeNode } from '@/components/TestList/buildSuiteTree'
+import {
+  buildSuiteTree,
+  type TreeNode,
+} from '@/components/TestList/buildSuiteTree'
 import { createColumns } from '@/components/TestList/columns'
 import { makeTestResult } from '../../factories/result.factory'
 
@@ -28,11 +31,11 @@ beforeAll(() => {
   })
 
   // Mock ResizeObserver (not implemented in jsdom)
-  global.ResizeObserver = vi.fn().mockImplementation(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-  }))
+  global.ResizeObserver = class {
+    observe = vi.fn()
+    unobserve = vi.fn()
+    disconnect = vi.fn()
+  } as unknown as typeof ResizeObserver
 })
 
 /**
@@ -58,7 +61,9 @@ describe('DataTable suite expand/collapse', () => {
     const test = makeTestResult({
       id: 't1',
       title: 'Login test',
-      relations: { suite: { data: [{ title: 'Authentication', public_id: null }] } },
+      relations: {
+        suite: { data: [{ title: 'Authentication', public_id: null }] },
+      },
     })
 
     renderDataTable([test])
@@ -70,7 +75,9 @@ describe('DataTable suite expand/collapse', () => {
     const test = makeTestResult({
       id: 't1',
       title: 'Login test',
-      relations: { suite: { data: [{ title: 'Authentication', public_id: null }] } },
+      relations: {
+        suite: { data: [{ title: 'Authentication', public_id: null }] },
+      },
     })
 
     renderDataTable([test])
@@ -82,7 +89,9 @@ describe('DataTable suite expand/collapse', () => {
     const test = makeTestResult({
       id: 't1',
       title: 'Login test',
-      relations: { suite: { data: [{ title: 'Authentication', public_id: null }] } },
+      relations: {
+        suite: { data: [{ title: 'Authentication', public_id: null }] },
+      },
     })
 
     renderDataTable([test])
@@ -100,7 +109,9 @@ describe('DataTable suite expand/collapse', () => {
     const test = makeTestResult({
       id: 't1',
       title: 'Login test',
-      relations: { suite: { data: [{ title: 'Authentication', public_id: null }] } },
+      relations: {
+        suite: { data: [{ title: 'Authentication', public_id: null }] },
+      },
     })
 
     renderDataTable([test])
@@ -121,7 +132,9 @@ describe('DataTable suite expand/collapse', () => {
     const authTest = makeTestResult({
       id: 't1',
       title: 'Login test',
-      relations: { suite: { data: [{ title: 'Authentication', public_id: null }] } },
+      relations: {
+        suite: { data: [{ title: 'Authentication', public_id: null }] },
+      },
     })
     const payTest = makeTestResult({
       id: 't2',
