@@ -1,0 +1,27 @@
+src/test/__tests__/components/CommandPalette.test.tsx
+  12e7cead7f4bcf3e 11-15
+src/test/__tests__/components/DataTable.test.tsx
+  12e7cead7f4bcf3e 31-35
+package.json
+  12e7cead7f4bcf3e 27,48,70,86-88,97-99
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.8",
+  "base_commit_sha": "ea466aa6b26f78e5af7fa1ae82074417cfba8c5d",
+  "prompts": {
+    "12e7cead7f4bcf3e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "41b18c68-4949-41cf-bc8d-a8030cf153ba",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmitrii Gridnev",
+      "messages": [],
+      "total_additions": 454,
+      "total_deletions": 19,
+      "accepted_lines": 454,
+      "overriden_lines": 0
+    }
+  }
+}
