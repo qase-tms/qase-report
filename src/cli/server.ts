@@ -4,7 +4,7 @@ import { dirname, join, resolve } from 'path'
 import { readFileSync, readdirSync, existsSync } from 'fs'
 import { Server } from 'http'
 import { createRequire } from 'module'
-import archiver from 'archiver'
+import { ZipArchive } from 'archiver'
 import { generateHtmlReport } from './generators/html-generator.js'
 import { createQaseRun, sendQaseResults, completeQaseRun, buildRunUrl, uploadAttachments, QaseApiError } from './qase-api.js'
 import { transformResults } from './qase-transform.js'
@@ -266,7 +266,7 @@ export function createServer(options: ServerOptions): Application {
           'attachment; filename="qase-report.zip"'
         )
 
-        const archive = archiver('zip', { zlib: { level: 6 } })
+        const archive = new ZipArchive({ zlib: { level: 6 } })
 
         archive.on('error', (err) => {
           console.error('Archive error:', err)
