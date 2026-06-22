@@ -1,0 +1,35 @@
+src/cli/server.ts
+  s_012793beb09e95::t_d462e4f2835900 7
+  s_012793beb09e95::t_d5c4fbbb9ef3a8 269
+package.json
+  s_012793beb09e95::t_25c4f9dc53fe83 79
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "3165034b0438a03fe41aa341c8df05eb66b84a87",
+  "prompts": {
+    "12e7cead7f4bcf3e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "41b18c68-4949-41cf-bc8d-a8030cf153ba",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Dmitrii Gridnev <dgridnev@qase.io>",
+      "total_additions": 287,
+      "total_deletions": 0,
+      "accepted_lines": 287,
+      "overriden_lines": 0
+    }
+  },
+  "sessions": {
+    "s_012793beb09e95": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "841247fc-0df9-4d7d-9831-186cc860b3e4",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Dmitrii Gridnev <dgridnev@qase.io>"
+    }
+  }
+}
